@@ -26,26 +26,25 @@ It doesn't (yet) use any reducers as the nature of the OAuth implicit flow requi
 It does however include a function called `createTokenManager(config)` where you can create an `oidc-token-manager` instance to read data from the token into your reducers.
 
 ##Usage
+Recommended: Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create a helper method which returns the config object to use it in the middleware and Callback component:
+
+        function createTokenManagerConfig() {
+          return {
+            client_id: 'redux-app', // your client id
+            redirect_uri: `${window.location.protocol}//${window.location.hostname}:${window.location.port}/callback`, // your                    callback url
+            response_type: 'id_token token', // the response type from the token service
+            scope: 'openid profile', // the scopes to include
+            authority: 'https://myTokenService.com' // the authority
+          };
+        }
+
 1. Register the middleware with the redux store.
 
         import { createStore, applyMiddleware, compose } from 'redux';
         import createTokenMiddleware from 'redux-oidc;
         
-        // the configuration for the middleware
-        const config = {
-          storageKey: 'redirectTo', // the key in localStorage to store the redirect Url in
-          
-          tokenManagerOptions: { // the configuration object for the oidc-token-manager
-            client_id: 'redux-app', // your client id
-            redirect_uri: `${window.location.protocol}//${window.location.hostname}:${window.location.port}/callback`, // your callback url
-            response_type: 'id_token token', // the response type from the token service
-            scope: 'openid profile', // the scopes to include
-            authority: 'https://myTokenService.com' // the authority
-          }
-        };
-        
         const store = compose(
-          applyMiddleware(createTokenMiddleware(config))
+          applyMiddleware(createTokenMiddleware(createTokenManagerConfig())) // call the middleware creator function
         )(createStore);
 
 2. Create a route in your app to point to the `redirect_uri` specified in the `tokenManagerOptions` & registered with the token service. In the component registered at that route,
@@ -53,19 +52,7 @@ include the `CallbackComponent`:
 
         import React from 'react';
         import { CallbackComponent } from 'redux-oidc';
-        
-        // the same as in step 1
-        const config = {
-          storageKey: 'redirectTo', // the key in localStorage to store the redirect Url in
-          
-          tokenManagerOptions: { // the configuration object for the oidc-token-manager
-            client_id: 'redux-app', // your client id
-            redirect_uri: `${window.location.protocol}//${window.location.hostname}:${window.location.port}/callback`, // your callback url
-            response_type: 'id_token token', // the response type from the token service
-            scope: 'openid profile', // the scopes to include
-            authority: 'https://myTokenService.com' // the authority
-          }
-        };
+        import { createTokenManagerConfig } from 'helpers';
         
         class CallbackPage extends React.Component {
           
@@ -83,7 +70,7 @@ include the `CallbackComponent`:
           
           render() {
             return (
-              <CallbackComponent config={config} errorCallback={this.onTokenValidationError}>
+              <CallbackComponent config={createTokenManagerConfig()} errorCallback={this.onTokenValidationError}>
                 { this.customContent }
               </CallbackComponent>
             );
@@ -97,13 +84,10 @@ That's all there is to do.
 Optionally you can create a TokenManager instance to read the token information into your reducers: 
 
         import { createTokenManager } from 'redux-oidc';
-        
-        const tokenManagerConfig = {
-          // provide the configuration here...
-        };
+        import { createTokenManagerConfig } from 'helpers';
         
         function getInitialState() {
-          const manager = createTokenManager(tokenManagerConfig);
+          const manager = createTokenManager(createTokenManagerConfig());
           
           if (!manager.expired) {
             return {
