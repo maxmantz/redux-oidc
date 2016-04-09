@@ -8,6 +8,14 @@
     "build": "webpack",
     "prepublish": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxmantz/redux-oidc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maxmantz/redux-oidc/issues",
+    "email": "maximilian.mantz@yahoo.de"
+  },
   "keywords": [
     "oidc",
     "redux",
