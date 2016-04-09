@@ -2,12 +2,12 @@ import createTokenManager from './helpers';
 import { STORAGE_KEY } from './constants';
 
 export default function createTokenMiddleware(config) {
-  if (!config.tokenManagerConfig) {
+  if (!config) {
     throw new Error('You must provide a token manager configuration object!');
   }
 
   return (store) => (next) => (action) => {
-    const manager = createTokenManager(config.tokenManagerConfig);
+    const manager = createTokenManager(config);
     if (manager.expired && !localStorage.getItem(STORAGE_KEY)) {
       window.localStorage.setItem(STORAGE_KEY, window.location.href);
 
