@@ -5,9 +5,8 @@ import { STORAGE_KEY } from './constants';
 class CallbackComponent extends React.Component {
   componentDidMount() {
 
-    const { storageKey, tokenManagerConfig } = this.props.config;
     const { errorCallback } = this.props;
-    const manager = createTokenManager(tokenManagerConfig);
+    const manager = createTokenManager(this.props.config);
     const redirectUri = localStorage.getItem(STORAGE_KEY);
 
     // process the token callback
