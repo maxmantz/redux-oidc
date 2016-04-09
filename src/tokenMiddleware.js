@@ -1,4 +1,4 @@
-function createTokenMiddleware(options) {
+function createTokenMiddleware(config) {
   if (!options.tokenManagerConfig) {
     throw new Error('You must provide token manager configuration!');
   }
@@ -6,7 +6,7 @@ function createTokenMiddleware(options) {
   return (store) => (next) => (action) => {
     const manager = createTokenManager(options.tokenManagerConfig);
     if (manager.expired && !localStorage.getItem('redirectTo')) {
-      const storageKey = options.storageKey || 'redirectTo';
+      const storageKey = config.storageKey || 'redirectTo';
       localStorage.setItem(config.storageKey, window.location.href);
       tokenManager.redirectForToken();
       return null;

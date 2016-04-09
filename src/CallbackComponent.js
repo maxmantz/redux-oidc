@@ -3,18 +3,20 @@ import { createTokenManager } from './helpers';
 
 class CallbackComponent extends React.Component {
   componentDidMount() {
-    const manager = createTokenManager(this.props.tokenManagerConfig);
+
+    const { storageKey, tokenManagerConfig } = this.props.config;
+    const { errorCallback } = this.props;
+
+    const manager = createTokenManager(tokenManagerConfig);
 
     // process the token callback
     manager.processTokenCallbackAsync().then(() => {
-      const { storageKey } = this.options;
-      const { errorCallback } = this.props;
       const redirectUri = localStorage.getItem(storageKey);
       localStorage.setItem(storageKey, null);
       window.location = redirectUri;
     }, (error) => {
       if (this.props.errorCallback) {
-        this.props.errorCallback();
+        this.props.errorCallback(error);
       }
     })
   }
