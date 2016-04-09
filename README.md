@@ -115,7 +115,7 @@ The following helper methods are available to you. You can bind them to componen
 - `createTokenManager(config)`: takes a `config` object and returns an instance of `oidc-token-manager`,
 - `logout(redirectTo)`: logs out the user locally and (optionally) redirects the browser to an url,
 - `logoutAtIdentityService(config)`: logs out the user at the identity service. Takes a `config` object.
-- 
+
 `config` objects are objects required to create the token manager instances (see Usage).
 
 ###TODOs
