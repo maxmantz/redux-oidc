@@ -7,11 +7,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'redux-oidc.js',
-    library: 'shared-components',
-    libraryTarget: 'umd'
+    libraryTarget: 'amd'
   },
   externals: {
-    'react': 'react'
+    'react': 'React'
   },
   module: {
     loaders: [

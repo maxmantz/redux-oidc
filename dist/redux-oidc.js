@@ -1,14 +1,4 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"));
-	else if(typeof define === 'function' && define.amd)
-		define(["react"], factory);
-	else if(typeof exports === 'object')
-		exports["shared-components"] = factory(require("react"));
-	else
-		root["shared-components"] = factory(root["react"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_13__) {
-return /******/ (function(modules) { // webpackBootstrap
+define(["React"], function(__WEBPACK_EXTERNAL_MODULE_15__) { return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -66,6 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.createTokenManager = exports.CallbackComponent = undefined;
 
 	var _oidcTokenManager = __webpack_require__(2);
 
@@ -75,15 +66,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _tokenMiddleware2 = _interopRequireDefault(_tokenMiddleware);
 
-	var _CallbackComponent = __webpack_require__(12);
+	var _CallbackComponent = __webpack_require__(14);
 
 	var _CallbackComponent2 = _interopRequireDefault(_CallbackComponent);
 
-	var _helpers = __webpack_require__(14);
+	var _helpers = __webpack_require__(12);
+
+	var _helpers2 = _interopRequireDefault(_helpers);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	exports['default'] = { createTokenManager: _helpers.createTokenManager, createTokenMiddleware: _tokenMiddleware2['default'], CallbackComponent: _CallbackComponent2['default'] };
+	exports.CallbackComponent = _CallbackComponent2['default'];
+	exports.createTokenManager = _helpers2['default'];
+	exports['default'] = _tokenMiddleware2['default'];
 
 /***/ },
 /* 2 */
@@ -5285,26 +5280,36 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 11 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports['default'] = createTokenMiddleware;
+
+	var _helpers = __webpack_require__(12);
+
+	var _helpers2 = _interopRequireDefault(_helpers);
+
+	var _constants = __webpack_require__(13);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	function createTokenMiddleware(config) {
-	  if (!options.tokenManagerConfig) {
-	    throw new Error('You must provide token manager configuration!');
+	  if (!config.tokenManagerConfig) {
+	    throw new Error('You must provide a token manager configuration object!');
 	  }
 
 	  return function (store) {
 	    return function (next) {
 	      return function (action) {
-	        var manager = createTokenManager(options.tokenManagerConfig);
-	        if (manager.expired && !localStorage.getItem('redirectTo')) {
-	          var storageKey = config.storageKey || 'redirectTo';
-	          localStorage.setItem(config.storageKey, window.location.href);
-	          tokenManager.redirectForToken();
+	        var manager = (0, _helpers2['default'])(config.tokenManagerConfig);
+	        if (manager.expired && !localStorage.getItem(_constants.STORAGE_KEY)) {
+	          window.localStorage.setItem(_constants.STORAGE_KEY, window.location.href);
+
+	          manager.redirectForToken();
 	          return null;
 	        }
 
@@ -5314,21 +5319,59 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	};
 
-	exports['default'] = createTokenMiddleware;
-
 /***/ },
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = createTokenManager;
+
+	var _oidcTokenManager = __webpack_require__(2);
+
+	var _oidcTokenManager2 = _interopRequireDefault(_oidcTokenManager);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function createTokenManager(config) {
+	  return new _oidcTokenManager2['default'](config);
+	};
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var STORAGE_KEY = exports.STORAGE_KEY = 'oidc.redirectTo';
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(13);
+	var _react = __webpack_require__(15);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _helpers = __webpack_require__(14);
+	var _helpers = __webpack_require__(12);
+
+	var _helpers2 = _interopRequireDefault(_helpers);
+
+	var _constants = __webpack_require__(13);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -5358,14 +5401,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var tokenManagerConfig = _props$config.tokenManagerConfig;
 	        var errorCallback = this.props.errorCallback;
 
-
-	        var manager = (0, _helpers.createTokenManager)(tokenManagerConfig);
+	        var manager = (0, _helpers2['default'])(tokenManagerConfig);
+	        var redirectUri = localStorage.getItem(_constants.STORAGE_KEY);
 
 	        // process the token callback
 	        manager.processTokenCallbackAsync().then(function () {
-	          var redirectUri = localStorage.getItem(storageKey);
-	          localStorage.setItem(storageKey, null);
-	          window.location = redirectUri;
+	          localStorage.removeItem(_constants.STORAGE_KEY);
+	          window.location = redirectUri ? redirectUri : window.location.protocol + '//' + window.location.hostname + ':' + window.location.port;
 	        }, function (error) {
 	          if (_this2.props.errorCallback) {
 	            _this2.props.errorCallback(error);
@@ -5401,50 +5443,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      return get;
 	    }()
-	  }, {
-	    key: 'options',
-	    get: function () {
-	      function get() {
-	        return {
-	          storageKey: this.props.storageKey || 'oidc.redirectTo'
-	        };
-	      }
-
-	      return get;
-	    }()
 	  }]);
 
 	  return CallbackComponent;
 	}(_react2['default'].Component);
 
+	exports['default'] = CallbackComponent;
+
 /***/ },
-/* 13 */
+/* 15 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.createTokenManager = createTokenManager;
-
-	var _oidcTokenManager = __webpack_require__(2);
-
-	var _oidcTokenManager2 = _interopRequireDefault(_oidcTokenManager);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function createTokenManager(config) {
-	  return new _oidcTokenManager2['default'](config);
-	};
+	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ }
-/******/ ])
-});
-;
+/******/ ])});;

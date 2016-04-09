@@ -1,19 +1,20 @@
-function createTokenMiddleware(config) {
-  if (!options.tokenManagerConfig) {
-    throw new Error('You must provide token manager configuration!');
+import createTokenManager from './helpers';
+import { STORAGE_KEY } from './constants';
+
+export default function createTokenMiddleware(config) {
+  if (!config.tokenManagerConfig) {
+    throw new Error('You must provide a token manager configuration object!');
   }
 
   return (store) => (next) => (action) => {
-    const manager = createTokenManager(options.tokenManagerConfig);
-    if (manager.expired && !localStorage.getItem('redirectTo')) {
-      const storageKey = config.storageKey || 'redirectTo';
-      localStorage.setItem(config.storageKey, window.location.href);
-      tokenManager.redirectForToken();
+    const manager = createTokenManager(config.tokenManagerConfig);
+    if (manager.expired && !localStorage.getItem(STORAGE_KEY)) {
+      window.localStorage.setItem(STORAGE_KEY, window.location.href);
+
+      manager.redirectForToken();
       return null;
     }
 
     return next(action);
   }
 };
-
-export default createTokenMiddleware;
