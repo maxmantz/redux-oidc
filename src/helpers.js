@@ -9,7 +9,11 @@ export function logoutAtIdentityService(config) {
   manager.redirectForLogout();
 }
 
-export function logout() {
+export function logout(redirectTo) {
   const manager = new OidcTokenManager();
   manager.removeToken();
+
+  if (redirectTo) {
+    window.location = redirectTo;
+  }
 }
