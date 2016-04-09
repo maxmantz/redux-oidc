@@ -95,8 +95,8 @@ Optionally you can create a TokenManager instance to read the token information 
           
           if (!manager.expired) {
             return {
-            profile: tokenManager.profile,
-            token: tokenManager.access_token,
+            profile: manager.profile,
+            token: manager.access_token,
             ...
             };
           }
