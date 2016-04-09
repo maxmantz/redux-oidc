@@ -1,12 +1,12 @@
 # redux-oidc
-Middleware component for managing the [OpenID Connect](http://openid.net/connect/) implicit authentication flow in [redux](https://github.com/reactjs/redux) apps.
+Middleware component for managing the [OpenID Connect](http://openid.net/connect/) authentication flow in [redux](https://github.com/reactjs/redux) apps.
 
 ##Installation
 
 `npm install --save redux-oidc`
 
 ##Description
-This project was created to enable redux apps to use the OpenID-Connect implicit authentication flow. It was created by me to connect my redux app to an API protected by
+This project was created to enable redux apps to use the OpenID-Connect authentication flow for JavaScript apps (OAuth implicit flow). It was created by me to connect my redux app to an API protected by
 an [IdentityServer3](https://github.com/IdentityServer/IdentityServer3) authentication service, but it should work with other services as well as long as they are
 implementing the OpenID Connect specification.
 
