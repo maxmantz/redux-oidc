@@ -19,11 +19,12 @@ It contains these parts:
 
 
 
-The combination of the two parts does the following in a redux app:
+The combination of these parts does the following in a redux app:
 - verify token lifetime at every dispatch.
 - if the access token has expired, trigger the authentication flow (OAuth implicit flow).
 - if authentication was successful, redirect to the URI before the authentication flow was triggered (any route within the app),
 - if authentication was unsuccessful, trigger an optional callback.
+- logout the user via the helper methods provided.
 
 It doesn't (yet) use any reducers as the nature of the OAuth implicit flow requires redirecting the browser to another host, thus losing the redux state in the process.
 It does however include a function called `createTokenManager(config)` where you can create an `oidc-token-manager` instance to read data from the token into your reducers.
@@ -34,7 +35,7 @@ Recommended: Each `oidc-token-manager` needs a new instance of the configuration
         function createTokenManagerConfig() {
           return {
             client_id: 'redux-app', // your client id
-            redirect_uri: `${window.location.protocol}//${window.location.hostname}:${window.location.port}/callback`, // your                    callback url
+            redirect_uri: `${window.location.protocol}//${window.location.hostname}:${window.location.port}/callback`, // your callback url
             response_type: 'id_token token', // the response type from the token service
             scope: 'openid profile', // the scopes to include
             authority: 'https://myTokenService.com' // the authority
