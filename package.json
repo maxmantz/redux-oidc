@@ -5,7 +5,7 @@
   "main": "dist/redux-oidc.js",
   "scripts": {
     "test": "mocha ./tests/*.test.js --compilers js:babel-core/register",
-    "build": "webpack",
+    "build": "webpack -p",
     "prepublish": "npm run build"
   },
   "repository": {
