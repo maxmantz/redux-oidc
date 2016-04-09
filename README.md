@@ -109,7 +109,9 @@ Optionally you can create a TokenManager instance to read the token information 
 
 ###Helpers:
 The following helper methods are available to you:
+
 `import { createTokenManager, logout, logoutAtIdentityService } from 'redux-oidc'`
+
 - `createTokenManager(config)`: takes a `config` object and returns an instance of `oidc-token-manager`,
 - `logout(redirectTo)`: logs out the user locally and (optionally) redirects the client to an url,
 - `logoutAtIdentityService(config)`: logs out the client at the identity service. Takes a `config` object.
