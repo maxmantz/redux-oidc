@@ -45,7 +45,7 @@ Recommended: Each `oidc-token-manager` needs a new instance of the configuration
 1. Register the middleware with the redux store.
 
         import { createStore, applyMiddleware, compose } from 'redux';
-        import createTokenMiddleware from 'redux-oidc;
+        import createTokenMiddleware from 'redux-oidc';
         
         const store = compose(
           applyMiddleware(createTokenMiddleware(createTokenManagerConfig())) // call the middleware creator function
