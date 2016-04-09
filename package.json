@@ -1,10 +1,10 @@
 {
   "name": "redux-oidc",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A package for managing OpenID Connect authentication in Redux apps",
   "main": "dist/redux-oidc.js",
   "scripts": {
-    "test": "mocha ./tests/*.test.js --compilers js:babel-core/register",
+    "test": "karma start --single-run --no-auto-watch",
     "build": "webpack -p",
     "prepublish": "npm run build"
   },
@@ -40,12 +40,30 @@
     "expect": "^1.12.2",
     "expect-jsx": "^2.1.2",
     "file-loader": "^0.8.4",
+    "fs": "0.0.2",
+    "istanbul-instrumenter-loader": "^0.2.0",
     "jasmine": "^2.4.1",
+    "jsdom": "^8.3.0",
     "json-loader": "^0.5.4",
-    "webpack": "^1.12.14"
+    "karma": "^0.13.22",
+    "karma-coverage": "^0.5.5",
+    "karma-mocha": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sinon": "^1.0.4",
+    "karma-webpack": "^1.7.0",
+    "phantomjs": "^2.1.7",
+    "phantomjs-polyfill": "0.0.2",
+    "react-tools": "^0.13.3",
+    "sinon": "^1.17.3",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "mocha": "^2.4.5",
     "oidc-client": "^0.3.3",
+    "phantomjs-prebuilt": "^2.1.7"
+  },
+  "peerDependencies": {
     "react": "^0.14.8"
   },
   "browserify": {

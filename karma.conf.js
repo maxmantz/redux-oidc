@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Fri Apr 08 2016 20:40:17 GMT+0200 (W. Europe Summer Time)
+var webpack = require('karma-webpack');
 
 module.exports = function(config) {
   config.set({
@@ -10,22 +11,34 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'browserify'],
+    frameworks: ['mocha'],
+
+    plugins: [webpack, 'karma-mocha', 'karma-phantomjs-launcher', 'karma-coverage'],
 
 
     files: [
-        'src/*.js',
-        'tests/*.js'
+      './node_modules/phantomjs-polyfill/bind-polyfill.js',
+      'tests/*.test.js'
     ],
 
     preprocessors: {
-      'tests/*.test.js': ['browserify']
+      'tests/*.test.js': ['webpack']
     },
 
-    browserify: {
-      transform: [['reactify', { es6: true}]],
-      extensions: ['.js']
-    },
+    webpack: {
+     module: {
+       loaders: [{
+         test: /\.(js|jsx)$/, exclude: /(bower_components|node_modules)/,
+         loader: 'babel-loader'
+       }],
+       postLoaders: [{
+         test: /\.(js|jsx)$/, exclude: /(node_modules|bower_components|tests)/,
+         loader: 'istanbul-instrumenter'
+       }]
+     }
+   },
+
+   webpackMiddleware: { noInfo: true },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -52,7 +65,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode

@@ -2,6 +2,8 @@ import sinon from 'sinon';
 import { logout, createTokenManager } from '../src/helpers';
 import expect from 'expect';
 
+// require('./testdom')('<html><head></head><body></body></html>');
+
 describe('logout()', () => {
   let removeTokenStub;
   let createTokenManagerStub;

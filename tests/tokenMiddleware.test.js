@@ -1,8 +1,8 @@
 import createTokenMiddleware from '../src/tokenMiddleware';
-import jsdom from 'mocha-jsdom';
+
+// require('./testdom')('<html><head></head><body></body></html>');
 
 describe('Token Middleware', () => {
-  jsdom();
   it('should return the correct middleware function', () => {
 
   });

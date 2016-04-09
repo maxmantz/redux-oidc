@@ -1,9 +1,10 @@
+
 import { createTokenManager } from '../src/helpers';
 import expect from 'expect';
-import jsdom from 'mocha-jsdom';
+
+//require('./testdom')('<html><head></head><body></body></html>');
 
 describe("createTokenManager() function", () => {
-  jsdom();
   it('should return an OidcTokenManager instance', () => {
     const options = {};
     const tokenManager = createTokenManager(options);
