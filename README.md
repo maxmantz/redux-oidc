@@ -107,14 +107,14 @@ Optionally you can create a TokenManager instance to read the token information 
           // your reducer logic...
         }
 
-###Helpers:
-The following helper methods are available to you:
+###Helpers
+The following helper methods are available to you. You can bind them to components like `<button/>`s or to your middleware (sagas, thunks etc.):
 
 `import { createTokenManager, logout, logoutAtIdentityService } from 'redux-oidc'`
 
 - `createTokenManager(config)`: takes a `config` object and returns an instance of `oidc-token-manager`,
-- `logout(redirectTo)`: logs out the user locally and (optionally) redirects the client to an url,
-- `logoutAtIdentityService(config)`: logs out the client at the identity service. Takes a `config` object.
+- `logout(redirectTo)`: logs out the user locally and (optionally) redirects the browser to an url,
+- `logoutAtIdentityService(config)`: logs out the user at the identity service. Takes a `config` object.
 `config` objects are objects required to create the token manager instances (see Usage).
 
 ###TODOs
