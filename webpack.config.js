@@ -7,14 +7,18 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'redux-oidc.js',
-    publicPath: ''
+    library: 'shared-components',
+    libraryTarget: 'umd'
+  },
+  externals: {
+    'react': 'react'
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
         loader: 'babel',
-        include: path.join(__dirname, 'src'),
+        exclude: /node_modules/,
         query: {
           presets: ['es2015', 'stage-0', 'react']
         }

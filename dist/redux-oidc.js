@@ -1,95 +1,5450 @@
-!function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return e[r].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var n={};return t.m=e,t.c=n,t.p="",t(0)}([function(e,t,n){e.exports=n(89)},function(e,t){function n(){c=!1,a.length?u=a.concat(u):l=-1,u.length&&r()}function r(){if(!c){var e=setTimeout(n);c=!0;for(var t=u.length;t;){for(a=u,u=[];++l<t;)a&&a[l].run();l=-1,t=u.length}a=null,c=!1,clearTimeout(e)}}function o(e,t){this.fun=e,this.array=t}function i(){}var a,s=e.exports={},u=[],c=!1,l=-1;s.nextTick=function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];u.push(new o(e,t)),1!==u.length||c||setTimeout(r,0)},o.prototype.run=function(){this.fun.apply(null,this.array)},s.title="browser",s.browser=!0,s.env={},s.argv=[],s.version="",s.versions={},s.on=i,s.addListener=i,s.once=i,s.off=i,s.removeListener=i,s.removeAllListeners=i,s.emit=i,s.binding=function(e){throw new Error("process.binding is not supported")},s.cwd=function(){return"/"},s.chdir=function(e){throw new Error("process.chdir is not supported")},s.umask=function(){return 0}},function(e,t,n){(function(t){"use strict";function n(e,n,r,o,i,a,s,u){if("production"!==t.env.NODE_ENV&&void 0===n)throw new Error("invariant requires an error message argument");if(!e){var c;if(void 0===n)c=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var l=[r,o,i,a,s,u],p=0;c=new Error(n.replace(/%s/g,function(){return l[p++]})),c.name="Invariant Violation"}throw c.framesToPop=1,c}}e.exports=n}).call(t,n(1))},function(e,t){"use strict";function n(e,t){if(null==e)throw new TypeError("Object.assign target cannot be null or undefined");for(var n=Object(e),r=Object.prototype.hasOwnProperty,o=1;o<arguments.length;o++){var i=arguments[o];if(null!=i){var a=Object(i);for(var s in a)r.call(a,s)&&(n[s]=a[s])}}return n}e.exports=n},function(e,t,n){(function(t){"use strict";var r=n(10),o=r;"production"!==t.env.NODE_ENV&&(o=function(e,t){for(var n=arguments.length,r=Array(n>2?n-2:0),o=2;n>o;o++)r[o-2]=arguments[o];if(void 0===t)throw new Error("`warning(condition, format, ...args)` requires a warning message argument");if(0!==t.indexOf("Failed Composite propType: ")&&!e){var i=0,a="Warning: "+t.replace(/%s/g,function(){return r[i++]});"undefined"!=typeof console&&console.error(a);try{throw new Error(a)}catch(s){}}}),e.exports=o}).call(t,n(1))},function(e,t){"use strict";var n=!("undefined"==typeof window||!window.document||!window.document.createElement),r={canUseDOM:n,canUseWorkers:"undefined"!=typeof Worker,canUseEventListeners:n&&!(!window.addEventListener&&!window.attachEvent),canUseViewport:n&&!!window.screen,isInWorker:!n};e.exports=r},function(e,t,n){(function(t){"use strict";function r(e,t){for(var n=Math.min(e.length,t.length),r=0;n>r;r++)if(e.charAt(r)!==t.charAt(r))return r;return e.length===t.length?-1:n}function o(e){return e?e.nodeType===J?e.documentElement:e.firstChild:null}function i(e){var t=o(e);return t&&ee.getID(t)}function a(e){var n=s(e);if(n)if(K.hasOwnProperty(n)){var r=K[n];r!==e&&(p(r,n)?"production"!==t.env.NODE_ENV?U(!1,"ReactMount: Two valid but unequal nodes with the same `%s`: %s",F,n):U(!1):void 0,K[n]=e)}else K[n]=e;return n}function s(e){return e&&e.getAttribute&&e.getAttribute(F)||""}function u(e,t){var n=s(e);n!==t&&delete K[n],e.setAttribute(F,t),K[t]=e}function c(e){return K.hasOwnProperty(e)&&p(K[e],e)||(K[e]=ee.findReactNodeByID(e)),K[e]}function l(e){var t=O.get(e)._rootNodeID;return C.isNullComponentID(t)?null:(K.hasOwnProperty(t)&&p(K[t],t)||(K[t]=ee.findReactNodeByID(t)),K[t])}function p(e,n){if(e){s(e)!==n?"production"!==t.env.NODE_ENV?U(!1,"ReactMount: Unexpected modification of `%s`",F):U(!1):void 0;var r=ee.findReactContainerForID(n);if(r&&k(r,e))return!0}return!1}function d(e){delete K[e]}function h(e){var t=K[e];return t&&p(t,e)?void(Z=t):!1}function f(e){Z=null,D.traverseAncestors(e,h);var t=Z;return Z=null,t}function g(e,n,r,o,i,a){if(S.useCreateElement&&(a=P({},a),r.nodeType===J?a[X]=r:a[X]=r.ownerDocument),"production"!==t.env.NODE_ENV){a===M&&(a={});var s=r.nodeName.toLowerCase();a[j.ancestorInfoContextKey]=j.updatedAncestorInfo(null,s,null)}var u=R.mountComponent(e,n,o,a);e._renderedComponent._topLevelWrapper=e,ee._mountImageIntoNode(u,r,i,o)}function v(e,t,n,r,o){var i=T.ReactReconcileTransaction.getPooled(r);i.perform(g,null,e,t,n,i,r,o),T.ReactReconcileTransaction.release(i)}function m(e,t){for(R.unmountComponent(e),t.nodeType===J&&(t=t.documentElement);t.lastChild;)t.removeChild(t.lastChild)}function y(e){var t=i(e);return t?t!==D.getReactRootIDFromNodeID(t):!1}function _(e){for(;e&&e.parentNode!==e;e=e.parentNode)if(1===e.nodeType){var t=s(e);if(t){var n,r=D.getReactRootIDFromNodeID(t),o=e;do if(n=s(o),o=o.parentNode,null==o)return null;while(n!==r);if(o===z[r])return e}}return null}var b=n(15),E=n(25),N=n(12),S=n(67),w=n(7),C=n(74),D=n(18),O=n(22),A=n(77),x=n(8),R=n(16),I=n(39),T=n(9),P=n(3),M=n(19),k=n(56),B=n(46),U=n(2),V=n(32),L=n(49),j=n(51),H=n(4),F=b.ID_ATTRIBUTE_NAME,K={},W=1,J=9,q=11,X="__ReactMount_ownerDocument$"+Math.random().toString(36).slice(2),Y={},z={};if("production"!==t.env.NODE_ENV)var G={};var $=[],Z=null,Q=function(){};Q.prototype.isReactComponent={},"production"!==t.env.NODE_ENV&&(Q.displayName="TopLevelWrapper"),Q.prototype.render=function(){return this.props};var ee={TopLevelWrapper:Q,_instancesByReactRootID:Y,scrollMonitor:function(e,t){t()},_updateRootComponent:function(e,n,r,a){return ee.scrollMonitor(r,function(){I.enqueueElementInternal(e,n),a&&I.enqueueCallbackInternal(e,a)}),"production"!==t.env.NODE_ENV&&(G[i(r)]=o(r)),e},_registerComponent:function(e,n){!n||n.nodeType!==W&&n.nodeType!==J&&n.nodeType!==q?"production"!==t.env.NODE_ENV?U(!1,"_registerComponent(...): Target container is not a DOM element."):U(!1):void 0,E.ensureScrollValueMonitoring();var r=ee.registerContainer(n);return Y[r]=e,r},_renderNewRootComponent:function(e,n,r,i){"production"!==t.env.NODE_ENV?H(null==N.current,"_renderNewRootComponent(): Render methods should be a pure function of props and state; triggering nested component updates from render is not allowed. If necessary, trigger nested updates in componentDidUpdate. Check the render method of %s.",N.current&&N.current.getName()||"ReactCompositeComponent"):void 0;var a=B(e,null),s=ee._registerComponent(a,n);return T.batchedUpdates(v,a,s,n,r,i),"production"!==t.env.NODE_ENV&&(G[s]=o(n)),a},renderSubtreeIntoContainer:function(e,n,r,o){return null==e||null==e._reactInternalInstance?"production"!==t.env.NODE_ENV?U(!1,"parentComponent must be a valid React Component"):U(!1):void 0,ee._renderSubtreeIntoContainer(e,n,r,o)},_renderSubtreeIntoContainer:function(e,n,r,a){w.isValidElement(n)?void 0:"production"!==t.env.NODE_ENV?U(!1,"ReactDOM.render(): Invalid component element.%s","string"==typeof n?" Instead of passing an element string, make sure to instantiate it by passing it to React.createElement.":"function"==typeof n?" Instead of passing a component class, make sure to instantiate it by passing it to React.createElement.":null!=n&&void 0!==n.props?" This may be caused by unintentionally loading two independent copies of React.":""):U(!1),"production"!==t.env.NODE_ENV?H(!r||!r.tagName||"BODY"!==r.tagName.toUpperCase(),"render(): Rendering components directly into document.body is discouraged, since its children are often manipulated by third-party scripts and browser extensions. This may lead to subtle reconciliation issues. Try rendering into a container element created for your app."):void 0;var u=new w(Q,null,null,null,null,null,n),c=Y[i(r)];if(c){var l=c._currentElement,p=l.props;if(L(p,n)){var d=c._renderedComponent.getPublicInstance(),h=a&&function(){a.call(d)};return ee._updateRootComponent(c,u,r,h),d}ee.unmountComponentAtNode(r)}var f=o(r),g=f&&!!s(f),v=y(r);if("production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?H(!v,"render(...): Replacing React-rendered children with a new root component. If you intended to update the children of this node, you should instead have the existing children update their state and render the new components instead of calling ReactDOM.render."):void 0,!g||f.nextSibling))for(var m=f;m;){if(s(m)){"production"!==t.env.NODE_ENV?H(!1,"render(): Target node has markup rendered by React, but there are unrelated nodes as well. This is most commonly caused by white-space inserted around server-rendered markup."):void 0;break}m=m.nextSibling}var _=g&&!c&&!v,b=ee._renderNewRootComponent(u,r,_,null!=e?e._reactInternalInstance._processChildContext(e._reactInternalInstance._context):M)._renderedComponent.getPublicInstance();return a&&a.call(b),b},render:function(e,t,n){return ee._renderSubtreeIntoContainer(null,e,t,n)},registerContainer:function(e){var t=i(e);return t&&(t=D.getReactRootIDFromNodeID(t)),t||(t=D.createReactRootID()),z[t]=e,t},unmountComponentAtNode:function(e){"production"!==t.env.NODE_ENV?H(null==N.current,"unmountComponentAtNode(): Render methods should be a pure function of props and state; triggering nested component updates from render is not allowed. If necessary, trigger nested updates in componentDidUpdate. Check the render method of %s.",N.current&&N.current.getName()||"ReactCompositeComponent"):void 0,!e||e.nodeType!==W&&e.nodeType!==J&&e.nodeType!==q?"production"!==t.env.NODE_ENV?U(!1,"unmountComponentAtNode(...): Target container is not a DOM element."):U(!1):void 0;var n=i(e),r=Y[n];if(!r){var o=y(e),a=s(e),u=a&&a===D.getReactRootIDFromNodeID(a);return"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?H(!o,"unmountComponentAtNode(): The node you're attempting to unmount was rendered by React and is not a top-level container. %s",u?"You may have accidentally passed in a React root node instead of its container.":"Instead, have the parent component update its state and rerender in order to remove this component."):void 0),!1}return T.batchedUpdates(m,r,e),delete Y[n],delete z[n],"production"!==t.env.NODE_ENV&&delete G[n],!0},findReactContainerForID:function(e){var n=D.getReactRootIDFromNodeID(e),r=z[n];if("production"!==t.env.NODE_ENV){var o=G[n];if(o&&o.parentNode!==r){"production"!==t.env.NODE_ENV?H(s(o)===n,"ReactMount: Root element ID differed from reactRootID."):void 0;var i=r.firstChild;i&&n===s(i)?G[n]=i:"production"!==t.env.NODE_ENV?H(!1,"ReactMount: Root element has been removed from its original container. New container: %s",o.parentNode):void 0}}return r},findReactNodeByID:function(e){var t=ee.findReactContainerForID(e);return ee.findComponentRoot(t,e)},getFirstReactDOM:function(e){return _(e)},findComponentRoot:function(e,n){var r=$,o=0,i=f(n)||e;for("production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?H(null!=i,"React can't find the root component node for data-reactid value `%s`. If you're seeing this message, it probably means that you've loaded two copies of React on the page. At this time, only a single copy of React can be loaded at a time.",n):void 0),r[0]=i.firstChild,r.length=1;o<r.length;){for(var a,s=r[o++];s;){var u=ee.getID(s);u?n===u?a=s:D.isAncestorIDOf(u,n)&&(r.length=o=0,r.push(s.firstChild)):r.push(s.firstChild),s=s.nextSibling}if(a)return r.length=0,a}r.length=0,"production"!==t.env.NODE_ENV?U(!1,"findComponentRoot(..., %s): Unable to find element. This probably means the DOM was unexpectedly mutated (e.g., by the browser), usually due to forgetting a <tbody> when using tables, nesting tags like <form>, <p>, or <a>, or using non-SVG elements in an <svg> parent. Try inspecting the child nodes of the element with React ID `%s`.",n,ee.getID(e)):U(!1)},_mountImageIntoNode:function(e,n,i,a){if(!n||n.nodeType!==W&&n.nodeType!==J&&n.nodeType!==q?"production"!==t.env.NODE_ENV?U(!1,"mountComponentIntoNode(...): Target container is not valid."):U(!1):void 0,i){var s=o(n);if(A.canReuseMarkup(e,s))return;var u=s.getAttribute(A.CHECKSUM_ATTR_NAME);s.removeAttribute(A.CHECKSUM_ATTR_NAME);var c=s.outerHTML;s.setAttribute(A.CHECKSUM_ATTR_NAME,u);var l=e;if("production"!==t.env.NODE_ENV){var p;n.nodeType===W?(p=document.createElement("div"),p.innerHTML=e,l=p.innerHTML):(p=document.createElement("iframe"),document.body.appendChild(p),p.contentDocument.write(e),l=p.contentDocument.documentElement.outerHTML,document.body.removeChild(p))}var d=r(l,c),h=" (client) "+l.substring(d-20,d+20)+"\n (server) "+c.substring(d-20,d+20);n.nodeType===J?"production"!==t.env.NODE_ENV?U(!1,"You're trying to render a component to the document using server rendering but the checksum was invalid. This usually means you rendered a different component type or props on the client from the one on the server, or your render() methods are impure. React cannot handle this case due to cross-browser quirks by rendering at the document root. You should look for environment dependent code in your components and ensure the props are the same client and server side:\n%s",h):U(!1):void 0,"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?H(!1,"React attempted to reuse markup in a container but the checksum was invalid. This generally means that you are using server rendering and the markup generated on the server was not what the client was expecting. React injected new markup to compensate which works but you have lost many of the benefits of server rendering. Instead, figure out why the markup being generated is different on the client or server:\n%s",h):void 0)}if(n.nodeType===J?"production"!==t.env.NODE_ENV?U(!1,"You're trying to render a component to the document but you didn't use server rendering. We can't do this without using server rendering due to cross-browser quirks. See ReactDOMServer.renderToString() for server rendering."):U(!1):void 0,a.useCreateElement){for(;n.lastChild;)n.removeChild(n.lastChild);n.appendChild(e)}else V(n,e)},ownerDocumentContextKey:X,getReactRootID:i,getID:a,setID:u,getNode:c,getNodeFromInstance:l,isValid:p,purgeID:d};x.measureMethods(ee,"ReactMount",{_renderNewRootComponent:"_renderNewRootComponent",_mountImageIntoNode:"_mountImageIntoNode"}),e.exports=ee}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var r=n(12),o=n(3),i=n(30),a="function"==typeof Symbol&&Symbol["for"]&&Symbol["for"]("react.element")||60103,s={key:!0,ref:!0,__self:!0,__source:!0},u=function(e,n,r,o,s,u,c){var l={$$typeof:a,type:e,key:n,ref:r,props:c,_owner:u};return"production"!==t.env.NODE_ENV&&(l._store={},i?(Object.defineProperty(l._store,"validated",{configurable:!1,enumerable:!1,writable:!0,value:!1}),Object.defineProperty(l,"_self",{configurable:!1,enumerable:!1,writable:!1,value:o}),Object.defineProperty(l,"_source",{configurable:!1,enumerable:!1,writable:!1,value:s})):(l._store.validated=!1,l._self=o,l._source=s),Object.freeze(l.props),Object.freeze(l)),l};u.createElement=function(e,t,n){var o,i={},a=null,c=null,l=null,p=null;if(null!=t){c=void 0===t.ref?null:t.ref,a=void 0===t.key?null:""+t.key,l=void 0===t.__self?null:t.__self,p=void 0===t.__source?null:t.__source;for(o in t)t.hasOwnProperty(o)&&!s.hasOwnProperty(o)&&(i[o]=t[o])}var d=arguments.length-2;if(1===d)i.children=n;else if(d>1){for(var h=Array(d),f=0;d>f;f++)h[f]=arguments[f+2];i.children=h}if(e&&e.defaultProps){var g=e.defaultProps;for(o in g)"undefined"==typeof i[o]&&(i[o]=g[o])}return u(e,a,c,l,p,r.current,i)},u.createFactory=function(e){var t=u.createElement.bind(null,e);return t.type=e,t},u.cloneAndReplaceKey=function(e,t){var n=u(e.type,t,e.ref,e._self,e._source,e._owner,e.props);return n},u.cloneAndReplaceProps=function(e,n){var r=u(e.type,e.key,e.ref,e._self,e._source,e._owner,n);return"production"!==t.env.NODE_ENV&&(r._store.validated=e._store.validated),r},u.cloneElement=function(e,t,n){var i,a=o({},e.props),c=e.key,l=e.ref,p=e._self,d=e._source,h=e._owner;if(null!=t){void 0!==t.ref&&(l=t.ref,h=r.current),void 0!==t.key&&(c=""+t.key);for(i in t)t.hasOwnProperty(i)&&!s.hasOwnProperty(i)&&(a[i]=t[i])}var f=arguments.length-2;if(1===f)a.children=n;else if(f>1){for(var g=Array(f),v=0;f>v;v++)g[v]=arguments[v+2];a.children=g}return u(e.type,c,l,p,d,h,a)},u.isValidElement=function(e){return"object"==typeof e&&null!==e&&e.$$typeof===a},e.exports=u}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function n(e,t,n){return n}var r={enableMeasure:!1,storedMeasure:n,measureMethods:function(e,n,o){if("production"!==t.env.NODE_ENV)for(var i in o)o.hasOwnProperty(i)&&(e[i]=r.measure(n,o[i],e[i]))},measure:function(e,n,o){if("production"!==t.env.NODE_ENV){var i=null,a=function(){return r.enableMeasure?(i||(i=r.storedMeasure(e,n,o)),i.apply(this,arguments)):o.apply(this,arguments)};return a.displayName=e+"_"+n,a}return o},injection:{injectMeasure:function(e){r.storedMeasure=e}}};e.exports=r}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(){D.ReactReconcileTransaction&&b?void 0:"production"!==t.env.NODE_ENV?v(!1,"ReactUpdates: must inject a reconcile transaction class and batching strategy"):v(!1)}function o(){this.reinitializeTransaction(),this.dirtyComponentsLength=null,this.callbackQueue=l.getPooled(),this.reconcileTransaction=D.ReactReconcileTransaction.getPooled(!1)}function i(e,t,n,o,i,a){r(),b.batchedUpdates(e,t,n,o,i,a)}function a(e,t){return e._mountOrder-t._mountOrder}function s(e){var n=e.dirtyComponentsLength;n!==m.length?"production"!==t.env.NODE_ENV?v(!1,"Expected flush transaction's stored dirty-components length (%s) to match dirty-components array length (%s).",n,m.length):v(!1):void 0,m.sort(a);for(var r=0;n>r;r++){var o=m[r],i=o._pendingCallbacks;if(o._pendingCallbacks=null,h.performUpdateIfNecessary(o,e.reconcileTransaction),i)for(var s=0;s<i.length;s++)e.callbackQueue.enqueue(i[s],o.getPublicInstance())}}function u(e){return r(),b.isBatchingUpdates?void m.push(e):void b.batchedUpdates(u,e)}function c(e,n){b.isBatchingUpdates?void 0:"production"!==t.env.NODE_ENV?v(!1,"ReactUpdates.asap: Can't enqueue an asap callback in a context whereupdates are not being batched."):v(!1),y.enqueue(e,n),_=!0}var l=n(33),p=n(14),d=n(8),h=n(16),f=n(29),g=n(3),v=n(2),m=[],y=l.getPooled(),_=!1,b=null,E={initialize:function(){this.dirtyComponentsLength=m.length},close:function(){this.dirtyComponentsLength!==m.length?(m.splice(0,this.dirtyComponentsLength),w()):m.length=0}},N={initialize:function(){this.callbackQueue.reset()},close:function(){this.callbackQueue.notifyAll()}},S=[E,N];g(o.prototype,f.Mixin,{getTransactionWrappers:function(){return S},destructor:function(){this.dirtyComponentsLength=null,l.release(this.callbackQueue),this.callbackQueue=null,D.ReactReconcileTransaction.release(this.reconcileTransaction),this.reconcileTransaction=null},perform:function(e,t,n){return f.Mixin.perform.call(this,this.reconcileTransaction.perform,this.reconcileTransaction,e,t,n)}}),p.addPoolingTo(o);var w=function(){for(;m.length||_;){if(m.length){var e=o.getPooled();e.perform(s,null,e),o.release(e)}if(_){_=!1;var t=y;y=l.getPooled(),t.notifyAll(),l.release(t)}}};w=d.measure("ReactUpdates","flushBatchedUpdates",w);var C={injectReconcileTransaction:function(e){e?void 0:"production"!==t.env.NODE_ENV?v(!1,"ReactUpdates: must provide a reconcile transaction class"):v(!1),D.ReactReconcileTransaction=e},injectBatchingStrategy:function(e){e?void 0:"production"!==t.env.NODE_ENV?v(!1,"ReactUpdates: must provide a batching strategy"):v(!1),"function"!=typeof e.batchedUpdates?"production"!==t.env.NODE_ENV?v(!1,"ReactUpdates: must provide a batchedUpdates() function"):v(!1):void 0,"boolean"!=typeof e.isBatchingUpdates?"production"!==t.env.NODE_ENV?v(!1,"ReactUpdates: must provide an isBatchingUpdates boolean attribute"):v(!1):void 0,b=e}},D={ReactReconcileTransaction:null,batchedUpdates:i,enqueueUpdate:u,flushBatchedUpdates:w,injection:C,asap:c};e.exports=D}).call(t,n(1))},function(e,t){"use strict";function n(e){return function(){return e}}function r(){}r.thatReturns=n,r.thatReturnsFalse=n(!1),r.thatReturnsTrue=n(!0),r.thatReturnsNull=n(null),r.thatReturnsThis=function(){return this},r.thatReturnsArgument=function(e){return e},e.exports=r},function(e,t,n){"use strict";var r=n(24),o=r({bubbled:null,captured:null}),i=r({topAbort:null,topBlur:null,topCanPlay:null,topCanPlayThrough:null,topChange:null,topClick:null,topCompositionEnd:null,topCompositionStart:null,topCompositionUpdate:null,topContextMenu:null,topCopy:null,topCut:null,topDoubleClick:null,topDrag:null,topDragEnd:null,topDragEnter:null,topDragExit:null,topDragLeave:null,topDragOver:null,topDragStart:null,topDrop:null,topDurationChange:null,topEmptied:null,topEncrypted:null,topEnded:null,topError:null,topFocus:null,topInput:null,topKeyDown:null,topKeyPress:null,topKeyUp:null,topLoad:null,topLoadedData:null,topLoadedMetadata:null,topLoadStart:null,topMouseDown:null,topMouseMove:null,topMouseOut:null,topMouseOver:null,topMouseUp:null,topPaste:null,topPause:null,topPlay:null,topPlaying:null,topProgress:null,topRateChange:null,topReset:null,topScroll:null,topSeeked:null,topSeeking:null,topSelectionChange:null,topStalled:null,topSubmit:null,topSuspend:null,topTextInput:null,topTimeUpdate:null,topTouchCancel:null,topTouchEnd:null,topTouchMove:null,topTouchStart:null,topVolumeChange:null,topWaiting:null,topWheel:null}),a={topLevelTypes:i,PropagationPhases:o};e.exports=a},function(e,t){"use strict";var n={current:null};e.exports=n},function(e,t){"use strict";var n=function(e){var t;for(t in e)if(e.hasOwnProperty(t))return t;return null};e.exports=n},function(e,t,n){(function(t){"use strict";var r=n(2),o=function(e){var t=this;if(t.instancePool.length){var n=t.instancePool.pop();return t.call(n,e),n}return new t(e)},i=function(e,t){var n=this;if(n.instancePool.length){var r=n.instancePool.pop();return n.call(r,e,t),r}return new n(e,t)},a=function(e,t,n){var r=this;if(r.instancePool.length){var o=r.instancePool.pop();return r.call(o,e,t,n),o}return new r(e,t,n)},s=function(e,t,n,r){var o=this;if(o.instancePool.length){var i=o.instancePool.pop();return o.call(i,e,t,n,r),i}return new o(e,t,n,r)},u=function(e,t,n,r,o){var i=this;if(i.instancePool.length){var a=i.instancePool.pop();return i.call(a,e,t,n,r,o),a}return new i(e,t,n,r,o)},c=function(e){var n=this;e instanceof n?void 0:"production"!==t.env.NODE_ENV?r(!1,"Trying to release an instance into a pool of a different type."):r(!1),e.destructor(),n.instancePool.length<n.poolSize&&n.instancePool.push(e)},l=10,p=o,d=function(e,t){var n=e;return n.instancePool=[],n.getPooled=t||p,n.poolSize||(n.poolSize=l),n.release=c,n},h={addPoolingTo:d,oneArgumentPooler:o,twoArgumentPooler:i,threeArgumentPooler:a,fourArgumentPooler:s,fiveArgumentPooler:u};e.exports=h}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e,t){return(e&t)===t}var o=n(2),i={MUST_USE_ATTRIBUTE:1,MUST_USE_PROPERTY:2,HAS_SIDE_EFFECTS:4,HAS_BOOLEAN_VALUE:8,HAS_NUMERIC_VALUE:16,HAS_POSITIVE_NUMERIC_VALUE:48,HAS_OVERLOADED_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(e){var n=i,a=e.Properties||{},u=e.DOMAttributeNamespaces||{},c=e.DOMAttributeNames||{},l=e.DOMPropertyNames||{},p=e.DOMMutationMethods||{};e.isCustomAttribute&&s._isCustomAttributeFunctions.push(e.isCustomAttribute);for(var d in a){s.properties.hasOwnProperty(d)?"production"!==t.env.NODE_ENV?o(!1,"injectDOMPropertyConfig(...): You're trying to inject DOM property '%s' which has already been injected. You may be accidentally injecting the same DOM property config twice, or you may be injecting two configs that have conflicting property names.",d):o(!1):void 0;var h=d.toLowerCase(),f=a[d],g={attributeName:h,attributeNamespace:null,propertyName:d,mutationMethod:null,mustUseAttribute:r(f,n.MUST_USE_ATTRIBUTE),mustUseProperty:r(f,n.MUST_USE_PROPERTY),hasSideEffects:r(f,n.HAS_SIDE_EFFECTS),hasBooleanValue:r(f,n.HAS_BOOLEAN_VALUE),hasNumericValue:r(f,n.HAS_NUMERIC_VALUE),hasPositiveNumericValue:r(f,n.HAS_POSITIVE_NUMERIC_VALUE),hasOverloadedBooleanValue:r(f,n.HAS_OVERLOADED_BOOLEAN_VALUE)};if(g.mustUseAttribute&&g.mustUseProperty?"production"!==t.env.NODE_ENV?o(!1,"DOMProperty: Cannot require using both attribute and property: %s",d):o(!1):void 0,!g.mustUseProperty&&g.hasSideEffects?"production"!==t.env.NODE_ENV?o(!1,"DOMProperty: Properties that have side effects must use property: %s",d):o(!1):void 0,g.hasBooleanValue+g.hasNumericValue+g.hasOverloadedBooleanValue<=1?void 0:"production"!==t.env.NODE_ENV?o(!1,"DOMProperty: Value can be one of boolean, overloaded boolean, or numeric value, but not a combination: %s",d):o(!1),"production"!==t.env.NODE_ENV&&(s.getPossibleStandardName[h]=d),c.hasOwnProperty(d)){var v=c[d];g.attributeName=v,"production"!==t.env.NODE_ENV&&(s.getPossibleStandardName[v]=d)}u.hasOwnProperty(d)&&(g.attributeNamespace=u[d]),l.hasOwnProperty(d)&&(g.propertyName=l[d]),p.hasOwnProperty(d)&&(g.mutationMethod=p[d]),s.properties[d]=g}}},a={},s={ID_ATTRIBUTE_NAME:"data-reactid",properties:{},getPossibleStandardName:"production"!==t.env.NODE_ENV?{}:null,_isCustomAttributeFunctions:[],isCustomAttribute:function(e){for(var t=0;t<s._isCustomAttributeFunctions.length;t++){var n=s._isCustomAttributeFunctions[t];if(n(e))return!0}return!1},getDefaultValueForProperty:function(e,t){var n,r=a[e];return r||(a[e]=r={}),t in r||(n=document.createElement(e),r[t]=n[t]),r[t]},injection:i};e.exports=s}).call(t,n(1))},function(e,t,n){"use strict";function r(){o.attachRefs(this,this._currentElement)}var o=n(142),i={mountComponent:function(e,t,n,o){var i=e.mountComponent(t,n,o);return e._currentElement&&null!=e._currentElement.ref&&n.getReactMountReady().enqueue(r,e),i},unmountComponent:function(e){o.detachRefs(e,e._currentElement),e.unmountComponent()},receiveComponent:function(e,t,n,i){var a=e._currentElement;if(t!==a||i!==e._context){var s=o.shouldUpdateRefs(a,t);s&&o.detachRefs(e,a),e.receiveComponent(t,n,i),s&&e._currentElement&&null!=e._currentElement.ref&&n.getReactMountReady().enqueue(r,e)}},performUpdateIfNecessary:function(e,t){e.performUpdateIfNecessary(t)}};e.exports=i},function(e,t,n){(function(t){"use strict";function r(e,t,n,r){this.dispatchConfig=e,this.dispatchMarker=t,this.nativeEvent=n;var o=this.constructor.Interface;for(var i in o)if(o.hasOwnProperty(i)){var s=o[i];s?this[i]=s(n):"target"===i?this.target=r:this[i]=n[i]}var u=null!=n.defaultPrevented?n.defaultPrevented:n.returnValue===!1;u?this.isDefaultPrevented=a.thatReturnsTrue:this.isDefaultPrevented=a.thatReturnsFalse,this.isPropagationStopped=a.thatReturnsFalse}var o=n(14),i=n(3),a=n(10),s=n(4),u={type:null,target:null,currentTarget:a.thatReturnsNull,eventPhase:null,bubbles:null,cancelable:null,timeStamp:function(e){return e.timeStamp||Date.now()},defaultPrevented:null,isTrusted:null};i(r.prototype,{preventDefault:function(){this.defaultPrevented=!0;var e=this.nativeEvent;"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?s(e,"This synthetic event is reused for performance reasons. If you're seeing this, you're calling `preventDefault` on a released/nullified synthetic event. This is a no-op. See https://fb.me/react-event-pooling for more information."):void 0),e&&(e.preventDefault?e.preventDefault():e.returnValue=!1,this.isDefaultPrevented=a.thatReturnsTrue)},stopPropagation:function(){var e=this.nativeEvent;"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?s(e,"This synthetic event is reused for performance reasons. If you're seeing this, you're calling `stopPropagation` on a released/nullified synthetic event. This is a no-op. See https://fb.me/react-event-pooling for more information."):void 0),e&&(e.stopPropagation?e.stopPropagation():e.cancelBubble=!0,this.isPropagationStopped=a.thatReturnsTrue)},persist:function(){this.isPersistent=a.thatReturnsTrue},isPersistent:a.thatReturnsFalse,destructor:function(){var e=this.constructor.Interface;for(var t in e)this[t]=null;this.dispatchConfig=null,this.dispatchMarker=null,this.nativeEvent=null}}),r.Interface=u,r.augmentClass=function(e,t){var n=this,r=Object.create(n.prototype);i(r,e.prototype),e.prototype=r,e.prototype.constructor=e,e.Interface=i({},n.Interface,t),e.augmentClass=n.augmentClass,o.addPoolingTo(e,o.fourArgumentPooler)},o.addPoolingTo(r,o.fourArgumentPooler),e.exports=r}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e){return h+e.toString(36)}function o(e,t){return e.charAt(t)===h||t===e.length}function i(e){return""===e||e.charAt(0)===h&&e.charAt(e.length-1)!==h}function a(e,t){return 0===t.indexOf(e)&&o(t,e.length)}function s(e){return e?e.substr(0,e.lastIndexOf(h)):""}function u(e,n){if(i(e)&&i(n)?void 0:"production"!==t.env.NODE_ENV?d(!1,"getNextDescendantID(%s, %s): Received an invalid React DOM ID.",e,n):d(!1),a(e,n)?void 0:"production"!==t.env.NODE_ENV?d(!1,"getNextDescendantID(...): React has made an invalid assumption about the DOM hierarchy. Expected `%s` to be an ancestor of `%s`.",e,n):d(!1),e===n)return e;var r,s=e.length+f;for(r=s;r<n.length&&!o(n,r);r++);return n.substr(0,r)}function c(e,n){var r=Math.min(e.length,n.length);if(0===r)return"";for(var a=0,s=0;r>=s;s++)if(o(e,s)&&o(n,s))a=s;else if(e.charAt(s)!==n.charAt(s))break;var u=e.substr(0,a);return i(u)?void 0:"production"!==t.env.NODE_ENV?d(!1,"getFirstCommonAncestorID(%s, %s): Expected a valid React DOM ID: %s",e,n,u):d(!1),u}function l(e,n,r,o,i,c){e=e||"",n=n||"",e===n?"production"!==t.env.NODE_ENV?d(!1,"traverseParentPath(...): Cannot traverse from and to the same ID, `%s`.",e):d(!1):void 0;var l=a(n,e);l||a(e,n)?void 0:"production"!==t.env.NODE_ENV?d(!1,"traverseParentPath(%s, %s, ...): Cannot traverse from two IDs that do not have a parent path.",e,n):d(!1);for(var p=0,h=l?s:u,f=e;;f=h(f,n)){var v;if(i&&f===e||c&&f===n||(v=r(f,l,o)),v===!1||f===n)break;p++<g?void 0:"production"!==t.env.NODE_ENV?d(!1,"traverseParentPath(%s, %s, ...): Detected an infinite loop while traversing the React DOM ID tree. This may be due to malformed IDs: %s",e,n,f):d(!1)}}var p=n(82),d=n(2),h=".",f=h.length,g=1e4,v={createReactRootID:function(){return r(p.createReactRootIndex())},createReactID:function(e,t){return e+t},getReactRootIDFromNodeID:function(e){if(e&&e.charAt(0)===h&&e.length>1){var t=e.indexOf(h,1);return t>-1?e.substr(0,t):e}return null},traverseEnterLeave:function(e,t,n,r,o){var i=c(e,t);i!==e&&l(e,i,n,r,!1,!0),i!==t&&l(i,t,n,o,!0,!1)},traverseTwoPhase:function(e,t,n){e&&(l("",e,t,n,!0,!1),l(e,"",t,n,!1,!0))},traverseTwoPhaseSkipTarget:function(e,t,n){e&&(l("",e,t,n,!0,!0),l(e,"",t,n,!0,!0))},traverseAncestors:function(e,t,n){l("",e,t,n,!0,!1)},getFirstCommonAncestorID:c,_getNextDescendantID:u,isAncestorIDOf:a,SEPARATOR:h};e.exports=v}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var n={};"production"!==t.env.NODE_ENV&&Object.freeze(n),e.exports=n}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(){var e=v&&v.traverseTwoPhase&&v.traverseEnterLeave;"production"!==t.env.NODE_ENV?l(e,"InstanceHandle not injected before use!"):void 0}var o=n(63),i=n(117),a=n(75),s=n(84),u=n(85),c=n(2),l=n(4),p={},d=null,h=function(e,t){e&&(i.executeDispatchesInOrder(e,t),e.isPersistent()||e.constructor.release(e))},f=function(e){return h(e,!0)},g=function(e){return h(e,!1)},v=null,m={injection:{injectMount:i.injection.injectMount,injectInstanceHandle:function(e){v=e,"production"!==t.env.NODE_ENV&&r()},getInstanceHandle:function(){return"production"!==t.env.NODE_ENV&&r(),v},injectEventPluginOrder:o.injectEventPluginOrder,injectEventPluginsByName:o.injectEventPluginsByName},eventNameDispatchConfigs:o.eventNameDispatchConfigs,registrationNameModules:o.registrationNameModules,putListener:function(e,n,r){"function"!=typeof r?"production"!==t.env.NODE_ENV?c(!1,"Expected %s listener to be a function, instead got type %s",n,typeof r):c(!1):void 0;var i=p[n]||(p[n]={});i[e]=r;var a=o.registrationNameModules[n];a&&a.didPutListener&&a.didPutListener(e,n,r)},getListener:function(e,t){var n=p[t];return n&&n[e]},deleteListener:function(e,t){var n=o.registrationNameModules[t];n&&n.willDeleteListener&&n.willDeleteListener(e,t);
-var r=p[t];r&&delete r[e]},deleteAllListeners:function(e){for(var t in p)if(p[t][e]){var n=o.registrationNameModules[t];n&&n.willDeleteListener&&n.willDeleteListener(e,t),delete p[t][e]}},extractEvents:function(e,t,n,r,i){for(var a,u=o.plugins,c=0;c<u.length;c++){var l=u[c];if(l){var p=l.extractEvents(e,t,n,r,i);p&&(a=s(a,p))}}return a},enqueueEvents:function(e){e&&(d=s(d,e))},processEventQueue:function(e){var n=d;d=null,e?u(n,f):u(n,g),d?"production"!==t.env.NODE_ENV?c(!1,"processEventQueue(): Additional events were enqueued while processing an event queue. Support for this has not yet been implemented."):c(!1):void 0,a.rethrowCaughtError()},__purge:function(){p={}},__getListenerBank:function(){return p}};e.exports=m}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e,t,n){var r=t.dispatchConfig.phasedRegistrationNames[n];return _(e,r)}function o(e,n,o){"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?g(e,"Dispatching id must not be null"):void 0);var i=n?y.bubbled:y.captured,a=r(e,o,i);a&&(o._dispatchListeners=v(o._dispatchListeners,a),o._dispatchIDs=v(o._dispatchIDs,e))}function i(e){e&&e.dispatchConfig.phasedRegistrationNames&&f.injection.getInstanceHandle().traverseTwoPhase(e.dispatchMarker,o,e)}function a(e){e&&e.dispatchConfig.phasedRegistrationNames&&f.injection.getInstanceHandle().traverseTwoPhaseSkipTarget(e.dispatchMarker,o,e)}function s(e,t,n){if(n&&n.dispatchConfig.registrationName){var r=n.dispatchConfig.registrationName,o=_(e,r);o&&(n._dispatchListeners=v(n._dispatchListeners,o),n._dispatchIDs=v(n._dispatchIDs,e))}}function u(e){e&&e.dispatchConfig.registrationName&&s(e.dispatchMarker,null,e)}function c(e){m(e,i)}function l(e){m(e,a)}function p(e,t,n,r){f.injection.getInstanceHandle().traverseEnterLeave(n,r,s,e,t)}function d(e){m(e,u)}var h=n(11),f=n(20),g=n(4),v=n(84),m=n(85),y=h.PropagationPhases,_=f.getListener,b={accumulateTwoPhaseDispatches:c,accumulateTwoPhaseDispatchesSkipTarget:l,accumulateDirectDispatches:d,accumulateEnterLeaveDispatches:p};e.exports=b}).call(t,n(1))},function(e,t){"use strict";var n={remove:function(e){e._reactInternalInstance=void 0},get:function(e){return e._reactInternalInstance},has:function(e){return void 0!==e._reactInternalInstance},set:function(e,t){e._reactInternalInstance=t}};e.exports=n},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(17),i=n(44),a={view:function(e){if(e.view)return e.view;var t=i(e);if(null!=t&&t.window===t)return t;var n=t.ownerDocument;return n?n.defaultView||n.parentWindow:window},detail:function(e){return e.detail||0}};o.augmentClass(r,a),e.exports=r},function(e,t,n){(function(t){"use strict";var r=n(2),o=function(e){var n,o={};e instanceof Object&&!Array.isArray(e)?void 0:"production"!==t.env.NODE_ENV?r(!1,"keyMirror(...): Argument must be an object."):r(!1);for(n in e)e.hasOwnProperty(n)&&(o[n]=n);return o};e.exports=o}).call(t,n(1))},function(e,t,n){"use strict";function r(e){return Object.prototype.hasOwnProperty.call(e,v)||(e[v]=f++,d[e[v]]={}),d[e[v]]}var o=n(11),i=n(20),a=n(63),s=n(135),u=n(8),c=n(83),l=n(3),p=n(47),d={},h=!1,f=0,g={topAbort:"abort",topBlur:"blur",topCanPlay:"canplay",topCanPlayThrough:"canplaythrough",topChange:"change",topClick:"click",topCompositionEnd:"compositionend",topCompositionStart:"compositionstart",topCompositionUpdate:"compositionupdate",topContextMenu:"contextmenu",topCopy:"copy",topCut:"cut",topDoubleClick:"dblclick",topDrag:"drag",topDragEnd:"dragend",topDragEnter:"dragenter",topDragExit:"dragexit",topDragLeave:"dragleave",topDragOver:"dragover",topDragStart:"dragstart",topDrop:"drop",topDurationChange:"durationchange",topEmptied:"emptied",topEncrypted:"encrypted",topEnded:"ended",topError:"error",topFocus:"focus",topInput:"input",topKeyDown:"keydown",topKeyPress:"keypress",topKeyUp:"keyup",topLoadedData:"loadeddata",topLoadedMetadata:"loadedmetadata",topLoadStart:"loadstart",topMouseDown:"mousedown",topMouseMove:"mousemove",topMouseOut:"mouseout",topMouseOver:"mouseover",topMouseUp:"mouseup",topPaste:"paste",topPause:"pause",topPlay:"play",topPlaying:"playing",topProgress:"progress",topRateChange:"ratechange",topScroll:"scroll",topSeeked:"seeked",topSeeking:"seeking",topSelectionChange:"selectionchange",topStalled:"stalled",topSuspend:"suspend",topTextInput:"textInput",topTimeUpdate:"timeupdate",topTouchCancel:"touchcancel",topTouchEnd:"touchend",topTouchMove:"touchmove",topTouchStart:"touchstart",topVolumeChange:"volumechange",topWaiting:"waiting",topWheel:"wheel"},v="_reactListenersID"+String(Math.random()).slice(2),m=l({},s,{ReactEventListener:null,injection:{injectReactEventListener:function(e){e.setHandleTopLevel(m.handleTopLevel),m.ReactEventListener=e}},setEnabled:function(e){m.ReactEventListener&&m.ReactEventListener.setEnabled(e)},isEnabled:function(){return!(!m.ReactEventListener||!m.ReactEventListener.isEnabled())},listenTo:function(e,t){for(var n=t,i=r(n),s=a.registrationNameDependencies[e],u=o.topLevelTypes,c=0;c<s.length;c++){var l=s[c];i.hasOwnProperty(l)&&i[l]||(l===u.topWheel?p("wheel")?m.ReactEventListener.trapBubbledEvent(u.topWheel,"wheel",n):p("mousewheel")?m.ReactEventListener.trapBubbledEvent(u.topWheel,"mousewheel",n):m.ReactEventListener.trapBubbledEvent(u.topWheel,"DOMMouseScroll",n):l===u.topScroll?p("scroll",!0)?m.ReactEventListener.trapCapturedEvent(u.topScroll,"scroll",n):m.ReactEventListener.trapBubbledEvent(u.topScroll,"scroll",m.ReactEventListener.WINDOW_HANDLE):l===u.topFocus||l===u.topBlur?(p("focus",!0)?(m.ReactEventListener.trapCapturedEvent(u.topFocus,"focus",n),m.ReactEventListener.trapCapturedEvent(u.topBlur,"blur",n)):p("focusin")&&(m.ReactEventListener.trapBubbledEvent(u.topFocus,"focusin",n),m.ReactEventListener.trapBubbledEvent(u.topBlur,"focusout",n)),i[u.topBlur]=!0,i[u.topFocus]=!0):g.hasOwnProperty(l)&&m.ReactEventListener.trapBubbledEvent(l,g[l],n),i[l]=!0)}},trapBubbledEvent:function(e,t,n){return m.ReactEventListener.trapBubbledEvent(e,t,n)},trapCapturedEvent:function(e,t,n){return m.ReactEventListener.trapCapturedEvent(e,t,n)},ensureScrollValueMonitoring:function(){if(!h){var e=c.refreshScrollValues;m.ReactEventListener.monitorScrollValue(e),h=!0}},eventNameDispatchConfigs:i.eventNameDispatchConfigs,registrationNameModules:i.registrationNameModules,putListener:i.putListener,getListener:i.getListener,deleteListener:i.deleteListener,deleteAllListeners:i.deleteAllListeners});u.measureMethods(m,"ReactBrowserEventEmitter",{putListener:"putListener",deleteListener:"deleteListener"}),e.exports=m},function(e,t,n){(function(t){"use strict";var n={};"production"!==t.env.NODE_ENV&&(n={prop:"prop",context:"context",childContext:"child context"}),e.exports=n}).call(t,n(1))},function(e,t,n){"use strict";var r=n(24),o=r({prop:null,context:null,childContext:null});e.exports=o},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(23),i=n(83),a=n(43),s={screenX:null,screenY:null,clientX:null,clientY:null,ctrlKey:null,shiftKey:null,altKey:null,metaKey:null,getModifierState:a,button:function(e){var t=e.button;return"which"in e?t:2===t?2:4===t?1:0},buttons:null,relatedTarget:function(e){return e.relatedTarget||(e.fromElement===e.srcElement?e.toElement:e.fromElement)},pageX:function(e){return"pageX"in e?e.pageX:e.clientX+i.currentScrollLeft},pageY:function(e){return"pageY"in e?e.pageY:e.clientY+i.currentScrollTop}};o.augmentClass(r,s),e.exports=r},function(e,t,n){(function(t){"use strict";var r=n(2),o={reinitializeTransaction:function(){this.transactionWrappers=this.getTransactionWrappers(),this.wrapperInitData?this.wrapperInitData.length=0:this.wrapperInitData=[],this._isInTransaction=!1},_isInTransaction:!1,getTransactionWrappers:null,isInTransaction:function(){return!!this._isInTransaction},perform:function(e,n,o,i,a,s,u,c){this.isInTransaction()?"production"!==t.env.NODE_ENV?r(!1,"Transaction.perform(...): Cannot initialize a transaction when there is already an outstanding transaction."):r(!1):void 0;var l,p;try{this._isInTransaction=!0,l=!0,this.initializeAll(0),p=e.call(n,o,i,a,s,u,c),l=!1}finally{try{if(l)try{this.closeAll(0)}catch(d){}else this.closeAll(0)}finally{this._isInTransaction=!1}}return p},initializeAll:function(e){for(var t=this.transactionWrappers,n=e;n<t.length;n++){var r=t[n];try{this.wrapperInitData[n]=i.OBSERVED_ERROR,this.wrapperInitData[n]=r.initialize?r.initialize.call(this):null}finally{if(this.wrapperInitData[n]===i.OBSERVED_ERROR)try{this.initializeAll(n+1)}catch(o){}}}},closeAll:function(e){this.isInTransaction()?void 0:"production"!==t.env.NODE_ENV?r(!1,"Transaction.closeAll(): Cannot close transaction when none are open."):r(!1);for(var n=this.transactionWrappers,o=e;o<n.length;o++){var a,s=n[o],u=this.wrapperInitData[o];try{a=!0,u!==i.OBSERVED_ERROR&&s.close&&s.close.call(this,u),a=!1}finally{if(a)try{this.closeAll(o+1)}catch(c){}}}this.wrapperInitData.length=0}},i={Mixin:o,OBSERVED_ERROR:{}};e.exports=i}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var n=!1;if("production"!==t.env.NODE_ENV)try{Object.defineProperty({},"x",{get:function(){}}),n=!0}catch(r){}e.exports=n}).call(t,n(1))},function(e,t){"use strict";function n(e){return o[e]}function r(e){return(""+e).replace(i,n)}var o={"&":"&amp;",">":"&gt;","<":"&lt;",'"':"&quot;","'":"&#x27;"},i=/[&><"']/g;e.exports=r},function(e,t,n){"use strict";var r=n(5),o=/^[ \r\n\t\f]/,i=/<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/,a=function(e,t){e.innerHTML=t};if("undefined"!=typeof MSApp&&MSApp.execUnsafeLocalFunction&&(a=function(e,t){MSApp.execUnsafeLocalFunction(function(){e.innerHTML=t})}),r.canUseDOM){var s=document.createElement("div");s.innerHTML=" ",""===s.innerHTML&&(a=function(e,t){if(e.parentNode&&e.parentNode.replaceChild(e,e),o.test(t)||"<"===t[0]&&i.test(t)){e.innerHTML=String.fromCharCode(65279)+t;var n=e.firstChild;1===n.data.length?e.removeChild(n):n.deleteData(0,1)}else e.innerHTML=t})}e.exports=a},function(e,t,n){(function(t){"use strict";function r(){this._callbacks=null,this._contexts=null}var o=n(14),i=n(3),a=n(2);i(r.prototype,{enqueue:function(e,t){this._callbacks=this._callbacks||[],this._contexts=this._contexts||[],this._callbacks.push(e),this._contexts.push(t)},notifyAll:function(){var e=this._callbacks,n=this._contexts;if(e){e.length!==n.length?"production"!==t.env.NODE_ENV?a(!1,"Mismatched list of contexts in callback queue"):a(!1):void 0,this._callbacks=null,this._contexts=null;for(var r=0;r<e.length;r++)e[r].call(n[r]);e.length=0,n.length=0}},reset:function(){this._callbacks=null,this._contexts=null},destructor:function(){this.reset()}}),o.addPoolingTo(r),e.exports=r}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e){return p.hasOwnProperty(e)?!0:l.hasOwnProperty(e)?!1:c.test(e)?(p[e]=!0,!0):(l[e]=!0,"production"!==t.env.NODE_ENV?u(!1,"Invalid attribute name: `%s`",e):void 0,!1)}function o(e,t){return null==t||e.hasBooleanValue&&!t||e.hasNumericValue&&isNaN(t)||e.hasPositiveNumericValue&&1>t||e.hasOverloadedBooleanValue&&t===!1}var i=n(15),a=n(8),s=n(165),u=n(4),c=/^[a-zA-Z_][\w\.\-]*$/,l={},p={};if("production"!==t.env.NODE_ENV)var d={children:!0,dangerouslySetInnerHTML:!0,key:!0,ref:!0},h={},f=function(e){if(!(d.hasOwnProperty(e)&&d[e]||h.hasOwnProperty(e)&&h[e])){h[e]=!0;var n=e.toLowerCase(),r=i.isCustomAttribute(n)?n:i.getPossibleStandardName.hasOwnProperty(n)?i.getPossibleStandardName[n]:null;"production"!==t.env.NODE_ENV?u(null==r,"Unknown DOM property %s. Did you mean %s?",e,r):void 0}};var g={createMarkupForID:function(e){return i.ID_ATTRIBUTE_NAME+"="+s(e)},setAttributeForID:function(e,t){e.setAttribute(i.ID_ATTRIBUTE_NAME,t)},createMarkupForProperty:function(e,n){var r=i.properties.hasOwnProperty(e)?i.properties[e]:null;if(r){if(o(r,n))return"";var a=r.attributeName;return r.hasBooleanValue||r.hasOverloadedBooleanValue&&n===!0?a+'=""':a+"="+s(n)}return i.isCustomAttribute(e)?null==n?"":e+"="+s(n):("production"!==t.env.NODE_ENV&&f(e),null)},createMarkupForCustomAttribute:function(e,t){return r(e)&&null!=t?e+"="+s(t):""},setValueForProperty:function(e,n,r){var a=i.properties.hasOwnProperty(n)?i.properties[n]:null;if(a){var s=a.mutationMethod;if(s)s(e,r);else if(o(a,r))this.deleteValueForProperty(e,n);else if(a.mustUseAttribute){var u=a.attributeName,c=a.attributeNamespace;c?e.setAttributeNS(c,u,""+r):a.hasBooleanValue||a.hasOverloadedBooleanValue&&r===!0?e.setAttribute(u,""):e.setAttribute(u,""+r)}else{var l=a.propertyName;a.hasSideEffects&&""+e[l]==""+r||(e[l]=r)}}else i.isCustomAttribute(n)?g.setValueForAttribute(e,n,r):"production"!==t.env.NODE_ENV&&f(n)},setValueForAttribute:function(e,t,n){r(t)&&(null==n?e.removeAttribute(t):e.setAttribute(t,""+n))},deleteValueForProperty:function(e,n){var r=i.properties.hasOwnProperty(n)?i.properties[n]:null;if(r){var o=r.mutationMethod;if(o)o(e,void 0);else if(r.mustUseAttribute)e.removeAttribute(r.attributeName);else{var a=r.propertyName,s=i.getDefaultValueForProperty(e.nodeName,a);r.hasSideEffects&&""+e[a]===s||(e[a]=s)}}else i.isCustomAttribute(n)?e.removeAttribute(n):"production"!==t.env.NODE_ENV&&f(n)}};a.measureMethods(g,"DOMPropertyOperations",{setValueForProperty:"setValueForProperty",setValueForAttribute:"setValueForAttribute",deleteValueForProperty:"deleteValueForProperty"}),e.exports=g}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e){null!=e.checkedLink&&null!=e.valueLink?"production"!==t.env.NODE_ENV?c(!1,"Cannot provide a checkedLink and a valueLink. If you want to use checkedLink, you probably don't want to use valueLink and vice versa."):c(!1):void 0}function o(e){r(e),null!=e.value||null!=e.onChange?"production"!==t.env.NODE_ENV?c(!1,"Cannot provide a valueLink and a value or onChange event. If you want to use value or onChange, you probably don't want to use valueLink."):c(!1):void 0}function i(e){r(e),null!=e.checked||null!=e.onChange?"production"!==t.env.NODE_ENV?c(!1,"Cannot provide a checkedLink and a checked property or onChange event. If you want to use checked or onChange, you probably don't want to use checkedLink"):c(!1):void 0}function a(e){if(e){var t=e.getName();if(t)return" Check the render method of `"+t+"`."}return""}var s=n(81),u=n(27),c=n(2),l=n(4),p={button:!0,checkbox:!0,image:!0,hidden:!0,radio:!0,reset:!0,submit:!0},d={value:function(e,t,n){return!e[t]||p[e.type]||e.onChange||e.readOnly||e.disabled?null:new Error("You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.")},checked:function(e,t,n){return!e[t]||e.onChange||e.readOnly||e.disabled?null:new Error("You provided a `checked` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultChecked`. Otherwise, set either `onChange` or `readOnly`.")},onChange:s.func},h={},f={checkPropTypes:function(e,n,r){for(var o in d){if(d.hasOwnProperty(o))var i=d[o](n,o,e,u.prop);if(i instanceof Error&&!(i.message in h)){h[i.message]=!0;var s=a(r);"production"!==t.env.NODE_ENV?l(!1,"Failed form propType: %s%s",i.message,s):void 0}}},getValue:function(e){return e.valueLink?(o(e),e.valueLink.value):e.value},getChecked:function(e){return e.checkedLink?(i(e),e.checkedLink.value):e.checked},executeOnChange:function(e,t){return e.valueLink?(o(e),e.valueLink.requestChange(t.target.value)):e.checkedLink?(i(e),e.checkedLink.requestChange(t.target.checked)):e.onChange?e.onChange.call(void 0,t):void 0}};e.exports=f}).call(t,n(1))},function(e,t,n){"use strict";var r=n(38),o=n(6),i={processChildrenUpdates:r.dangerouslyProcessChildrenUpdates,replaceNodeWithMarkupByID:r.dangerouslyReplaceNodeWithMarkupByID,unmountIDFromEnvironment:function(e){o.purgeID(e)}};e.exports=i},function(e,t,n){(function(t){"use strict";var r=n(2),o=!1,i={unmountIDFromEnvironment:null,replaceNodeWithMarkupByID:null,processChildrenUpdates:null,injection:{injectEnvironment:function(e){o?"production"!==t.env.NODE_ENV?r(!1,"ReactCompositeComponent: injectEnvironment() can only be called once."):r(!1):void 0,i.unmountIDFromEnvironment=e.unmountIDFromEnvironment,i.replaceNodeWithMarkupByID=e.replaceNodeWithMarkupByID,i.processChildrenUpdates=e.processChildrenUpdates,o=!0}}};e.exports=i}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var r=n(62),o=n(34),i=n(6),a=n(8),s=n(2),u={dangerouslySetInnerHTML:"`dangerouslySetInnerHTML` must be set using `updateInnerHTMLByID()`.",style:"`style` must be set using `updateStylesByID()`."},c={updatePropertyByID:function(e,n,r){var a=i.getNode(e);u.hasOwnProperty(n)?"production"!==t.env.NODE_ENV?s(!1,"updatePropertyByID(...): %s",u[n]):s(!1):void 0,null!=r?o.setValueForProperty(a,n,r):o.deleteValueForProperty(a,n)},dangerouslyReplaceNodeWithMarkupByID:function(e,t){var n=i.getNode(e);r.dangerouslyReplaceNodeWithMarkup(n,t)},dangerouslyProcessChildrenUpdates:function(e,t){for(var n=0;n<e.length;n++)e[n].parentNode=i.getNode(e[n].parentID);r.processUpdates(e,t)}};a.measureMethods(c,"ReactDOMIDOperations",{dangerouslyReplaceNodeWithMarkupByID:"dangerouslyReplaceNodeWithMarkupByID",dangerouslyProcessChildrenUpdates:"dangerouslyProcessChildrenUpdates"}),e.exports=c}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e){u.enqueueUpdate(e)}function o(e,n){var r=s.get(e);return r?("production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?p(null==i.current,"%s(...): Cannot update during an existing state transition (such as within `render`). Render methods should be a pure function of props and state.",n):void 0),r):("production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?p(!n,"%s(...): Can only update a mounted or mounting component. This usually means you called %s() on an unmounted component. This is a no-op. Please check the code for the %s component.",n,n,e.constructor.displayName):void 0),null)}var i=n(12),a=n(7),s=n(22),u=n(9),c=n(3),l=n(2),p=n(4),d={isMounted:function(e){if("production"!==t.env.NODE_ENV){var n=i.current;null!==n&&("production"!==t.env.NODE_ENV?p(n._warnedAboutRefsInRender,"%s is accessing isMounted inside its render() function. render() should be a pure function of props and state. It should never access something that requires stale data from the previous render, such as refs. Move this logic to componentDidMount and componentDidUpdate instead.",n.getName()||"A component"):void 0,n._warnedAboutRefsInRender=!0)}var r=s.get(e);return r?!!r._renderedComponent:!1},enqueueCallback:function(e,n){"function"!=typeof n?"production"!==t.env.NODE_ENV?l(!1,"enqueueCallback(...): You called `setProps`, `replaceProps`, `setState`, `replaceState`, or `forceUpdate` with a callback that isn't callable."):l(!1):void 0;var i=o(e);return i?(i._pendingCallbacks?i._pendingCallbacks.push(n):i._pendingCallbacks=[n],void r(i)):null},enqueueCallbackInternal:function(e,n){"function"!=typeof n?"production"!==t.env.NODE_ENV?l(!1,"enqueueCallback(...): You called `setProps`, `replaceProps`, `setState`, `replaceState`, or `forceUpdate` with a callback that isn't callable."):l(!1):void 0,e._pendingCallbacks?e._pendingCallbacks.push(n):e._pendingCallbacks=[n],r(e)},enqueueForceUpdate:function(e){var t=o(e,"forceUpdate");t&&(t._pendingForceUpdate=!0,r(t))},enqueueReplaceState:function(e,t){var n=o(e,"replaceState");n&&(n._pendingStateQueue=[t],n._pendingReplaceState=!0,r(n))},enqueueSetState:function(e,t){var n=o(e,"setState");if(n){var i=n._pendingStateQueue||(n._pendingStateQueue=[]);i.push(t),r(n)}},enqueueSetProps:function(e,t){var n=o(e,"setProps");n&&d.enqueueSetPropsInternal(n,t)},enqueueSetPropsInternal:function(e,n){var o=e._topLevelWrapper;o?void 0:"production"!==t.env.NODE_ENV?l(!1,"setProps(...): You called `setProps` on a component with a parent. This is an anti-pattern since props will get reactively updated when rendered. Instead, change the owner's `render` method to pass the correct value as props to the component where it is created."):l(!1);var i=o._pendingElement||o._currentElement,s=i.props,u=c({},s.props,n);o._pendingElement=a.cloneAndReplaceProps(i,a.cloneAndReplaceProps(s,u)),r(o)},enqueueReplaceProps:function(e,t){var n=o(e,"replaceProps");n&&d.enqueueReplacePropsInternal(n,t)},enqueueReplacePropsInternal:function(e,n){var o=e._topLevelWrapper;o?void 0:"production"!==t.env.NODE_ENV?l(!1,"replaceProps(...): You called `replaceProps` on a component with a parent. This is an anti-pattern since props will get reactively updated when rendered. Instead, change the owner's `render` method to pass the correct value as props to the component where it is created."):l(!1);var i=o._pendingElement||o._currentElement,s=i.props;o._pendingElement=a.cloneAndReplaceProps(i,a.cloneAndReplaceProps(s,n)),r(o)},enqueueElementInternal:function(e,t){e._pendingElement=t,r(e)}};e.exports=d}).call(t,n(1))},function(e,t){"use strict";e.exports="0.14.8"},function(e,t,n){(function(t){"use strict";function r(e){if("production"!==t.env.NODE_ENV){var n=o.current;null!==n&&("production"!==t.env.NODE_ENV?u(n._warnedAboutRefsInRender,"%s is accessing getDOMNode or findDOMNode inside its render(). render() should be a pure function of props and state. It should never access something that requires stale data from the previous render, such as refs. Move this logic to componentDidMount and componentDidUpdate instead.",n.getName()||"A component"):void 0,n._warnedAboutRefsInRender=!0)}return null==e?null:1===e.nodeType?e:i.has(e)?a.getNodeFromInstance(e):(null!=e.render&&"function"==typeof e.render?"production"!==t.env.NODE_ENV?s(!1,"findDOMNode was called on an unmounted component."):s(!1):void 0,void("production"!==t.env.NODE_ENV?s(!1,"Element appears to be neither ReactComponent nor DOMNode (keys: %s)",Object.keys(e)):s(!1)))}var o=n(12),i=n(22),a=n(6),s=n(2),u=n(4);e.exports=r}).call(t,n(1))},function(e,t){"use strict";function n(e){var t,n=e.keyCode;return"charCode"in e?(t=e.charCode,0===t&&13===n&&(t=13)):t=n,t>=32||13===t?t:0}e.exports=n},function(e,t){"use strict";function n(e){var t=this,n=t.nativeEvent;if(n.getModifierState)return n.getModifierState(e);var r=o[e];return r?!!n[r]:!1}function r(e){return n}var o={Alt:"altKey",Control:"ctrlKey",Meta:"metaKey",Shift:"shiftKey"};e.exports=r},function(e,t){"use strict";function n(e){var t=e.target||e.srcElement||window;return 3===t.nodeType?t.parentNode:t}e.exports=n},function(e,t){"use strict";function n(e){var t=e&&(r&&e[r]||e[o]);return"function"==typeof t?t:void 0}var r="function"==typeof Symbol&&Symbol.iterator,o="@@iterator";e.exports=n},function(e,t,n){(function(t){"use strict";function r(e){if(e){var t=e.getName();if(t)return" Check the render method of `"+t+"`."}return""}function o(e){return"function"==typeof e&&"undefined"!=typeof e.prototype&&"function"==typeof e.prototype.mountComponent&&"function"==typeof e.prototype.receiveComponent}function i(e){var n;if(null===e||e===!1)n=new s(i);else if("object"==typeof e){var a=e;!a||"function"!=typeof a.type&&"string"!=typeof a.type?"production"!==t.env.NODE_ENV?l(!1,"Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s",null==a.type?a.type:typeof a.type,r(a._owner)):l(!1):void 0,n="string"==typeof a.type?u.createInternalComponent(a):o(a.type)?new a.type(a):new d}else"string"==typeof e||"number"==typeof e?n=u.createInstanceForText(e):"production"!==t.env.NODE_ENV?l(!1,"Encountered invalid React node of type %s",typeof e):l(!1);return"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?p("function"==typeof n.construct&&"function"==typeof n.mountComponent&&"function"==typeof n.receiveComponent&&"function"==typeof n.unmountComponent,"Only React Components can be mounted."):void 0),n.construct(e),n._mountIndex=0,n._mountImage=null,"production"!==t.env.NODE_ENV&&(n._isOwnerNecessary=!1,n._warnedAboutRefsInRender=!1),"production"!==t.env.NODE_ENV&&Object.preventExtensions&&Object.preventExtensions(n),n}var a=n(123),s=n(73),u=n(79),c=n(3),l=n(2),p=n(4),d=function(){};c(d.prototype,a.Mixin,{_instantiateReactComponent:i}),e.exports=i}).call(t,n(1))},function(e,t,n){"use strict";/**
-	 * Checks if an event is supported in the current execution environment.
-	 *
-	 * NOTE: This will not work correctly for non-generic events such as `change`,
-	 * `reset`, `load`, `error`, and `select`.
-	 *
-	 * Borrows from Modernizr.
-	 *
-	 * @param {string} eventNameSuffix Event name, e.g. "click".
-	 * @param {?boolean} capture Check if the capture phase is supported.
-	 * @return {boolean} True if the event is supported.
-	 * @internal
-	 * @license Modernizr 3.0.0pre (Custom Build) | MIT
-	 */
-function r(e,t){if(!i.canUseDOM||t&&!("addEventListener"in document))return!1;var n="on"+e,r=n in document;if(!r){var a=document.createElement("div");a.setAttribute(n,"return;"),r="function"==typeof a[n]}return!r&&o&&"wheel"===e&&(r=document.implementation.hasFeature("Events.wheel","3.0")),r}var o,i=n(5);i.canUseDOM&&(o=document.implementation&&document.implementation.hasFeature&&document.implementation.hasFeature("","")!==!0),e.exports=r},function(e,t,n){"use strict";var r=n(5),o=n(31),i=n(32),a=function(e,t){e.textContent=t};r.canUseDOM&&("textContent"in document.documentElement||(a=function(e,t){i(e,o(t))})),e.exports=a},function(e,t){"use strict";function n(e,t){var n=null===e||e===!1,r=null===t||t===!1;if(n||r)return n===r;var o=typeof e,i=typeof t;return"string"===o||"number"===o?"string"===i||"number"===i:"object"===i&&e.type===t.type&&e.key===t.key}e.exports=n},function(e,t,n){(function(t){"use strict";function r(e){return m[e]}function o(e,t){return e&&null!=e.key?a(e.key):t.toString(36)}function i(e){return(""+e).replace(y,r)}function a(e){return"$"+i(e)}function s(e,n,r,i){var u=typeof e;if("undefined"!==u&&"boolean"!==u||(e=null),null===e||"string"===u||"number"===u||l.isValidElement(e))return r(i,e,""===n?g+o(e,0):n),1;var p,m,y=0,b=""===n?g:n+v;if(Array.isArray(e))for(var E=0;E<e.length;E++)p=e[E],m=b+o(p,E),y+=s(p,m,r,i);else{var N=d(e);if(N){var S,w=N.call(e);if(N!==e.entries)for(var C=0;!(S=w.next()).done;)p=S.value,m=b+o(p,C++),y+=s(p,m,r,i);else for("production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?f(_,"Using Maps as children is not yet fully supported. It is an experimental feature that might be removed. Convert it to a sequence / iterable of keyed ReactElements instead."):void 0,_=!0);!(S=w.next()).done;){var D=S.value;D&&(p=D[1],m=b+a(D[0])+v+o(p,0),y+=s(p,m,r,i))}}else if("object"===u){var O="";if("production"!==t.env.NODE_ENV&&(O=" If you meant to render a collection of children, use an array instead or wrap the object using createFragment(object) from the React add-ons.",e._isReactElement&&(O=" It looks like you're using an element created by a different version of React. Make sure to use only one copy of React."),c.current)){var A=c.current.getName();A&&(O+=" Check the render method of `"+A+"`.")}var x=String(e);"production"!==t.env.NODE_ENV?h(!1,"Objects are not valid as a React child (found: %s).%s","[object Object]"===x?"object with keys {"+Object.keys(e).join(", ")+"}":x,O):h(!1)}}return y}function u(e,t,n){return null==e?0:s(e,"",t,n)}var c=n(12),l=n(7),p=n(18),d=n(45),h=n(2),f=n(4),g=p.SEPARATOR,v=":",m={"=":"=0",".":"=1",":":"=2"},y=/[=.:]/g,_=!1;e.exports=u}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var r=n(3),o=n(10),i=n(4),a=o;if("production"!==t.env.NODE_ENV){var s=["address","applet","area","article","aside","base","basefont","bgsound","blockquote","body","br","button","caption","center","col","colgroup","dd","details","dir","div","dl","dt","embed","fieldset","figcaption","figure","footer","form","frame","frameset","h1","h2","h3","h4","h5","h6","head","header","hgroup","hr","html","iframe","img","input","isindex","li","link","listing","main","marquee","menu","menuitem","meta","nav","noembed","noframes","noscript","object","ol","p","param","plaintext","pre","script","section","select","source","style","summary","table","tbody","td","template","textarea","tfoot","th","thead","title","tr","track","ul","wbr","xmp"],u=["applet","caption","html","table","td","th","marquee","object","template","foreignObject","desc","title"],c=u.concat(["button"]),l=["dd","dt","li","option","optgroup","p","rp","rt"],p={parentTag:null,formTag:null,aTagInScope:null,buttonTagInScope:null,nobrTagInScope:null,pTagInButtonScope:null,listItemTagAutoclosing:null,dlItemTagAutoclosing:null},d=function(e,t,n){var o=r({},e||p),i={tag:t,instance:n};return-1!==u.indexOf(t)&&(o.aTagInScope=null,o.buttonTagInScope=null,o.nobrTagInScope=null),-1!==c.indexOf(t)&&(o.pTagInButtonScope=null),-1!==s.indexOf(t)&&"address"!==t&&"div"!==t&&"p"!==t&&(o.listItemTagAutoclosing=null,o.dlItemTagAutoclosing=null),o.parentTag=i,"form"===t&&(o.formTag=i),"a"===t&&(o.aTagInScope=i),"button"===t&&(o.buttonTagInScope=i),"nobr"===t&&(o.nobrTagInScope=i),"p"===t&&(o.pTagInButtonScope=i),"li"===t&&(o.listItemTagAutoclosing=i),"dd"!==t&&"dt"!==t||(o.dlItemTagAutoclosing=i),o},h=function(e,t){switch(t){case"select":return"option"===e||"optgroup"===e||"#text"===e;case"optgroup":return"option"===e||"#text"===e;case"option":return"#text"===e;case"tr":return"th"===e||"td"===e||"style"===e||"script"===e||"template"===e;case"tbody":case"thead":case"tfoot":return"tr"===e||"style"===e||"script"===e||"template"===e;case"colgroup":return"col"===e||"template"===e;case"table":return"caption"===e||"colgroup"===e||"tbody"===e||"tfoot"===e||"thead"===e||"style"===e||"script"===e||"template"===e;case"head":return"base"===e||"basefont"===e||"bgsound"===e||"link"===e||"meta"===e||"title"===e||"noscript"===e||"noframes"===e||"style"===e||"script"===e||"template"===e;case"html":return"head"===e||"body"===e}switch(e){case"h1":case"h2":case"h3":case"h4":case"h5":case"h6":return"h1"!==t&&"h2"!==t&&"h3"!==t&&"h4"!==t&&"h5"!==t&&"h6"!==t;case"rp":case"rt":return-1===l.indexOf(t);case"caption":case"col":case"colgroup":case"frame":case"head":case"tbody":case"td":case"tfoot":case"th":case"thead":case"tr":return null==t}return!0},f=function(e,t){switch(e){case"address":case"article":case"aside":case"blockquote":case"center":case"details":case"dialog":case"dir":case"div":case"dl":case"fieldset":case"figcaption":case"figure":case"footer":case"header":case"hgroup":case"main":case"menu":case"nav":case"ol":case"p":case"section":case"summary":case"ul":case"pre":case"listing":case"table":case"hr":case"xmp":case"h1":case"h2":case"h3":case"h4":case"h5":case"h6":return t.pTagInButtonScope;case"form":return t.formTag||t.pTagInButtonScope;case"li":return t.listItemTagAutoclosing;case"dd":case"dt":return t.dlItemTagAutoclosing;case"button":return t.buttonTagInScope;case"a":return t.aTagInScope;case"nobr":return t.nobrTagInScope}return null},g=function(e){if(!e)return[];var t=[];do t.push(e);while(e=e._currentElement._owner);return t.reverse(),t},v={};a=function(e,n,r){r=r||p;var o=r.parentTag,a=o&&o.tag,s=h(e,a)?null:o,u=s?null:f(e,r),c=s||u;if(c){var l,d=c.tag,m=c.instance,y=n&&n._currentElement._owner,_=m&&m._currentElement._owner,b=g(y),E=g(_),N=Math.min(b.length,E.length),S=-1;for(l=0;N>l&&b[l]===E[l];l++)S=l;var w="(unknown)",C=b.slice(S+1).map(function(e){return e.getName()||w}),D=E.slice(S+1).map(function(e){return e.getName()||w}),O=[].concat(-1!==S?b[S].getName()||w:[],D,d,u?["..."]:[],C,e).join(" > "),A=!!s+"|"+e+"|"+d+"|"+O;if(v[A])return;if(v[A]=!0,s){var x="";"table"===d&&"tr"===e&&(x+=" Add a <tbody> to your code to match the DOM tree generated by the browser."),"production"!==t.env.NODE_ENV?i(!1,"validateDOMNesting(...): <%s> cannot appear as a child of <%s>. See %s.%s",e,d,O,x):void 0}else"production"!==t.env.NODE_ENV?i(!1,"validateDOMNesting(...): <%s> cannot appear as a descendant of <%s>. See %s.",e,d,O):void 0}},a.ancestorInfoContextKey="__validateDOMNesting_ancestorInfo$"+Math.random().toString(36).slice(2),a.updatedAncestorInfo=d,a.isTagValidInContext=function(e,t){t=t||p;var n=t.parentTag,r=n&&n.tag;return h(e,r)&&!f(e,t)}}e.exports=a}).call(t,n(1))},function(module,exports,__webpack_require__){var require,__WEBPACK_AMD_DEFINE_RESULT__;(function(Buffer,process,global,module){!function(){function hex2b64(e){var t,n,r="";for(t=0;t+3<=e.length;t+=3)n=parseInt(e.substring(t,t+3),16),r+=b64map.charAt(n>>6)+b64map.charAt(63&n);if(t+1==e.length?(n=parseInt(e.substring(t,t+1),16),r+=b64map.charAt(n<<2)):t+2==e.length&&(n=parseInt(e.substring(t,t+2),16),r+=b64map.charAt(n>>2)+b64map.charAt((3&n)<<4)),b64pad)for(;(3&r.length)>0;)r+=b64pad;return r}function b64tohex(e){var t,n,r,o="",i=0;for(t=0;t<e.length&&e.charAt(t)!=b64pad;++t)r=b64map.indexOf(e.charAt(t)),0>r||(0==i?(o+=int2char(r>>2),n=3&r,i=1):1==i?(o+=int2char(n<<2|r>>4),n=15&r,i=2):2==i?(o+=int2char(n),o+=int2char(r>>2),n=3&r,i=3):(o+=int2char(n<<2|r>>4),o+=int2char(15&r),i=0));return 1==i&&(o+=int2char(n<<2)),o}function b64toBA(e){var t,n=b64tohex(e),r=new Array;for(t=0;2*t<n.length;++t)r[t]=parseInt(n.substring(2*t,2*t+2),16);return r}function BigInteger(e,t,n){null!=e&&("number"==typeof e?this.fromNumber(e,t,n):null==t&&"string"!=typeof e?this.fromString(e,256):this.fromString(e,t))}function nbi(){return new BigInteger(null)}function am1(e,t,n,r,o,i){for(;--i>=0;){var a=t*this[e++]+n[r]+o;o=Math.floor(a/67108864),n[r++]=67108863&a}return o}function am2(e,t,n,r,o,i){for(var a=32767&t,s=t>>15;--i>=0;){var u=32767&this[e],c=this[e++]>>15,l=s*u+c*a;u=a*u+((32767&l)<<15)+n[r]+(1073741823&o),o=(u>>>30)+(l>>>15)+s*c+(o>>>30),n[r++]=1073741823&u}return o}function am3(e,t,n,r,o,i){for(var a=16383&t,s=t>>14;--i>=0;){var u=16383&this[e],c=this[e++]>>14,l=s*u+c*a;u=a*u+((16383&l)<<14)+n[r]+o,o=(u>>28)+(l>>14)+s*c,n[r++]=268435455&u}return o}function int2char(e){return BI_RM.charAt(e)}function intAt(e,t){var n=BI_RC[e.charCodeAt(t)];return null==n?-1:n}function bnpCopyTo(e){for(var t=this.t-1;t>=0;--t)e[t]=this[t];e.t=this.t,e.s=this.s}function bnpFromInt(e){this.t=1,this.s=0>e?-1:0,e>0?this[0]=e:-1>e?this[0]=e+this.DV:this.t=0}function nbv(e){var t=nbi();return t.fromInt(e),t}function bnpFromString(e,t){var n;if(16==t)n=4;else if(8==t)n=3;else if(256==t)n=8;else if(2==t)n=1;else if(32==t)n=5;else{if(4!=t)return void this.fromRadix(e,t);n=2}this.t=0,this.s=0;for(var r=e.length,o=!1,i=0;--r>=0;){var a=8==n?255&e[r]:intAt(e,r);0>a?"-"==e.charAt(r)&&(o=!0):(o=!1,0==i?this[this.t++]=a:i+n>this.DB?(this[this.t-1]|=(a&(1<<this.DB-i)-1)<<i,this[this.t++]=a>>this.DB-i):this[this.t-1]|=a<<i,i+=n,i>=this.DB&&(i-=this.DB))}8==n&&0!=(128&e[0])&&(this.s=-1,i>0&&(this[this.t-1]|=(1<<this.DB-i)-1<<i)),this.clamp(),o&&BigInteger.ZERO.subTo(this,this)}function bnpClamp(){for(var e=this.s&this.DM;this.t>0&&this[this.t-1]==e;)--this.t}function bnToString(e){if(this.s<0)return"-"+this.negate().toString(e);var t;if(16==e)t=4;else if(8==e)t=3;else if(2==e)t=1;else if(32==e)t=5;else{if(4!=e)return this.toRadix(e);t=2}var n,r=(1<<t)-1,o=!1,i="",a=this.t,s=this.DB-a*this.DB%t;if(a-- >0)for(s<this.DB&&(n=this[a]>>s)>0&&(o=!0,i=int2char(n));a>=0;)t>s?(n=(this[a]&(1<<s)-1)<<t-s,n|=this[--a]>>(s+=this.DB-t)):(n=this[a]>>(s-=t)&r,0>=s&&(s+=this.DB,--a)),n>0&&(o=!0),o&&(i+=int2char(n));return o?i:"0"}function bnNegate(){var e=nbi();return BigInteger.ZERO.subTo(this,e),e}function bnAbs(){return this.s<0?this.negate():this}function bnCompareTo(e){var t=this.s-e.s;if(0!=t)return t;var n=this.t;if(t=n-e.t,0!=t)return this.s<0?-t:t;for(;--n>=0;)if(0!=(t=this[n]-e[n]))return t;return 0}function nbits(e){var t,n=1;return 0!=(t=e>>>16)&&(e=t,n+=16),0!=(t=e>>8)&&(e=t,n+=8),0!=(t=e>>4)&&(e=t,n+=4),0!=(t=e>>2)&&(e=t,n+=2),0!=(t=e>>1)&&(e=t,n+=1),n}function bnBitLength(){return this.t<=0?0:this.DB*(this.t-1)+nbits(this[this.t-1]^this.s&this.DM)}function bnpDLShiftTo(e,t){var n;for(n=this.t-1;n>=0;--n)t[n+e]=this[n];for(n=e-1;n>=0;--n)t[n]=0;t.t=this.t+e,t.s=this.s}function bnpDRShiftTo(e,t){for(var n=e;n<this.t;++n)t[n-e]=this[n];t.t=Math.max(this.t-e,0),t.s=this.s}function bnpLShiftTo(e,t){var n,r=e%this.DB,o=this.DB-r,i=(1<<o)-1,a=Math.floor(e/this.DB),s=this.s<<r&this.DM;for(n=this.t-1;n>=0;--n)t[n+a+1]=this[n]>>o|s,s=(this[n]&i)<<r;for(n=a-1;n>=0;--n)t[n]=0;t[a]=s,t.t=this.t+a+1,t.s=this.s,t.clamp()}function bnpRShiftTo(e,t){t.s=this.s;var n=Math.floor(e/this.DB);if(n>=this.t)return void(t.t=0);var r=e%this.DB,o=this.DB-r,i=(1<<r)-1;t[0]=this[n]>>r;for(var a=n+1;a<this.t;++a)t[a-n-1]|=(this[a]&i)<<o,t[a-n]=this[a]>>r;r>0&&(t[this.t-n-1]|=(this.s&i)<<o),t.t=this.t-n,t.clamp()}function bnpSubTo(e,t){for(var n=0,r=0,o=Math.min(e.t,this.t);o>n;)r+=this[n]-e[n],t[n++]=r&this.DM,r>>=this.DB;if(e.t<this.t){for(r-=e.s;n<this.t;)r+=this[n],t[n++]=r&this.DM,r>>=this.DB;r+=this.s}else{for(r+=this.s;n<e.t;)r-=e[n],t[n++]=r&this.DM,r>>=this.DB;r-=e.s}t.s=0>r?-1:0,-1>r?t[n++]=this.DV+r:r>0&&(t[n++]=r),t.t=n,t.clamp()}function bnpMultiplyTo(e,t){var n=this.abs(),r=e.abs(),o=n.t;for(t.t=o+r.t;--o>=0;)t[o]=0;for(o=0;o<r.t;++o)t[o+n.t]=n.am(0,r[o],t,o,0,n.t);t.s=0,t.clamp(),this.s!=e.s&&BigInteger.ZERO.subTo(t,t)}function bnpSquareTo(e){for(var t=this.abs(),n=e.t=2*t.t;--n>=0;)e[n]=0;for(n=0;n<t.t-1;++n){var r=t.am(n,t[n],e,2*n,0,1);(e[n+t.t]+=t.am(n+1,2*t[n],e,2*n+1,r,t.t-n-1))>=t.DV&&(e[n+t.t]-=t.DV,e[n+t.t+1]=1)}e.t>0&&(e[e.t-1]+=t.am(n,t[n],e,2*n,0,1)),e.s=0,e.clamp()}function bnpDivRemTo(e,t,n){var r=e.abs();if(!(r.t<=0)){var o=this.abs();if(o.t<r.t)return null!=t&&t.fromInt(0),void(null!=n&&this.copyTo(n));null==n&&(n=nbi());var i=nbi(),a=this.s,s=e.s,u=this.DB-nbits(r[r.t-1]);u>0?(r.lShiftTo(u,i),o.lShiftTo(u,n)):(r.copyTo(i),o.copyTo(n));var c=i.t,l=i[c-1];if(0!=l){var p=l*(1<<this.F1)+(c>1?i[c-2]>>this.F2:0),d=this.FV/p,h=(1<<this.F1)/p,f=1<<this.F2,g=n.t,v=g-c,m=null==t?nbi():t;for(i.dlShiftTo(v,m),n.compareTo(m)>=0&&(n[n.t++]=1,n.subTo(m,n)),BigInteger.ONE.dlShiftTo(c,m),m.subTo(i,i);i.t<c;)i[i.t++]=0;for(;--v>=0;){var y=n[--g]==l?this.DM:Math.floor(n[g]*d+(n[g-1]+f)*h);if((n[g]+=i.am(0,y,n,v,0,c))<y)for(i.dlShiftTo(v,m),n.subTo(m,n);n[g]<--y;)n.subTo(m,n)}null!=t&&(n.drShiftTo(c,t),a!=s&&BigInteger.ZERO.subTo(t,t)),n.t=c,n.clamp(),u>0&&n.rShiftTo(u,n),0>a&&BigInteger.ZERO.subTo(n,n)}}}function bnMod(e){var t=nbi();return this.abs().divRemTo(e,null,t),this.s<0&&t.compareTo(BigInteger.ZERO)>0&&e.subTo(t,t),t}function Classic(e){this.m=e}function cConvert(e){return e.s<0||e.compareTo(this.m)>=0?e.mod(this.m):e}function cRevert(e){return e}function cReduce(e){e.divRemTo(this.m,null,e)}function cMulTo(e,t,n){e.multiplyTo(t,n),this.reduce(n)}function cSqrTo(e,t){e.squareTo(t),this.reduce(t)}function bnpInvDigit(){if(this.t<1)return 0;var e=this[0];if(0==(1&e))return 0;var t=3&e;return t=t*(2-(15&e)*t)&15,t=t*(2-(255&e)*t)&255,t=t*(2-((65535&e)*t&65535))&65535,t=t*(2-e*t%this.DV)%this.DV,t>0?this.DV-t:-t}function Montgomery(e){this.m=e,this.mp=e.invDigit(),this.mpl=32767&this.mp,this.mph=this.mp>>15,this.um=(1<<e.DB-15)-1,this.mt2=2*e.t}function montConvert(e){var t=nbi();return e.abs().dlShiftTo(this.m.t,t),t.divRemTo(this.m,null,t),e.s<0&&t.compareTo(BigInteger.ZERO)>0&&this.m.subTo(t,t),t}function montRevert(e){var t=nbi();return e.copyTo(t),this.reduce(t),t}function montReduce(e){for(;e.t<=this.mt2;)e[e.t++]=0;for(var t=0;t<this.m.t;++t){var n=32767&e[t],r=n*this.mpl+((n*this.mph+(e[t]>>15)*this.mpl&this.um)<<15)&e.DM;for(n=t+this.m.t,e[n]+=this.m.am(0,r,e,t,0,this.m.t);e[n]>=e.DV;)e[n]-=e.DV,e[++n]++}e.clamp(),e.drShiftTo(this.m.t,e),e.compareTo(this.m)>=0&&e.subTo(this.m,e)}function montSqrTo(e,t){e.squareTo(t),this.reduce(t)}function montMulTo(e,t,n){e.multiplyTo(t,n),this.reduce(n)}function bnpIsEven(){return 0==(this.t>0?1&this[0]:this.s)}function bnpExp(e,t){if(e>4294967295||1>e)return BigInteger.ONE;var n=nbi(),r=nbi(),o=t.convert(this),i=nbits(e)-1;for(o.copyTo(n);--i>=0;)if(t.sqrTo(n,r),(e&1<<i)>0)t.mulTo(r,o,n);else{var a=n;n=r,r=a}return t.revert(n)}function bnModPowInt(e,t){var n;return n=256>e||t.isEven()?new Classic(t):new Montgomery(t),this.exp(e,n)}/*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
-	 */
-function bnClone(){var e=nbi();return this.copyTo(e),e}function bnIntValue(){if(this.s<0){if(1==this.t)return this[0]-this.DV;if(0==this.t)return-1}else{if(1==this.t)return this[0];if(0==this.t)return 0}return(this[1]&(1<<32-this.DB)-1)<<this.DB|this[0]}function bnByteValue(){return 0==this.t?this.s:this[0]<<24>>24}function bnShortValue(){return 0==this.t?this.s:this[0]<<16>>16}function bnpChunkSize(e){return Math.floor(Math.LN2*this.DB/Math.log(e))}function bnSigNum(){return this.s<0?-1:this.t<=0||1==this.t&&this[0]<=0?0:1}function bnpToRadix(e){if(null==e&&(e=10),0==this.signum()||2>e||e>36)return"0";var t=this.chunkSize(e),n=Math.pow(e,t),r=nbv(n),o=nbi(),i=nbi(),a="";for(this.divRemTo(r,o,i);o.signum()>0;)a=(n+i.intValue()).toString(e).substr(1)+a,o.divRemTo(r,o,i);return i.intValue().toString(e)+a}function bnpFromRadix(e,t){this.fromInt(0),null==t&&(t=10);for(var n=this.chunkSize(t),r=Math.pow(t,n),o=!1,i=0,a=0,s=0;s<e.length;++s){var u=intAt(e,s);0>u?"-"==e.charAt(s)&&0==this.signum()&&(o=!0):(a=t*a+u,++i>=n&&(this.dMultiply(r),this.dAddOffset(a,0),i=0,a=0))}i>0&&(this.dMultiply(Math.pow(t,i)),this.dAddOffset(a,0)),o&&BigInteger.ZERO.subTo(this,this)}function bnpFromNumber(e,t,n){if("number"==typeof t)if(2>e)this.fromInt(1);else for(this.fromNumber(e,n),this.testBit(e-1)||this.bitwiseTo(BigInteger.ONE.shiftLeft(e-1),op_or,this),this.isEven()&&this.dAddOffset(1,0);!this.isProbablePrime(t);)this.dAddOffset(2,0),this.bitLength()>e&&this.subTo(BigInteger.ONE.shiftLeft(e-1),this);else{var r=new Array,o=7&e;r.length=(e>>3)+1,t.nextBytes(r),o>0?r[0]&=(1<<o)-1:r[0]=0,this.fromString(r,256)}}function bnToByteArray(){var e=this.t,t=new Array;t[0]=this.s;var n,r=this.DB-e*this.DB%8,o=0;if(e-- >0)for(r<this.DB&&(n=this[e]>>r)!=(this.s&this.DM)>>r&&(t[o++]=n|this.s<<this.DB-r);e>=0;)8>r?(n=(this[e]&(1<<r)-1)<<8-r,n|=this[--e]>>(r+=this.DB-8)):(n=this[e]>>(r-=8)&255,0>=r&&(r+=this.DB,--e)),0!=(128&n)&&(n|=-256),0==o&&(128&this.s)!=(128&n)&&++o,(o>0||n!=this.s)&&(t[o++]=n);return t}function bnEquals(e){return 0==this.compareTo(e)}function bnMin(e){return this.compareTo(e)<0?this:e}function bnMax(e){return this.compareTo(e)>0?this:e}function bnpBitwiseTo(e,t,n){var r,o,i=Math.min(e.t,this.t);for(r=0;i>r;++r)n[r]=t(this[r],e[r]);if(e.t<this.t){for(o=e.s&this.DM,r=i;r<this.t;++r)n[r]=t(this[r],o);n.t=this.t}else{for(o=this.s&this.DM,r=i;r<e.t;++r)n[r]=t(o,e[r]);n.t=e.t}n.s=t(this.s,e.s),n.clamp()}function op_and(e,t){return e&t}function bnAnd(e){var t=nbi();return this.bitwiseTo(e,op_and,t),t}function op_or(e,t){return e|t}function bnOr(e){var t=nbi();return this.bitwiseTo(e,op_or,t),t}function op_xor(e,t){return e^t}function bnXor(e){var t=nbi();return this.bitwiseTo(e,op_xor,t),t}function op_andnot(e,t){return e&~t}function bnAndNot(e){var t=nbi();return this.bitwiseTo(e,op_andnot,t),t}function bnNot(){for(var e=nbi(),t=0;t<this.t;++t)e[t]=this.DM&~this[t];return e.t=this.t,e.s=~this.s,e}function bnShiftLeft(e){var t=nbi();return 0>e?this.rShiftTo(-e,t):this.lShiftTo(e,t),t}function bnShiftRight(e){var t=nbi();return 0>e?this.lShiftTo(-e,t):this.rShiftTo(e,t),t}function lbit(e){if(0==e)return-1;var t=0;return 0==(65535&e)&&(e>>=16,t+=16),0==(255&e)&&(e>>=8,t+=8),0==(15&e)&&(e>>=4,t+=4),0==(3&e)&&(e>>=2,t+=2),0==(1&e)&&++t,t}function bnGetLowestSetBit(){for(var e=0;e<this.t;++e)if(0!=this[e])return e*this.DB+lbit(this[e]);return this.s<0?this.t*this.DB:-1}function cbit(e){for(var t=0;0!=e;)e&=e-1,++t;return t}function bnBitCount(){for(var e=0,t=this.s&this.DM,n=0;n<this.t;++n)e+=cbit(this[n]^t);return e}function bnTestBit(e){var t=Math.floor(e/this.DB);return t>=this.t?0!=this.s:0!=(this[t]&1<<e%this.DB)}function bnpChangeBit(e,t){var n=BigInteger.ONE.shiftLeft(e);return this.bitwiseTo(n,t,n),n}function bnSetBit(e){return this.changeBit(e,op_or)}function bnClearBit(e){return this.changeBit(e,op_andnot)}function bnFlipBit(e){return this.changeBit(e,op_xor)}function bnpAddTo(e,t){for(var n=0,r=0,o=Math.min(e.t,this.t);o>n;)r+=this[n]+e[n],t[n++]=r&this.DM,r>>=this.DB;if(e.t<this.t){for(r+=e.s;n<this.t;)r+=this[n],t[n++]=r&this.DM,r>>=this.DB;r+=this.s}else{for(r+=this.s;n<e.t;)r+=e[n],t[n++]=r&this.DM,r>>=this.DB;r+=e.s}t.s=0>r?-1:0,r>0?t[n++]=r:-1>r&&(t[n++]=this.DV+r),t.t=n,t.clamp()}function bnAdd(e){var t=nbi();return this.addTo(e,t),t}function bnSubtract(e){var t=nbi();return this.subTo(e,t),t}function bnMultiply(e){var t=nbi();return this.multiplyTo(e,t),t}function bnSquare(){var e=nbi();return this.squareTo(e),e}function bnDivide(e){var t=nbi();return this.divRemTo(e,t,null),t}function bnRemainder(e){var t=nbi();return this.divRemTo(e,null,t),t}function bnDivideAndRemainder(e){var t=nbi(),n=nbi();return this.divRemTo(e,t,n),new Array(t,n)}function bnpDMultiply(e){this[this.t]=this.am(0,e-1,this,0,0,this.t),++this.t,this.clamp()}function bnpDAddOffset(e,t){if(0!=e){for(;this.t<=t;)this[this.t++]=0;for(this[t]+=e;this[t]>=this.DV;)this[t]-=this.DV,++t>=this.t&&(this[this.t++]=0),++this[t]}}function NullExp(){}function nNop(e){return e}function nMulTo(e,t,n){e.multiplyTo(t,n)}function nSqrTo(e,t){e.squareTo(t)}function bnPow(e){return this.exp(e,new NullExp)}function bnpMultiplyLowerTo(e,t,n){var r=Math.min(this.t+e.t,t);for(n.s=0,n.t=r;r>0;)n[--r]=0;var o;for(o=n.t-this.t;o>r;++r)n[r+this.t]=this.am(0,e[r],n,r,0,this.t);for(o=Math.min(e.t,t);o>r;++r)this.am(0,e[r],n,r,0,t-r);n.clamp()}function bnpMultiplyUpperTo(e,t,n){--t;var r=n.t=this.t+e.t-t;for(n.s=0;--r>=0;)n[r]=0;for(r=Math.max(t-this.t,0);r<e.t;++r)n[this.t+r-t]=this.am(t-r,e[r],n,0,0,this.t+r-t);n.clamp(),n.drShiftTo(1,n)}function Barrett(e){this.r2=nbi(),this.q3=nbi(),BigInteger.ONE.dlShiftTo(2*e.t,this.r2),this.mu=this.r2.divide(e),this.m=e}function barrettConvert(e){if(e.s<0||e.t>2*this.m.t)return e.mod(this.m);if(e.compareTo(this.m)<0)return e;var t=nbi();return e.copyTo(t),this.reduce(t),t}function barrettRevert(e){return e}function barrettReduce(e){for(e.drShiftTo(this.m.t-1,this.r2),e.t>this.m.t+1&&(e.t=this.m.t+1,e.clamp()),this.mu.multiplyUpperTo(this.r2,this.m.t+1,this.q3),this.m.multiplyLowerTo(this.q3,this.m.t+1,this.r2);e.compareTo(this.r2)<0;)e.dAddOffset(1,this.m.t+1);for(e.subTo(this.r2,e);e.compareTo(this.m)>=0;)e.subTo(this.m,e)}function barrettSqrTo(e,t){e.squareTo(t),this.reduce(t)}function barrettMulTo(e,t,n){e.multiplyTo(t,n),this.reduce(n)}function bnModPow(e,t){var n,r,o=e.bitLength(),i=nbv(1);if(0>=o)return i;n=18>o?1:48>o?3:144>o?4:768>o?5:6,r=8>o?new Classic(t):t.isEven()?new Barrett(t):new Montgomery(t);var a=new Array,s=3,u=n-1,c=(1<<n)-1;if(a[1]=r.convert(this),n>1){var l=nbi();for(r.sqrTo(a[1],l);c>=s;)a[s]=nbi(),r.mulTo(l,a[s-2],a[s]),s+=2}var p,d,h=e.t-1,f=!0,g=nbi();for(o=nbits(e[h])-1;h>=0;){for(o>=u?p=e[h]>>o-u&c:(p=(e[h]&(1<<o+1)-1)<<u-o,h>0&&(p|=e[h-1]>>this.DB+o-u)),s=n;0==(1&p);)p>>=1,--s;if((o-=s)<0&&(o+=this.DB,--h),f)a[p].copyTo(i),f=!1;else{for(;s>1;)r.sqrTo(i,g),r.sqrTo(g,i),s-=2;s>0?r.sqrTo(i,g):(d=i,i=g,g=d),r.mulTo(g,a[p],i)}for(;h>=0&&0==(e[h]&1<<o);)r.sqrTo(i,g),d=i,i=g,g=d,--o<0&&(o=this.DB-1,--h)}return r.revert(i)}function bnGCD(e){var t=this.s<0?this.negate():this.clone(),n=e.s<0?e.negate():e.clone();if(t.compareTo(n)<0){var r=t;t=n,n=r}var o=t.getLowestSetBit(),i=n.getLowestSetBit();if(0>i)return t;for(i>o&&(i=o),i>0&&(t.rShiftTo(i,t),n.rShiftTo(i,n));t.signum()>0;)(o=t.getLowestSetBit())>0&&t.rShiftTo(o,t),(o=n.getLowestSetBit())>0&&n.rShiftTo(o,n),t.compareTo(n)>=0?(t.subTo(n,t),t.rShiftTo(1,t)):(n.subTo(t,n),n.rShiftTo(1,n));return i>0&&n.lShiftTo(i,n),n}function bnpModInt(e){if(0>=e)return 0;var t=this.DV%e,n=this.s<0?e-1:0;if(this.t>0)if(0==t)n=this[0]%e;else for(var r=this.t-1;r>=0;--r)n=(t*n+this[r])%e;return n}function bnModInverse(e){var t=e.isEven();if(this.isEven()&&t||0==e.signum())return BigInteger.ZERO;for(var n=e.clone(),r=this.clone(),o=nbv(1),i=nbv(0),a=nbv(0),s=nbv(1);0!=n.signum();){for(;n.isEven();)n.rShiftTo(1,n),t?(o.isEven()&&i.isEven()||(o.addTo(this,o),i.subTo(e,i)),o.rShiftTo(1,o)):i.isEven()||i.subTo(e,i),i.rShiftTo(1,i);for(;r.isEven();)r.rShiftTo(1,r),t?(a.isEven()&&s.isEven()||(a.addTo(this,a),s.subTo(e,s)),a.rShiftTo(1,a)):s.isEven()||s.subTo(e,s),s.rShiftTo(1,s);n.compareTo(r)>=0?(n.subTo(r,n),t&&o.subTo(a,o),i.subTo(s,i)):(r.subTo(n,r),t&&a.subTo(o,a),s.subTo(i,s))}return 0!=r.compareTo(BigInteger.ONE)?BigInteger.ZERO:s.compareTo(e)>=0?s.subtract(e):s.signum()<0?(s.addTo(e,s),s.signum()<0?s.add(e):s):s}function bnIsProbablePrime(e){var t,n=this.abs();if(1==n.t&&n[0]<=lowprimes[lowprimes.length-1]){for(t=0;t<lowprimes.length;++t)if(n[0]==lowprimes[t])return!0;return!1}if(n.isEven())return!1;for(t=1;t<lowprimes.length;){for(var r=lowprimes[t],o=t+1;o<lowprimes.length&&lplim>r;)r*=lowprimes[o++];for(r=n.modInt(r);o>t;)if(r%lowprimes[t++]==0)return!1}return n.millerRabin(e)}function bnpMillerRabin(e){var t=this.subtract(BigInteger.ONE),n=t.getLowestSetBit();if(0>=n)return!1;var r=t.shiftRight(n);e=e+1>>1,e>lowprimes.length&&(e=lowprimes.length);for(var o=nbi(),i=0;e>i;++i){o.fromInt(lowprimes[Math.floor(Math.random()*lowprimes.length)]);var a=o.modPow(r,this);if(0!=a.compareTo(BigInteger.ONE)&&0!=a.compareTo(t)){for(var s=1;s++<n&&0!=a.compareTo(t);)if(a=a.modPowInt(2,this),0==a.compareTo(BigInteger.ONE))return!1;if(0!=a.compareTo(t))return!1}}return!0}/*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
-	 */
-function parseBigInt(e,t){return new BigInteger(e,t)}function linebrk(e,t){for(var n="",r=0;r+t<e.length;)n+=e.substring(r,r+t)+"\n",r+=t;return n+e.substring(r,e.length)}function byte2Hex(e){return 16>e?"0"+e.toString(16):e.toString(16)}function pkcs1pad2(e,t){if(t<e.length+11)return alert("Message too long for RSA"),null;for(var n=new Array,r=e.length-1;r>=0&&t>0;){var o=e.charCodeAt(r--);128>o?n[--t]=o:o>127&&2048>o?(n[--t]=63&o|128,n[--t]=o>>6|192):(n[--t]=63&o|128,n[--t]=o>>6&63|128,n[--t]=o>>12|224)}n[--t]=0;for(var i=new SecureRandom,a=new Array;t>2;){for(a[0]=0;0==a[0];)i.nextBytes(a);n[--t]=a[0]}return n[--t]=2,n[--t]=0,new BigInteger(n)}function oaep_mgf1_arr(e,t,n){for(var r="",o=0;r.length<t;)r+=n(String.fromCharCode.apply(String,e.concat([(4278190080&o)>>24,(16711680&o)>>16,(65280&o)>>8,255&o]))),o+=1;return r}function oaep_pad(e,t,n){if(e.length+2*SHA1_SIZE+2>t)throw"Message too long for RSA";var r,o="";for(r=0;r<t-e.length-2*SHA1_SIZE-2;r+=1)o+="\x00";var i=rstr_sha1("")+o+""+e,a=new Array(SHA1_SIZE);(new SecureRandom).nextBytes(a);var s=oaep_mgf1_arr(a,i.length,n||rstr_sha1),u=[];for(r=0;r<i.length;r+=1)u[r]=i.charCodeAt(r)^s.charCodeAt(r);var c=oaep_mgf1_arr(u,a.length,rstr_sha1),l=[0];for(r=0;r<a.length;r+=1)l[r+1]=a[r]^c.charCodeAt(r);return new BigInteger(l.concat(u))}function RSAKey(){this.n=null,this.e=0,this.d=null,this.p=null,this.q=null,this.dmp1=null,this.dmq1=null,this.coeff=null}function RSASetPublic(e,t){this.isPublic=!0,"string"!=typeof e?(this.n=e,this.e=t):null!=e&&null!=t&&e.length>0&&t.length>0?(this.n=parseBigInt(e,16),this.e=parseInt(t,16)):alert("Invalid RSA public key")}function RSADoPublic(e){return e.modPowInt(this.e,this.n)}function RSAEncrypt(e){var t=pkcs1pad2(e,this.n.bitLength()+7>>3);if(null==t)return null;var n=this.doPublic(t);if(null==n)return null;var r=n.toString(16);return 0==(1&r.length)?r:"0"+r}function RSAEncryptOAEP(e,t){var n=oaep_pad(e,this.n.bitLength()+7>>3,t);if(null==n)return null;var r=this.doPublic(n);if(null==r)return null;var o=r.toString(16);return 0==(1&o.length)?o:"0"+o}/*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
-	 */
-function pkcs1unpad2(e,t){for(var n=e.toByteArray(),r=0;r<n.length&&0==n[r];)++r;if(n.length-r!=t-1||2!=n[r])return null;for(++r;0!=n[r];)if(++r>=n.length)return null;for(var o="";++r<n.length;){var i=255&n[r];128>i?o+=String.fromCharCode(i):i>191&&224>i?(o+=String.fromCharCode((31&i)<<6|63&n[r+1]),++r):(o+=String.fromCharCode((15&i)<<12|(63&n[r+1])<<6|63&n[r+2]),r+=2)}return o}function oaep_mgf1_str(e,t,n){for(var r="",o=0;r.length<t;)r+=n(e+String.fromCharCode.apply(String,[(4278190080&o)>>24,(16711680&o)>>16,(65280&o)>>8,255&o])),o+=1;return r}function oaep_unpad(e,t,n){e=e.toByteArray();var r;for(r=0;r<e.length;r+=1)e[r]&=255;for(;e.length<t;)e.unshift(0);if(e=String.fromCharCode.apply(String,e),e.length<2*SHA1_SIZE+2)throw"Cipher too short";var r,o=e.substr(1,SHA1_SIZE),i=e.substr(SHA1_SIZE+1),a=oaep_mgf1_str(i,SHA1_SIZE,n||rstr_sha1),s=[];for(r=0;r<o.length;r+=1)s[r]=o.charCodeAt(r)^a.charCodeAt(r);var u=oaep_mgf1_str(String.fromCharCode.apply(String,s),e.length-SHA1_SIZE,rstr_sha1),c=[];for(r=0;r<i.length;r+=1)c[r]=i.charCodeAt(r)^u.charCodeAt(r);if(c=String.fromCharCode.apply(String,c),c.substr(0,SHA1_SIZE)!==rstr_sha1(""))throw"Hash mismatch";c=c.substr(SHA1_SIZE);var l=c.indexOf(""),p=-1!=l?c.substr(0,l).lastIndexOf("\x00"):-1;if(p+1!=l)throw"Malformed data";return c.substr(l+1)}function RSASetPrivate(e,t,n){this.isPrivate=!0,"string"!=typeof e?(this.n=e,this.e=t,this.d=n):null!=e&&null!=t&&e.length>0&&t.length>0?(this.n=parseBigInt(e,16),this.e=parseInt(t,16),this.d=parseBigInt(n,16)):alert("Invalid RSA private key")}function RSASetPrivateEx(e,t,n,r,o,i,a,s){if(this.isPrivate=!0,null==e)throw"RSASetPrivateEx N == null";if(null==t)throw"RSASetPrivateEx E == null";if(0==e.length)throw"RSASetPrivateEx N.length == 0";if(0==t.length)throw"RSASetPrivateEx E.length == 0";null!=e&&null!=t&&e.length>0&&t.length>0?(this.n=parseBigInt(e,16),this.e=parseInt(t,16),this.d=parseBigInt(n,16),this.p=parseBigInt(r,16),this.q=parseBigInt(o,16),this.dmp1=parseBigInt(i,16),this.dmq1=parseBigInt(a,16),this.coeff=parseBigInt(s,16)):alert("Invalid RSA private key in RSASetPrivateEx")}function RSAGenerate(e,t){var n=new SecureRandom,r=e>>1;this.e=parseInt(t,16);for(var o=new BigInteger(t,16);;){for(;this.p=new BigInteger(e-r,1,n),0!=this.p.subtract(BigInteger.ONE).gcd(o).compareTo(BigInteger.ONE)||!this.p.isProbablePrime(10););for(;this.q=new BigInteger(r,1,n),0!=this.q.subtract(BigInteger.ONE).gcd(o).compareTo(BigInteger.ONE)||!this.q.isProbablePrime(10););if(this.p.compareTo(this.q)<=0){var i=this.p;this.p=this.q,this.q=i}var a=this.p.subtract(BigInteger.ONE),s=this.q.subtract(BigInteger.ONE),u=a.multiply(s);if(0==u.gcd(o).compareTo(BigInteger.ONE)){this.n=this.p.multiply(this.q),this.d=o.modInverse(u),this.dmp1=this.d.mod(a),this.dmq1=this.d.mod(s),this.coeff=this.q.modInverse(this.p);break}}this.isPrivate=!0}function RSADoPrivate(e){if(null==this.p||null==this.q)return e.modPow(this.d,this.n);for(var t=e.mod(this.p).modPow(this.dmp1,this.p),n=e.mod(this.q).modPow(this.dmq1,this.q);t.compareTo(n)<0;)t=t.add(this.p);return t.subtract(n).multiply(this.coeff).mod(this.p).multiply(this.q).add(n)}function RSADecrypt(e){var t=parseBigInt(e,16),n=this.doPrivate(t);return null==n?null:pkcs1unpad2(n,this.n.bitLength()+7>>3)}function RSADecryptOAEP(e,t){var n=parseBigInt(e,16),r=this.doPrivate(n);return null==r?null:oaep_unpad(r,this.n.bitLength()+7>>3,t)}/*! rsapem-1.1.js (c) 2012 Kenji Urushima | kjur.github.com/jsrsasign/license
-	 */
-/**
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("react"));
+	else if(typeof define === 'function' && define.amd)
+		define(["react"], factory);
+	else if(typeof exports === 'object')
+		exports["shared-components"] = factory(require("react"));
+	else
+		root["shared-components"] = factory(root["react"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_13__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(1);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _oidcTokenManager = __webpack_require__(2);
+
+	var _oidcTokenManager2 = _interopRequireDefault(_oidcTokenManager);
+
+	var _tokenMiddleware = __webpack_require__(11);
+
+	var _tokenMiddleware2 = _interopRequireDefault(_tokenMiddleware);
+
+	var _CallbackComponent = __webpack_require__(12);
+
+	var _CallbackComponent2 = _interopRequireDefault(_CallbackComponent);
+
+	var _helpers = __webpack_require__(14);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	exports['default'] = { createTokenManager: _helpers.createTokenManager, createTokenMiddleware: _tokenMiddleware2['default'], CallbackComponent: _CallbackComponent2['default'] };
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var require;var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(Buffer, process, global, module) {'use strict';var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;}; /*eslint-disable */ // jscs:disable
+	(function(){window.OidcClient=__webpack_require__(9);var KJUR; // globals
+	var _promiseFactory;var _httpRequest; /*
+	CryptoJS v3.1.2
+	code.google.com/p/crypto-js
+	(c) 2009-2013 by Jeff Mott. All rights reserved.
+	code.google.com/p/crypto-js/wiki/License
+	*/ /**
+	 * CryptoJS core components.
+	 */var CryptoJS=CryptoJS||function(Math,undefined){ /**
+	     * CryptoJS namespace.
+	     */var C={}; /**
+	     * Library namespace.
+	     */var C_lib=C.lib={}; /**
+	     * Base object for prototypal inheritance.
+	     */var Base=C_lib.Base=function(){function F(){}return { /**
+	             * Creates a new object that inherits from this object.
+	             *
+	             * @param {Object} overrides Properties to copy into the new object.
+	             *
+	             * @return {Object} The new object.
+	             *
+	             * @static
+	             *
+	             * @example
+	             *
+	             *     var MyType = CryptoJS.lib.Base.extend({
+	             *         field: 'value',
+	             *
+	             *         method: function () {
+	             *         }
+	             *     });
+	             */extend:function(){function extend(overrides){ // Spawn
+	F.prototype=this;var subtype=new F(); // Augment
+	if(overrides){subtype.mixIn(overrides);} // Create default initializer
+	if(!subtype.hasOwnProperty('init')){subtype.init=function(){subtype.$super.init.apply(this,arguments);};} // Initializer's prototype is the subtype object
+	subtype.init.prototype=subtype; // Reference supertype
+	subtype.$super=this;return subtype;}return extend;}(), /**
+	             * Extends this object and runs the init method.
+	             * Arguments to create() will be passed to init().
+	             *
+	             * @return {Object} The new object.
+	             *
+	             * @static
+	             *
+	             * @example
+	             *
+	             *     var instance = MyType.create();
+	             */create:function(){function create(){var instance=this.extend();instance.init.apply(instance,arguments);return instance;}return create;}(), /**
+	             * Initializes a newly created object.
+	             * Override this method to add some logic when your objects are created.
+	             *
+	             * @example
+	             *
+	             *     var MyType = CryptoJS.lib.Base.extend({
+	             *         init: function () {
+	             *             // ...
+	             *         }
+	             *     });
+	             */init:function(){function init(){}return init;}(), /**
+	             * Copies properties into this object.
+	             *
+	             * @param {Object} properties The properties to mix in.
+	             *
+	             * @example
+	             *
+	             *     MyType.mixIn({
+	             *         field: 'value'
+	             *     });
+	             */mixIn:function(){function mixIn(properties){for(var propertyName in properties){if(properties.hasOwnProperty(propertyName)){this[propertyName]=properties[propertyName];}} // IE won't copy toString using the loop above
+	if(properties.hasOwnProperty('toString')){this.toString=properties.toString;}}return mixIn;}(), /**
+	             * Creates a copy of this object.
+	             *
+	             * @return {Object} The clone.
+	             *
+	             * @example
+	             *
+	             *     var clone = instance.clone();
+	             */clone:function(){function clone(){return this.init.prototype.extend(this);}return clone;}()};}(); /**
+	     * An array of 32-bit words.
+	     *
+	     * @property {Array} words The array of 32-bit words.
+	     * @property {number} sigBytes The number of significant bytes in this word array.
+	     */var WordArray=C_lib.WordArray=Base.extend({ /**
+	         * Initializes a newly created word array.
+	         *
+	         * @param {Array} words (Optional) An array of 32-bit words.
+	         * @param {number} sigBytes (Optional) The number of significant bytes in the words.
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.lib.WordArray.create();
+	         *     var wordArray = CryptoJS.lib.WordArray.create([0x00010203, 0x04050607]);
+	         *     var wordArray = CryptoJS.lib.WordArray.create([0x00010203, 0x04050607], 6);
+	         */init:function(){function init(words,sigBytes){words=this.words=words||[];if(sigBytes!=undefined){this.sigBytes=sigBytes;}else {this.sigBytes=words.length*4;}}return init;}(), /**
+	         * Converts this word array to a string.
+	         *
+	         * @param {Encoder} encoder (Optional) The encoding strategy to use. Default: CryptoJS.enc.Hex
+	         *
+	         * @return {string} The stringified word array.
+	         *
+	         * @example
+	         *
+	         *     var string = wordArray + '';
+	         *     var string = wordArray.toString();
+	         *     var string = wordArray.toString(CryptoJS.enc.Utf8);
+	         */toString:function(){function toString(encoder){return (encoder||Hex).stringify(this);}return toString;}(), /**
+	         * Concatenates a word array to this word array.
+	         *
+	         * @param {WordArray} wordArray The word array to append.
+	         *
+	         * @return {WordArray} This word array.
+	         *
+	         * @example
+	         *
+	         *     wordArray1.concat(wordArray2);
+	         */concat:function(){function concat(wordArray){ // Shortcuts
+	var thisWords=this.words;var thatWords=wordArray.words;var thisSigBytes=this.sigBytes;var thatSigBytes=wordArray.sigBytes; // Clamp excess bits
+	this.clamp(); // Concat
+	if(thisSigBytes%4){ // Copy one byte at a time
+	for(var i=0;i<thatSigBytes;i++){var thatByte=thatWords[i>>>2]>>>24-i%4*8&0xff;thisWords[thisSigBytes+i>>>2]|=thatByte<<24-(thisSigBytes+i)%4*8;}}else if(thatWords.length>0xffff){ // Copy one word at a time
+	for(var i=0;i<thatSigBytes;i+=4){thisWords[thisSigBytes+i>>>2]=thatWords[i>>>2];}}else { // Copy all words at once
+	thisWords.push.apply(thisWords,thatWords);}this.sigBytes+=thatSigBytes; // Chainable
+	return this;}return concat;}(), /**
+	         * Removes insignificant bits.
+	         *
+	         * @example
+	         *
+	         *     wordArray.clamp();
+	         */clamp:function(){function clamp(){ // Shortcuts
+	var words=this.words;var sigBytes=this.sigBytes; // Clamp
+	words[sigBytes>>>2]&=0xffffffff<<32-sigBytes%4*8;words.length=Math.ceil(sigBytes/4);}return clamp;}(), /**
+	         * Creates a copy of this word array.
+	         *
+	         * @return {WordArray} The clone.
+	         *
+	         * @example
+	         *
+	         *     var clone = wordArray.clone();
+	         */clone:function(){function clone(){var clone=Base.clone.call(this);clone.words=this.words.slice(0);return clone;}return clone;}(), /**
+	         * Creates a word array filled with random bytes.
+	         *
+	         * @param {number} nBytes The number of random bytes to generate.
+	         *
+	         * @return {WordArray} The random word array.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.lib.WordArray.random(16);
+	         */random:function(){function random(nBytes){var words=[];for(var i=0;i<nBytes;i+=4){words.push(Math.random()*0x100000000|0);}return new WordArray.init(words,nBytes);}return random;}()}); /**
+	     * Encoder namespace.
+	     */var C_enc=C.enc={}; /**
+	     * Hex encoding strategy.
+	     */var Hex=C_enc.Hex={ /**
+	         * Converts a word array to a hex string.
+	         *
+	         * @param {WordArray} wordArray The word array.
+	         *
+	         * @return {string} The hex string.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var hexString = CryptoJS.enc.Hex.stringify(wordArray);
+	         */stringify:function(){function stringify(wordArray){ // Shortcuts
+	var words=wordArray.words;var sigBytes=wordArray.sigBytes; // Convert
+	var hexChars=[];for(var i=0;i<sigBytes;i++){var bite=words[i>>>2]>>>24-i%4*8&0xff;hexChars.push((bite>>>4).toString(16));hexChars.push((bite&0x0f).toString(16));}return hexChars.join('');}return stringify;}(), /**
+	         * Converts a hex string to a word array.
+	         *
+	         * @param {string} hexStr The hex string.
+	         *
+	         * @return {WordArray} The word array.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.enc.Hex.parse(hexString);
+	         */parse:function(){function parse(hexStr){ // Shortcut
+	var hexStrLength=hexStr.length; // Convert
+	var words=[];for(var i=0;i<hexStrLength;i+=2){words[i>>>3]|=parseInt(hexStr.substr(i,2),16)<<24-i%8*4;}return new WordArray.init(words,hexStrLength/2);}return parse;}()}; /**
+	     * Latin1 encoding strategy.
+	     */var Latin1=C_enc.Latin1={ /**
+	         * Converts a word array to a Latin1 string.
+	         *
+	         * @param {WordArray} wordArray The word array.
+	         *
+	         * @return {string} The Latin1 string.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var latin1String = CryptoJS.enc.Latin1.stringify(wordArray);
+	         */stringify:function(){function stringify(wordArray){ // Shortcuts
+	var words=wordArray.words;var sigBytes=wordArray.sigBytes; // Convert
+	var latin1Chars=[];for(var i=0;i<sigBytes;i++){var bite=words[i>>>2]>>>24-i%4*8&0xff;latin1Chars.push(String.fromCharCode(bite));}return latin1Chars.join('');}return stringify;}(), /**
+	         * Converts a Latin1 string to a word array.
+	         *
+	         * @param {string} latin1Str The Latin1 string.
+	         *
+	         * @return {WordArray} The word array.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.enc.Latin1.parse(latin1String);
+	         */parse:function(){function parse(latin1Str){ // Shortcut
+	var latin1StrLength=latin1Str.length; // Convert
+	var words=[];for(var i=0;i<latin1StrLength;i++){words[i>>>2]|=(latin1Str.charCodeAt(i)&0xff)<<24-i%4*8;}return new WordArray.init(words,latin1StrLength);}return parse;}()}; /**
+	     * UTF-8 encoding strategy.
+	     */var Utf8=C_enc.Utf8={ /**
+	         * Converts a word array to a UTF-8 string.
+	         *
+	         * @param {WordArray} wordArray The word array.
+	         *
+	         * @return {string} The UTF-8 string.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var utf8String = CryptoJS.enc.Utf8.stringify(wordArray);
+	         */stringify:function(){function stringify(wordArray){try{return decodeURIComponent(escape(Latin1.stringify(wordArray)));}catch(e){throw new Error('Malformed UTF-8 data');}}return stringify;}(), /**
+	         * Converts a UTF-8 string to a word array.
+	         *
+	         * @param {string} utf8Str The UTF-8 string.
+	         *
+	         * @return {WordArray} The word array.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.enc.Utf8.parse(utf8String);
+	         */parse:function(){function parse(utf8Str){return Latin1.parse(unescape(encodeURIComponent(utf8Str)));}return parse;}()}; /**
+	     * Abstract buffered block algorithm template.
+	     *
+	     * The property blockSize must be implemented in a concrete subtype.
+	     *
+	     * @property {number} _minBufferSize The number of blocks that should be kept unprocessed in the buffer. Default: 0
+	     */var BufferedBlockAlgorithm=C_lib.BufferedBlockAlgorithm=Base.extend({ /**
+	         * Resets this block algorithm's data buffer to its initial state.
+	         *
+	         * @example
+	         *
+	         *     bufferedBlockAlgorithm.reset();
+	         */reset:function(){function reset(){ // Initial values
+	this._data=new WordArray.init();this._nDataBytes=0;}return reset;}(), /**
+	         * Adds new data to this block algorithm's buffer.
+	         *
+	         * @param {WordArray|string} data The data to append. Strings are converted to a WordArray using UTF-8.
+	         *
+	         * @example
+	         *
+	         *     bufferedBlockAlgorithm._append('data');
+	         *     bufferedBlockAlgorithm._append(wordArray);
+	         */_append:function(){function _append(data){ // Convert string to WordArray, else assume WordArray already
+	if(typeof data=='string'){data=Utf8.parse(data);} // Append
+	this._data.concat(data);this._nDataBytes+=data.sigBytes;}return _append;}(), /**
+	         * Processes available data blocks.
+	         *
+	         * This method invokes _doProcessBlock(offset), which must be implemented by a concrete subtype.
+	         *
+	         * @param {boolean} doFlush Whether all blocks and partial blocks should be processed.
+	         *
+	         * @return {WordArray} The processed data.
+	         *
+	         * @example
+	         *
+	         *     var processedData = bufferedBlockAlgorithm._process();
+	         *     var processedData = bufferedBlockAlgorithm._process(!!'flush');
+	         */_process:function(){function _process(doFlush){ // Shortcuts
+	var data=this._data;var dataWords=data.words;var dataSigBytes=data.sigBytes;var blockSize=this.blockSize;var blockSizeBytes=blockSize*4; // Count blocks ready
+	var nBlocksReady=dataSigBytes/blockSizeBytes;if(doFlush){ // Round up to include partial blocks
+	nBlocksReady=Math.ceil(nBlocksReady);}else { // Round down to include only full blocks,
+	// less the number of blocks that must remain in the buffer
+	nBlocksReady=Math.max((nBlocksReady|0)-this._minBufferSize,0);} // Count words ready
+	var nWordsReady=nBlocksReady*blockSize; // Count bytes ready
+	var nBytesReady=Math.min(nWordsReady*4,dataSigBytes); // Process blocks
+	if(nWordsReady){for(var offset=0;offset<nWordsReady;offset+=blockSize){ // Perform concrete-algorithm logic
+	this._doProcessBlock(dataWords,offset);} // Remove processed words
+	var processedWords=dataWords.splice(0,nWordsReady);data.sigBytes-=nBytesReady;} // Return processed words
+	return new WordArray.init(processedWords,nBytesReady);}return _process;}(), /**
+	         * Creates a copy of this object.
+	         *
+	         * @return {Object} The clone.
+	         *
+	         * @example
+	         *
+	         *     var clone = bufferedBlockAlgorithm.clone();
+	         */clone:function(){function clone(){var clone=Base.clone.call(this);clone._data=this._data.clone();return clone;}return clone;}(),_minBufferSize:0}); /**
+	     * Abstract hasher template.
+	     *
+	     * @property {number} blockSize The number of 32-bit words this hasher operates on. Default: 16 (512 bits)
+	     */var Hasher=C_lib.Hasher=BufferedBlockAlgorithm.extend({ /**
+	         * Configuration options.
+	         */cfg:Base.extend(), /**
+	         * Initializes a newly created hasher.
+	         *
+	         * @param {Object} cfg (Optional) The configuration options to use for this hash computation.
+	         *
+	         * @example
+	         *
+	         *     var hasher = CryptoJS.algo.SHA256.create();
+	         */init:function(){function init(cfg){ // Apply config defaults
+	this.cfg=this.cfg.extend(cfg); // Set initial values
+	this.reset();}return init;}(), /**
+	         * Resets this hasher to its initial state.
+	         *
+	         * @example
+	         *
+	         *     hasher.reset();
+	         */reset:function(){function reset(){ // Reset data buffer
+	BufferedBlockAlgorithm.reset.call(this); // Perform concrete-hasher logic
+	this._doReset();}return reset;}(), /**
+	         * Updates this hasher with a message.
+	         *
+	         * @param {WordArray|string} messageUpdate The message to append.
+	         *
+	         * @return {Hasher} This hasher.
+	         *
+	         * @example
+	         *
+	         *     hasher.update('message');
+	         *     hasher.update(wordArray);
+	         */update:function(){function update(messageUpdate){ // Append
+	this._append(messageUpdate); // Update the hash
+	this._process(); // Chainable
+	return this;}return update;}(), /**
+	         * Finalizes the hash computation.
+	         * Note that the finalize operation is effectively a destructive, read-once operation.
+	         *
+	         * @param {WordArray|string} messageUpdate (Optional) A final message update.
+	         *
+	         * @return {WordArray} The hash.
+	         *
+	         * @example
+	         *
+	         *     var hash = hasher.finalize();
+	         *     var hash = hasher.finalize('message');
+	         *     var hash = hasher.finalize(wordArray);
+	         */finalize:function(){function finalize(messageUpdate){ // Final message update
+	if(messageUpdate){this._append(messageUpdate);} // Perform concrete-hasher logic
+	var hash=this._doFinalize();return hash;}return finalize;}(),blockSize:512/32, /**
+	         * Creates a shortcut function to a hasher's object interface.
+	         *
+	         * @param {Hasher} hasher The hasher to create a helper for.
+	         *
+	         * @return {Function} The shortcut function.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var SHA256 = CryptoJS.lib.Hasher._createHelper(CryptoJS.algo.SHA256);
+	         */_createHelper:function(){function _createHelper(hasher){return function(message,cfg){return new hasher.init(cfg).finalize(message);};}return _createHelper;}(), /**
+	         * Creates a shortcut function to the HMAC's object interface.
+	         *
+	         * @param {Hasher} hasher The hasher to use in this HMAC helper.
+	         *
+	         * @return {Function} The shortcut function.
+	         *
+	         * @static
+	         *
+	         * @example
+	         *
+	         *     var HmacSHA256 = CryptoJS.lib.Hasher._createHmacHelper(CryptoJS.algo.SHA256);
+	         */_createHmacHelper:function(){function _createHmacHelper(hasher){return function(message,key){return new C_algo.HMAC.init(hasher,key).finalize(message);};}return _createHmacHelper;}()}); /**
+	     * Algorithm namespace.
+	     */var C_algo=C.algo={};return C;}(Math); /*
+	CryptoJS v3.1.2
+	code.google.com/p/crypto-js
+	(c) 2009-2013 by Jeff Mott. All rights reserved.
+	code.google.com/p/crypto-js/wiki/License
+	*/(function(){ // Shortcuts
+	var C=CryptoJS;var C_lib=C.lib;var WordArray=C_lib.WordArray;var Hasher=C_lib.Hasher;var C_algo=C.algo; // Reusable object
+	var W=[]; /**
+	     * SHA-1 hash algorithm.
+	     */var SHA1=C_algo.SHA1=Hasher.extend({_doReset:function(){function _doReset(){this._hash=new WordArray.init([0x67452301,0xefcdab89,0x98badcfe,0x10325476,0xc3d2e1f0]);}return _doReset;}(),_doProcessBlock:function(){function _doProcessBlock(M,offset){ // Shortcut
+	var H=this._hash.words; // Working variables
+	var a=H[0];var b=H[1];var c=H[2];var d=H[3];var e=H[4]; // Computation
+	for(var i=0;i<80;i++){if(i<16){W[i]=M[offset+i]|0;}else {var n=W[i-3]^W[i-8]^W[i-14]^W[i-16];W[i]=n<<1|n>>>31;}var t=(a<<5|a>>>27)+e+W[i];if(i<20){t+=(b&c|~b&d)+0x5a827999;}else if(i<40){t+=(b^c^d)+0x6ed9eba1;}else if(i<60){t+=(b&c|b&d|c&d)-0x70e44324;}else  /* if (i < 80) */{t+=(b^c^d)-0x359d3e2a;}e=d;d=c;c=b<<30|b>>>2;b=a;a=t;} // Intermediate hash value
+	H[0]=H[0]+a|0;H[1]=H[1]+b|0;H[2]=H[2]+c|0;H[3]=H[3]+d|0;H[4]=H[4]+e|0;}return _doProcessBlock;}(),_doFinalize:function(){function _doFinalize(){ // Shortcuts
+	var data=this._data;var dataWords=data.words;var nBitsTotal=this._nDataBytes*8;var nBitsLeft=data.sigBytes*8; // Add padding
+	dataWords[nBitsLeft>>>5]|=0x80<<24-nBitsLeft%32;dataWords[(nBitsLeft+64>>>9<<4)+14]=Math.floor(nBitsTotal/0x100000000);dataWords[(nBitsLeft+64>>>9<<4)+15]=nBitsTotal;data.sigBytes=dataWords.length*4; // Hash final blocks
+	this._process(); // Return final computed hash
+	return this._hash;}return _doFinalize;}(),clone:function(){function clone(){var clone=Hasher.clone.call(this);clone._hash=this._hash.clone();return clone;}return clone;}()}); /**
+	     * Shortcut function to the hasher's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     *
+	     * @return {WordArray} The hash.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hash = CryptoJS.SHA1('message');
+	     *     var hash = CryptoJS.SHA1(wordArray);
+	     */C.SHA1=Hasher._createHelper(SHA1); /**
+	     * Shortcut function to the HMAC's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     * @param {WordArray|string} key The secret key.
+	     *
+	     * @return {WordArray} The HMAC.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hmac = CryptoJS.HmacSHA1(message, key);
+	     */C.HmacSHA1=Hasher._createHmacHelper(SHA1);})(); /*
+	CryptoJS v3.1.2
+	code.google.com/p/crypto-js
+	(c) 2009-2013 by Jeff Mott. All rights reserved.
+	code.google.com/p/crypto-js/wiki/License
+	*/(function(Math){ // Shortcuts
+	var C=CryptoJS;var C_lib=C.lib;var WordArray=C_lib.WordArray;var Hasher=C_lib.Hasher;var C_algo=C.algo; // Initialization and round constants tables
+	var H=[];var K=[]; // Compute constants
+	(function(){function isPrime(n){var sqrtN=Math.sqrt(n);for(var factor=2;factor<=sqrtN;factor++){if(!(n%factor)){return false;}}return true;}function getFractionalBits(n){return (n-(n|0))*0x100000000|0;}var n=2;var nPrime=0;while(nPrime<64){if(isPrime(n)){if(nPrime<8){H[nPrime]=getFractionalBits(Math.pow(n,1/2));}K[nPrime]=getFractionalBits(Math.pow(n,1/3));nPrime++;}n++;}})(); // Reusable object
+	var W=[]; /**
+	     * SHA-256 hash algorithm.
+	     */var SHA256=C_algo.SHA256=Hasher.extend({_doReset:function(){function _doReset(){this._hash=new WordArray.init(H.slice(0));}return _doReset;}(),_doProcessBlock:function(){function _doProcessBlock(M,offset){ // Shortcut
+	var H=this._hash.words; // Working variables
+	var a=H[0];var b=H[1];var c=H[2];var d=H[3];var e=H[4];var f=H[5];var g=H[6];var h=H[7]; // Computation
+	for(var i=0;i<64;i++){if(i<16){W[i]=M[offset+i]|0;}else {var gamma0x=W[i-15];var gamma0=(gamma0x<<25|gamma0x>>>7)^(gamma0x<<14|gamma0x>>>18)^gamma0x>>>3;var gamma1x=W[i-2];var gamma1=(gamma1x<<15|gamma1x>>>17)^(gamma1x<<13|gamma1x>>>19)^gamma1x>>>10;W[i]=gamma0+W[i-7]+gamma1+W[i-16];}var ch=e&f^~e&g;var maj=a&b^a&c^b&c;var sigma0=(a<<30|a>>>2)^(a<<19|a>>>13)^(a<<10|a>>>22);var sigma1=(e<<26|e>>>6)^(e<<21|e>>>11)^(e<<7|e>>>25);var t1=h+sigma1+ch+K[i]+W[i];var t2=sigma0+maj;h=g;g=f;f=e;e=d+t1|0;d=c;c=b;b=a;a=t1+t2|0;} // Intermediate hash value
+	H[0]=H[0]+a|0;H[1]=H[1]+b|0;H[2]=H[2]+c|0;H[3]=H[3]+d|0;H[4]=H[4]+e|0;H[5]=H[5]+f|0;H[6]=H[6]+g|0;H[7]=H[7]+h|0;}return _doProcessBlock;}(),_doFinalize:function(){function _doFinalize(){ // Shortcuts
+	var data=this._data;var dataWords=data.words;var nBitsTotal=this._nDataBytes*8;var nBitsLeft=data.sigBytes*8; // Add padding
+	dataWords[nBitsLeft>>>5]|=0x80<<24-nBitsLeft%32;dataWords[(nBitsLeft+64>>>9<<4)+14]=Math.floor(nBitsTotal/0x100000000);dataWords[(nBitsLeft+64>>>9<<4)+15]=nBitsTotal;data.sigBytes=dataWords.length*4; // Hash final blocks
+	this._process(); // Return final computed hash
+	return this._hash;}return _doFinalize;}(),clone:function(){function clone(){var clone=Hasher.clone.call(this);clone._hash=this._hash.clone();return clone;}return clone;}()}); /**
+	     * Shortcut function to the hasher's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     *
+	     * @return {WordArray} The hash.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hash = CryptoJS.SHA256('message');
+	     *     var hash = CryptoJS.SHA256(wordArray);
+	     */C.SHA256=Hasher._createHelper(SHA256); /**
+	     * Shortcut function to the HMAC's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     * @param {WordArray|string} key The secret key.
+	     *
+	     * @return {WordArray} The HMAC.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hmac = CryptoJS.HmacSHA256(message, key);
+	     */C.HmacSHA256=Hasher._createHmacHelper(SHA256);})(Math); /*
+	CryptoJS v3.1.2
+	code.google.com/p/crypto-js
+	(c) 2009-2013 by Jeff Mott. All rights reserved.
+	code.google.com/p/crypto-js/wiki/License
+	*/(function(undefined){ // Shortcuts
+	var C=CryptoJS;var C_lib=C.lib;var Base=C_lib.Base;var X32WordArray=C_lib.WordArray; /**
+	     * x64 namespace.
+	     */var C_x64=C.x64={}; /**
+	     * A 64-bit word.
+	     */var X64Word=C_x64.Word=Base.extend({ /**
+	         * Initializes a newly created 64-bit word.
+	         *
+	         * @param {number} high The high 32 bits.
+	         * @param {number} low The low 32 bits.
+	         *
+	         * @example
+	         *
+	         *     var x64Word = CryptoJS.x64.Word.create(0x00010203, 0x04050607);
+	         */init:function(){function init(high,low){this.high=high;this.low=low;}return init;}() /**
+	         * Bitwise NOTs this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after negating.
+	         *
+	         * @example
+	         *
+	         *     var negated = x64Word.not();
+	         */ // not: function () {
+	// var high = ~this.high;
+	// var low = ~this.low;
+	// return X64Word.create(high, low);
+	// },
+	/**
+	         * Bitwise ANDs this word with the passed word.
+	         *
+	         * @param {X64Word} word The x64-Word to AND with this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after ANDing.
+	         *
+	         * @example
+	         *
+	         *     var anded = x64Word.and(anotherX64Word);
+	         */ // and: function (word) {
+	// var high = this.high & word.high;
+	// var low = this.low & word.low;
+	// return X64Word.create(high, low);
+	// },
+	/**
+	         * Bitwise ORs this word with the passed word.
+	         *
+	         * @param {X64Word} word The x64-Word to OR with this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after ORing.
+	         *
+	         * @example
+	         *
+	         *     var ored = x64Word.or(anotherX64Word);
+	         */ // or: function (word) {
+	// var high = this.high | word.high;
+	// var low = this.low | word.low;
+	// return X64Word.create(high, low);
+	// },
+	/**
+	         * Bitwise XORs this word with the passed word.
+	         *
+	         * @param {X64Word} word The x64-Word to XOR with this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after XORing.
+	         *
+	         * @example
+	         *
+	         *     var xored = x64Word.xor(anotherX64Word);
+	         */ // xor: function (word) {
+	// var high = this.high ^ word.high;
+	// var low = this.low ^ word.low;
+	// return X64Word.create(high, low);
+	// },
+	/**
+	         * Shifts this word n bits to the left.
+	         *
+	         * @param {number} n The number of bits to shift.
+	         *
+	         * @return {X64Word} A new x64-Word object after shifting.
+	         *
+	         * @example
+	         *
+	         *     var shifted = x64Word.shiftL(25);
+	         */ // shiftL: function (n) {
+	// if (n < 32) {
+	// var high = (this.high << n) | (this.low >>> (32 - n));
+	// var low = this.low << n;
+	// } else {
+	// var high = this.low << (n - 32);
+	// var low = 0;
+	// }
+	// return X64Word.create(high, low);
+	// },
+	/**
+	         * Shifts this word n bits to the right.
+	         *
+	         * @param {number} n The number of bits to shift.
+	         *
+	         * @return {X64Word} A new x64-Word object after shifting.
+	         *
+	         * @example
+	         *
+	         *     var shifted = x64Word.shiftR(7);
+	         */ // shiftR: function (n) {
+	// if (n < 32) {
+	// var low = (this.low >>> n) | (this.high << (32 - n));
+	// var high = this.high >>> n;
+	// } else {
+	// var low = this.high >>> (n - 32);
+	// var high = 0;
+	// }
+	// return X64Word.create(high, low);
+	// },
+	/**
+	         * Rotates this word n bits to the left.
+	         *
+	         * @param {number} n The number of bits to rotate.
+	         *
+	         * @return {X64Word} A new x64-Word object after rotating.
+	         *
+	         * @example
+	         *
+	         *     var rotated = x64Word.rotL(25);
+	         */ // rotL: function (n) {
+	// return this.shiftL(n).or(this.shiftR(64 - n));
+	// },
+	/**
+	         * Rotates this word n bits to the right.
+	         *
+	         * @param {number} n The number of bits to rotate.
+	         *
+	         * @return {X64Word} A new x64-Word object after rotating.
+	         *
+	         * @example
+	         *
+	         *     var rotated = x64Word.rotR(7);
+	         */ // rotR: function (n) {
+	// return this.shiftR(n).or(this.shiftL(64 - n));
+	// },
+	/**
+	         * Adds this word with the passed word.
+	         *
+	         * @param {X64Word} word The x64-Word to add with this word.
+	         *
+	         * @return {X64Word} A new x64-Word object after adding.
+	         *
+	         * @example
+	         *
+	         *     var added = x64Word.add(anotherX64Word);
+	         */ // add: function (word) {
+	// var low = (this.low + word.low) | 0;
+	// var carry = (low >>> 0) < (this.low >>> 0) ? 1 : 0;
+	// var high = (this.high + word.high + carry) | 0;
+	// return X64Word.create(high, low);
+	// }
+	}); /**
+	     * An array of 64-bit words.
+	     *
+	     * @property {Array} words The array of CryptoJS.x64.Word objects.
+	     * @property {number} sigBytes The number of significant bytes in this word array.
+	     */var X64WordArray=C_x64.WordArray=Base.extend({ /**
+	         * Initializes a newly created word array.
+	         *
+	         * @param {Array} words (Optional) An array of CryptoJS.x64.Word objects.
+	         * @param {number} sigBytes (Optional) The number of significant bytes in the words.
+	         *
+	         * @example
+	         *
+	         *     var wordArray = CryptoJS.x64.WordArray.create();
+	         *
+	         *     var wordArray = CryptoJS.x64.WordArray.create([
+	         *         CryptoJS.x64.Word.create(0x00010203, 0x04050607),
+	         *         CryptoJS.x64.Word.create(0x18191a1b, 0x1c1d1e1f)
+	         *     ]);
+	         *
+	         *     var wordArray = CryptoJS.x64.WordArray.create([
+	         *         CryptoJS.x64.Word.create(0x00010203, 0x04050607),
+	         *         CryptoJS.x64.Word.create(0x18191a1b, 0x1c1d1e1f)
+	         *     ], 10);
+	         */init:function(){function init(words,sigBytes){words=this.words=words||[];if(sigBytes!=undefined){this.sigBytes=sigBytes;}else {this.sigBytes=words.length*8;}}return init;}(), /**
+	         * Converts this 64-bit word array to a 32-bit word array.
+	         *
+	         * @return {CryptoJS.lib.WordArray} This word array's data as a 32-bit word array.
+	         *
+	         * @example
+	         *
+	         *     var x32WordArray = x64WordArray.toX32();
+	         */toX32:function(){function toX32(){ // Shortcuts
+	var x64Words=this.words;var x64WordsLength=x64Words.length; // Convert
+	var x32Words=[];for(var i=0;i<x64WordsLength;i++){var x64Word=x64Words[i];x32Words.push(x64Word.high);x32Words.push(x64Word.low);}return X32WordArray.create(x32Words,this.sigBytes);}return toX32;}(), /**
+	         * Creates a copy of this word array.
+	         *
+	         * @return {X64WordArray} The clone.
+	         *
+	         * @example
+	         *
+	         *     var clone = x64WordArray.clone();
+	         */clone:function(){function clone(){var clone=Base.clone.call(this); // Clone "words" array
+	var words=clone.words=this.words.slice(0); // Clone each X64Word object
+	var wordsLength=words.length;for(var i=0;i<wordsLength;i++){words[i]=words[i].clone();}return clone;}return clone;}()});})(); /*
+	CryptoJS v3.1.2
+	code.google.com/p/crypto-js
+	(c) 2009-2013 by Jeff Mott. All rights reserved.
+	code.google.com/p/crypto-js/wiki/License
+	*/(function(){ // Shortcuts
+	var C=CryptoJS;var C_lib=C.lib;var Hasher=C_lib.Hasher;var C_x64=C.x64;var X64Word=C_x64.Word;var X64WordArray=C_x64.WordArray;var C_algo=C.algo;function X64Word_create(){return X64Word.create.apply(X64Word,arguments);} // Constants
+	var K=[X64Word_create(0x428a2f98,0xd728ae22),X64Word_create(0x71374491,0x23ef65cd),X64Word_create(0xb5c0fbcf,0xec4d3b2f),X64Word_create(0xe9b5dba5,0x8189dbbc),X64Word_create(0x3956c25b,0xf348b538),X64Word_create(0x59f111f1,0xb605d019),X64Word_create(0x923f82a4,0xaf194f9b),X64Word_create(0xab1c5ed5,0xda6d8118),X64Word_create(0xd807aa98,0xa3030242),X64Word_create(0x12835b01,0x45706fbe),X64Word_create(0x243185be,0x4ee4b28c),X64Word_create(0x550c7dc3,0xd5ffb4e2),X64Word_create(0x72be5d74,0xf27b896f),X64Word_create(0x80deb1fe,0x3b1696b1),X64Word_create(0x9bdc06a7,0x25c71235),X64Word_create(0xc19bf174,0xcf692694),X64Word_create(0xe49b69c1,0x9ef14ad2),X64Word_create(0xefbe4786,0x384f25e3),X64Word_create(0x0fc19dc6,0x8b8cd5b5),X64Word_create(0x240ca1cc,0x77ac9c65),X64Word_create(0x2de92c6f,0x592b0275),X64Word_create(0x4a7484aa,0x6ea6e483),X64Word_create(0x5cb0a9dc,0xbd41fbd4),X64Word_create(0x76f988da,0x831153b5),X64Word_create(0x983e5152,0xee66dfab),X64Word_create(0xa831c66d,0x2db43210),X64Word_create(0xb00327c8,0x98fb213f),X64Word_create(0xbf597fc7,0xbeef0ee4),X64Word_create(0xc6e00bf3,0x3da88fc2),X64Word_create(0xd5a79147,0x930aa725),X64Word_create(0x06ca6351,0xe003826f),X64Word_create(0x14292967,0x0a0e6e70),X64Word_create(0x27b70a85,0x46d22ffc),X64Word_create(0x2e1b2138,0x5c26c926),X64Word_create(0x4d2c6dfc,0x5ac42aed),X64Word_create(0x53380d13,0x9d95b3df),X64Word_create(0x650a7354,0x8baf63de),X64Word_create(0x766a0abb,0x3c77b2a8),X64Word_create(0x81c2c92e,0x47edaee6),X64Word_create(0x92722c85,0x1482353b),X64Word_create(0xa2bfe8a1,0x4cf10364),X64Word_create(0xa81a664b,0xbc423001),X64Word_create(0xc24b8b70,0xd0f89791),X64Word_create(0xc76c51a3,0x0654be30),X64Word_create(0xd192e819,0xd6ef5218),X64Word_create(0xd6990624,0x5565a910),X64Word_create(0xf40e3585,0x5771202a),X64Word_create(0x106aa070,0x32bbd1b8),X64Word_create(0x19a4c116,0xb8d2d0c8),X64Word_create(0x1e376c08,0x5141ab53),X64Word_create(0x2748774c,0xdf8eeb99),X64Word_create(0x34b0bcb5,0xe19b48a8),X64Word_create(0x391c0cb3,0xc5c95a63),X64Word_create(0x4ed8aa4a,0xe3418acb),X64Word_create(0x5b9cca4f,0x7763e373),X64Word_create(0x682e6ff3,0xd6b2b8a3),X64Word_create(0x748f82ee,0x5defb2fc),X64Word_create(0x78a5636f,0x43172f60),X64Word_create(0x84c87814,0xa1f0ab72),X64Word_create(0x8cc70208,0x1a6439ec),X64Word_create(0x90befffa,0x23631e28),X64Word_create(0xa4506ceb,0xde82bde9),X64Word_create(0xbef9a3f7,0xb2c67915),X64Word_create(0xc67178f2,0xe372532b),X64Word_create(0xca273ece,0xea26619c),X64Word_create(0xd186b8c7,0x21c0c207),X64Word_create(0xeada7dd6,0xcde0eb1e),X64Word_create(0xf57d4f7f,0xee6ed178),X64Word_create(0x06f067aa,0x72176fba),X64Word_create(0x0a637dc5,0xa2c898a6),X64Word_create(0x113f9804,0xbef90dae),X64Word_create(0x1b710b35,0x131c471b),X64Word_create(0x28db77f5,0x23047d84),X64Word_create(0x32caab7b,0x40c72493),X64Word_create(0x3c9ebe0a,0x15c9bebc),X64Word_create(0x431d67c4,0x9c100d4c),X64Word_create(0x4cc5d4be,0xcb3e42b6),X64Word_create(0x597f299c,0xfc657e2a),X64Word_create(0x5fcb6fab,0x3ad6faec),X64Word_create(0x6c44198c,0x4a475817)]; // Reusable objects
+	var W=[];(function(){for(var i=0;i<80;i++){W[i]=X64Word_create();}})(); /**
+	     * SHA-512 hash algorithm.
+	     */var SHA512=C_algo.SHA512=Hasher.extend({_doReset:function(){function _doReset(){this._hash=new X64WordArray.init([new X64Word.init(0x6a09e667,0xf3bcc908),new X64Word.init(0xbb67ae85,0x84caa73b),new X64Word.init(0x3c6ef372,0xfe94f82b),new X64Word.init(0xa54ff53a,0x5f1d36f1),new X64Word.init(0x510e527f,0xade682d1),new X64Word.init(0x9b05688c,0x2b3e6c1f),new X64Word.init(0x1f83d9ab,0xfb41bd6b),new X64Word.init(0x5be0cd19,0x137e2179)]);}return _doReset;}(),_doProcessBlock:function(){function _doProcessBlock(M,offset){ // Shortcuts
+	var H=this._hash.words;var H0=H[0];var H1=H[1];var H2=H[2];var H3=H[3];var H4=H[4];var H5=H[5];var H6=H[6];var H7=H[7];var H0h=H0.high;var H0l=H0.low;var H1h=H1.high;var H1l=H1.low;var H2h=H2.high;var H2l=H2.low;var H3h=H3.high;var H3l=H3.low;var H4h=H4.high;var H4l=H4.low;var H5h=H5.high;var H5l=H5.low;var H6h=H6.high;var H6l=H6.low;var H7h=H7.high;var H7l=H7.low; // Working variables
+	var ah=H0h;var al=H0l;var bh=H1h;var bl=H1l;var ch=H2h;var cl=H2l;var dh=H3h;var dl=H3l;var eh=H4h;var el=H4l;var fh=H5h;var fl=H5l;var gh=H6h;var gl=H6l;var hh=H7h;var hl=H7l; // Rounds
+	for(var i=0;i<80;i++){ // Shortcut
+	var Wi=W[i]; // Extend message
+	if(i<16){var Wih=Wi.high=M[offset+i*2]|0;var Wil=Wi.low=M[offset+i*2+1]|0;}else { // Gamma0
+	var gamma0x=W[i-15];var gamma0xh=gamma0x.high;var gamma0xl=gamma0x.low;var gamma0h=(gamma0xh>>>1|gamma0xl<<31)^(gamma0xh>>>8|gamma0xl<<24)^gamma0xh>>>7;var gamma0l=(gamma0xl>>>1|gamma0xh<<31)^(gamma0xl>>>8|gamma0xh<<24)^(gamma0xl>>>7|gamma0xh<<25); // Gamma1
+	var gamma1x=W[i-2];var gamma1xh=gamma1x.high;var gamma1xl=gamma1x.low;var gamma1h=(gamma1xh>>>19|gamma1xl<<13)^(gamma1xh<<3|gamma1xl>>>29)^gamma1xh>>>6;var gamma1l=(gamma1xl>>>19|gamma1xh<<13)^(gamma1xl<<3|gamma1xh>>>29)^(gamma1xl>>>6|gamma1xh<<26); // W[i] = gamma0 + W[i - 7] + gamma1 + W[i - 16]
+	var Wi7=W[i-7];var Wi7h=Wi7.high;var Wi7l=Wi7.low;var Wi16=W[i-16];var Wi16h=Wi16.high;var Wi16l=Wi16.low;var Wil=gamma0l+Wi7l;var Wih=gamma0h+Wi7h+(Wil>>>0<gamma0l>>>0?1:0);var Wil=Wil+gamma1l;var Wih=Wih+gamma1h+(Wil>>>0<gamma1l>>>0?1:0);var Wil=Wil+Wi16l;var Wih=Wih+Wi16h+(Wil>>>0<Wi16l>>>0?1:0);Wi.high=Wih;Wi.low=Wil;}var chh=eh&fh^~eh&gh;var chl=el&fl^~el&gl;var majh=ah&bh^ah&ch^bh&ch;var majl=al&bl^al&cl^bl&cl;var sigma0h=(ah>>>28|al<<4)^(ah<<30|al>>>2)^(ah<<25|al>>>7);var sigma0l=(al>>>28|ah<<4)^(al<<30|ah>>>2)^(al<<25|ah>>>7);var sigma1h=(eh>>>14|el<<18)^(eh>>>18|el<<14)^(eh<<23|el>>>9);var sigma1l=(el>>>14|eh<<18)^(el>>>18|eh<<14)^(el<<23|eh>>>9); // t1 = h + sigma1 + ch + K[i] + W[i]
+	var Ki=K[i];var Kih=Ki.high;var Kil=Ki.low;var t1l=hl+sigma1l;var t1h=hh+sigma1h+(t1l>>>0<hl>>>0?1:0);var t1l=t1l+chl;var t1h=t1h+chh+(t1l>>>0<chl>>>0?1:0);var t1l=t1l+Kil;var t1h=t1h+Kih+(t1l>>>0<Kil>>>0?1:0);var t1l=t1l+Wil;var t1h=t1h+Wih+(t1l>>>0<Wil>>>0?1:0); // t2 = sigma0 + maj
+	var t2l=sigma0l+majl;var t2h=sigma0h+majh+(t2l>>>0<sigma0l>>>0?1:0); // Update working variables
+	hh=gh;hl=gl;gh=fh;gl=fl;fh=eh;fl=el;el=dl+t1l|0;eh=dh+t1h+(el>>>0<dl>>>0?1:0)|0;dh=ch;dl=cl;ch=bh;cl=bl;bh=ah;bl=al;al=t1l+t2l|0;ah=t1h+t2h+(al>>>0<t1l>>>0?1:0)|0;} // Intermediate hash value
+	H0l=H0.low=H0l+al;H0.high=H0h+ah+(H0l>>>0<al>>>0?1:0);H1l=H1.low=H1l+bl;H1.high=H1h+bh+(H1l>>>0<bl>>>0?1:0);H2l=H2.low=H2l+cl;H2.high=H2h+ch+(H2l>>>0<cl>>>0?1:0);H3l=H3.low=H3l+dl;H3.high=H3h+dh+(H3l>>>0<dl>>>0?1:0);H4l=H4.low=H4l+el;H4.high=H4h+eh+(H4l>>>0<el>>>0?1:0);H5l=H5.low=H5l+fl;H5.high=H5h+fh+(H5l>>>0<fl>>>0?1:0);H6l=H6.low=H6l+gl;H6.high=H6h+gh+(H6l>>>0<gl>>>0?1:0);H7l=H7.low=H7l+hl;H7.high=H7h+hh+(H7l>>>0<hl>>>0?1:0);}return _doProcessBlock;}(),_doFinalize:function(){function _doFinalize(){ // Shortcuts
+	var data=this._data;var dataWords=data.words;var nBitsTotal=this._nDataBytes*8;var nBitsLeft=data.sigBytes*8; // Add padding
+	dataWords[nBitsLeft>>>5]|=0x80<<24-nBitsLeft%32;dataWords[(nBitsLeft+128>>>10<<5)+30]=Math.floor(nBitsTotal/0x100000000);dataWords[(nBitsLeft+128>>>10<<5)+31]=nBitsTotal;data.sigBytes=dataWords.length*4; // Hash final blocks
+	this._process(); // Convert hash to 32-bit word array before returning
+	var hash=this._hash.toX32(); // Return final computed hash
+	return hash;}return _doFinalize;}(),clone:function(){function clone(){var clone=Hasher.clone.call(this);clone._hash=this._hash.clone();return clone;}return clone;}(),blockSize:1024/32}); /**
+	     * Shortcut function to the hasher's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     *
+	     * @return {WordArray} The hash.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hash = CryptoJS.SHA512('message');
+	     *     var hash = CryptoJS.SHA512(wordArray);
+	     */C.SHA512=Hasher._createHelper(SHA512); /**
+	     * Shortcut function to the HMAC's object interface.
+	     *
+	     * @param {WordArray|string} message The message to hash.
+	     * @param {WordArray|string} key The secret key.
+	     *
+	     * @return {WordArray} The HMAC.
+	     *
+	     * @static
+	     *
+	     * @example
+	     *
+	     *     var hmac = CryptoJS.HmacSHA512(message, key);
+	     */C.HmacSHA512=Hasher._createHmacHelper(SHA512);})(); /*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
+	 */var b64map="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";var b64pad="=";function hex2b64(h){var i;var c;var ret="";for(i=0;i+3<=h.length;i+=3){c=parseInt(h.substring(i,i+3),16);ret+=b64map.charAt(c>>6)+b64map.charAt(c&63);}if(i+1==h.length){c=parseInt(h.substring(i,i+1),16);ret+=b64map.charAt(c<<2);}else if(i+2==h.length){c=parseInt(h.substring(i,i+2),16);ret+=b64map.charAt(c>>2)+b64map.charAt((c&3)<<4);}if(b64pad)while((ret.length&3)>0){ret+=b64pad;}return ret;} // convert a base64 string to hex
+	function b64tohex(s){var ret="";var i;var k=0; // b64 state, 0-3
+	var slop;var v;for(i=0;i<s.length;++i){if(s.charAt(i)==b64pad)break;v=b64map.indexOf(s.charAt(i));if(v<0)continue;if(k==0){ret+=int2char(v>>2);slop=v&3;k=1;}else if(k==1){ret+=int2char(slop<<2|v>>4);slop=v&0xf;k=2;}else if(k==2){ret+=int2char(slop);ret+=int2char(v>>2);slop=v&3;k=3;}else {ret+=int2char(slop<<2|v>>4);ret+=int2char(v&0xf);k=0;}}if(k==1)ret+=int2char(slop<<2);return ret;} // convert a base64 string to a byte/number array
+	function b64toBA(s){ //piggyback on b64tohex for now, optimize later
+	var h=b64tohex(s);var i;var a=new Array();for(i=0;2*i<h.length;++i){a[i]=parseInt(h.substring(2*i,2*i+2),16);}return a;} /*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
+	 */ // Copyright (c) 2005  Tom Wu
+	// All Rights Reserved.
+	// See "LICENSE" for details.
+	// Basic JavaScript BN library - subset useful for RSA encryption.
+	// Bits per digit
+	var dbits; // JavaScript engine analysis
+	var canary=0xdeadbeefcafe;var j_lm=(canary&0xffffff)==0xefcafe; // (public) Constructor
+	function BigInteger(a,b,c){if(a!=null)if("number"==typeof a)this.fromNumber(a,b,c);else if(b==null&&"string"!=typeof a)this.fromString(a,256);else this.fromString(a,b);} // return new, unset BigInteger
+	function nbi(){return new BigInteger(null);} // am: Compute w_j += (x*this_i), propagate carries,
+	// c is initial carry, returns final carry.
+	// c < 3*dvalue, x < 2*dvalue, this_i < dvalue
+	// We need to select the fastest one that works in this environment.
+	// am1: use a single mult and divide to get the high bits,
+	// max digit bits should be 26 because
+	// max internal value = 2*dvalue^2-2*dvalue (< 2^53)
+	function am1(i,x,w,j,c,n){while(--n>=0){var v=x*this[i++]+w[j]+c;c=Math.floor(v/0x4000000);w[j++]=v&0x3ffffff;}return c;} // am2 avoids a big mult-and-extract completely.
+	// Max digit bits should be <= 30 because we do bitwise ops
+	// on values up to 2*hdvalue^2-hdvalue-1 (< 2^31)
+	function am2(i,x,w,j,c,n){var xl=x&0x7fff,xh=x>>15;while(--n>=0){var l=this[i]&0x7fff;var h=this[i++]>>15;var m=xh*l+h*xl;l=xl*l+((m&0x7fff)<<15)+w[j]+(c&0x3fffffff);c=(l>>>30)+(m>>>15)+xh*h+(c>>>30);w[j++]=l&0x3fffffff;}return c;} // Alternately, set max digit bits to 28 since some
+	// browsers slow down when dealing with 32-bit numbers.
+	function am3(i,x,w,j,c,n){var xl=x&0x3fff,xh=x>>14;while(--n>=0){var l=this[i]&0x3fff;var h=this[i++]>>14;var m=xh*l+h*xl;l=xl*l+((m&0x3fff)<<14)+w[j]+c;c=(l>>28)+(m>>14)+xh*h;w[j++]=l&0xfffffff;}return c;}if(j_lm&&navigator.appName=="Microsoft Internet Explorer"){BigInteger.prototype.am=am2;dbits=30;}else if(j_lm&&navigator.appName!="Netscape"){BigInteger.prototype.am=am1;dbits=26;}else { // Mozilla/Netscape seems to prefer am3
+	BigInteger.prototype.am=am3;dbits=28;}BigInteger.prototype.DB=dbits;BigInteger.prototype.DM=(1<<dbits)-1;BigInteger.prototype.DV=1<<dbits;var BI_FP=52;BigInteger.prototype.FV=Math.pow(2,BI_FP);BigInteger.prototype.F1=BI_FP-dbits;BigInteger.prototype.F2=2*dbits-BI_FP; // Digit conversions
+	var BI_RM="0123456789abcdefghijklmnopqrstuvwxyz";var BI_RC=new Array();var rr,vv;rr="0".charCodeAt(0);for(vv=0;vv<=9;++vv){BI_RC[rr++]=vv;}rr="a".charCodeAt(0);for(vv=10;vv<36;++vv){BI_RC[rr++]=vv;}rr="A".charCodeAt(0);for(vv=10;vv<36;++vv){BI_RC[rr++]=vv;}function int2char(n){return BI_RM.charAt(n);}function intAt(s,i){var c=BI_RC[s.charCodeAt(i)];return c==null?-1:c;} // (protected) copy this to r
+	function bnpCopyTo(r){for(var i=this.t-1;i>=0;--i){r[i]=this[i];}r.t=this.t;r.s=this.s;} // (protected) set from integer value x, -DV <= x < DV
+	function bnpFromInt(x){this.t=1;this.s=x<0?-1:0;if(x>0)this[0]=x;else if(x<-1)this[0]=x+this.DV;else this.t=0;} // return bigint initialized to value
+	function nbv(i){var r=nbi();r.fromInt(i);return r;} // (protected) set from string and radix
+	function bnpFromString(s,b){var k;if(b==16)k=4;else if(b==8)k=3;else if(b==256)k=8; // byte array
+	else if(b==2)k=1;else if(b==32)k=5;else if(b==4)k=2;else {this.fromRadix(s,b);return;}this.t=0;this.s=0;var i=s.length,mi=false,sh=0;while(--i>=0){var x=k==8?s[i]&0xff:intAt(s,i);if(x<0){if(s.charAt(i)=="-")mi=true;continue;}mi=false;if(sh==0)this[this.t++]=x;else if(sh+k>this.DB){this[this.t-1]|=(x&(1<<this.DB-sh)-1)<<sh;this[this.t++]=x>>this.DB-sh;}else this[this.t-1]|=x<<sh;sh+=k;if(sh>=this.DB)sh-=this.DB;}if(k==8&&(s[0]&0x80)!=0){this.s=-1;if(sh>0)this[this.t-1]|=(1<<this.DB-sh)-1<<sh;}this.clamp();if(mi)BigInteger.ZERO.subTo(this,this);} // (protected) clamp off excess high words
+	function bnpClamp(){var c=this.s&this.DM;while(this.t>0&&this[this.t-1]==c){--this.t;}} // (public) return string representation in given radix
+	function bnToString(b){if(this.s<0)return "-"+this.negate().toString(b);var k;if(b==16)k=4;else if(b==8)k=3;else if(b==2)k=1;else if(b==32)k=5;else if(b==4)k=2;else return this.toRadix(b);var km=(1<<k)-1,d,m=false,r="",i=this.t;var p=this.DB-i*this.DB%k;if(i-->0){if(p<this.DB&&(d=this[i]>>p)>0){m=true;r=int2char(d);}while(i>=0){if(p<k){d=(this[i]&(1<<p)-1)<<k-p;d|=this[--i]>>(p+=this.DB-k);}else {d=this[i]>>(p-=k)&km;if(p<=0){p+=this.DB;--i;}}if(d>0)m=true;if(m)r+=int2char(d);}}return m?r:"0";} // (public) -this
+	function bnNegate(){var r=nbi();BigInteger.ZERO.subTo(this,r);return r;} // (public) |this|
+	function bnAbs(){return this.s<0?this.negate():this;} // (public) return + if this > a, - if this < a, 0 if equal
+	function bnCompareTo(a){var r=this.s-a.s;if(r!=0)return r;var i=this.t;r=i-a.t;if(r!=0)return this.s<0?-r:r;while(--i>=0){if((r=this[i]-a[i])!=0)return r;}return 0;} // returns bit length of the integer x
+	function nbits(x){var r=1,t;if((t=x>>>16)!=0){x=t;r+=16;}if((t=x>>8)!=0){x=t;r+=8;}if((t=x>>4)!=0){x=t;r+=4;}if((t=x>>2)!=0){x=t;r+=2;}if((t=x>>1)!=0){x=t;r+=1;}return r;} // (public) return the number of bits in "this"
+	function bnBitLength(){if(this.t<=0)return 0;return this.DB*(this.t-1)+nbits(this[this.t-1]^this.s&this.DM);} // (protected) r = this << n*DB
+	function bnpDLShiftTo(n,r){var i;for(i=this.t-1;i>=0;--i){r[i+n]=this[i];}for(i=n-1;i>=0;--i){r[i]=0;}r.t=this.t+n;r.s=this.s;} // (protected) r = this >> n*DB
+	function bnpDRShiftTo(n,r){for(var i=n;i<this.t;++i){r[i-n]=this[i];}r.t=Math.max(this.t-n,0);r.s=this.s;} // (protected) r = this << n
+	function bnpLShiftTo(n,r){var bs=n%this.DB;var cbs=this.DB-bs;var bm=(1<<cbs)-1;var ds=Math.floor(n/this.DB),c=this.s<<bs&this.DM,i;for(i=this.t-1;i>=0;--i){r[i+ds+1]=this[i]>>cbs|c;c=(this[i]&bm)<<bs;}for(i=ds-1;i>=0;--i){r[i]=0;}r[ds]=c;r.t=this.t+ds+1;r.s=this.s;r.clamp();} // (protected) r = this >> n
+	function bnpRShiftTo(n,r){r.s=this.s;var ds=Math.floor(n/this.DB);if(ds>=this.t){r.t=0;return;}var bs=n%this.DB;var cbs=this.DB-bs;var bm=(1<<bs)-1;r[0]=this[ds]>>bs;for(var i=ds+1;i<this.t;++i){r[i-ds-1]|=(this[i]&bm)<<cbs;r[i-ds]=this[i]>>bs;}if(bs>0)r[this.t-ds-1]|=(this.s&bm)<<cbs;r.t=this.t-ds;r.clamp();} // (protected) r = this - a
+	function bnpSubTo(a,r){var i=0,c=0,m=Math.min(a.t,this.t);while(i<m){c+=this[i]-a[i];r[i++]=c&this.DM;c>>=this.DB;}if(a.t<this.t){c-=a.s;while(i<this.t){c+=this[i];r[i++]=c&this.DM;c>>=this.DB;}c+=this.s;}else {c+=this.s;while(i<a.t){c-=a[i];r[i++]=c&this.DM;c>>=this.DB;}c-=a.s;}r.s=c<0?-1:0;if(c<-1)r[i++]=this.DV+c;else if(c>0)r[i++]=c;r.t=i;r.clamp();} // (protected) r = this * a, r != this,a (HAC 14.12)
+	// "this" should be the larger one if appropriate.
+	function bnpMultiplyTo(a,r){var x=this.abs(),y=a.abs();var i=x.t;r.t=i+y.t;while(--i>=0){r[i]=0;}for(i=0;i<y.t;++i){r[i+x.t]=x.am(0,y[i],r,i,0,x.t);}r.s=0;r.clamp();if(this.s!=a.s)BigInteger.ZERO.subTo(r,r);} // (protected) r = this^2, r != this (HAC 14.16)
+	function bnpSquareTo(r){var x=this.abs();var i=r.t=2*x.t;while(--i>=0){r[i]=0;}for(i=0;i<x.t-1;++i){var c=x.am(i,x[i],r,2*i,0,1);if((r[i+x.t]+=x.am(i+1,2*x[i],r,2*i+1,c,x.t-i-1))>=x.DV){r[i+x.t]-=x.DV;r[i+x.t+1]=1;}}if(r.t>0)r[r.t-1]+=x.am(i,x[i],r,2*i,0,1);r.s=0;r.clamp();} // (protected) divide this by m, quotient and remainder to q, r (HAC 14.20)
+	// r != q, this != m.  q or r may be null.
+	function bnpDivRemTo(m,q,r){var pm=m.abs();if(pm.t<=0)return;var pt=this.abs();if(pt.t<pm.t){if(q!=null)q.fromInt(0);if(r!=null)this.copyTo(r);return;}if(r==null)r=nbi();var y=nbi(),ts=this.s,ms=m.s;var nsh=this.DB-nbits(pm[pm.t-1]); // normalize modulus
+	if(nsh>0){pm.lShiftTo(nsh,y);pt.lShiftTo(nsh,r);}else {pm.copyTo(y);pt.copyTo(r);}var ys=y.t;var y0=y[ys-1];if(y0==0)return;var yt=y0*(1<<this.F1)+(ys>1?y[ys-2]>>this.F2:0);var d1=this.FV/yt,d2=(1<<this.F1)/yt,e=1<<this.F2;var i=r.t,j=i-ys,t=q==null?nbi():q;y.dlShiftTo(j,t);if(r.compareTo(t)>=0){r[r.t++]=1;r.subTo(t,r);}BigInteger.ONE.dlShiftTo(ys,t);t.subTo(y,y); // "negative" y so we can replace sub with am later
+	while(y.t<ys){y[y.t++]=0;}while(--j>=0){ // Estimate quotient digit
+	var qd=r[--i]==y0?this.DM:Math.floor(r[i]*d1+(r[i-1]+e)*d2);if((r[i]+=y.am(0,qd,r,j,0,ys))<qd){ // Try it out
+	y.dlShiftTo(j,t);r.subTo(t,r);while(r[i]<--qd){r.subTo(t,r);}}}if(q!=null){r.drShiftTo(ys,q);if(ts!=ms)BigInteger.ZERO.subTo(q,q);}r.t=ys;r.clamp();if(nsh>0)r.rShiftTo(nsh,r); // Denormalize remainder
+	if(ts<0)BigInteger.ZERO.subTo(r,r);} // (public) this mod a
+	function bnMod(a){var r=nbi();this.abs().divRemTo(a,null,r);if(this.s<0&&r.compareTo(BigInteger.ZERO)>0)a.subTo(r,r);return r;} // Modular reduction using "classic" algorithm
+	function Classic(m){this.m=m;}function cConvert(x){if(x.s<0||x.compareTo(this.m)>=0)return x.mod(this.m);else return x;}function cRevert(x){return x;}function cReduce(x){x.divRemTo(this.m,null,x);}function cMulTo(x,y,r){x.multiplyTo(y,r);this.reduce(r);}function cSqrTo(x,r){x.squareTo(r);this.reduce(r);}Classic.prototype.convert=cConvert;Classic.prototype.revert=cRevert;Classic.prototype.reduce=cReduce;Classic.prototype.mulTo=cMulTo;Classic.prototype.sqrTo=cSqrTo; // (protected) return "-1/this % 2^DB"; useful for Mont. reduction
+	// justification:
+	//         xy == 1 (mod m)
+	//         xy =  1+km
+	//   xy(2-xy) = (1+km)(1-km)
+	// x[y(2-xy)] = 1-k^2m^2
+	// x[y(2-xy)] == 1 (mod m^2)
+	// if y is 1/x mod m, then y(2-xy) is 1/x mod m^2
+	// should reduce x and y(2-xy) by m^2 at each step to keep size bounded.
+	// JS multiply "overflows" differently from C/C++, so care is needed here.
+	function bnpInvDigit(){if(this.t<1)return 0;var x=this[0];if((x&1)==0)return 0;var y=x&3; // y == 1/x mod 2^2
+	y=y*(2-(x&0xf)*y)&0xf; // y == 1/x mod 2^4
+	y=y*(2-(x&0xff)*y)&0xff; // y == 1/x mod 2^8
+	y=y*(2-((x&0xffff)*y&0xffff))&0xffff; // y == 1/x mod 2^16
+	// last step - calculate inverse mod DV directly;
+	// assumes 16 < DB <= 32 and assumes ability to handle 48-bit ints
+	y=y*(2-x*y%this.DV)%this.DV; // y == 1/x mod 2^dbits
+	// we really want the negative inverse, and -DV < y < DV
+	return y>0?this.DV-y:-y;} // Montgomery reduction
+	function Montgomery(m){this.m=m;this.mp=m.invDigit();this.mpl=this.mp&0x7fff;this.mph=this.mp>>15;this.um=(1<<m.DB-15)-1;this.mt2=2*m.t;} // xR mod m
+	function montConvert(x){var r=nbi();x.abs().dlShiftTo(this.m.t,r);r.divRemTo(this.m,null,r);if(x.s<0&&r.compareTo(BigInteger.ZERO)>0)this.m.subTo(r,r);return r;} // x/R mod m
+	function montRevert(x){var r=nbi();x.copyTo(r);this.reduce(r);return r;} // x = x/R mod m (HAC 14.32)
+	function montReduce(x){while(x.t<=this.mt2){ // pad x so am has enough room later
+	x[x.t++]=0;}for(var i=0;i<this.m.t;++i){ // faster way of calculating u0 = x[i]*mp mod DV
+	var j=x[i]&0x7fff;var u0=j*this.mpl+((j*this.mph+(x[i]>>15)*this.mpl&this.um)<<15)&x.DM; // use am to combine the multiply-shift-add into one call
+	j=i+this.m.t;x[j]+=this.m.am(0,u0,x,i,0,this.m.t); // propagate carry
+	while(x[j]>=x.DV){x[j]-=x.DV;x[++j]++;}}x.clamp();x.drShiftTo(this.m.t,x);if(x.compareTo(this.m)>=0)x.subTo(this.m,x);} // r = "x^2/R mod m"; x != r
+	function montSqrTo(x,r){x.squareTo(r);this.reduce(r);} // r = "xy/R mod m"; x,y != r
+	function montMulTo(x,y,r){x.multiplyTo(y,r);this.reduce(r);}Montgomery.prototype.convert=montConvert;Montgomery.prototype.revert=montRevert;Montgomery.prototype.reduce=montReduce;Montgomery.prototype.mulTo=montMulTo;Montgomery.prototype.sqrTo=montSqrTo; // (protected) true iff this is even
+	function bnpIsEven(){return (this.t>0?this[0]&1:this.s)==0;} // (protected) this^e, e < 2^32, doing sqr and mul with "r" (HAC 14.79)
+	function bnpExp(e,z){if(e>0xffffffff||e<1)return BigInteger.ONE;var r=nbi(),r2=nbi(),g=z.convert(this),i=nbits(e)-1;g.copyTo(r);while(--i>=0){z.sqrTo(r,r2);if((e&1<<i)>0)z.mulTo(r2,g,r);else {var t=r;r=r2;r2=t;}}return z.revert(r);} // (public) this^e % m, 0 <= e < 2^32
+	function bnModPowInt(e,m){var z;if(e<256||m.isEven())z=new Classic(m);else z=new Montgomery(m);return this.exp(e,z);} // protected
+	BigInteger.prototype.copyTo=bnpCopyTo;BigInteger.prototype.fromInt=bnpFromInt;BigInteger.prototype.fromString=bnpFromString;BigInteger.prototype.clamp=bnpClamp;BigInteger.prototype.dlShiftTo=bnpDLShiftTo;BigInteger.prototype.drShiftTo=bnpDRShiftTo;BigInteger.prototype.lShiftTo=bnpLShiftTo;BigInteger.prototype.rShiftTo=bnpRShiftTo;BigInteger.prototype.subTo=bnpSubTo;BigInteger.prototype.multiplyTo=bnpMultiplyTo;BigInteger.prototype.squareTo=bnpSquareTo;BigInteger.prototype.divRemTo=bnpDivRemTo;BigInteger.prototype.invDigit=bnpInvDigit;BigInteger.prototype.isEven=bnpIsEven;BigInteger.prototype.exp=bnpExp; // public
+	BigInteger.prototype.toString=bnToString;BigInteger.prototype.negate=bnNegate;BigInteger.prototype.abs=bnAbs;BigInteger.prototype.compareTo=bnCompareTo;BigInteger.prototype.bitLength=bnBitLength;BigInteger.prototype.mod=bnMod;BigInteger.prototype.modPowInt=bnModPowInt; // "constants"
+	BigInteger.ZERO=nbv(0);BigInteger.ONE=nbv(1); /*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
+	 */ // Copyright (c) 2005-2009  Tom Wu
+	// All Rights Reserved.
+	// See "LICENSE" for details.
+	// Extended JavaScript BN functions, required for RSA private ops.
+	// Version 1.1: new BigInteger("0", 10) returns "proper" zero
+	// Version 1.2: square() API, isProbablePrime fix
+	// (public)
+	function bnClone(){var r=nbi();this.copyTo(r);return r;} // (public) return value as integer
+	function bnIntValue(){if(this.s<0){if(this.t==1)return this[0]-this.DV;else if(this.t==0)return -1;}else if(this.t==1)return this[0];else if(this.t==0)return 0; // assumes 16 < DB < 32
+	return (this[1]&(1<<32-this.DB)-1)<<this.DB|this[0];} // (public) return value as byte
+	function bnByteValue(){return this.t==0?this.s:this[0]<<24>>24;} // (public) return value as short (assumes DB>=16)
+	function bnShortValue(){return this.t==0?this.s:this[0]<<16>>16;} // (protected) return x s.t. r^x < DV
+	function bnpChunkSize(r){return Math.floor(Math.LN2*this.DB/Math.log(r));} // (public) 0 if this == 0, 1 if this > 0
+	function bnSigNum(){if(this.s<0)return -1;else if(this.t<=0||this.t==1&&this[0]<=0)return 0;else return 1;} // (protected) convert to radix string
+	function bnpToRadix(b){if(b==null)b=10;if(this.signum()==0||b<2||b>36)return "0";var cs=this.chunkSize(b);var a=Math.pow(b,cs);var d=nbv(a),y=nbi(),z=nbi(),r="";this.divRemTo(d,y,z);while(y.signum()>0){r=(a+z.intValue()).toString(b).substr(1)+r;y.divRemTo(d,y,z);}return z.intValue().toString(b)+r;} // (protected) convert from radix string
+	function bnpFromRadix(s,b){this.fromInt(0);if(b==null)b=10;var cs=this.chunkSize(b);var d=Math.pow(b,cs),mi=false,j=0,w=0;for(var i=0;i<s.length;++i){var x=intAt(s,i);if(x<0){if(s.charAt(i)=="-"&&this.signum()==0)mi=true;continue;}w=b*w+x;if(++j>=cs){this.dMultiply(d);this.dAddOffset(w,0);j=0;w=0;}}if(j>0){this.dMultiply(Math.pow(b,j));this.dAddOffset(w,0);}if(mi)BigInteger.ZERO.subTo(this,this);} // (protected) alternate constructor
+	function bnpFromNumber(a,b,c){if("number"==typeof b){ // new BigInteger(int,int,RNG)
+	if(a<2)this.fromInt(1);else {this.fromNumber(a,c);if(!this.testBit(a-1)) // force MSB set
+	this.bitwiseTo(BigInteger.ONE.shiftLeft(a-1),op_or,this);if(this.isEven())this.dAddOffset(1,0); // force odd
+	while(!this.isProbablePrime(b)){this.dAddOffset(2,0);if(this.bitLength()>a)this.subTo(BigInteger.ONE.shiftLeft(a-1),this);}}}else { // new BigInteger(int,RNG)
+	var x=new Array(),t=a&7;x.length=(a>>3)+1;b.nextBytes(x);if(t>0)x[0]&=(1<<t)-1;else x[0]=0;this.fromString(x,256);}} // (public) convert to bigendian byte array
+	function bnToByteArray(){var i=this.t,r=new Array();r[0]=this.s;var p=this.DB-i*this.DB%8,d,k=0;if(i-->0){if(p<this.DB&&(d=this[i]>>p)!=(this.s&this.DM)>>p)r[k++]=d|this.s<<this.DB-p;while(i>=0){if(p<8){d=(this[i]&(1<<p)-1)<<8-p;d|=this[--i]>>(p+=this.DB-8);}else {d=this[i]>>(p-=8)&0xff;if(p<=0){p+=this.DB;--i;}}if((d&0x80)!=0)d|=-256;if(k==0&&(this.s&0x80)!=(d&0x80))++k;if(k>0||d!=this.s)r[k++]=d;}}return r;}function bnEquals(a){return this.compareTo(a)==0;}function bnMin(a){return this.compareTo(a)<0?this:a;}function bnMax(a){return this.compareTo(a)>0?this:a;} // (protected) r = this op a (bitwise)
+	function bnpBitwiseTo(a,op,r){var i,f,m=Math.min(a.t,this.t);for(i=0;i<m;++i){r[i]=op(this[i],a[i]);}if(a.t<this.t){f=a.s&this.DM;for(i=m;i<this.t;++i){r[i]=op(this[i],f);}r.t=this.t;}else {f=this.s&this.DM;for(i=m;i<a.t;++i){r[i]=op(f,a[i]);}r.t=a.t;}r.s=op(this.s,a.s);r.clamp();} // (public) this & a
+	function op_and(x,y){return x&y;}function bnAnd(a){var r=nbi();this.bitwiseTo(a,op_and,r);return r;} // (public) this | a
+	function op_or(x,y){return x|y;}function bnOr(a){var r=nbi();this.bitwiseTo(a,op_or,r);return r;} // (public) this ^ a
+	function op_xor(x,y){return x^y;}function bnXor(a){var r=nbi();this.bitwiseTo(a,op_xor,r);return r;} // (public) this & ~a
+	function op_andnot(x,y){return x&~y;}function bnAndNot(a){var r=nbi();this.bitwiseTo(a,op_andnot,r);return r;} // (public) ~this
+	function bnNot(){var r=nbi();for(var i=0;i<this.t;++i){r[i]=this.DM&~this[i];}r.t=this.t;r.s=~this.s;return r;} // (public) this << n
+	function bnShiftLeft(n){var r=nbi();if(n<0)this.rShiftTo(-n,r);else this.lShiftTo(n,r);return r;} // (public) this >> n
+	function bnShiftRight(n){var r=nbi();if(n<0)this.lShiftTo(-n,r);else this.rShiftTo(n,r);return r;} // return index of lowest 1-bit in x, x < 2^31
+	function lbit(x){if(x==0)return -1;var r=0;if((x&0xffff)==0){x>>=16;r+=16;}if((x&0xff)==0){x>>=8;r+=8;}if((x&0xf)==0){x>>=4;r+=4;}if((x&3)==0){x>>=2;r+=2;}if((x&1)==0)++r;return r;} // (public) returns index of lowest 1-bit (or -1 if none)
+	function bnGetLowestSetBit(){for(var i=0;i<this.t;++i){if(this[i]!=0)return i*this.DB+lbit(this[i]);}if(this.s<0)return this.t*this.DB;return -1;} // return number of 1 bits in x
+	function cbit(x){var r=0;while(x!=0){x&=x-1;++r;}return r;} // (public) return number of set bits
+	function bnBitCount(){var r=0,x=this.s&this.DM;for(var i=0;i<this.t;++i){r+=cbit(this[i]^x);}return r;} // (public) true iff nth bit is set
+	function bnTestBit(n){var j=Math.floor(n/this.DB);if(j>=this.t)return this.s!=0;return (this[j]&1<<n%this.DB)!=0;} // (protected) this op (1<<n)
+	function bnpChangeBit(n,op){var r=BigInteger.ONE.shiftLeft(n);this.bitwiseTo(r,op,r);return r;} // (public) this | (1<<n)
+	function bnSetBit(n){return this.changeBit(n,op_or);} // (public) this & ~(1<<n)
+	function bnClearBit(n){return this.changeBit(n,op_andnot);} // (public) this ^ (1<<n)
+	function bnFlipBit(n){return this.changeBit(n,op_xor);} // (protected) r = this + a
+	function bnpAddTo(a,r){var i=0,c=0,m=Math.min(a.t,this.t);while(i<m){c+=this[i]+a[i];r[i++]=c&this.DM;c>>=this.DB;}if(a.t<this.t){c+=a.s;while(i<this.t){c+=this[i];r[i++]=c&this.DM;c>>=this.DB;}c+=this.s;}else {c+=this.s;while(i<a.t){c+=a[i];r[i++]=c&this.DM;c>>=this.DB;}c+=a.s;}r.s=c<0?-1:0;if(c>0)r[i++]=c;else if(c<-1)r[i++]=this.DV+c;r.t=i;r.clamp();} // (public) this + a
+	function bnAdd(a){var r=nbi();this.addTo(a,r);return r;} // (public) this - a
+	function bnSubtract(a){var r=nbi();this.subTo(a,r);return r;} // (public) this * a
+	function bnMultiply(a){var r=nbi();this.multiplyTo(a,r);return r;} // (public) this^2
+	function bnSquare(){var r=nbi();this.squareTo(r);return r;} // (public) this / a
+	function bnDivide(a){var r=nbi();this.divRemTo(a,r,null);return r;} // (public) this % a
+	function bnRemainder(a){var r=nbi();this.divRemTo(a,null,r);return r;} // (public) [this/a,this%a]
+	function bnDivideAndRemainder(a){var q=nbi(),r=nbi();this.divRemTo(a,q,r);return new Array(q,r);} // (protected) this *= n, this >= 0, 1 < n < DV
+	function bnpDMultiply(n){this[this.t]=this.am(0,n-1,this,0,0,this.t);++this.t;this.clamp();} // (protected) this += n << w words, this >= 0
+	function bnpDAddOffset(n,w){if(n==0)return;while(this.t<=w){this[this.t++]=0;}this[w]+=n;while(this[w]>=this.DV){this[w]-=this.DV;if(++w>=this.t)this[this.t++]=0;++this[w];}} // A "null" reducer
+	function NullExp(){}function nNop(x){return x;}function nMulTo(x,y,r){x.multiplyTo(y,r);}function nSqrTo(x,r){x.squareTo(r);}NullExp.prototype.convert=nNop;NullExp.prototype.revert=nNop;NullExp.prototype.mulTo=nMulTo;NullExp.prototype.sqrTo=nSqrTo; // (public) this^e
+	function bnPow(e){return this.exp(e,new NullExp());} // (protected) r = lower n words of "this * a", a.t <= n
+	// "this" should be the larger one if appropriate.
+	function bnpMultiplyLowerTo(a,n,r){var i=Math.min(this.t+a.t,n);r.s=0; // assumes a,this >= 0
+	r.t=i;while(i>0){r[--i]=0;}var j;for(j=r.t-this.t;i<j;++i){r[i+this.t]=this.am(0,a[i],r,i,0,this.t);}for(j=Math.min(a.t,n);i<j;++i){this.am(0,a[i],r,i,0,n-i);}r.clamp();} // (protected) r = "this * a" without lower n words, n > 0
+	// "this" should be the larger one if appropriate.
+	function bnpMultiplyUpperTo(a,n,r){--n;var i=r.t=this.t+a.t-n;r.s=0; // assumes a,this >= 0
+	while(--i>=0){r[i]=0;}for(i=Math.max(n-this.t,0);i<a.t;++i){r[this.t+i-n]=this.am(n-i,a[i],r,0,0,this.t+i-n);}r.clamp();r.drShiftTo(1,r);} // Barrett modular reduction
+	function Barrett(m){ // setup Barrett
+	this.r2=nbi();this.q3=nbi();BigInteger.ONE.dlShiftTo(2*m.t,this.r2);this.mu=this.r2.divide(m);this.m=m;}function barrettConvert(x){if(x.s<0||x.t>2*this.m.t)return x.mod(this.m);else if(x.compareTo(this.m)<0)return x;else {var r=nbi();x.copyTo(r);this.reduce(r);return r;}}function barrettRevert(x){return x;} // x = x mod m (HAC 14.42)
+	function barrettReduce(x){x.drShiftTo(this.m.t-1,this.r2);if(x.t>this.m.t+1){x.t=this.m.t+1;x.clamp();}this.mu.multiplyUpperTo(this.r2,this.m.t+1,this.q3);this.m.multiplyLowerTo(this.q3,this.m.t+1,this.r2);while(x.compareTo(this.r2)<0){x.dAddOffset(1,this.m.t+1);}x.subTo(this.r2,x);while(x.compareTo(this.m)>=0){x.subTo(this.m,x);}} // r = x^2 mod m; x != r
+	function barrettSqrTo(x,r){x.squareTo(r);this.reduce(r);} // r = x*y mod m; x,y != r
+	function barrettMulTo(x,y,r){x.multiplyTo(y,r);this.reduce(r);}Barrett.prototype.convert=barrettConvert;Barrett.prototype.revert=barrettRevert;Barrett.prototype.reduce=barrettReduce;Barrett.prototype.mulTo=barrettMulTo;Barrett.prototype.sqrTo=barrettSqrTo; // (public) this^e % m (HAC 14.85)
+	function bnModPow(e,m){var i=e.bitLength(),k,r=nbv(1),z;if(i<=0)return r;else if(i<18)k=1;else if(i<48)k=3;else if(i<144)k=4;else if(i<768)k=5;else k=6;if(i<8)z=new Classic(m);else if(m.isEven())z=new Barrett(m);else z=new Montgomery(m); // precomputation
+	var g=new Array(),n=3,k1=k-1,km=(1<<k)-1;g[1]=z.convert(this);if(k>1){var g2=nbi();z.sqrTo(g[1],g2);while(n<=km){g[n]=nbi();z.mulTo(g2,g[n-2],g[n]);n+=2;}}var j=e.t-1,w,is1=true,r2=nbi(),t;i=nbits(e[j])-1;while(j>=0){if(i>=k1)w=e[j]>>i-k1&km;else {w=(e[j]&(1<<i+1)-1)<<k1-i;if(j>0)w|=e[j-1]>>this.DB+i-k1;}n=k;while((w&1)==0){w>>=1;--n;}if((i-=n)<0){i+=this.DB;--j;}if(is1){ // ret == 1, don't bother squaring or multiplying it
+	g[w].copyTo(r);is1=false;}else {while(n>1){z.sqrTo(r,r2);z.sqrTo(r2,r);n-=2;}if(n>0)z.sqrTo(r,r2);else {t=r;r=r2;r2=t;}z.mulTo(r2,g[w],r);}while(j>=0&&(e[j]&1<<i)==0){z.sqrTo(r,r2);t=r;r=r2;r2=t;if(--i<0){i=this.DB-1;--j;}}}return z.revert(r);} // (public) gcd(this,a) (HAC 14.54)
+	function bnGCD(a){var x=this.s<0?this.negate():this.clone();var y=a.s<0?a.negate():a.clone();if(x.compareTo(y)<0){var t=x;x=y;y=t;}var i=x.getLowestSetBit(),g=y.getLowestSetBit();if(g<0)return x;if(i<g)g=i;if(g>0){x.rShiftTo(g,x);y.rShiftTo(g,y);}while(x.signum()>0){if((i=x.getLowestSetBit())>0)x.rShiftTo(i,x);if((i=y.getLowestSetBit())>0)y.rShiftTo(i,y);if(x.compareTo(y)>=0){x.subTo(y,x);x.rShiftTo(1,x);}else {y.subTo(x,y);y.rShiftTo(1,y);}}if(g>0)y.lShiftTo(g,y);return y;} // (protected) this % n, n < 2^26
+	function bnpModInt(n){if(n<=0)return 0;var d=this.DV%n,r=this.s<0?n-1:0;if(this.t>0)if(d==0)r=this[0]%n;else for(var i=this.t-1;i>=0;--i){r=(d*r+this[i])%n;}return r;} // (public) 1/this % m (HAC 14.61)
+	function bnModInverse(m){var ac=m.isEven();if(this.isEven()&&ac||m.signum()==0)return BigInteger.ZERO;var u=m.clone(),v=this.clone();var a=nbv(1),b=nbv(0),c=nbv(0),d=nbv(1);while(u.signum()!=0){while(u.isEven()){u.rShiftTo(1,u);if(ac){if(!a.isEven()||!b.isEven()){a.addTo(this,a);b.subTo(m,b);}a.rShiftTo(1,a);}else if(!b.isEven())b.subTo(m,b);b.rShiftTo(1,b);}while(v.isEven()){v.rShiftTo(1,v);if(ac){if(!c.isEven()||!d.isEven()){c.addTo(this,c);d.subTo(m,d);}c.rShiftTo(1,c);}else if(!d.isEven())d.subTo(m,d);d.rShiftTo(1,d);}if(u.compareTo(v)>=0){u.subTo(v,u);if(ac)a.subTo(c,a);b.subTo(d,b);}else {v.subTo(u,v);if(ac)c.subTo(a,c);d.subTo(b,d);}}if(v.compareTo(BigInteger.ONE)!=0)return BigInteger.ZERO;if(d.compareTo(m)>=0)return d.subtract(m);if(d.signum()<0)d.addTo(m,d);else return d;if(d.signum()<0)return d.add(m);else return d;}var lowprimes=[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,457,461,463,467,479,487,491,499,503,509,521,523,541,547,557,563,569,571,577,587,593,599,601,607,613,617,619,631,641,643,647,653,659,661,673,677,683,691,701,709,719,727,733,739,743,751,757,761,769,773,787,797,809,811,821,823,827,829,839,853,857,859,863,877,881,883,887,907,911,919,929,937,941,947,953,967,971,977,983,991,997];var lplim=(1<<26)/lowprimes[lowprimes.length-1]; // (public) test primality with certainty >= 1-.5^t
+	function bnIsProbablePrime(t){var i,x=this.abs();if(x.t==1&&x[0]<=lowprimes[lowprimes.length-1]){for(i=0;i<lowprimes.length;++i){if(x[0]==lowprimes[i])return true;}return false;}if(x.isEven())return false;i=1;while(i<lowprimes.length){var m=lowprimes[i],j=i+1;while(j<lowprimes.length&&m<lplim){m*=lowprimes[j++];}m=x.modInt(m);while(i<j){if(m%lowprimes[i++]==0)return false;}}return x.millerRabin(t);} // (protected) true if probably prime (HAC 4.24, Miller-Rabin)
+	function bnpMillerRabin(t){var n1=this.subtract(BigInteger.ONE);var k=n1.getLowestSetBit();if(k<=0)return false;var r=n1.shiftRight(k);t=t+1>>1;if(t>lowprimes.length)t=lowprimes.length;var a=nbi();for(var i=0;i<t;++i){ //Pick bases at random, instead of starting at 2
+	a.fromInt(lowprimes[Math.floor(Math.random()*lowprimes.length)]);var y=a.modPow(r,this);if(y.compareTo(BigInteger.ONE)!=0&&y.compareTo(n1)!=0){var j=1;while(j++<k&&y.compareTo(n1)!=0){y=y.modPowInt(2,this);if(y.compareTo(BigInteger.ONE)==0)return false;}if(y.compareTo(n1)!=0)return false;}}return true;} // protected
+	BigInteger.prototype.chunkSize=bnpChunkSize;BigInteger.prototype.toRadix=bnpToRadix;BigInteger.prototype.fromRadix=bnpFromRadix;BigInteger.prototype.fromNumber=bnpFromNumber;BigInteger.prototype.bitwiseTo=bnpBitwiseTo;BigInteger.prototype.changeBit=bnpChangeBit;BigInteger.prototype.addTo=bnpAddTo;BigInteger.prototype.dMultiply=bnpDMultiply;BigInteger.prototype.dAddOffset=bnpDAddOffset;BigInteger.prototype.multiplyLowerTo=bnpMultiplyLowerTo;BigInteger.prototype.multiplyUpperTo=bnpMultiplyUpperTo;BigInteger.prototype.modInt=bnpModInt;BigInteger.prototype.millerRabin=bnpMillerRabin; // public
+	BigInteger.prototype.clone=bnClone;BigInteger.prototype.intValue=bnIntValue;BigInteger.prototype.byteValue=bnByteValue;BigInteger.prototype.shortValue=bnShortValue;BigInteger.prototype.signum=bnSigNum;BigInteger.prototype.toByteArray=bnToByteArray;BigInteger.prototype.equals=bnEquals;BigInteger.prototype.min=bnMin;BigInteger.prototype.max=bnMax;BigInteger.prototype.and=bnAnd;BigInteger.prototype.or=bnOr;BigInteger.prototype.xor=bnXor;BigInteger.prototype.andNot=bnAndNot;BigInteger.prototype.not=bnNot;BigInteger.prototype.shiftLeft=bnShiftLeft;BigInteger.prototype.shiftRight=bnShiftRight;BigInteger.prototype.getLowestSetBit=bnGetLowestSetBit;BigInteger.prototype.bitCount=bnBitCount;BigInteger.prototype.testBit=bnTestBit;BigInteger.prototype.setBit=bnSetBit;BigInteger.prototype.clearBit=bnClearBit;BigInteger.prototype.flipBit=bnFlipBit;BigInteger.prototype.add=bnAdd;BigInteger.prototype.subtract=bnSubtract;BigInteger.prototype.multiply=bnMultiply;BigInteger.prototype.divide=bnDivide;BigInteger.prototype.remainder=bnRemainder;BigInteger.prototype.divideAndRemainder=bnDivideAndRemainder;BigInteger.prototype.modPow=bnModPow;BigInteger.prototype.modInverse=bnModInverse;BigInteger.prototype.pow=bnPow;BigInteger.prototype.gcd=bnGCD;BigInteger.prototype.isProbablePrime=bnIsProbablePrime; // JSBN-specific extension
+	BigInteger.prototype.square=bnSquare; // BigInteger interfaces not implemented in jsbn:
+	// BigInteger(int signum, byte[] magnitude)
+	// double doubleValue()
+	// float floatValue()
+	// int hashCode()
+	// long longValue()
+	// static BigInteger valueOf(long val)
+	/*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
+	 */ // Depends on jsbn.js and rng.js
+	// Version 1.1: support utf-8 encoding in pkcs1pad2
+	// convert a (hex) string to a bignum object
+	function parseBigInt(str,r){return new BigInteger(str,r);}function linebrk(s,n){var ret="";var i=0;while(i+n<s.length){ret+=s.substring(i,i+n)+"\n";i+=n;}return ret+s.substring(i,s.length);}function byte2Hex(b){if(b<0x10)return "0"+b.toString(16);else return b.toString(16);} // PKCS#1 (type 2, random) pad input string s to n bytes, and return a bigint
+	function pkcs1pad2(s,n){if(n<s.length+11){ // TODO: fix for utf-8
+	alert("Message too long for RSA");return null;}var ba=new Array();var i=s.length-1;while(i>=0&&n>0){var c=s.charCodeAt(i--);if(c<128){ // encode using utf-8
+	ba[--n]=c;}else if(c>127&&c<2048){ba[--n]=c&63|128;ba[--n]=c>>6|192;}else {ba[--n]=c&63|128;ba[--n]=c>>6&63|128;ba[--n]=c>>12|224;}}ba[--n]=0;var rng=new SecureRandom();var x=new Array();while(n>2){ // random non-zero pad
+	x[0]=0;while(x[0]==0){rng.nextBytes(x);}ba[--n]=x[0];}ba[--n]=2;ba[--n]=0;return new BigInteger(ba);} // PKCS#1 (OAEP) mask generation function
+	function oaep_mgf1_arr(seed,len,hash){var mask='',i=0;while(mask.length<len){mask+=hash(String.fromCharCode.apply(String,seed.concat([(i&0xff000000)>>24,(i&0x00ff0000)>>16,(i&0x0000ff00)>>8,i&0x000000ff])));i+=1;}return mask;}var SHA1_SIZE=20; // PKCS#1 (OAEP) pad input string s to n bytes, and return a bigint
+	function oaep_pad(s,n,hash){if(s.length+2*SHA1_SIZE+2>n){throw "Message too long for RSA";}var PS='',i;for(i=0;i<n-s.length-2*SHA1_SIZE-2;i+=1){PS+='\x00';}var DB=rstr_sha1('')+PS+'\x01'+s;var seed=new Array(SHA1_SIZE);new SecureRandom().nextBytes(seed);var dbMask=oaep_mgf1_arr(seed,DB.length,hash||rstr_sha1);var maskedDB=[];for(i=0;i<DB.length;i+=1){maskedDB[i]=DB.charCodeAt(i)^dbMask.charCodeAt(i);}var seedMask=oaep_mgf1_arr(maskedDB,seed.length,rstr_sha1);var maskedSeed=[0];for(i=0;i<seed.length;i+=1){maskedSeed[i+1]=seed[i]^seedMask.charCodeAt(i);}return new BigInteger(maskedSeed.concat(maskedDB));} // "empty" RSA key constructor
+	function RSAKey(){this.n=null;this.e=0;this.d=null;this.p=null;this.q=null;this.dmp1=null;this.dmq1=null;this.coeff=null;} // Set the public key fields N and e from hex strings
+	function RSASetPublic(N,E){this.isPublic=true;if(typeof N!=="string"){this.n=N;this.e=E;}else if(N!=null&&E!=null&&N.length>0&&E.length>0){this.n=parseBigInt(N,16);this.e=parseInt(E,16);}else alert("Invalid RSA public key");} // Perform raw public operation on "x": return x^e (mod n)
+	function RSADoPublic(x){return x.modPowInt(this.e,this.n);} // Return the PKCS#1 RSA encryption of "text" as an even-length hex string
+	function RSAEncrypt(text){var m=pkcs1pad2(text,this.n.bitLength()+7>>3);if(m==null)return null;var c=this.doPublic(m);if(c==null)return null;var h=c.toString(16);if((h.length&1)==0)return h;else return "0"+h;} // Return the PKCS#1 OAEP RSA encryption of "text" as an even-length hex string
+	function RSAEncryptOAEP(text,hash){var m=oaep_pad(text,this.n.bitLength()+7>>3,hash);if(m==null)return null;var c=this.doPublic(m);if(c==null)return null;var h=c.toString(16);if((h.length&1)==0)return h;else return "0"+h;} // Return the PKCS#1 RSA encryption of "text" as a Base64-encoded string
+	//function RSAEncryptB64(text) {
+	//  var h = this.encrypt(text);
+	//  if(h) return hex2b64(h); else return null;
+	//}
+	// protected
+	RSAKey.prototype.doPublic=RSADoPublic; // public
+	RSAKey.prototype.setPublic=RSASetPublic;RSAKey.prototype.encrypt=RSAEncrypt;RSAKey.prototype.encryptOAEP=RSAEncryptOAEP; //RSAKey.prototype.encrypt_b64 = RSAEncryptB64;
+	RSAKey.prototype.type="RSA"; /*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
+	 */ // Depends on rsa.js and jsbn2.js
+	// Version 1.1: support utf-8 decoding in pkcs1unpad2
+	// Undo PKCS#1 (type 2, random) padding and, if valid, return the plaintext
+	function pkcs1unpad2(d,n){var b=d.toByteArray();var i=0;while(i<b.length&&b[i]==0){++i;}if(b.length-i!=n-1||b[i]!=2)return null;++i;while(b[i]!=0){if(++i>=b.length)return null;}var ret="";while(++i<b.length){var c=b[i]&255;if(c<128){ // utf-8 decode
+	ret+=String.fromCharCode(c);}else if(c>191&&c<224){ret+=String.fromCharCode((c&31)<<6|b[i+1]&63);++i;}else {ret+=String.fromCharCode((c&15)<<12|(b[i+1]&63)<<6|b[i+2]&63);i+=2;}}return ret;} // PKCS#1 (OAEP) mask generation function
+	function oaep_mgf1_str(seed,len,hash){var mask='',i=0;while(mask.length<len){mask+=hash(seed+String.fromCharCode.apply(String,[(i&0xff000000)>>24,(i&0x00ff0000)>>16,(i&0x0000ff00)>>8,i&0x000000ff]));i+=1;}return mask;}var SHA1_SIZE=20; // Undo PKCS#1 (OAEP) padding and, if valid, return the plaintext
+	function oaep_unpad(d,n,hash){d=d.toByteArray();var i;for(i=0;i<d.length;i+=1){d[i]&=0xff;}while(d.length<n){d.unshift(0);}d=String.fromCharCode.apply(String,d);if(d.length<2*SHA1_SIZE+2){throw "Cipher too short";}var maskedSeed=d.substr(1,SHA1_SIZE);var maskedDB=d.substr(SHA1_SIZE+1);var seedMask=oaep_mgf1_str(maskedDB,SHA1_SIZE,hash||rstr_sha1);var seed=[],i;for(i=0;i<maskedSeed.length;i+=1){seed[i]=maskedSeed.charCodeAt(i)^seedMask.charCodeAt(i);}var dbMask=oaep_mgf1_str(String.fromCharCode.apply(String,seed),d.length-SHA1_SIZE,rstr_sha1);var DB=[];for(i=0;i<maskedDB.length;i+=1){DB[i]=maskedDB.charCodeAt(i)^dbMask.charCodeAt(i);}DB=String.fromCharCode.apply(String,DB);if(DB.substr(0,SHA1_SIZE)!==rstr_sha1('')){throw "Hash mismatch";}DB=DB.substr(SHA1_SIZE);var first_one=DB.indexOf('\x01');var last_zero=first_one!=-1?DB.substr(0,first_one).lastIndexOf('\x00'):-1;if(last_zero+1!=first_one){throw "Malformed data";}return DB.substr(first_one+1);} // Set the private key fields N, e, and d from hex strings
+	function RSASetPrivate(N,E,D){this.isPrivate=true;if(typeof N!=="string"){this.n=N;this.e=E;this.d=D;}else if(N!=null&&E!=null&&N.length>0&&E.length>0){this.n=parseBigInt(N,16);this.e=parseInt(E,16);this.d=parseBigInt(D,16);}else alert("Invalid RSA private key");} // Set the private key fields N, e, d and CRT params from hex strings
+	function RSASetPrivateEx(N,E,D,P,Q,DP,DQ,C){this.isPrivate=true;if(N==null)throw "RSASetPrivateEx N == null";if(E==null)throw "RSASetPrivateEx E == null";if(N.length==0)throw "RSASetPrivateEx N.length == 0";if(E.length==0)throw "RSASetPrivateEx E.length == 0";if(N!=null&&E!=null&&N.length>0&&E.length>0){this.n=parseBigInt(N,16);this.e=parseInt(E,16);this.d=parseBigInt(D,16);this.p=parseBigInt(P,16);this.q=parseBigInt(Q,16);this.dmp1=parseBigInt(DP,16);this.dmq1=parseBigInt(DQ,16);this.coeff=parseBigInt(C,16);}else {alert("Invalid RSA private key in RSASetPrivateEx");}} // Generate a new random private key B bits long, using public expt E
+	function RSAGenerate(B,E){var rng=new SecureRandom();var qs=B>>1;this.e=parseInt(E,16);var ee=new BigInteger(E,16);for(;;){for(;;){this.p=new BigInteger(B-qs,1,rng);if(this.p.subtract(BigInteger.ONE).gcd(ee).compareTo(BigInteger.ONE)==0&&this.p.isProbablePrime(10))break;}for(;;){this.q=new BigInteger(qs,1,rng);if(this.q.subtract(BigInteger.ONE).gcd(ee).compareTo(BigInteger.ONE)==0&&this.q.isProbablePrime(10))break;}if(this.p.compareTo(this.q)<=0){var t=this.p;this.p=this.q;this.q=t;}var p1=this.p.subtract(BigInteger.ONE); // p1 = p - 1
+	var q1=this.q.subtract(BigInteger.ONE); // q1 = q - 1
+	var phi=p1.multiply(q1);if(phi.gcd(ee).compareTo(BigInteger.ONE)==0){this.n=this.p.multiply(this.q); // this.n = p * q
+	this.d=ee.modInverse(phi); // this.d =
+	this.dmp1=this.d.mod(p1); // this.dmp1 = d mod (p - 1)
+	this.dmq1=this.d.mod(q1); // this.dmq1 = d mod (q - 1)
+	this.coeff=this.q.modInverse(this.p); // this.coeff = (q ^ -1) mod p
+	break;}}this.isPrivate=true;} // Perform raw private operation on "x": return x^d (mod n)
+	function RSADoPrivate(x){if(this.p==null||this.q==null)return x.modPow(this.d,this.n); // TODO: re-calculate any missing CRT params
+	var xp=x.mod(this.p).modPow(this.dmp1,this.p); // xp=cp?
+	var xq=x.mod(this.q).modPow(this.dmq1,this.q); // xq=cq?
+	while(xp.compareTo(xq)<0){xp=xp.add(this.p);} // NOTE:
+	// xp.subtract(xq) => cp -cq
+	// xp.subtract(xq).multiply(this.coeff).mod(this.p) => (cp - cq) * u mod p = h
+	// xp.subtract(xq).multiply(this.coeff).mod(this.p).multiply(this.q).add(xq) => cq + (h * q) = M
+	return xp.subtract(xq).multiply(this.coeff).mod(this.p).multiply(this.q).add(xq);} // Return the PKCS#1 RSA decryption of "ctext".
+	// "ctext" is an even-length hex string and the output is a plain string.
+	function RSADecrypt(ctext){var c=parseBigInt(ctext,16);var m=this.doPrivate(c);if(m==null)return null;return pkcs1unpad2(m,this.n.bitLength()+7>>3);} // Return the PKCS#1 OAEP RSA decryption of "ctext".
+	// "ctext" is an even-length hex string and the output is a plain string.
+	function RSADecryptOAEP(ctext,hash){var c=parseBigInt(ctext,16);var m=this.doPrivate(c);if(m==null)return null;return oaep_unpad(m,this.n.bitLength()+7>>3,hash);} // Return the PKCS#1 RSA decryption of "ctext".
+	// "ctext" is a Base64-encoded string and the output is a plain string.
+	//function RSAB64Decrypt(ctext) {
+	//  var h = b64tohex(ctext);
+	//  if(h) return this.decrypt(h); else return null;
+	//}
+	// protected
+	RSAKey.prototype.doPrivate=RSADoPrivate; // public
+	RSAKey.prototype.setPrivate=RSASetPrivate;RSAKey.prototype.setPrivateEx=RSASetPrivateEx;RSAKey.prototype.generate=RSAGenerate;RSAKey.prototype.decrypt=RSADecrypt;RSAKey.prototype.decryptOAEP=RSADecryptOAEP; //RSAKey.prototype.b64_decrypt = RSAB64Decrypt;
+	/*! rsapem-1.1.js (c) 2012 Kenji Urushima | kjur.github.com/jsrsasign/license
+	 */ //
+	// rsa-pem.js - adding function for reading/writing PKCS#1 PEM private key
+	//              to RSAKey class.
+	//
+	// version: 1.1.1 (2013-Apr-12)
+	//
+	// Copyright (c) 2010-2013 Kenji Urushima (kenji.urushima@gmail.com)
+	//
+	// This software is licensed under the terms of the MIT License.
+	// http://kjur.github.com/jsrsasign/license/
+	//
+	// The above copyright and license notice shall be
+	// included in all copies or substantial portions of the Software.
+	//
+	//
+	// Depends on:
+	//
+	//
+	//
+	// _RSApem_pemToBase64(sPEM)
+	//
+	//   removing PEM header, PEM footer and space characters including
+	//   new lines from PEM formatted RSA private key string.
+	//
+	/**
 	 * @fileOverview
 	 * @name rsapem-1.1.js
 	 * @author Kenji Urushima kenji.urushima@gmail.com
 	 * @version 1.1
 	 * @license <a href="http://kjur.github.io/jsrsasign/license/">MIT License</a>
-	 */
-function _rsapem_pemToBase64(e){var t=e;return t=t.replace("-----BEGIN RSA PRIVATE KEY-----",""),t=t.replace("-----END RSA PRIVATE KEY-----",""),t=t.replace(/[ \n]+/g,"")}function _rsapem_getPosArrayOfChildrenFromHex(e){var t=new Array,n=ASN1HEX.getStartPosOfV_AtObj(e,0),r=ASN1HEX.getPosOfNextSibling_AtObj(e,n),o=ASN1HEX.getPosOfNextSibling_AtObj(e,r),i=ASN1HEX.getPosOfNextSibling_AtObj(e,o),a=ASN1HEX.getPosOfNextSibling_AtObj(e,i),s=ASN1HEX.getPosOfNextSibling_AtObj(e,a),u=ASN1HEX.getPosOfNextSibling_AtObj(e,s),c=ASN1HEX.getPosOfNextSibling_AtObj(e,u),l=ASN1HEX.getPosOfNextSibling_AtObj(e,c);return t.push(n,r,o,i,a,s,u,c,l),t}function _rsapem_getHexValueArrayOfChildrenFromHex(e){var t=_rsapem_getPosArrayOfChildrenFromHex(e),n=ASN1HEX.getHexOfV_AtObj(e,t[0]),r=ASN1HEX.getHexOfV_AtObj(e,t[1]),o=ASN1HEX.getHexOfV_AtObj(e,t[2]),i=ASN1HEX.getHexOfV_AtObj(e,t[3]),a=ASN1HEX.getHexOfV_AtObj(e,t[4]),s=ASN1HEX.getHexOfV_AtObj(e,t[5]),u=ASN1HEX.getHexOfV_AtObj(e,t[6]),c=ASN1HEX.getHexOfV_AtObj(e,t[7]),l=ASN1HEX.getHexOfV_AtObj(e,t[8]),p=new Array;return p.push(n,r,o,i,a,s,u,c,l),p}function _rsapem_readPrivateKeyFromASN1HexString(e){var t=_rsapem_getHexValueArrayOfChildrenFromHex(e);this.setPrivateEx(t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8])}function _rsapem_readPrivateKeyFromPEMString(e){var t=_rsapem_pemToBase64(e),n=b64tohex(t),r=_rsapem_getHexValueArrayOfChildrenFromHex(n);this.setPrivateEx(r[1],r[2],r[3],r[4],r[5],r[6],r[7],r[8])}function _rsasign_getHexPaddedDigestInfoForString(e,t,n){var r=function(e){return KJUR.crypto.Util.hashString(e,n)},o=r(e);return KJUR.crypto.Util.getPaddedDigestInfoHex(o,n,t)}function _zeroPaddingOfSignature(e,t){for(var n="",r=t/4-e.length,o=0;r>o;o++)n+="0";return n+e}function _rsasign_signString(e,t){var n=function(e){return KJUR.crypto.Util.hashString(e,t)},r=n(e);return this.signWithMessageHash(r,t)}function _rsasign_signWithMessageHash(e,t){var n=KJUR.crypto.Util.getPaddedDigestInfoHex(e,t,this.n.bitLength()),r=parseBigInt(n,16),o=this.doPrivate(r),i=o.toString(16);return _zeroPaddingOfSignature(i,this.n.bitLength())}function _rsasign_signStringWithSHA1(e){return _rsasign_signString.call(this,e,"sha1")}function _rsasign_signStringWithSHA256(e){return _rsasign_signString.call(this,e,"sha256")}function pss_mgf1_str(e,t,n){for(var r="",o=0;r.length<t;)r+=hextorstr(n(rstrtohex(e+String.fromCharCode.apply(String,[(4278190080&o)>>24,(16711680&o)>>16,(65280&o)>>8,255&o])))),o+=1;return r}function _rsasign_signStringPSS(e,t,n){var r=function(e){return KJUR.crypto.Util.hashHex(e,t)},o=r(rstrtohex(e));return void 0===n&&(n=-1),this.signWithMessageHashPSS(o,t,n)}function _rsasign_signWithMessageHashPSS(e,t,n){var r,o=hextorstr(e),i=o.length,a=this.n.bitLength()-1,s=Math.ceil(a/8),u=function(e){return KJUR.crypto.Util.hashHex(e,t)};if(-1===n||void 0===n)n=i;else if(-2===n)n=s-i-2;else if(-2>n)throw"invalid salt length";if(i+n+2>s)throw"data too long";var c="";n>0&&(c=new Array(n),(new SecureRandom).nextBytes(c),c=String.fromCharCode.apply(String,c));var l=hextorstr(u(rstrtohex("\x00\x00\x00\x00\x00\x00\x00\x00"+o+c))),p=[];for(r=0;s-n-i-2>r;r+=1)p[r]=0;var d=String.fromCharCode.apply(String,p)+""+c,h=pss_mgf1_str(l,d.length,u),f=[];for(r=0;r<d.length;r+=1)f[r]=d.charCodeAt(r)^h.charCodeAt(r);var g=65280>>8*s-a&255;for(f[0]&=~g,r=0;i>r;r++)f.push(l.charCodeAt(r));return f.push(188),_zeroPaddingOfSignature(this.doPrivate(new BigInteger(f)).toString(16),this.n.bitLength())}function _rsasign_getDecryptSignatureBI(e,t,n){var r=new RSAKey;r.setPublic(t,n);var o=r.doPublic(e);return o}function _rsasign_getHexDigestInfoFromSig(e,t,n){var r=_rsasign_getDecryptSignatureBI(e,t,n),o=r.toString(16).replace(/^1f+00/,"");return o}function _rsasign_getAlgNameAndHashFromHexDisgestInfo(e){for(var t in KJUR.crypto.Util.DIGESTINFOHEAD){var n=KJUR.crypto.Util.DIGESTINFOHEAD[t],r=n.length;if(e.substring(0,r)==n){var o=[t,e.substring(r)];return o}}return[]}function _rsasign_verifySignatureWithArgs(e,t,n,r){var o=_rsasign_getHexDigestInfoFromSig(t,n,r),i=_rsasign_getAlgNameAndHashFromHexDisgestInfo(o);if(0==i.length)return!1;var a=i[0],s=i[1],u=function(e){return KJUR.crypto.Util.hashString(e,a)},c=u(e);return s==c}function _rsasign_verifyHexSignatureForMessage(e,t){var n=parseBigInt(e,16),r=_rsasign_verifySignatureWithArgs(t,n,this.n.toString(16),this.e.toString(16));return r}function _rsasign_verifyString(e,t){t=t.replace(_RE_HEXDECONLY,""),t=t.replace(/[ \n]+/g,"");var n=parseBigInt(t,16);if(n.bitLength()>this.n.bitLength())return 0;var r=this.doPublic(n),o=r.toString(16).replace(/^1f+00/,""),i=_rsasign_getAlgNameAndHashFromHexDisgestInfo(o);if(0==i.length)return!1;var a=i[0],s=i[1],u=function(e){return KJUR.crypto.Util.hashString(e,a)},c=u(e);return s==c}function _rsasign_verifyWithMessageHash(e,t){t=t.replace(_RE_HEXDECONLY,""),t=t.replace(/[ \n]+/g,"");var n=parseBigInt(t,16);if(n.bitLength()>this.n.bitLength())return 0;var r=this.doPublic(n),o=r.toString(16).replace(/^1f+00/,""),i=_rsasign_getAlgNameAndHashFromHexDisgestInfo(o);if(0==i.length)return!1;var a=(i[0],i[1]);return a==e}function _rsasign_verifyStringPSS(e,t,n,r){var o=function(e){return KJUR.crypto.Util.hashHex(e,n)},i=o(rstrtohex(e));return void 0===r&&(r=-1),this.verifyWithMessageHashPSS(i,t,n,r)}function _rsasign_verifyWithMessageHashPSS(e,t,n,r){var o=new BigInteger(t,16);if(o.bitLength()>this.n.bitLength())return!1;var i,a=function(e){return KJUR.crypto.Util.hashHex(e,n)},s=hextorstr(e),u=s.length,c=this.n.bitLength()-1,l=Math.ceil(c/8);if(-1===r||void 0===r)r=u;else if(-2===r)r=l-u-2;else if(-2>r)throw"invalid salt length";if(u+r+2>l)throw"data too long";var p=this.doPublic(o).toByteArray();for(i=0;i<p.length;i+=1)p[i]&=255;for(;p.length<l;)p.unshift(0);if(188!==p[l-1])throw"encoded message does not end in 0xbc";p=String.fromCharCode.apply(String,p);var d=p.substr(0,l-u-1),h=p.substr(d.length,u),f=65280>>8*l-c&255;if(0!==(d.charCodeAt(0)&f))throw"bits beyond keysize not zero";var g=pss_mgf1_str(h,d.length,a),v=[];for(i=0;i<d.length;i+=1)v[i]=d.charCodeAt(i)^g.charCodeAt(i);v[0]&=~f;var m=l-u-r-2;for(i=0;m>i;i+=1)if(0!==v[i])throw"leftmost octets not zero";if(1!==v[m])throw"0x01 marker not found";return h===hextorstr(a(rstrtohex("\x00\x00\x00\x00\x00\x00\x00\x00"+s+String.fromCharCode.apply(String,v.slice(-r)))))}/*! x509-1.1.3.js (c) 2012-2014 Kenji Urushima | kjur.github.com/jsrsasign/license
-	 */
-/**
+	 */function _rsapem_pemToBase64(sPEMPrivateKey){var s=sPEMPrivateKey;s=s.replace("-----BEGIN RSA PRIVATE KEY-----","");s=s.replace("-----END RSA PRIVATE KEY-----","");s=s.replace(/[ \n]+/g,"");return s;}function _rsapem_getPosArrayOfChildrenFromHex(hPrivateKey){var a=new Array();var v1=ASN1HEX.getStartPosOfV_AtObj(hPrivateKey,0);var n1=ASN1HEX.getPosOfNextSibling_AtObj(hPrivateKey,v1);var e1=ASN1HEX.getPosOfNextSibling_AtObj(hPrivateKey,n1);var d1=ASN1HEX.getPosOfNextSibling_AtObj(hPrivateKey,e1);var p1=ASN1HEX.getPosOfNextSibling_AtObj(hPrivateKey,d1);var q1=ASN1HEX.getPosOfNextSibling_AtObj(hPrivateKey,p1);var dp1=ASN1HEX.getPosOfNextSibling_AtObj(hPrivateKey,q1);var dq1=ASN1HEX.getPosOfNextSibling_AtObj(hPrivateKey,dp1);var co1=ASN1HEX.getPosOfNextSibling_AtObj(hPrivateKey,dq1);a.push(v1,n1,e1,d1,p1,q1,dp1,dq1,co1);return a;}function _rsapem_getHexValueArrayOfChildrenFromHex(hPrivateKey){var posArray=_rsapem_getPosArrayOfChildrenFromHex(hPrivateKey);var v=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[0]);var n=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[1]);var e=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[2]);var d=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[3]);var p=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[4]);var q=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[5]);var dp=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[6]);var dq=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[7]);var co=ASN1HEX.getHexOfV_AtObj(hPrivateKey,posArray[8]);var a=new Array();a.push(v,n,e,d,p,q,dp,dq,co);return a;} /**
+	 * read RSA private key from a ASN.1 hexadecimal string
+	 * @name readPrivateKeyFromASN1HexString
+	 * @memberOf RSAKey#
+	 * @function
+	 * @param {String} keyHex ASN.1 hexadecimal string of PKCS#1 private key.
+	 * @since 1.1.1
+	 */function _rsapem_readPrivateKeyFromASN1HexString(keyHex){var a=_rsapem_getHexValueArrayOfChildrenFromHex(keyHex);this.setPrivateEx(a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8]);} /**
+	 * read PKCS#1 private key from a string
+	 * @name readPrivateKeyFromPEMString
+	 * @memberOf RSAKey#
+	 * @function
+	 * @param {String} keyPEM string of PKCS#1 private key.
+	 */function _rsapem_readPrivateKeyFromPEMString(keyPEM){var keyB64=_rsapem_pemToBase64(keyPEM);var keyHex=b64tohex(keyB64); // depends base64.js
+	var a=_rsapem_getHexValueArrayOfChildrenFromHex(keyHex);this.setPrivateEx(a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8]);}RSAKey.prototype.readPrivateKeyFromPEMString=_rsapem_readPrivateKeyFromPEMString;RSAKey.prototype.readPrivateKeyFromASN1HexString=_rsapem_readPrivateKeyFromASN1HexString; /*! rsasign-1.2.7.js (c) 2012 Kenji Urushima | kjur.github.com/jsrsasign/license
+	 */var _RE_HEXDECONLY=new RegExp("");_RE_HEXDECONLY.compile("[^0-9a-f]","gi");function _rsasign_getHexPaddedDigestInfoForString(d,e,a){var b=function(){function b(f){return KJUR.crypto.Util.hashString(f,a);}return b;}();var c=b(d);return KJUR.crypto.Util.getPaddedDigestInfoHex(c,a,e);}function _zeroPaddingOfSignature(e,d){var c="";var a=d/4-e.length;for(var b=0;b<a;b++){c=c+"0";}return c+e;}function _rsasign_signString(d,a){var b=function(){function b(e){return KJUR.crypto.Util.hashString(e,a);}return b;}();var c=b(d);return this.signWithMessageHash(c,a);}function _rsasign_signWithMessageHash(e,c){var f=KJUR.crypto.Util.getPaddedDigestInfoHex(e,c,this.n.bitLength());var b=parseBigInt(f,16);var d=this.doPrivate(b);var a=d.toString(16);return _zeroPaddingOfSignature(a,this.n.bitLength());}function _rsasign_signStringWithSHA1(a){return _rsasign_signString.call(this,a,"sha1");}function _rsasign_signStringWithSHA256(a){return _rsasign_signString.call(this,a,"sha256");}function pss_mgf1_str(c,a,e){var b="",d=0;while(b.length<a){b+=hextorstr(e(rstrtohex(c+String.fromCharCode.apply(String,[(d&4278190080)>>24,(d&16711680)>>16,(d&65280)>>8,d&255]))));d+=1;}return b;}function _rsasign_signStringPSS(e,a,d){var c=function(){function c(f){return KJUR.crypto.Util.hashHex(f,a);}return c;}();var b=c(rstrtohex(e));if(d===undefined){d=-1;}return this.signWithMessageHashPSS(b,a,d);}function _rsasign_signWithMessageHashPSS(l,a,k){var b=hextorstr(l);var g=b.length;var m=this.n.bitLength()-1;var c=Math.ceil(m/8);var d;var o=function(){function o(i){return KJUR.crypto.Util.hashHex(i,a);}return o;}();if(k===-1||k===undefined){k=g;}else {if(k===-2){k=c-g-2;}else {if(k<-2){throw "invalid salt length";}}}if(c<g+k+2){throw "data too long";}var f="";if(k>0){f=new Array(k);new SecureRandom().nextBytes(f);f=String.fromCharCode.apply(String,f);}var n=hextorstr(o(rstrtohex("\x00\x00\x00\x00\x00\x00\x00\x00"+b+f)));var j=[];for(d=0;d<c-k-g-2;d+=1){j[d]=0;}var e=String.fromCharCode.apply(String,j)+"\x01"+f;var h=pss_mgf1_str(n,e.length,o);var q=[];for(d=0;d<e.length;d+=1){q[d]=e.charCodeAt(d)^h.charCodeAt(d);}var p=65280>>8*c-m&255;q[0]&=~p;for(d=0;d<g;d++){q.push(n.charCodeAt(d));}q.push(188);return _zeroPaddingOfSignature(this.doPrivate(new BigInteger(q)).toString(16),this.n.bitLength());}function _rsasign_getDecryptSignatureBI(a,d,c){var b=new RSAKey();b.setPublic(d,c);var e=b.doPublic(a);return e;}function _rsasign_getHexDigestInfoFromSig(a,c,b){var e=_rsasign_getDecryptSignatureBI(a,c,b);var d=e.toString(16).replace(/^1f+00/,"");return d;}function _rsasign_getAlgNameAndHashFromHexDisgestInfo(f){for(var e in KJUR.crypto.Util.DIGESTINFOHEAD){var d=KJUR.crypto.Util.DIGESTINFOHEAD[e];var b=d.length;if(f.substring(0,b)==d){var c=[e,f.substring(b)];return c;}}return [];}function _rsasign_verifySignatureWithArgs(f,b,g,j){var e=_rsasign_getHexDigestInfoFromSig(b,g,j);var h=_rsasign_getAlgNameAndHashFromHexDisgestInfo(e);if(h.length==0){return false;}var d=h[0];var i=h[1];var a=function(){function a(k){return KJUR.crypto.Util.hashString(k,d);}return a;}();var c=a(f);return i==c;}function _rsasign_verifyHexSignatureForMessage(c,b){var d=parseBigInt(c,16);var a=_rsasign_verifySignatureWithArgs(b,d,this.n.toString(16),this.e.toString(16));return a;}function _rsasign_verifyString(f,j){j=j.replace(_RE_HEXDECONLY,"");j=j.replace(/[ \n]+/g,"");var b=parseBigInt(j,16);if(b.bitLength()>this.n.bitLength()){return 0;}var i=this.doPublic(b);var e=i.toString(16).replace(/^1f+00/,"");var g=_rsasign_getAlgNameAndHashFromHexDisgestInfo(e);if(g.length==0){return false;}var d=g[0];var h=g[1];var a=function(){function a(k){return KJUR.crypto.Util.hashString(k,d);}return a;}();var c=a(f);return h==c;}function _rsasign_verifyWithMessageHash(e,a){a=a.replace(_RE_HEXDECONLY,"");a=a.replace(/[ \n]+/g,"");var b=parseBigInt(a,16);if(b.bitLength()>this.n.bitLength()){return 0;}var h=this.doPublic(b);var g=h.toString(16).replace(/^1f+00/,"");var c=_rsasign_getAlgNameAndHashFromHexDisgestInfo(g);if(c.length==0){return false;}var d=c[0];var f=c[1];return f==e;}function _rsasign_verifyStringPSS(c,b,a,f){var e=function(){function e(g){return KJUR.crypto.Util.hashHex(g,a);}return e;}();var d=e(rstrtohex(c));if(f===undefined){f=-1;}return this.verifyWithMessageHashPSS(d,b,a,f);}function _rsasign_verifyWithMessageHashPSS(f,s,l,c){var k=new BigInteger(s,16);if(k.bitLength()>this.n.bitLength()){return false;}var r=function(){function r(i){return KJUR.crypto.Util.hashHex(i,l);}return r;}();var j=hextorstr(f);var h=j.length;var g=this.n.bitLength()-1;var m=Math.ceil(g/8);var q;if(c===-1||c===undefined){c=h;}else {if(c===-2){c=m-h-2;}else {if(c<-2){throw "invalid salt length";}}}if(m<h+c+2){throw "data too long";}var a=this.doPublic(k).toByteArray();for(q=0;q<a.length;q+=1){a[q]&=255;}while(a.length<m){a.unshift(0);}if(a[m-1]!==188){throw "encoded message does not end in 0xbc";}a=String.fromCharCode.apply(String,a);var d=a.substr(0,m-h-1);var e=a.substr(d.length,h);var p=65280>>8*m-g&255;if((d.charCodeAt(0)&p)!==0){throw "bits beyond keysize not zero";}var n=pss_mgf1_str(e,d.length,r);var o=[];for(q=0;q<d.length;q+=1){o[q]=d.charCodeAt(q)^n.charCodeAt(q);}o[0]&=~p;var b=m-h-c-2;for(q=0;q<b;q+=1){if(o[q]!==0){throw "leftmost octets not zero";}}if(o[b]!==1){throw "0x01 marker not found";}return e===hextorstr(r(rstrtohex("\x00\x00\x00\x00\x00\x00\x00\x00"+j+String.fromCharCode.apply(String,o.slice(-c)))));}RSAKey.prototype.signWithMessageHash=_rsasign_signWithMessageHash;RSAKey.prototype.signString=_rsasign_signString;RSAKey.prototype.signStringWithSHA1=_rsasign_signStringWithSHA1;RSAKey.prototype.signStringWithSHA256=_rsasign_signStringWithSHA256;RSAKey.prototype.sign=_rsasign_signString;RSAKey.prototype.signWithSHA1=_rsasign_signStringWithSHA1;RSAKey.prototype.signWithSHA256=_rsasign_signStringWithSHA256;RSAKey.prototype.signWithMessageHashPSS=_rsasign_signWithMessageHashPSS;RSAKey.prototype.signStringPSS=_rsasign_signStringPSS;RSAKey.prototype.signPSS=_rsasign_signStringPSS;RSAKey.SALT_LEN_HLEN=-1;RSAKey.SALT_LEN_MAX=-2;RSAKey.prototype.verifyWithMessageHash=_rsasign_verifyWithMessageHash;RSAKey.prototype.verifyString=_rsasign_verifyString;RSAKey.prototype.verifyHexSignatureForMessage=_rsasign_verifyHexSignatureForMessage;RSAKey.prototype.verify=_rsasign_verifyString;RSAKey.prototype.verifyHexSignatureForByteArrayMessage=_rsasign_verifyHexSignatureForMessage;RSAKey.prototype.verifyWithMessageHashPSS=_rsasign_verifyWithMessageHashPSS;RSAKey.prototype.verifyStringPSS=_rsasign_verifyStringPSS;RSAKey.prototype.verifyPSS=_rsasign_verifyStringPSS;RSAKey.SALT_LEN_RECOVER=-2; /*! asn1hex-1.1.5.js (c) 2012-2014 Kenji Urushima | kjur.github.com/jsrsasign/license
+	 */ /*
+	 * asn1hex.js - Hexadecimal represented ASN.1 string library
+	 *
+	 * Copyright (c) 2010-2014 Kenji Urushima (kenji.urushima@gmail.com)
+	 *
+	 * This software is licensed under the terms of the MIT License.
+	 * http://kjur.github.com/jsrsasign/license/
+	 *
+	 * The above copyright and license notice shall be
+	 * included in all copies or substantial portions of the Software.
+	 */ /**
+	 * @fileOverview
+	 * @name asn1hex-1.1.js
+	 * @author Kenji Urushima kenji.urushima@gmail.com
+	 * @version asn1hex 1.1.5 (2014-May-25)
+	 * @license <a href="http://kjur.github.io/jsrsasign/license/">MIT License</a>
+	 */ /*
+	 * MEMO:
+	 *   f('3082025b02...', 2) ... 82025b ... 3bytes
+	 *   f('020100', 2) ... 01 ... 1byte
+	 *   f('0203001...', 2) ... 03 ... 1byte
+	 *   f('02818003...', 2) ... 8180 ... 2bytes
+	 *   f('3080....0000', 2) ... 80 ... -1
+	 *
+	 *   Requirements:
+	 *   - ASN.1 type octet length MUST be 1.
+	 *     (i.e. ASN.1 primitives like SET, SEQUENCE, INTEGER, OCTETSTRING ...)
+	 */ /**
+	 * ASN.1 DER encoded hexadecimal string utility class
+	 * @name ASN1HEX
+	 * @class ASN.1 DER encoded hexadecimal string utility class
+	 * @since jsrsasign 1.1
+	 */var ASN1HEX=new function(){ /**
+	     * get byte length for ASN.1 L(length) bytes
+	     * @name getByteLengthOfL_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} s hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} pos string index
+	     * @return byte length for ASN.1 L(length) bytes
+	     */this.getByteLengthOfL_AtObj=function(s,pos){if(s.substring(pos+2,pos+3)!='8')return 1;var i=parseInt(s.substring(pos+3,pos+4));if(i==0)return -1; // length octet '80' indefinite length
+	if(0<i&&i<10)return i+1; // including '8?' octet;
+	return -2; // malformed format
+	}; /**
+	     * get hexadecimal string for ASN.1 L(length) bytes
+	     * @name getHexOfL_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} s hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} pos string index
+	     * @return {String} hexadecimal string for ASN.1 L(length) bytes
+	     */this.getHexOfL_AtObj=function(s,pos){var len=this.getByteLengthOfL_AtObj(s,pos);if(len<1)return '';return s.substring(pos+2,pos+2+len*2);}; //   getting ASN.1 length value at the position 'idx' of
+	//   hexa decimal string 's'.
+	//
+	//   f('3082025b02...', 0) ... 82025b ... ???
+	//   f('020100', 0) ... 01 ... 1
+	//   f('0203001...', 0) ... 03 ... 3
+	//   f('02818003...', 0) ... 8180 ... 128
+	/**
+	     * get integer value of ASN.1 length for ASN.1 data
+	     * @name getIntOfL_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} s hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} pos string index
+	     * @return ASN.1 L(length) integer value
+	     */this.getIntOfL_AtObj=function(s,pos){var hLength=this.getHexOfL_AtObj(s,pos);if(hLength=='')return -1;var bi;if(parseInt(hLength.substring(0,1))<8){bi=new BigInteger(hLength,16);}else {bi=new BigInteger(hLength.substring(2),16);}return bi.intValue();}; /**
+	     * get ASN.1 value starting string position for ASN.1 object refered by index 'idx'.
+	     * @name getStartPosOfV_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} s hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} pos string index
+	     */this.getStartPosOfV_AtObj=function(s,pos){var l_len=this.getByteLengthOfL_AtObj(s,pos);if(l_len<0)return l_len;return pos+(l_len+1)*2;}; /**
+	     * get hexadecimal string of ASN.1 V(value)
+	     * @name getHexOfV_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} s hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} pos string index
+	     * @return {String} hexadecimal string of ASN.1 value.
+	     */this.getHexOfV_AtObj=function(s,pos){var pos1=this.getStartPosOfV_AtObj(s,pos);var len=this.getIntOfL_AtObj(s,pos);return s.substring(pos1,pos1+len*2);}; /**
+	     * get hexadecimal string of ASN.1 TLV at
+	     * @name getHexOfTLV_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} s hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} pos string index
+	     * @return {String} hexadecimal string of ASN.1 TLV.
+	     * @since 1.1
+	     */this.getHexOfTLV_AtObj=function(s,pos){var hT=s.substr(pos,2);var hL=this.getHexOfL_AtObj(s,pos);var hV=this.getHexOfV_AtObj(s,pos);return hT+hL+hV;}; /**
+	     * get next sibling starting index for ASN.1 object string
+	     * @name getPosOfNextSibling_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} s hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} pos string index
+	     * @return next sibling starting index for ASN.1 object string
+	     */this.getPosOfNextSibling_AtObj=function(s,pos){var pos1=this.getStartPosOfV_AtObj(s,pos);var len=this.getIntOfL_AtObj(s,pos);return pos1+len*2;}; /**
+	     * get array of indexes of child ASN.1 objects
+	     * @name getPosArrayOfChildren_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} s hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} start string index of ASN.1 object
+	     * @return {Array of Number} array of indexes for childen of ASN.1 objects
+	     */this.getPosArrayOfChildren_AtObj=function(h,pos){var a=new Array();var p0=this.getStartPosOfV_AtObj(h,pos);a.push(p0);var len=this.getIntOfL_AtObj(h,pos);var p=p0;var k=0;while(1){var pNext=this.getPosOfNextSibling_AtObj(h,p);if(pNext==null||pNext-p0>=len*2)break;if(k>=200)break;a.push(pNext);p=pNext;k++;}return a;}; /**
+	     * get string index of nth child object of ASN.1 object refered by h, idx
+	     * @name getNthChildIndex_AtObj
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} h hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} idx start string index of ASN.1 object
+	     * @param {Number} nth for child
+	     * @return {Number} string index of nth child.
+	     * @since 1.1
+	     */this.getNthChildIndex_AtObj=function(h,idx,nth){var a=this.getPosArrayOfChildren_AtObj(h,idx);return a[nth];}; // ========== decendant methods ==============================
+	/**
+	     * get string index of nth child object of ASN.1 object refered by h, idx
+	     * @name getDecendantIndexByNthList
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} h hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} currentIndex start string index of ASN.1 object
+	     * @param {Array of Number} nthList array list of nth
+	     * @return {Number} string index refered by nthList
+	     * @since 1.1
+	     * @example
+	     * The "nthList" is a index list of structured ASN.1 object
+	     * reference. Here is a sample structure and "nthList"s which
+	     * refers each objects.
+	     *
+	     * SQUENCE               -
+	     *   SEQUENCE            - [0]
+	     *     IA5STRING 000     - [0, 0]
+	     *     UTF8STRING 001    - [0, 1]
+	     *   SET                 - [1]
+	     *     IA5STRING 010     - [1, 0]
+	     *     UTF8STRING 011    - [1, 1]
+	     */this.getDecendantIndexByNthList=function(h,currentIndex,nthList){if(nthList.length==0){return currentIndex;}var firstNth=nthList.shift();var a=this.getPosArrayOfChildren_AtObj(h,currentIndex);return this.getDecendantIndexByNthList(h,a[firstNth],nthList);}; /**
+	     * get hexadecimal string of ASN.1 TLV refered by current index and nth index list.
+	     * @name getDecendantHexTLVByNthList
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} h hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} currentIndex start string index of ASN.1 object
+	     * @param {Array of Number} nthList array list of nth
+	     * @return {Number} hexadecimal string of ASN.1 TLV refered by nthList
+	     * @since 1.1
+	     */this.getDecendantHexTLVByNthList=function(h,currentIndex,nthList){var idx=this.getDecendantIndexByNthList(h,currentIndex,nthList);return this.getHexOfTLV_AtObj(h,idx);}; /**
+	     * get hexadecimal string of ASN.1 V refered by current index and nth index list.
+	     * @name getDecendantHexVByNthList
+	     * @memberOf ASN1HEX
+	     * @function
+	     * @param {String} h hexadecimal string of ASN.1 DER encoded data
+	     * @param {Number} currentIndex start string index of ASN.1 object
+	     * @param {Array of Number} nthList array list of nth
+	     * @return {Number} hexadecimal string of ASN.1 V refered by nthList
+	     * @since 1.1
+	     */this.getDecendantHexVByNthList=function(h,currentIndex,nthList){var idx=this.getDecendantIndexByNthList(h,currentIndex,nthList);return this.getHexOfV_AtObj(h,idx);};}(); /*
+	 * @since asn1hex 1.1.4
+	 */ASN1HEX.getVbyList=function(h,currentIndex,nthList,checkingTag){var idx=this.getDecendantIndexByNthList(h,currentIndex,nthList);if(idx===undefined){throw "can't find nthList object";}if(checkingTag!==undefined){if(h.substr(idx,2)!=checkingTag){throw "checking tag doesn't match: "+h.substr(idx,2)+"!="+checkingTag;}}return this.getHexOfV_AtObj(h,idx);}; /**
+	 * get OID string from hexadecimal encoded value
+	 * @name hextooidstr
+	 * @memberOf ASN1HEX
+	 * @function
+	 * @param {String} hex hexadecmal string of ASN.1 DER encoded OID value
+	 * @return {String} OID string (ex. '1.2.3.4.567')
+	 * @since asn1hex 1.1.5
+	 */ASN1HEX.hextooidstr=function(hex){var zeroPadding=function(){function zeroPadding(s,len){if(s.length>=len)return s;return new Array(len-s.length+1).join('0')+s;}return zeroPadding;}();var a=[]; // a[0], a[1]
+	var hex0=hex.substr(0,2);var i0=parseInt(hex0,16);a[0]=new String(Math.floor(i0/40));a[1]=new String(i0%40); // a[2]..a[n]
+	var hex1=hex.substr(2);var b=[];for(var i=0;i<hex1.length/2;i++){b.push(parseInt(hex1.substr(i*2,2),16));}var c=[];var cbin="";for(var i=0;i<b.length;i++){if(b[i]&0x80){cbin=cbin+zeroPadding((b[i]&0x7f).toString(2),7);}else {cbin=cbin+zeroPadding((b[i]&0x7f).toString(2),7);c.push(new String(parseInt(cbin,2)));cbin="";}}var s=a.join(".");if(c.length>0)s=s+"."+c.join(".");return s;}; /*! x509-1.1.3.js (c) 2012-2014 Kenji Urushima | kjur.github.com/jsrsasign/license
+	 */ /*
+	 * x509.js - X509 class to read subject public key from certificate.
+	 *
+	 * Copyright (c) 2010-2014 Kenji Urushima (kenji.urushima@gmail.com)
+	 *
+	 * This software is licensed under the terms of the MIT License.
+	 * http://kjur.github.com/jsrsasign/license
+	 *
+	 * The above copyright and license notice shall be
+	 * included in all copies or substantial portions of the Software.
+	 */ /**
 	 * @fileOverview
 	 * @name x509-1.1.js
 	 * @author Kenji Urushima kenji.urushima@gmail.com
 	 * @version x509 1.1.3 (2014-May-17)
 	 * @since jsrsasign 1.x.x
 	 * @license <a href="http://kjur.github.io/jsrsasign/license/">MIT License</a>
-	 */
-function X509(){this.subjectPublicKeyRSA=null,this.subjectPublicKeyRSA_hN=null,this.subjectPublicKeyRSA_hE=null,this.hex=null,this.getSerialNumberHex=function(){return ASN1HEX.getDecendantHexVByNthList(this.hex,0,[0,1])},this.getIssuerHex=function(){return ASN1HEX.getDecendantHexTLVByNthList(this.hex,0,[0,3])},this.getIssuerString=function(){return X509.hex2dn(ASN1HEX.getDecendantHexTLVByNthList(this.hex,0,[0,3]))},this.getSubjectHex=function(){return ASN1HEX.getDecendantHexTLVByNthList(this.hex,0,[0,5])},this.getSubjectString=function(){return X509.hex2dn(ASN1HEX.getDecendantHexTLVByNthList(this.hex,0,[0,5]))},this.getNotBefore=function(){var e=ASN1HEX.getDecendantHexVByNthList(this.hex,0,[0,4,0]);return e=e.replace(/(..)/g,"%$1"),e=decodeURIComponent(e)},this.getNotAfter=function(){var e=ASN1HEX.getDecendantHexVByNthList(this.hex,0,[0,4,1]);return e=e.replace(/(..)/g,"%$1"),e=decodeURIComponent(e)},this.readCertPEM=function(e){var t=X509.pemToHex(e),n=X509.getPublicKeyHexArrayFromCertHex(t),r=new RSAKey;r.setPublic(n[0],n[1]),this.subjectPublicKeyRSA=r,this.subjectPublicKeyRSA_hN=n[0],this.subjectPublicKeyRSA_hE=n[1],this.hex=t},this.readCertPEMWithoutRSAInit=function(e){var t=X509.pemToHex(e),n=X509.getPublicKeyHexArrayFromCertHex(t);this.subjectPublicKeyRSA.setPublic(n[0],n[1]),this.subjectPublicKeyRSA_hN=n[0],this.subjectPublicKeyRSA_hE=n[1],this.hex=t}}/*! base64x-1.1.3 (c) 2012-2014 Kenji Urushima | kjur.github.com/jsjws/license
-	 */
-function Base64x(){}function stoBA(e){for(var t=new Array,n=0;n<e.length;n++)t[n]=e.charCodeAt(n);return t}function BAtos(e){for(var t="",n=0;n<e.length;n++)t+=String.fromCharCode(e[n]);return t}function BAtohex(e){for(var t="",n=0;n<e.length;n++){var r=e[n].toString(16);1==r.length&&(r="0"+r),t+=r}return t}function stohex(e){return BAtohex(stoBA(e))}function stob64(e){return hex2b64(stohex(e))}function stob64u(e){return b64tob64u(hex2b64(stohex(e)))}function b64utos(e){return BAtos(b64toBA(b64utob64(e)))}function b64tob64u(e){return e=e.replace(/\=/g,""),e=e.replace(/\+/g,"-"),e=e.replace(/\//g,"_")}function b64utob64(e){return e.length%4==2?e+="==":e.length%4==3&&(e+="="),e=e.replace(/-/g,"+"),e=e.replace(/_/g,"/")}function hextob64u(e){return b64tob64u(hex2b64(e))}function b64utohex(e){return b64tohex(b64utob64(e))}function utf8tob64(e){return hex2b64(uricmptohex(encodeURIComponentAll(e)))}function b64toutf8(e){return decodeURIComponent(hextouricmp(b64tohex(e)))}function utf8tohex(e){return uricmptohex(encodeURIComponentAll(e))}function hextoutf8(e){return decodeURIComponent(hextouricmp(e))}function hextorstr(e){for(var t="",n=0;n<e.length-1;n+=2)t+=String.fromCharCode(parseInt(e.substr(n,2),16));return t}function rstrtohex(e){for(var t="",n=0;n<e.length;n++)t+=("0"+e.charCodeAt(n).toString(16)).slice(-2);return t}function hextob64(e){return hex2b64(e)}function hextob64nl(e){var t=hextob64(e),n=t.replace(/(.{64})/g,"$1\r\n");return n=n.replace(/\r\n$/,"")}function b64nltohex(e){var t=e.replace(/[^0-9A-Za-z\/+=]*/g,""),n=b64tohex(t);return n}function uricmptohex(e){return e.replace(/%/g,"")}function hextouricmp(e){return e.replace(/(..)/g,"%$1")}function encodeURIComponentAll(e){for(var t=encodeURIComponent(e),n="",r=0;r<t.length;r++)"%"==t[r]?(n+=t.substr(r,3),r+=2):n=n+"%"+stohex(t[r]);return n}function newline_toUnix(e){return e=e.replace(/\r\n/gm,"\n")}function newline_toDos(e){return e=e.replace(/\r\n/gm,"\n"),e=e.replace(/\n/gm,"\r\n")}function DefaultHttpRequest(){function e(e,t){for(var n=Object.keys(t),r=0;r<n.length;r++){var o=n[r],i=t[o];e.setRequestHeader(o,i)}}this.getJSON=function(t,n){return _promiseFactory.create(function(r,o){try{var i=new XMLHttpRequest;i.open("GET",t),i.responseType="json",n&&n.headers&&e(i,n.headers),i.onload=function(){try{if(200===i.status){var e="";e=window.XDomainRequest?i.responseText:i.response,"string"==typeof e&&(e=JSON.parse(e)),r(e)}else o(Error(i.statusText+"("+i.status+")"))}catch(t){o(t)}},i.onerror=function(){o(Error("Network error"))},i.send()}catch(a){return o(a)}})}}function DefaultPromise(e){this.then=function(t,n){var r=e.then(t,n);return new DefaultPromise(r)},this["catch"]=function(t){var n=e["catch"](t);return new DefaultPromise(n)}}function DefaultPromiseFactory(){this.resolve=function(e){return new DefaultPromise(Promise.resolve(e))},this.reject=function(e){return new DefaultPromise(Promise.reject(e))},this.create=function(e){return new DefaultPromise(new Promise(e))}}function log(){}function copy(e,t){t=t||{};for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n]);return t}function rand(){return((Date.now()+Math.random())*Math.random()).toString().replace(".","")}function resolve(e){return _promiseFactory.resolve(e)}function error(e){return _promiseFactory.reject(Error(e))}function parseOidcResult(e){log("parseOidcResult"),e=e||location.hash;var t=e.lastIndexOf("#");t>=0&&(e=e.substr(t+1));for(var n,r={},o=/([^&=]+)=([^&]*)/g,i=0;n=o.exec(e);)if(r[decodeURIComponent(n[1])]=decodeURIComponent(n[2]),i++>50)return{error:"Response exceeded expected number of parameters"};for(var a in r)return r}function getJson(e,t){log("getJson",e);var n={};return t&&(n.headers={Authorization:"Bearer "+t}),_httpRequest.getJSON(e,n)}function OidcClient(e){this._settings=e||{},this._settings.request_state_key||(this._settings.request_state_key="OidcClient.request_state"),this._settings.request_state_store||(this._settings.request_state_store=window.localStorage),"undefined"==typeof this._settings.load_user_profile&&(this._settings.load_user_profile=!0),"undefined"==typeof this._settings.filter_protocol_claims&&(this._settings.filter_protocol_claims=!0),this._settings.authority&&this._settings.authority.indexOf(".well-known/openid-configuration")<0&&("/"!==this._settings.authority[this._settings.authority.length-1]&&(this._settings.authority+="/"),this._settings.authority+=".well-known/openid-configuration"),this._settings.response_type||(this._settings.response_type="id_token token"),Object.defineProperty(this,"isOidc",{get:function(){if(this._settings.response_type){var e=this._settings.response_type.split(/\s+/g).filter(function(e){return"id_token"===e});return!!e[0]}return!1}}),Object.defineProperty(this,"isOAuth",{get:function(){if(this._settings.response_type){var e=this._settings.response_type.split(/\s+/g).filter(function(e){return"token"===e});return!!e[0]}return!1}})}window.OidcClient=__webpack_require__(108);var KJUR,_promiseFactory,_httpRequest,CryptoJS=CryptoJS||function(e,t){var n={},r=n.lib={},o=r.Base=function(){function e(){}return{extend:function(t){e.prototype=this;var n=new e;return t&&n.mixIn(t),n.hasOwnProperty("init")||(n.init=function(){n.$super.init.apply(this,arguments)}),n.init.prototype=n,n.$super=this,n},create:function(){var e=this.extend();return e.init.apply(e,arguments),e},init:function(){},mixIn:function(e){for(var t in e)e.hasOwnProperty(t)&&(this[t]=e[t]);e.hasOwnProperty("toString")&&(this.toString=e.toString)},clone:function(){return this.init.prototype.extend(this)}}}(),i=r.WordArray=o.extend({init:function(e,n){e=this.words=e||[],n!=t?this.sigBytes=n:this.sigBytes=4*e.length},toString:function(e){return(e||s).stringify(this)},concat:function(e){var t=this.words,n=e.words,r=this.sigBytes,o=e.sigBytes;if(this.clamp(),r%4)for(var i=0;o>i;i++){var a=n[i>>>2]>>>24-i%4*8&255;t[r+i>>>2]|=a<<24-(r+i)%4*8}else if(n.length>65535)for(var i=0;o>i;i+=4)t[r+i>>>2]=n[i>>>2];else t.push.apply(t,n);return this.sigBytes+=o,this},clamp:function(){var t=this.words,n=this.sigBytes;t[n>>>2]&=4294967295<<32-n%4*8,t.length=e.ceil(n/4)},clone:function(){var e=o.clone.call(this);return e.words=this.words.slice(0),e},random:function(t){for(var n=[],r=0;t>r;r+=4)n.push(4294967296*e.random()|0);return new i.init(n,t)}}),a=n.enc={},s=a.Hex={stringify:function(e){for(var t=e.words,n=e.sigBytes,r=[],o=0;n>o;o++){var i=t[o>>>2]>>>24-o%4*8&255;r.push((i>>>4).toString(16)),r.push((15&i).toString(16))}return r.join("")},parse:function(e){for(var t=e.length,n=[],r=0;t>r;r+=2)n[r>>>3]|=parseInt(e.substr(r,2),16)<<24-r%8*4;return new i.init(n,t/2)}},u=a.Latin1={stringify:function(e){for(var t=e.words,n=e.sigBytes,r=[],o=0;n>o;o++){var i=t[o>>>2]>>>24-o%4*8&255;r.push(String.fromCharCode(i))}return r.join("")},parse:function(e){for(var t=e.length,n=[],r=0;t>r;r++)n[r>>>2]|=(255&e.charCodeAt(r))<<24-r%4*8;return new i.init(n,t)}},c=a.Utf8={stringify:function(e){try{return decodeURIComponent(escape(u.stringify(e)))}catch(t){throw new Error("Malformed UTF-8 data")}},parse:function(e){return u.parse(unescape(encodeURIComponent(e)))}},l=r.BufferedBlockAlgorithm=o.extend({reset:function(){this._data=new i.init,this._nDataBytes=0},_append:function(e){"string"==typeof e&&(e=c.parse(e)),this._data.concat(e),this._nDataBytes+=e.sigBytes},_process:function(t){var n=this._data,r=n.words,o=n.sigBytes,a=this.blockSize,s=4*a,u=o/s;u=t?e.ceil(u):e.max((0|u)-this._minBufferSize,0);var c=u*a,l=e.min(4*c,o);if(c){for(var p=0;c>p;p+=a)this._doProcessBlock(r,p);var d=r.splice(0,c);n.sigBytes-=l}return new i.init(d,l)},clone:function(){var e=o.clone.call(this);return e._data=this._data.clone(),e},_minBufferSize:0}),p=(r.Hasher=l.extend({cfg:o.extend(),init:function(e){this.cfg=this.cfg.extend(e),this.reset()},reset:function(){l.reset.call(this),this._doReset()},update:function(e){return this._append(e),this._process(),this},finalize:function(e){e&&this._append(e);var t=this._doFinalize();return t},blockSize:16,_createHelper:function(e){return function(t,n){return new e.init(n).finalize(t)}},_createHmacHelper:function(e){return function(t,n){return new p.HMAC.init(e,n).finalize(t)}}}),n.algo={});return n}(Math);!function(){var e=CryptoJS,t=e.lib,n=t.WordArray,r=t.Hasher,o=e.algo,i=[],a=o.SHA1=r.extend({_doReset:function(){this._hash=new n.init([1732584193,4023233417,2562383102,271733878,3285377520])},_doProcessBlock:function(e,t){for(var n=this._hash.words,r=n[0],o=n[1],a=n[2],s=n[3],u=n[4],c=0;80>c;c++){if(16>c)i[c]=0|e[t+c];else{var l=i[c-3]^i[c-8]^i[c-14]^i[c-16];i[c]=l<<1|l>>>31}var p=(r<<5|r>>>27)+u+i[c];p+=20>c?(o&a|~o&s)+1518500249:40>c?(o^a^s)+1859775393:60>c?(o&a|o&s|a&s)-1894007588:(o^a^s)-899497514,u=s,s=a,a=o<<30|o>>>2,o=r,r=p}n[0]=n[0]+r|0,n[1]=n[1]+o|0,n[2]=n[2]+a|0,n[3]=n[3]+s|0,n[4]=n[4]+u|0},_doFinalize:function(){var e=this._data,t=e.words,n=8*this._nDataBytes,r=8*e.sigBytes;return t[r>>>5]|=128<<24-r%32,t[(r+64>>>9<<4)+14]=Math.floor(n/4294967296),t[(r+64>>>9<<4)+15]=n,e.sigBytes=4*t.length,this._process(),this._hash},clone:function(){var e=r.clone.call(this);return e._hash=this._hash.clone(),e}});e.SHA1=r._createHelper(a),e.HmacSHA1=r._createHmacHelper(a)}(),function(e){var t=CryptoJS,n=t.lib,r=n.WordArray,o=n.Hasher,i=t.algo,a=[],s=[];!function(){function t(t){for(var n=e.sqrt(t),r=2;n>=r;r++)if(!(t%r))return!1;return!0}function n(e){return 4294967296*(e-(0|e))|0}for(var r=2,o=0;64>o;)t(r)&&(8>o&&(a[o]=n(e.pow(r,.5))),s[o]=n(e.pow(r,1/3)),o++),r++}();var u=[],c=i.SHA256=o.extend({_doReset:function(){this._hash=new r.init(a.slice(0))},_doProcessBlock:function(e,t){for(var n=this._hash.words,r=n[0],o=n[1],i=n[2],a=n[3],c=n[4],l=n[5],p=n[6],d=n[7],h=0;64>h;h++){if(16>h)u[h]=0|e[t+h];else{var f=u[h-15],g=(f<<25|f>>>7)^(f<<14|f>>>18)^f>>>3,v=u[h-2],m=(v<<15|v>>>17)^(v<<13|v>>>19)^v>>>10;u[h]=g+u[h-7]+m+u[h-16]}var y=c&l^~c&p,_=r&o^r&i^o&i,b=(r<<30|r>>>2)^(r<<19|r>>>13)^(r<<10|r>>>22),E=(c<<26|c>>>6)^(c<<21|c>>>11)^(c<<7|c>>>25),N=d+E+y+s[h]+u[h],S=b+_;d=p,p=l,l=c,c=a+N|0,a=i,i=o,o=r,r=N+S|0}n[0]=n[0]+r|0,n[1]=n[1]+o|0,n[2]=n[2]+i|0,n[3]=n[3]+a|0,n[4]=n[4]+c|0,n[5]=n[5]+l|0,n[6]=n[6]+p|0,n[7]=n[7]+d|0},_doFinalize:function(){var t=this._data,n=t.words,r=8*this._nDataBytes,o=8*t.sigBytes;return n[o>>>5]|=128<<24-o%32,n[(o+64>>>9<<4)+14]=e.floor(r/4294967296),n[(o+64>>>9<<4)+15]=r,t.sigBytes=4*n.length,this._process(),this._hash},clone:function(){var e=o.clone.call(this);return e._hash=this._hash.clone(),e}});t.SHA256=o._createHelper(c),t.HmacSHA256=o._createHmacHelper(c)}(Math),function(e){var t=CryptoJS,n=t.lib,r=n.Base,o=n.WordArray,i=t.x64={};i.Word=r.extend({init:function(e,t){this.high=e,this.low=t}}),i.WordArray=r.extend({init:function(t,n){t=this.words=t||[],n!=e?this.sigBytes=n:this.sigBytes=8*t.length},toX32:function(){for(var e=this.words,t=e.length,n=[],r=0;t>r;r++){var i=e[r];n.push(i.high),n.push(i.low)}return o.create(n,this.sigBytes)},clone:function(){for(var e=r.clone.call(this),t=e.words=this.words.slice(0),n=t.length,o=0;n>o;o++)t[o]=t[o].clone();return e}})}(),function(){function e(){return i.create.apply(i,arguments)}var t=CryptoJS,n=t.lib,r=n.Hasher,o=t.x64,i=o.Word,a=o.WordArray,s=t.algo,u=[e(1116352408,3609767458),e(1899447441,602891725),e(3049323471,3964484399),e(3921009573,2173295548),e(961987163,4081628472),e(1508970993,3053834265),e(2453635748,2937671579),e(2870763221,3664609560),e(3624381080,2734883394),e(310598401,1164996542),e(607225278,1323610764),e(1426881987,3590304994),e(1925078388,4068182383),e(2162078206,991336113),e(2614888103,633803317),e(3248222580,3479774868),e(3835390401,2666613458),e(4022224774,944711139),e(264347078,2341262773),e(604807628,2007800933),e(770255983,1495990901),e(1249150122,1856431235),e(1555081692,3175218132),e(1996064986,2198950837),e(2554220882,3999719339),e(2821834349,766784016),e(2952996808,2566594879),e(3210313671,3203337956),e(3336571891,1034457026),e(3584528711,2466948901),e(113926993,3758326383),e(338241895,168717936),e(666307205,1188179964),e(773529912,1546045734),e(1294757372,1522805485),e(1396182291,2643833823),e(1695183700,2343527390),e(1986661051,1014477480),e(2177026350,1206759142),e(2456956037,344077627),e(2730485921,1290863460),e(2820302411,3158454273),e(3259730800,3505952657),e(3345764771,106217008),e(3516065817,3606008344),e(3600352804,1432725776),e(4094571909,1467031594),e(275423344,851169720),e(430227734,3100823752),e(506948616,1363258195),e(659060556,3750685593),e(883997877,3785050280),e(958139571,3318307427),e(1322822218,3812723403),e(1537002063,2003034995),e(1747873779,3602036899),e(1955562222,1575990012),e(2024104815,1125592928),e(2227730452,2716904306),e(2361852424,442776044),e(2428436474,593698344),e(2756734187,3733110249),e(3204031479,2999351573),e(3329325298,3815920427),e(3391569614,3928383900),e(3515267271,566280711),e(3940187606,3454069534),e(4118630271,4000239992),e(116418474,1914138554),e(174292421,2731055270),e(289380356,3203993006),e(460393269,320620315),e(685471733,587496836),e(852142971,1086792851),e(1017036298,365543100),e(1126000580,2618297676),e(1288033470,3409855158),e(1501505948,4234509866),e(1607167915,987167468),e(1816402316,1246189591)],c=[];!function(){for(var t=0;80>t;t++)c[t]=e()}();var l=s.SHA512=r.extend({_doReset:function(){this._hash=new a.init([new i.init(1779033703,4089235720),new i.init(3144134277,2227873595),new i.init(1013904242,4271175723),new i.init(2773480762,1595750129),new i.init(1359893119,2917565137),new i.init(2600822924,725511199),new i.init(528734635,4215389547),new i.init(1541459225,327033209)])},_doProcessBlock:function(e,t){for(var n=this._hash.words,r=n[0],o=n[1],i=n[2],a=n[3],s=n[4],l=n[5],p=n[6],d=n[7],h=r.high,f=r.low,g=o.high,v=o.low,m=i.high,y=i.low,_=a.high,b=a.low,E=s.high,N=s.low,S=l.high,w=l.low,C=p.high,D=p.low,O=d.high,A=d.low,x=h,R=f,I=g,T=v,P=m,M=y,k=_,B=b,U=E,V=N,L=S,j=w,H=C,F=D,K=O,W=A,J=0;80>J;J++){var q=c[J];if(16>J)var X=q.high=0|e[t+2*J],Y=q.low=0|e[t+2*J+1];else{var z=c[J-15],G=z.high,$=z.low,Z=(G>>>1|$<<31)^(G>>>8|$<<24)^G>>>7,Q=($>>>1|G<<31)^($>>>8|G<<24)^($>>>7|G<<25),ee=c[J-2],te=ee.high,ne=ee.low,re=(te>>>19|ne<<13)^(te<<3|ne>>>29)^te>>>6,oe=(ne>>>19|te<<13)^(ne<<3|te>>>29)^(ne>>>6|te<<26),ie=c[J-7],ae=ie.high,se=ie.low,ue=c[J-16],ce=ue.high,le=ue.low,Y=Q+se,X=Z+ae+(Q>>>0>Y>>>0?1:0),Y=Y+oe,X=X+re+(oe>>>0>Y>>>0?1:0),Y=Y+le,X=X+ce+(le>>>0>Y>>>0?1:0);q.high=X,q.low=Y}var pe=U&L^~U&H,de=V&j^~V&F,he=x&I^x&P^I&P,fe=R&T^R&M^T&M,ge=(x>>>28|R<<4)^(x<<30|R>>>2)^(x<<25|R>>>7),ve=(R>>>28|x<<4)^(R<<30|x>>>2)^(R<<25|x>>>7),me=(U>>>14|V<<18)^(U>>>18|V<<14)^(U<<23|V>>>9),ye=(V>>>14|U<<18)^(V>>>18|U<<14)^(V<<23|U>>>9),_e=u[J],be=_e.high,Ee=_e.low,Ne=W+ye,Se=K+me+(W>>>0>Ne>>>0?1:0),Ne=Ne+de,Se=Se+pe+(de>>>0>Ne>>>0?1:0),Ne=Ne+Ee,Se=Se+be+(Ee>>>0>Ne>>>0?1:0),Ne=Ne+Y,Se=Se+X+(Y>>>0>Ne>>>0?1:0),we=ve+fe,Ce=ge+he+(ve>>>0>we>>>0?1:0);K=H,W=F,H=L,F=j,L=U,j=V,V=B+Ne|0,U=k+Se+(B>>>0>V>>>0?1:0)|0,k=P,B=M,P=I,M=T,I=x,T=R,R=Ne+we|0,x=Se+Ce+(Ne>>>0>R>>>0?1:0)|0}f=r.low=f+R,r.high=h+x+(R>>>0>f>>>0?1:0),v=o.low=v+T,o.high=g+I+(T>>>0>v>>>0?1:0),y=i.low=y+M,i.high=m+P+(M>>>0>y>>>0?1:0),b=a.low=b+B,a.high=_+k+(B>>>0>b>>>0?1:0),N=s.low=N+V,s.high=E+U+(V>>>0>N>>>0?1:0),w=l.low=w+j,l.high=S+L+(j>>>0>w>>>0?1:0),D=p.low=D+F,p.high=C+H+(F>>>0>D>>>0?1:0),A=d.low=A+W,d.high=O+K+(W>>>0>A>>>0?1:0)},_doFinalize:function(){var e=this._data,t=e.words,n=8*this._nDataBytes,r=8*e.sigBytes;t[r>>>5]|=128<<24-r%32,t[(r+128>>>10<<5)+30]=Math.floor(n/4294967296),t[(r+128>>>10<<5)+31]=n,e.sigBytes=4*t.length,this._process();var o=this._hash.toX32();return o},clone:function(){var e=r.clone.call(this);return e._hash=this._hash.clone(),e},blockSize:32});t.SHA512=r._createHelper(l),t.HmacSHA512=r._createHmacHelper(l)}();/*! (c) Tom Wu | http://www-cs-students.stanford.edu/~tjw/jsbn/
-	 */
-var b64map="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",b64pad="=",dbits,canary=0xdeadbeefcafe,j_lm=15715070==(16777215&canary);j_lm&&"Microsoft Internet Explorer"==navigator.appName?(BigInteger.prototype.am=am2,dbits=30):j_lm&&"Netscape"!=navigator.appName?(BigInteger.prototype.am=am1,dbits=26):(BigInteger.prototype.am=am3,dbits=28),BigInteger.prototype.DB=dbits,BigInteger.prototype.DM=(1<<dbits)-1,BigInteger.prototype.DV=1<<dbits;var BI_FP=52;BigInteger.prototype.FV=Math.pow(2,BI_FP),BigInteger.prototype.F1=BI_FP-dbits,BigInteger.prototype.F2=2*dbits-BI_FP;var BI_RM="0123456789abcdefghijklmnopqrstuvwxyz",BI_RC=new Array,rr,vv;for(rr="0".charCodeAt(0),vv=0;9>=vv;++vv)BI_RC[rr++]=vv;for(rr="a".charCodeAt(0),vv=10;36>vv;++vv)BI_RC[rr++]=vv;for(rr="A".charCodeAt(0),vv=10;36>vv;++vv)BI_RC[rr++]=vv;Classic.prototype.convert=cConvert,Classic.prototype.revert=cRevert,Classic.prototype.reduce=cReduce,Classic.prototype.mulTo=cMulTo,Classic.prototype.sqrTo=cSqrTo,Montgomery.prototype.convert=montConvert,Montgomery.prototype.revert=montRevert,Montgomery.prototype.reduce=montReduce,Montgomery.prototype.mulTo=montMulTo,Montgomery.prototype.sqrTo=montSqrTo,BigInteger.prototype.copyTo=bnpCopyTo,BigInteger.prototype.fromInt=bnpFromInt,BigInteger.prototype.fromString=bnpFromString,BigInteger.prototype.clamp=bnpClamp,BigInteger.prototype.dlShiftTo=bnpDLShiftTo,BigInteger.prototype.drShiftTo=bnpDRShiftTo,BigInteger.prototype.lShiftTo=bnpLShiftTo,BigInteger.prototype.rShiftTo=bnpRShiftTo,BigInteger.prototype.subTo=bnpSubTo,BigInteger.prototype.multiplyTo=bnpMultiplyTo,BigInteger.prototype.squareTo=bnpSquareTo,BigInteger.prototype.divRemTo=bnpDivRemTo,BigInteger.prototype.invDigit=bnpInvDigit,BigInteger.prototype.isEven=bnpIsEven,BigInteger.prototype.exp=bnpExp,BigInteger.prototype.toString=bnToString,BigInteger.prototype.negate=bnNegate,BigInteger.prototype.abs=bnAbs,BigInteger.prototype.compareTo=bnCompareTo,BigInteger.prototype.bitLength=bnBitLength,BigInteger.prototype.mod=bnMod,BigInteger.prototype.modPowInt=bnModPowInt,BigInteger.ZERO=nbv(0),BigInteger.ONE=nbv(1),NullExp.prototype.convert=nNop,NullExp.prototype.revert=nNop,NullExp.prototype.mulTo=nMulTo,NullExp.prototype.sqrTo=nSqrTo,Barrett.prototype.convert=barrettConvert,Barrett.prototype.revert=barrettRevert,Barrett.prototype.reduce=barrettReduce,Barrett.prototype.mulTo=barrettMulTo,Barrett.prototype.sqrTo=barrettSqrTo;var lowprimes=[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,457,461,463,467,479,487,491,499,503,509,521,523,541,547,557,563,569,571,577,587,593,599,601,607,613,617,619,631,641,643,647,653,659,661,673,677,683,691,701,709,719,727,733,739,743,751,757,761,769,773,787,797,809,811,821,823,827,829,839,853,857,859,863,877,881,883,887,907,911,919,929,937,941,947,953,967,971,977,983,991,997],lplim=(1<<26)/lowprimes[lowprimes.length-1];BigInteger.prototype.chunkSize=bnpChunkSize,BigInteger.prototype.toRadix=bnpToRadix,BigInteger.prototype.fromRadix=bnpFromRadix,BigInteger.prototype.fromNumber=bnpFromNumber,BigInteger.prototype.bitwiseTo=bnpBitwiseTo,BigInteger.prototype.changeBit=bnpChangeBit,BigInteger.prototype.addTo=bnpAddTo,BigInteger.prototype.dMultiply=bnpDMultiply,BigInteger.prototype.dAddOffset=bnpDAddOffset,BigInteger.prototype.multiplyLowerTo=bnpMultiplyLowerTo,BigInteger.prototype.multiplyUpperTo=bnpMultiplyUpperTo,BigInteger.prototype.modInt=bnpModInt,BigInteger.prototype.millerRabin=bnpMillerRabin,BigInteger.prototype.clone=bnClone,BigInteger.prototype.intValue=bnIntValue,BigInteger.prototype.byteValue=bnByteValue,BigInteger.prototype.shortValue=bnShortValue,BigInteger.prototype.signum=bnSigNum,BigInteger.prototype.toByteArray=bnToByteArray,BigInteger.prototype.equals=bnEquals,BigInteger.prototype.min=bnMin,BigInteger.prototype.max=bnMax,BigInteger.prototype.and=bnAnd,BigInteger.prototype.or=bnOr,BigInteger.prototype.xor=bnXor,BigInteger.prototype.andNot=bnAndNot,BigInteger.prototype.not=bnNot,BigInteger.prototype.shiftLeft=bnShiftLeft,BigInteger.prototype.shiftRight=bnShiftRight,BigInteger.prototype.getLowestSetBit=bnGetLowestSetBit,BigInteger.prototype.bitCount=bnBitCount,BigInteger.prototype.testBit=bnTestBit,BigInteger.prototype.setBit=bnSetBit,BigInteger.prototype.clearBit=bnClearBit,BigInteger.prototype.flipBit=bnFlipBit,BigInteger.prototype.add=bnAdd,BigInteger.prototype.subtract=bnSubtract,BigInteger.prototype.multiply=bnMultiply,BigInteger.prototype.divide=bnDivide,BigInteger.prototype.remainder=bnRemainder,BigInteger.prototype.divideAndRemainder=bnDivideAndRemainder,BigInteger.prototype.modPow=bnModPow,BigInteger.prototype.modInverse=bnModInverse,BigInteger.prototype.pow=bnPow,BigInteger.prototype.gcd=bnGCD,BigInteger.prototype.isProbablePrime=bnIsProbablePrime,BigInteger.prototype.square=bnSquare;var SHA1_SIZE=20;RSAKey.prototype.doPublic=RSADoPublic,RSAKey.prototype.setPublic=RSASetPublic,RSAKey.prototype.encrypt=RSAEncrypt,RSAKey.prototype.encryptOAEP=RSAEncryptOAEP,RSAKey.prototype.type="RSA";var SHA1_SIZE=20;RSAKey.prototype.doPrivate=RSADoPrivate,RSAKey.prototype.setPrivate=RSASetPrivate,RSAKey.prototype.setPrivateEx=RSASetPrivateEx,RSAKey.prototype.generate=RSAGenerate,RSAKey.prototype.decrypt=RSADecrypt,RSAKey.prototype.decryptOAEP=RSADecryptOAEP,RSAKey.prototype.readPrivateKeyFromPEMString=_rsapem_readPrivateKeyFromPEMString,RSAKey.prototype.readPrivateKeyFromASN1HexString=_rsapem_readPrivateKeyFromASN1HexString;/*! rsasign-1.2.7.js (c) 2012 Kenji Urushima | kjur.github.com/jsrsasign/license
-	 */
-var _RE_HEXDECONLY=new RegExp("");_RE_HEXDECONLY.compile("[^0-9a-f]","gi"),RSAKey.prototype.signWithMessageHash=_rsasign_signWithMessageHash,RSAKey.prototype.signString=_rsasign_signString,RSAKey.prototype.signStringWithSHA1=_rsasign_signStringWithSHA1,RSAKey.prototype.signStringWithSHA256=_rsasign_signStringWithSHA256,RSAKey.prototype.sign=_rsasign_signString,RSAKey.prototype.signWithSHA1=_rsasign_signStringWithSHA1,RSAKey.prototype.signWithSHA256=_rsasign_signStringWithSHA256,RSAKey.prototype.signWithMessageHashPSS=_rsasign_signWithMessageHashPSS,RSAKey.prototype.signStringPSS=_rsasign_signStringPSS,RSAKey.prototype.signPSS=_rsasign_signStringPSS,RSAKey.SALT_LEN_HLEN=-1,RSAKey.SALT_LEN_MAX=-2,RSAKey.prototype.verifyWithMessageHash=_rsasign_verifyWithMessageHash,RSAKey.prototype.verifyString=_rsasign_verifyString,RSAKey.prototype.verifyHexSignatureForMessage=_rsasign_verifyHexSignatureForMessage,RSAKey.prototype.verify=_rsasign_verifyString,RSAKey.prototype.verifyHexSignatureForByteArrayMessage=_rsasign_verifyHexSignatureForMessage,RSAKey.prototype.verifyWithMessageHashPSS=_rsasign_verifyWithMessageHashPSS,RSAKey.prototype.verifyStringPSS=_rsasign_verifyStringPSS,RSAKey.prototype.verifyPSS=_rsasign_verifyStringPSS,RSAKey.SALT_LEN_RECOVER=-2;/*! asn1hex-1.1.5.js (c) 2012-2014 Kenji Urushima | kjur.github.com/jsrsasign/license
-	 */
-/**
-	 * @fileOverview
-	 * @name asn1hex-1.1.js
-	 * @author Kenji Urushima kenji.urushima@gmail.com
-	 * @version asn1hex 1.1.5 (2014-May-25)
-	 * @license <a href="http://kjur.github.io/jsrsasign/license/">MIT License</a>
-	 */
-var ASN1HEX=new function(){this.getByteLengthOfL_AtObj=function(e,t){if("8"!=e.substring(t+2,t+3))return 1;var n=parseInt(e.substring(t+3,t+4));return 0==n?-1:n>0&&10>n?n+1:-2},this.getHexOfL_AtObj=function(e,t){var n=this.getByteLengthOfL_AtObj(e,t);return 1>n?"":e.substring(t+2,t+2+2*n)},this.getIntOfL_AtObj=function(e,t){var n=this.getHexOfL_AtObj(e,t);if(""==n)return-1;var r;return r=parseInt(n.substring(0,1))<8?new BigInteger(n,16):new BigInteger(n.substring(2),16),r.intValue()},this.getStartPosOfV_AtObj=function(e,t){var n=this.getByteLengthOfL_AtObj(e,t);return 0>n?n:t+2*(n+1)},this.getHexOfV_AtObj=function(e,t){var n=this.getStartPosOfV_AtObj(e,t),r=this.getIntOfL_AtObj(e,t);return e.substring(n,n+2*r)},this.getHexOfTLV_AtObj=function(e,t){var n=e.substr(t,2),r=this.getHexOfL_AtObj(e,t),o=this.getHexOfV_AtObj(e,t);return n+r+o},this.getPosOfNextSibling_AtObj=function(e,t){var n=this.getStartPosOfV_AtObj(e,t),r=this.getIntOfL_AtObj(e,t);return n+2*r},this.getPosArrayOfChildren_AtObj=function(e,t){var n=new Array,r=this.getStartPosOfV_AtObj(e,t);n.push(r);for(var o=this.getIntOfL_AtObj(e,t),i=r,a=0;;){var s=this.getPosOfNextSibling_AtObj(e,i);if(null==s||s-r>=2*o)break;if(a>=200)break;n.push(s),i=s,a++}return n},this.getNthChildIndex_AtObj=function(e,t,n){var r=this.getPosArrayOfChildren_AtObj(e,t);return r[n]},this.getDecendantIndexByNthList=function(e,t,n){if(0==n.length)return t;var r=n.shift(),o=this.getPosArrayOfChildren_AtObj(e,t);return this.getDecendantIndexByNthList(e,o[r],n)},this.getDecendantHexTLVByNthList=function(e,t,n){var r=this.getDecendantIndexByNthList(e,t,n);return this.getHexOfTLV_AtObj(e,r)},this.getDecendantHexVByNthList=function(e,t,n){var r=this.getDecendantIndexByNthList(e,t,n);return this.getHexOfV_AtObj(e,r)}};ASN1HEX.getVbyList=function(e,t,n,r){var o=this.getDecendantIndexByNthList(e,t,n);if(void 0===o)throw"can't find nthList object";if(void 0!==r&&e.substr(o,2)!=r)throw"checking tag doesn't match: "+e.substr(o,2)+"!="+r;return this.getHexOfV_AtObj(e,o)},ASN1HEX.hextooidstr=function(e){var t=function(e,t){return e.length>=t?e:new Array(t-e.length+1).join("0")+e},n=[],r=e.substr(0,2),o=parseInt(r,16);n[0]=new String(Math.floor(o/40)),n[1]=new String(o%40);for(var i=e.substr(2),a=[],s=0;s<i.length/2;s++)a.push(parseInt(i.substr(2*s,2),16));for(var u=[],c="",s=0;s<a.length;s++)128&a[s]?c+=t((127&a[s]).toString(2),7):(c+=t((127&a[s]).toString(2),7),u.push(new String(parseInt(c,2))),c="");var l=n.join(".");return u.length>0&&(l=l+"."+u.join(".")),l},X509.pemToBase64=function(e){var t=e;return t=t.replace("-----BEGIN CERTIFICATE-----",""),t=t.replace("-----END CERTIFICATE-----",""),t=t.replace(/[ \n]+/g,"")},X509.pemToHex=function(e){var t=X509.pemToBase64(e),n=b64tohex(t);return n},X509.getSubjectPublicKeyPosFromCertHex=function(e){var t=X509.getSubjectPublicKeyInfoPosFromCertHex(e);if(-1==t)return-1;var n=ASN1HEX.getPosArrayOfChildren_AtObj(e,t);if(2!=n.length)return-1;var r=n[1];if("03"!=e.substring(r,r+2))return-1;var o=ASN1HEX.getStartPosOfV_AtObj(e,r);return"00"!=e.substring(o,o+2)?-1:o+2},X509.getSubjectPublicKeyInfoPosFromCertHex=function(e){var t=ASN1HEX.getStartPosOfV_AtObj(e,0),n=ASN1HEX.getPosArrayOfChildren_AtObj(e,t);return n.length<1?-1:"a003020102"==e.substring(n[0],n[0]+10)?n.length<6?-1:n[6]:n.length<5?-1:n[5]},X509.getPublicKeyHexArrayFromCertHex=function(e){var t=X509.getSubjectPublicKeyPosFromCertHex(e),n=ASN1HEX.getPosArrayOfChildren_AtObj(e,t);if(2!=n.length)return[];var r=ASN1HEX.getHexOfV_AtObj(e,n[0]),o=ASN1HEX.getHexOfV_AtObj(e,n[1]);return null!=r&&null!=o?[r,o]:[]},X509.getHexTbsCertificateFromCert=function(e){var t=ASN1HEX.getStartPosOfV_AtObj(e,0);return t},X509.getPublicKeyHexArrayFromCertPEM=function(e){var t=X509.pemToHex(e),n=X509.getPublicKeyHexArrayFromCertHex(t);return n},X509.hex2dn=function(e){for(var t="",n=ASN1HEX.getPosArrayOfChildren_AtObj(e,0),r=0;r<n.length;r++){var o=ASN1HEX.getHexOfTLV_AtObj(e,n[r]);t=t+"/"+X509.hex2rdn(o)}return t},X509.hex2rdn=function(e){var t=ASN1HEX.getDecendantHexTLVByNthList(e,0,[0,0]),n=ASN1HEX.getDecendantHexVByNthList(e,0,[0,1]),r="";try{r=X509.DN_ATTRHEX[t]}catch(o){r=t}n=n.replace(/(..)/g,"%$1");var i=decodeURIComponent(n);return r+"="+i},X509.DN_ATTRHEX={"0603550406":"C","060355040a":"O","060355040b":"OU","0603550403":"CN","0603550405":"SN","0603550408":"ST","0603550407":"L"},X509.getPublicKeyFromCertPEM=function(e){var t=X509.getPublicKeyInfoPropOfCertPEM(e);if("2a864886f70d010101"==t.algoid){var n=KEYUTIL.parsePublicRawRSAKeyHex(t.keyhex),r=new RSAKey;return r.setPublic(n.n,n.e),r}if("2a8648ce3d0201"==t.algoid){var o=KJUR.crypto.OID.oidhex2name[t.algparam],r=new KJUR.crypto.ECDSA({curve:o,info:t.keyhex});return r.setPublicKeyHex(t.keyhex),r}if("2a8648ce380401"==t.algoid){var i=ASN1HEX.getVbyList(t.algparam,0,[0],"02"),a=ASN1HEX.getVbyList(t.algparam,0,[1],"02"),s=ASN1HEX.getVbyList(t.algparam,0,[2],"02"),u=ASN1HEX.getHexOfV_AtObj(t.keyhex,0);u=u.substr(2);var r=new KJUR.crypto.DSA;return r.setPublic(new BigInteger(i,16),new BigInteger(a,16),new BigInteger(s,16),new BigInteger(u,16)),r}throw"unsupported key"},X509.getPublicKeyInfoPropOfCertPEM=function(e){var t={};t.algparam=null;var n=X509.pemToHex(e),r=ASN1HEX.getPosArrayOfChildren_AtObj(n,0);if(3!=r.length)throw"malformed X.509 certificate PEM (code:001)";if("30"!=n.substr(r[0],2))throw"malformed X.509 certificate PEM (code:002)";var o=ASN1HEX.getPosArrayOfChildren_AtObj(n,r[0]);if(o.length<7)throw"malformed X.509 certificate PEM (code:003)";var i=ASN1HEX.getPosArrayOfChildren_AtObj(n,o[6]);if(2!=i.length)throw"malformed X.509 certificate PEM (code:004)";var a=ASN1HEX.getPosArrayOfChildren_AtObj(n,i[0]);if(2!=a.length)throw"malformed X.509 certificate PEM (code:005)";if(t.algoid=ASN1HEX.getHexOfV_AtObj(n,a[0]),"06"==n.substr(a[1],2)?t.algparam=ASN1HEX.getHexOfV_AtObj(n,a[1]):"30"==n.substr(a[1],2)&&(t.algparam=ASN1HEX.getHexOfTLV_AtObj(n,a[1])),"03"!=n.substr(i[1],2))throw"malformed X.509 certificate PEM (code:006)";var s=ASN1HEX.getHexOfV_AtObj(n,i[1]);return t.keyhex=s.substr(2),t},/*! crypto-1.1.5.js (c) 2013 Kenji Urushima | kjur.github.com/jsrsasign/license
-	 */
-/**
+	 */ /*
+	 * Depends:
+	 *   base64.js
+	 *   rsa.js
+	 *   asn1hex.js
+	 */ /**
+	 * X.509 certificate class.<br/>
+	 * @class X.509 certificate class
+	 * @property {RSAKey} subjectPublicKeyRSA Tom Wu's RSAKey object
+	 * @property {String} subjectPublicKeyRSA_hN hexadecimal string for modulus of RSA public key
+	 * @property {String} subjectPublicKeyRSA_hE hexadecimal string for public exponent of RSA public key
+	 * @property {String} hex hexacedimal string for X.509 certificate.
+	 * @author Kenji Urushima
+	 * @version 1.0.1 (08 May 2012)
+	 * @see <a href="http://kjur.github.com/jsrsasigns/">'jwrsasign'(RSA Sign JavaScript Library) home page http://kjur.github.com/jsrsasign/</a>
+	 */function X509(){this.subjectPublicKeyRSA=null;this.subjectPublicKeyRSA_hN=null;this.subjectPublicKeyRSA_hE=null;this.hex=null; // ===== get basic fields from hex =====================================
+	/**
+	     * get hexadecimal string of serialNumber field of certificate.<br/>
+	     * @name getSerialNumberHex
+	     * @memberOf X509#
+	     * @function
+	     */this.getSerialNumberHex=function(){return ASN1HEX.getDecendantHexVByNthList(this.hex,0,[0,1]);}; /**
+	     * get hexadecimal string of issuer field TLV of certificate.<br/>
+	     * @name getIssuerHex
+	     * @memberOf X509#
+	     * @function
+	     */this.getIssuerHex=function(){return ASN1HEX.getDecendantHexTLVByNthList(this.hex,0,[0,3]);}; /**
+	     * get string of issuer field of certificate.<br/>
+	     * @name getIssuerString
+	     * @memberOf X509#
+	     * @function
+	     */this.getIssuerString=function(){return X509.hex2dn(ASN1HEX.getDecendantHexTLVByNthList(this.hex,0,[0,3]));}; /**
+	     * get hexadecimal string of subject field of certificate.<br/>
+	     * @name getSubjectHex
+	     * @memberOf X509#
+	     * @function
+	     */this.getSubjectHex=function(){return ASN1HEX.getDecendantHexTLVByNthList(this.hex,0,[0,5]);}; /**
+	     * get string of subject field of certificate.<br/>
+	     * @name getSubjectString
+	     * @memberOf X509#
+	     * @function
+	     */this.getSubjectString=function(){return X509.hex2dn(ASN1HEX.getDecendantHexTLVByNthList(this.hex,0,[0,5]));}; /**
+	     * get notBefore field string of certificate.<br/>
+	     * @name getNotBefore
+	     * @memberOf X509#
+	     * @function
+	     */this.getNotBefore=function(){var s=ASN1HEX.getDecendantHexVByNthList(this.hex,0,[0,4,0]);s=s.replace(/(..)/g,"%$1");s=decodeURIComponent(s);return s;}; /**
+	     * get notAfter field string of certificate.<br/>
+	     * @name getNotAfter
+	     * @memberOf X509#
+	     * @function
+	     */this.getNotAfter=function(){var s=ASN1HEX.getDecendantHexVByNthList(this.hex,0,[0,4,1]);s=s.replace(/(..)/g,"%$1");s=decodeURIComponent(s);return s;}; // ===== read certificate public key ==========================
+	// ===== read certificate =====================================
+	/**
+	     * read PEM formatted X.509 certificate from string.<br/>
+	     * @name readCertPEM
+	     * @memberOf X509#
+	     * @function
+	     * @param {String} sCertPEM string for PEM formatted X.509 certificate
+	     */this.readCertPEM=function(sCertPEM){var hCert=X509.pemToHex(sCertPEM);var a=X509.getPublicKeyHexArrayFromCertHex(hCert);var rsa=new RSAKey();rsa.setPublic(a[0],a[1]);this.subjectPublicKeyRSA=rsa;this.subjectPublicKeyRSA_hN=a[0];this.subjectPublicKeyRSA_hE=a[1];this.hex=hCert;};this.readCertPEMWithoutRSAInit=function(sCertPEM){var hCert=X509.pemToHex(sCertPEM);var a=X509.getPublicKeyHexArrayFromCertHex(hCert);this.subjectPublicKeyRSA.setPublic(a[0],a[1]);this.subjectPublicKeyRSA_hN=a[0];this.subjectPublicKeyRSA_hE=a[1];this.hex=hCert;};};X509.pemToBase64=function(sCertPEM){var s=sCertPEM;s=s.replace("-----BEGIN CERTIFICATE-----","");s=s.replace("-----END CERTIFICATE-----","");s=s.replace(/[ \n]+/g,"");return s;};X509.pemToHex=function(sCertPEM){var b64Cert=X509.pemToBase64(sCertPEM);var hCert=b64tohex(b64Cert);return hCert;}; // NOTE: Without BITSTRING encapsulation.
+	X509.getSubjectPublicKeyPosFromCertHex=function(hCert){var pInfo=X509.getSubjectPublicKeyInfoPosFromCertHex(hCert);if(pInfo==-1)return -1;var a=ASN1HEX.getPosArrayOfChildren_AtObj(hCert,pInfo);if(a.length!=2)return -1;var pBitString=a[1];if(hCert.substring(pBitString,pBitString+2)!='03')return -1;var pBitStringV=ASN1HEX.getStartPosOfV_AtObj(hCert,pBitString);if(hCert.substring(pBitStringV,pBitStringV+2)!='00')return -1;return pBitStringV+2;}; // NOTE: privateKeyUsagePeriod field of X509v2 not supported.
+	// NOTE: v1 and v3 supported
+	X509.getSubjectPublicKeyInfoPosFromCertHex=function(hCert){var pTbsCert=ASN1HEX.getStartPosOfV_AtObj(hCert,0);var a=ASN1HEX.getPosArrayOfChildren_AtObj(hCert,pTbsCert);if(a.length<1)return -1;if(hCert.substring(a[0],a[0]+10)=="a003020102"){ // v3
+	if(a.length<6)return -1;return a[6];}else {if(a.length<5)return -1;return a[5];}};X509.getPublicKeyHexArrayFromCertHex=function(hCert){var p=X509.getSubjectPublicKeyPosFromCertHex(hCert);var a=ASN1HEX.getPosArrayOfChildren_AtObj(hCert,p);if(a.length!=2)return [];var hN=ASN1HEX.getHexOfV_AtObj(hCert,a[0]);var hE=ASN1HEX.getHexOfV_AtObj(hCert,a[1]);if(hN!=null&&hE!=null){return [hN,hE];}else {return [];}};X509.getHexTbsCertificateFromCert=function(hCert){var pTbsCert=ASN1HEX.getStartPosOfV_AtObj(hCert,0);return pTbsCert;};X509.getPublicKeyHexArrayFromCertPEM=function(sCertPEM){var hCert=X509.pemToHex(sCertPEM);var a=X509.getPublicKeyHexArrayFromCertHex(hCert);return a;};X509.hex2dn=function(hDN){var s="";var a=ASN1HEX.getPosArrayOfChildren_AtObj(hDN,0);for(var i=0;i<a.length;i++){var hRDN=ASN1HEX.getHexOfTLV_AtObj(hDN,a[i]);s=s+"/"+X509.hex2rdn(hRDN);}return s;};X509.hex2rdn=function(hRDN){var hType=ASN1HEX.getDecendantHexTLVByNthList(hRDN,0,[0,0]);var hValue=ASN1HEX.getDecendantHexVByNthList(hRDN,0,[0,1]);var type="";try{type=X509.DN_ATTRHEX[hType];}catch(ex){type=hType;}hValue=hValue.replace(/(..)/g,"%$1");var value=decodeURIComponent(hValue);return type+"="+value;};X509.DN_ATTRHEX={"0603550406":"C","060355040a":"O","060355040b":"OU","0603550403":"CN","0603550405":"SN","0603550408":"ST","0603550407":"L"}; /**
+	 * get RSAKey/ECDSA public key object from PEM certificate string
+	 * @name getPublicKeyFromCertPEM
+	 * @memberOf X509
+	 * @function
+	 * @param {String} sCertPEM PEM formatted RSA/ECDSA/DSA X.509 certificate
+	 * @return returns RSAKey/KJUR.crypto.{ECDSA,DSA} object of public key
+	 * @since x509 1.1.1
+	 * @description
+	 * NOTE: DSA is also supported since x509 1.1.2.
+	 */X509.getPublicKeyFromCertPEM=function(sCertPEM){var info=X509.getPublicKeyInfoPropOfCertPEM(sCertPEM);if(info.algoid=="2a864886f70d010101"){ // RSA
+	var aRSA=KEYUTIL.parsePublicRawRSAKeyHex(info.keyhex);var key=new RSAKey();key.setPublic(aRSA.n,aRSA.e);return key;}else if(info.algoid=="2a8648ce3d0201"){ // ECC
+	var curveName=KJUR.crypto.OID.oidhex2name[info.algparam];var key=new KJUR.crypto.ECDSA({'curve':curveName,'info':info.keyhex});key.setPublicKeyHex(info.keyhex);return key;}else if(info.algoid=="2a8648ce380401"){ // DSA 1.2.840.10040.4.1
+	var p=ASN1HEX.getVbyList(info.algparam,0,[0],"02");var q=ASN1HEX.getVbyList(info.algparam,0,[1],"02");var g=ASN1HEX.getVbyList(info.algparam,0,[2],"02");var y=ASN1HEX.getHexOfV_AtObj(info.keyhex,0);y=y.substr(2);var key=new KJUR.crypto.DSA();key.setPublic(new BigInteger(p,16),new BigInteger(q,16),new BigInteger(g,16),new BigInteger(y,16));return key;}else {throw "unsupported key";}}; /**
+	 * get public key information from PEM certificate
+	 * @name getPublicKeyInfoPropOfCertPEM
+	 * @memberOf X509
+	 * @function
+	 * @param {String} sCertPEM string of PEM formatted certificate
+	 * @return {Hash} hash of information for public key
+	 * @since x509 1.1.1
+	 * @description
+	 * Resulted associative array has following properties:
+	 * <ul>
+	 * <li>algoid - hexadecimal string of OID of asymmetric key algorithm</li>
+	 * <li>algparam - hexadecimal string of OID of ECC curve name or null</li>
+	 * <li>keyhex - hexadecimal string of key in the certificate</li>
+	 * </ul>
+	 * @since x509 1.1.1
+	 */X509.getPublicKeyInfoPropOfCertPEM=function(sCertPEM){var result={};result.algparam=null;var hCert=X509.pemToHex(sCertPEM); // 1. Certificate ASN.1
+	var a1=ASN1HEX.getPosArrayOfChildren_AtObj(hCert,0);if(a1.length!=3)throw "malformed X.509 certificate PEM (code:001)"; // not 3 item of seq Cert
+	// 2. tbsCertificate
+	if(hCert.substr(a1[0],2)!="30")throw "malformed X.509 certificate PEM (code:002)"; // tbsCert not seq
+	var a2=ASN1HEX.getPosArrayOfChildren_AtObj(hCert,a1[0]); // 3. subjectPublicKeyInfo
+	if(a2.length<7)throw "malformed X.509 certificate PEM (code:003)"; // no subjPubKeyInfo
+	var a3=ASN1HEX.getPosArrayOfChildren_AtObj(hCert,a2[6]);if(a3.length!=2)throw "malformed X.509 certificate PEM (code:004)"; // not AlgId and PubKey
+	// 4. AlgId
+	var a4=ASN1HEX.getPosArrayOfChildren_AtObj(hCert,a3[0]);if(a4.length!=2)throw "malformed X.509 certificate PEM (code:005)"; // not 2 item in AlgId
+	result.algoid=ASN1HEX.getHexOfV_AtObj(hCert,a4[0]);if(hCert.substr(a4[1],2)=="06"){ // EC
+	result.algparam=ASN1HEX.getHexOfV_AtObj(hCert,a4[1]);}else if(hCert.substr(a4[1],2)=="30"){ // DSA
+	result.algparam=ASN1HEX.getHexOfTLV_AtObj(hCert,a4[1]);} // 5. Public Key Hex
+	if(hCert.substr(a3[1],2)!="03")throw "malformed X.509 certificate PEM (code:006)"; // not bitstring
+	var unusedBitAndKeyHex=ASN1HEX.getHexOfV_AtObj(hCert,a3[1]);result.keyhex=unusedBitAndKeyHex.substr(2);return result;}; /*
+	  X509.prototype.readCertPEM = _x509_readCertPEM;
+	  X509.prototype.readCertPEMWithoutRSAInit = _x509_readCertPEMWithoutRSAInit;
+	  X509.prototype.getSerialNumberHex = _x509_getSerialNumberHex;
+	  X509.prototype.getIssuerHex = _x509_getIssuerHex;
+	  X509.prototype.getSubjectHex = _x509_getSubjectHex;
+	  X509.prototype.getIssuerString = _x509_getIssuerString;
+	  X509.prototype.getSubjectString = _x509_getSubjectString;
+	  X509.prototype.getNotBefore = _x509_getNotBefore;
+	  X509.prototype.getNotAfter = _x509_getNotAfter;
+	*/ /*! crypto-1.1.5.js (c) 2013 Kenji Urushima | kjur.github.com/jsrsasign/license
+	 */ /*
+	 * crypto.js - Cryptographic Algorithm Provider class
+	 *
+	 * Copyright (c) 2013 Kenji Urushima (kenji.urushima@gmail.com)
+	 *
+	 * This software is licensed under the terms of the MIT License.
+	 * http://kjur.github.com/jsrsasign/license
+	 *
+	 * The above copyright and license notice shall be
+	 * included in all copies or substantial portions of the Software.
+	 */ /**
 	 * @fileOverview
 	 * @name crypto-1.1.js
 	 * @author Kenji Urushima kenji.urushima@gmail.com
 	 * @version 1.1.5 (2013-Oct-06)
 	 * @since jsrsasign 2.2
 	 * @license <a href="http://kjur.github.io/jsrsasign/license/">MIT License</a>
-	 */
-"undefined"!=typeof KJUR&&KJUR||(KJUR={}),"undefined"!=typeof KJUR.crypto&&KJUR.crypto||(KJUR.crypto={}),KJUR.crypto.Util=new function(){this.DIGESTINFOHEAD={sha1:"3021300906052b0e03021a05000414",sha224:"302d300d06096086480165030402040500041c",sha256:"3031300d060960864801650304020105000420",sha384:"3041300d060960864801650304020205000430",sha512:"3051300d060960864801650304020305000440",md2:"3020300c06082a864886f70d020205000410",md5:"3020300c06082a864886f70d020505000410",ripemd160:"3021300906052b2403020105000414"},this.DEFAULTPROVIDER={md5:"cryptojs",sha1:"cryptojs",sha224:"cryptojs",sha256:"cryptojs",sha384:"cryptojs",sha512:"cryptojs",ripemd160:"cryptojs",hmacmd5:"cryptojs",hmacsha1:"cryptojs",hmacsha224:"cryptojs",hmacsha256:"cryptojs",hmacsha384:"cryptojs",hmacsha512:"cryptojs",hmacripemd160:"cryptojs",MD5withRSA:"cryptojs/jsrsa",SHA1withRSA:"cryptojs/jsrsa",SHA224withRSA:"cryptojs/jsrsa",SHA256withRSA:"cryptojs/jsrsa",SHA384withRSA:"cryptojs/jsrsa",SHA512withRSA:"cryptojs/jsrsa",RIPEMD160withRSA:"cryptojs/jsrsa",MD5withECDSA:"cryptojs/jsrsa",SHA1withECDSA:"cryptojs/jsrsa",SHA224withECDSA:"cryptojs/jsrsa",SHA256withECDSA:"cryptojs/jsrsa",SHA384withECDSA:"cryptojs/jsrsa",SHA512withECDSA:"cryptojs/jsrsa",RIPEMD160withECDSA:"cryptojs/jsrsa",SHA1withDSA:"cryptojs/jsrsa",SHA224withDSA:"cryptojs/jsrsa",SHA256withDSA:"cryptojs/jsrsa",MD5withRSAandMGF1:"cryptojs/jsrsa",SHA1withRSAandMGF1:"cryptojs/jsrsa",SHA224withRSAandMGF1:"cryptojs/jsrsa",SHA256withRSAandMGF1:"cryptojs/jsrsa",SHA384withRSAandMGF1:"cryptojs/jsrsa",SHA512withRSAandMGF1:"cryptojs/jsrsa",RIPEMD160withRSAandMGF1:"cryptojs/jsrsa"},this.CRYPTOJSMESSAGEDIGESTNAME={md5:"CryptoJS.algo.MD5",sha1:"CryptoJS.algo.SHA1",sha224:"CryptoJS.algo.SHA224",sha256:"CryptoJS.algo.SHA256",sha384:"CryptoJS.algo.SHA384",sha512:"CryptoJS.algo.SHA512",ripemd160:"CryptoJS.algo.RIPEMD160"},this.getDigestInfoHex=function(e,t){if("undefined"==typeof this.DIGESTINFOHEAD[t])throw"alg not supported in Util.DIGESTINFOHEAD: "+t;return this.DIGESTINFOHEAD[t]+e},this.getPaddedDigestInfoHex=function(e,t,n){var r=this.getDigestInfoHex(e,t),o=n/4;if(r.length+22>o)throw"key is too short for SigAlg: keylen="+n+","+t;for(var i="0001",a="00"+r,s="",u=o-i.length-a.length,c=0;u>c;c+=2)s+="ff";var l=i+s+a;return l},this.hashString=function(e,t){var n=new KJUR.crypto.MessageDigest({alg:t});return n.digestString(e)},this.hashHex=function(e,t){var n=new KJUR.crypto.MessageDigest({alg:t});return n.digestHex(e)},this.sha1=function(e){var t=new KJUR.crypto.MessageDigest({alg:"sha1",prov:"cryptojs"});return t.digestString(e)},this.sha256=function(e){var t=new KJUR.crypto.MessageDigest({alg:"sha256",prov:"cryptojs"});return t.digestString(e)},this.sha256Hex=function(e){var t=new KJUR.crypto.MessageDigest({alg:"sha256",prov:"cryptojs"});return t.digestHex(e)},this.sha512=function(e){var t=new KJUR.crypto.MessageDigest({alg:"sha512",prov:"cryptojs"});return t.digestString(e)},this.sha512Hex=function(e){var t=new KJUR.crypto.MessageDigest({alg:"sha512",prov:"cryptojs"});return t.digestHex(e)},this.md5=function(e){var t=new KJUR.crypto.MessageDigest({alg:"md5",prov:"cryptojs"});return t.digestString(e)},this.ripemd160=function(e){var t=new KJUR.crypto.MessageDigest({alg:"ripemd160",prov:"cryptojs"});return t.digestString(e)},this.getCryptoJSMDByName=function(e){}},KJUR.crypto.MessageDigest=function(params){var md=null,algName=null,provName=null;this.setAlgAndProvider=function(alg,prov){if(null!=alg&&void 0===prov&&(prov=KJUR.crypto.Util.DEFAULTPROVIDER[alg]),-1!=":md5:sha1:sha224:sha256:sha384:sha512:ripemd160:".indexOf(alg)&&"cryptojs"==prov){try{this.md=eval(KJUR.crypto.Util.CRYPTOJSMESSAGEDIGESTNAME[alg]).create()}catch(ex){throw"setAlgAndProvider hash alg set fail alg="+alg+"/"+ex}this.updateString=function(e){this.md.update(e)},this.updateHex=function(e){var t=CryptoJS.enc.Hex.parse(e);this.md.update(t)},this.digest=function(){var e=this.md.finalize();return e.toString(CryptoJS.enc.Hex)},this.digestString=function(e){return this.updateString(e),this.digest()},this.digestHex=function(e){return this.updateHex(e),this.digest()}}if(-1!=":sha256:".indexOf(alg)&&"sjcl"==prov){try{this.md=new sjcl.hash.sha256}catch(ex){throw"setAlgAndProvider hash alg set fail alg="+alg+"/"+ex}this.updateString=function(e){this.md.update(e)},this.updateHex=function(e){var t=sjcl.codec.hex.toBits(e);this.md.update(t)},this.digest=function(){var e=this.md.finalize();return sjcl.codec.hex.fromBits(e)},this.digestString=function(e){return this.updateString(e),this.digest()},this.digestHex=function(e){return this.updateHex(e),this.digest()}}},this.updateString=function(e){throw"updateString(str) not supported for this alg/prov: "+this.algName+"/"+this.provName},this.updateHex=function(e){throw"updateHex(hex) not supported for this alg/prov: "+this.algName+"/"+this.provName},this.digest=function(){throw"digest() not supported for this alg/prov: "+this.algName+"/"+this.provName},this.digestString=function(e){throw"digestString(str) not supported for this alg/prov: "+this.algName+"/"+this.provName},this.digestHex=function(e){throw"digestHex(hex) not supported for this alg/prov: "+this.algName+"/"+this.provName},void 0!==params&&void 0!==params.alg&&(this.algName=params.alg,void 0===params.prov&&(this.provName=KJUR.crypto.Util.DEFAULTPROVIDER[this.algName]),this.setAlgAndProvider(this.algName,this.provName))},KJUR.crypto.Mac=function(params){var mac=null,pass=null,algName=null,provName=null,algProv=null;this.setAlgAndProvider=function(alg,prov){if(null==alg&&(alg="hmacsha1"),alg=alg.toLowerCase(),"hmac"!=alg.substr(0,4))throw"setAlgAndProvider unsupported HMAC alg: "+alg;void 0===prov&&(prov=KJUR.crypto.Util.DEFAULTPROVIDER[alg]),this.algProv=alg+"/"+prov;var hashAlg=alg.substr(4);if(-1!=":md5:sha1:sha224:sha256:sha384:sha512:ripemd160:".indexOf(hashAlg)&&"cryptojs"==prov){try{var mdObj=eval(KJUR.crypto.Util.CRYPTOJSMESSAGEDIGESTNAME[hashAlg]);this.mac=CryptoJS.algo.HMAC.create(mdObj,this.pass)}catch(ex){throw"setAlgAndProvider hash alg set fail hashAlg="+hashAlg+"/"+ex}this.updateString=function(e){this.mac.update(e)},this.updateHex=function(e){var t=CryptoJS.enc.Hex.parse(e);this.mac.update(t)},this.doFinal=function(){var e=this.mac.finalize();return e.toString(CryptoJS.enc.Hex)},this.doFinalString=function(e){return this.updateString(e),this.doFinal()},this.doFinalHex=function(e){return this.updateHex(e),this.doFinal()}}},this.updateString=function(e){throw"updateString(str) not supported for this alg/prov: "+this.algProv},this.updateHex=function(e){throw"updateHex(hex) not supported for this alg/prov: "+this.algProv},this.doFinal=function(){throw"digest() not supported for this alg/prov: "+this.algProv},this.doFinalString=function(e){throw"digestString(str) not supported for this alg/prov: "+this.algProv},this.doFinalHex=function(e){throw"digestHex(hex) not supported for this alg/prov: "+this.algProv},void 0!==params&&(void 0!==params.pass&&(this.pass=params.pass),void 0!==params.alg&&(this.algName=params.alg,void 0===params.prov&&(this.provName=KJUR.crypto.Util.DEFAULTPROVIDER[this.algName]),this.setAlgAndProvider(this.algName,this.provName)))},KJUR.crypto.Signature=function(e){var t=null;if(this._setAlgNames=function(){this.algName.match(/^(.+)with(.+)$/)&&(this.mdAlgName=RegExp.$1.toLowerCase(),this.pubkeyAlgName=RegExp.$2.toLowerCase())},this._zeroPaddingOfSignature=function(e,t){for(var n="",r=t/4-e.length,o=0;r>o;o++)n+="0";return n+e},this.setAlgAndProvider=function(e,t){if(this._setAlgNames(),"cryptojs/jsrsa"!=t)throw"provider not supported: "+t;if(-1!=":md5:sha1:sha224:sha256:sha384:sha512:ripemd160:".indexOf(this.mdAlgName)){try{this.md=new KJUR.crypto.MessageDigest({alg:this.mdAlgName})}catch(n){throw"setAlgAndProvider hash alg set fail alg="+this.mdAlgName+"/"+n}this.init=function(e,t){var n=null;try{n=void 0===t?KEYUTIL.getKey(e):KEYUTIL.getKey(e,t)}catch(r){throw"init failed:"+r}if(n.isPrivate===!0)this.prvKey=n,this.state="SIGN";else{if(n.isPublic!==!0)throw"init failed.:"+n;this.pubKey=n,this.state="VERIFY"}},this.initSign=function(e){"string"==typeof e.ecprvhex&&"string"==typeof e.eccurvename?(this.ecprvhex=e.ecprvhex,this.eccurvename=e.eccurvename):this.prvKey=e,this.state="SIGN"},this.initVerifyByPublicKey=function(e){"string"==typeof e.ecpubhex&&"string"==typeof e.eccurvename?(this.ecpubhex=e.ecpubhex,this.eccurvename=e.eccurvename):e instanceof KJUR.crypto.ECDSA?this.pubKey=e:e instanceof RSAKey&&(this.pubKey=e),this.state="VERIFY"},this.initVerifyByCertificatePEM=function(e){var t=new X509;t.readCertPEM(e),this.pubKey=t.subjectPublicKeyRSA,this.state="VERIFY"},this.updateString=function(e){this.md.updateString(e)},this.updateHex=function(e){this.md.updateHex(e)},this.sign=function(){if(this.sHashHex=this.md.digest(),"undefined"!=typeof this.ecprvhex&&"undefined"!=typeof this.eccurvename){var e=new KJUR.crypto.ECDSA({curve:this.eccurvename});this.hSign=e.signHex(this.sHashHex,this.ecprvhex)}else if("rsaandmgf1"==this.pubkeyAlgName)this.hSign=this.prvKey.signWithMessageHashPSS(this.sHashHex,this.mdAlgName,this.pssSaltLen);else if("rsa"==this.pubkeyAlgName)this.hSign=this.prvKey.signWithMessageHash(this.sHashHex,this.mdAlgName);else if(this.prvKey instanceof KJUR.crypto.ECDSA)this.hSign=this.prvKey.signWithMessageHash(this.sHashHex);else{if(!(this.prvKey instanceof KJUR.crypto.DSA))throw"Signature: unsupported public key alg: "+this.pubkeyAlgName;this.hSign=this.prvKey.signWithMessageHash(this.sHashHex)}return this.hSign},this.signString=function(e){return this.updateString(e),this.sign()},this.signHex=function(e){return this.updateHex(e),this.sign()},this.verify=function(e){if(this.sHashHex=this.md.digest(),"undefined"!=typeof this.ecpubhex&&"undefined"!=typeof this.eccurvename){var t=new KJUR.crypto.ECDSA({curve:this.eccurvename});return t.verifyHex(this.sHashHex,e,this.ecpubhex)}if("rsaandmgf1"==this.pubkeyAlgName)return this.pubKey.verifyWithMessageHashPSS(this.sHashHex,e,this.mdAlgName,this.pssSaltLen);if("rsa"==this.pubkeyAlgName)return this.pubKey.verifyWithMessageHash(this.sHashHex,e);if(this.pubKey instanceof KJUR.crypto.ECDSA)return this.pubKey.verifyWithMessageHash(this.sHashHex,e);if(this.pubKey instanceof KJUR.crypto.DSA)return this.pubKey.verifyWithMessageHash(this.sHashHex,e);throw"Signature: unsupported public key alg: "+this.pubkeyAlgName}}},this.init=function(e,t){throw"init(key, pass) not supported for this alg:prov="+this.algProvName},this.initVerifyByPublicKey=function(e){throw"initVerifyByPublicKey(rsaPubKeyy) not supported for this alg:prov="+this.algProvName},this.initVerifyByCertificatePEM=function(e){throw"initVerifyByCertificatePEM(certPEM) not supported for this alg:prov="+this.algProvName},this.initSign=function(e){throw"initSign(prvKey) not supported for this alg:prov="+this.algProvName},this.updateString=function(e){throw"updateString(str) not supported for this alg:prov="+this.algProvName},this.updateHex=function(e){throw"updateHex(hex) not supported for this alg:prov="+this.algProvName},this.sign=function(){throw"sign() not supported for this alg:prov="+this.algProvName},this.signString=function(e){throw"digestString(str) not supported for this alg:prov="+this.algProvName},this.signHex=function(e){throw"digestHex(hex) not supported for this alg:prov="+this.algProvName},this.verify=function(e){throw"verify(hSigVal) not supported for this alg:prov="+this.algProvName},this.initParams=e,void 0!==e&&(void 0!==e.alg&&(this.algName=e.alg,void 0===e.prov?this.provName=KJUR.crypto.Util.DEFAULTPROVIDER[this.algName]:this.provName=e.prov,this.algProvName=this.algName+":"+this.provName,this.setAlgAndProvider(this.algName,this.provName),this._setAlgNames()),void 0!==e.psssaltlen&&(this.pssSaltLen=e.psssaltlen),void 0!==e.prvkeypem)){if(void 0!==e.prvkeypas)throw"both prvkeypem and prvkeypas parameters not supported";try{var t=new RSAKey;t.readPrivateKeyFromPEMString(e.prvkeypem),this.initSign(t)}catch(n){throw"fatal error to load pem private key: "+n}}},KJUR.crypto.OID=new function(){this.oidhex2name={"2a864886f70d010101":"rsaEncryption","2a8648ce3d0201":"ecPublicKey","2a8648ce380401":"dsa","2a8648ce3d030107":"secp256r1","2b8104001f":"secp192k1","2b81040021":"secp224r1","2b8104000a":"secp256k1","2b81040023":"secp521r1","2b81040022":"secp384r1","2a8648ce380403":"SHA1withDSA","608648016503040301":"SHA224withDSA","608648016503040302":"SHA256withDSA"}};var utf8tob64u,b64utoutf8;"function"==typeof Buffer?(utf8tob64u=function(e){return b64tob64u(new Buffer(e,"utf8").toString("base64"))},b64utoutf8=function(e){return new Buffer(b64utob64(e),"base64").toString("utf8")}):(utf8tob64u=function(e){return hextob64u(uricmptohex(encodeURIComponentAll(e)))},b64utoutf8=function(e){return decodeURIComponent(hextouricmp(b64utohex(e)))});/*! Mike Samuel (c) 2009 | code.google.com/p/json-sans-eval
-	 */
-var jsonParse=function(){function e(e,t,n){return t?a[t]:String.fromCharCode(parseInt(n,16))}var t="(?:-?\\b(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\\b)",n='(?:[^\\0-\\x08\\x0a-\\x1f"\\\\]|\\\\(?:["/\\\\bfnrt]|u[0-9A-Fa-f]{4}))',r='(?:"'+n+'*")',o=new RegExp("(?:false|true|null|[\\{\\}\\[\\]]|"+t+"|"+r+")","g"),i=new RegExp("\\\\(?:([^u])|u(.{4}))","g"),a={'"':'"',"/":"/","\\":"\\",b:"\b",f:"\f",n:"\n",r:"\r",t:"	"},s=new String(""),u="\\",c=({"{":Object,"[":Array},Object.hasOwnProperty);return function(t,n){var r,a=t.match(o),l=a[0],p=!1;"{"===l?r={}:"["===l?r=[]:(r=[],p=!0);for(var d,h=[r],f=1-p,g=a.length;g>f;++f){l=a[f];var v;switch(l.charCodeAt(0)){default:v=h[0],v[d||v.length]=+l,d=void 0;break;case 34:if(l=l.substring(1,l.length-1),-1!==l.indexOf(u)&&(l=l.replace(i,e)),v=h[0],!d){if(!(v instanceof Array)){d=l||s;break}d=v.length}v[d]=l,d=void 0;break;case 91:v=h[0],h.unshift(v[d||v.length]=[]),d=void 0;break;case 93:h.shift();break;case 102:v=h[0],v[d||v.length]=!1,d=void 0;break;case 110:v=h[0],v[d||v.length]=null,d=void 0;break;case 116:v=h[0],v[d||v.length]=!0,d=void 0;break;case 123:v=h[0],h.unshift(v[d||v.length]={}),d=void 0;break;case 125:h.shift()}}if(p){if(1!==h.length)throw new Error;r=r[0]}else if(h.length)throw new Error;if(n){var m=function(e,t){var r=e[t];if(r&&"object"==typeof r){var o=null;for(var i in r)if(c.call(r,i)&&r!==e){var a=m(r,i);void 0!==a?r[i]=a:(o||(o=[]),o.push(i))}if(o)for(var s=o.length;--s>=0;)delete r[o[s]]}return n.call(e,t,r)};r=m({"":r},"")}return r}}();/*! jws-3.0.2 (c) 2013 Kenji Urushima | kjur.github.com/jsjws/license
-	 */
-/**
+	 */ /**
+	 * kjur's class library name space
+	 * @name KJUR
+	 * @namespace kjur's class library name space
+	 */if(typeof KJUR=="undefined"||!KJUR)KJUR={}; /**
+	 * kjur's cryptographic algorithm provider library name space
+	 * <p>
+	 * This namespace privides following crytpgrahic classes.
+	 * <ul>
+	 * <li>{@link KJUR.crypto.MessageDigest} - Java JCE(cryptograhic extension) style MessageDigest class</li>
+	 * <li>{@link KJUR.crypto.Signature} - Java JCE(cryptograhic extension) style Signature class</li>
+	 * <li>{@link KJUR.crypto.Util} - cryptographic utility functions and properties</li>
+	 * </ul>
+	 * NOTE: Please ignore method summary and document of this namespace. This caused by a bug of jsdoc2.
+	 * </p>
+	 * @name KJUR.crypto
+	 * @namespace
+	 */if(typeof KJUR.crypto=="undefined"||!KJUR.crypto)KJUR.crypto={}; /**
+	 * static object for cryptographic function utilities
+	 * @name KJUR.crypto.Util
+	 * @class static object for cryptographic function utilities
+	 * @property {Array} DIGESTINFOHEAD PKCS#1 DigestInfo heading hexadecimal bytes for each hash algorithms
+	 * @property {Array} DEFAULTPROVIDER associative array of default provider name for each hash and signature algorithms
+	 * @description
+	 */KJUR.crypto.Util=new function(){this.DIGESTINFOHEAD={'sha1':"3021300906052b0e03021a05000414",'sha224':"302d300d06096086480165030402040500041c",'sha256':"3031300d060960864801650304020105000420",'sha384':"3041300d060960864801650304020205000430",'sha512':"3051300d060960864801650304020305000440",'md2':"3020300c06082a864886f70d020205000410",'md5':"3020300c06082a864886f70d020505000410",'ripemd160':"3021300906052b2403020105000414"}; /*
+	     * @since crypto 1.1.1
+	     */this.DEFAULTPROVIDER={'md5':'cryptojs','sha1':'cryptojs','sha224':'cryptojs','sha256':'cryptojs','sha384':'cryptojs','sha512':'cryptojs','ripemd160':'cryptojs','hmacmd5':'cryptojs','hmacsha1':'cryptojs','hmacsha224':'cryptojs','hmacsha256':'cryptojs','hmacsha384':'cryptojs','hmacsha512':'cryptojs','hmacripemd160':'cryptojs','MD5withRSA':'cryptojs/jsrsa','SHA1withRSA':'cryptojs/jsrsa','SHA224withRSA':'cryptojs/jsrsa','SHA256withRSA':'cryptojs/jsrsa','SHA384withRSA':'cryptojs/jsrsa','SHA512withRSA':'cryptojs/jsrsa','RIPEMD160withRSA':'cryptojs/jsrsa','MD5withECDSA':'cryptojs/jsrsa','SHA1withECDSA':'cryptojs/jsrsa','SHA224withECDSA':'cryptojs/jsrsa','SHA256withECDSA':'cryptojs/jsrsa','SHA384withECDSA':'cryptojs/jsrsa','SHA512withECDSA':'cryptojs/jsrsa','RIPEMD160withECDSA':'cryptojs/jsrsa','SHA1withDSA':'cryptojs/jsrsa','SHA224withDSA':'cryptojs/jsrsa','SHA256withDSA':'cryptojs/jsrsa','MD5withRSAandMGF1':'cryptojs/jsrsa','SHA1withRSAandMGF1':'cryptojs/jsrsa','SHA224withRSAandMGF1':'cryptojs/jsrsa','SHA256withRSAandMGF1':'cryptojs/jsrsa','SHA384withRSAandMGF1':'cryptojs/jsrsa','SHA512withRSAandMGF1':'cryptojs/jsrsa','RIPEMD160withRSAandMGF1':'cryptojs/jsrsa'}; /*
+	     * @since crypto 1.1.2
+	     */this.CRYPTOJSMESSAGEDIGESTNAME={'md5':'CryptoJS.algo.MD5','sha1':'CryptoJS.algo.SHA1','sha224':'CryptoJS.algo.SHA224','sha256':'CryptoJS.algo.SHA256','sha384':'CryptoJS.algo.SHA384','sha512':'CryptoJS.algo.SHA512','ripemd160':'CryptoJS.algo.RIPEMD160'}; /**
+	     * get hexadecimal DigestInfo
+	     * @name getDigestInfoHex
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} hHash hexadecimal hash value
+	     * @param {String} alg hash algorithm name (ex. 'sha1')
+	     * @return {String} hexadecimal string DigestInfo ASN.1 structure
+	     */this.getDigestInfoHex=function(hHash,alg){if(typeof this.DIGESTINFOHEAD[alg]=="undefined")throw "alg not supported in Util.DIGESTINFOHEAD: "+alg;return this.DIGESTINFOHEAD[alg]+hHash;}; /**
+	     * get PKCS#1 padded hexadecimal DigestInfo
+	     * @name getPaddedDigestInfoHex
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} hHash hexadecimal hash value of message to be signed
+	     * @param {String} alg hash algorithm name (ex. 'sha1')
+	     * @param {Integer} keySize key bit length (ex. 1024)
+	     * @return {String} hexadecimal string of PKCS#1 padded DigestInfo
+	     */this.getPaddedDigestInfoHex=function(hHash,alg,keySize){var hDigestInfo=this.getDigestInfoHex(hHash,alg);var pmStrLen=keySize/4; // minimum PM length
+	if(hDigestInfo.length+22>pmStrLen) // len(0001+ff(*8)+00+hDigestInfo)=22
+	throw "key is too short for SigAlg: keylen="+keySize+","+alg;var hHead="0001";var hTail="00"+hDigestInfo;var hMid="";var fLen=pmStrLen-hHead.length-hTail.length;for(var i=0;i<fLen;i+=2){hMid+="ff";}var hPaddedMessage=hHead+hMid+hTail;return hPaddedMessage;}; /**
+	     * get hexadecimal hash of string with specified algorithm
+	     * @name hashString
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} s input string to be hashed
+	     * @param {String} alg hash algorithm name
+	     * @return {String} hexadecimal string of hash value
+	     * @since 1.1.1
+	     */this.hashString=function(s,alg){var md=new KJUR.crypto.MessageDigest({'alg':alg});return md.digestString(s);}; /**
+	     * get hexadecimal hash of hexadecimal string with specified algorithm
+	     * @name hashHex
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} sHex input hexadecimal string to be hashed
+	     * @param {String} alg hash algorithm name
+	     * @return {String} hexadecimal string of hash value
+	     * @since 1.1.1
+	     */this.hashHex=function(sHex,alg){var md=new KJUR.crypto.MessageDigest({'alg':alg});return md.digestHex(sHex);}; /**
+	     * get hexadecimal SHA1 hash of string
+	     * @name sha1
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} s input string to be hashed
+	     * @return {String} hexadecimal string of hash value
+	     * @since 1.0.3
+	     */this.sha1=function(s){var md=new KJUR.crypto.MessageDigest({'alg':'sha1','prov':'cryptojs'});return md.digestString(s);}; /**
+	     * get hexadecimal SHA256 hash of string
+	     * @name sha256
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} s input string to be hashed
+	     * @return {String} hexadecimal string of hash value
+	     * @since 1.0.3
+	     */this.sha256=function(s){var md=new KJUR.crypto.MessageDigest({'alg':'sha256','prov':'cryptojs'});return md.digestString(s);};this.sha256Hex=function(s){var md=new KJUR.crypto.MessageDigest({'alg':'sha256','prov':'cryptojs'});return md.digestHex(s);}; /**
+	     * get hexadecimal SHA512 hash of string
+	     * @name sha512
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} s input string to be hashed
+	     * @return {String} hexadecimal string of hash value
+	     * @since 1.0.3
+	     */this.sha512=function(s){var md=new KJUR.crypto.MessageDigest({'alg':'sha512','prov':'cryptojs'});return md.digestString(s);};this.sha512Hex=function(s){var md=new KJUR.crypto.MessageDigest({'alg':'sha512','prov':'cryptojs'});return md.digestHex(s);}; /**
+	     * get hexadecimal MD5 hash of string
+	     * @name md5
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} s input string to be hashed
+	     * @return {String} hexadecimal string of hash value
+	     * @since 1.0.3
+	     */this.md5=function(s){var md=new KJUR.crypto.MessageDigest({'alg':'md5','prov':'cryptojs'});return md.digestString(s);}; /**
+	     * get hexadecimal RIPEMD160 hash of string
+	     * @name ripemd160
+	     * @memberOf KJUR.crypto.Util
+	     * @function
+	     * @param {String} s input string to be hashed
+	     * @return {String} hexadecimal string of hash value
+	     * @since 1.0.3
+	     */this.ripemd160=function(s){var md=new KJUR.crypto.MessageDigest({'alg':'ripemd160','prov':'cryptojs'});return md.digestString(s);}; /*
+	     * @since 1.1.2
+	     */this.getCryptoJSMDByName=function(s){};}(); /**
+	 * MessageDigest class which is very similar to java.security.MessageDigest class
+	 * @name KJUR.crypto.MessageDigest
+	 * @class MessageDigest class which is very similar to java.security.MessageDigest class
+	 * @param {Array} params parameters for constructor
+	 * @description
+	 * <br/>
+	 * Currently this supports following algorithm and providers combination:
+	 * <ul>
+	 * <li>md5 - cryptojs</li>
+	 * <li>sha1 - cryptojs</li>
+	 * <li>sha224 - cryptojs</li>
+	 * <li>sha256 - cryptojs</li>
+	 * <li>sha384 - cryptojs</li>
+	 * <li>sha512 - cryptojs</li>
+	 * <li>ripemd160 - cryptojs</li>
+	 * <li>sha256 - sjcl (NEW from crypto.js 1.0.4)</li>
+	 * </ul>
+	 * @example
+	 * // CryptoJS provider sample
+	 * &lt;script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/core.js"&gt;&lt;/script&gt;
+	 * &lt;script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/sha1.js"&gt;&lt;/script&gt;
+	 * &lt;script src="crypto-1.0.js"&gt;&lt;/script&gt;
+	 * var md = new KJUR.crypto.MessageDigest({alg: "sha1", prov: "cryptojs"});
+	 * md.updateString('aaa')
+	 * var mdHex = md.digest()
+	 *
+	 * // SJCL(Stanford JavaScript Crypto Library) provider sample
+	 * &lt;script src="http://bitwiseshiftleft.github.io/sjcl/sjcl.js"&gt;&lt;/script&gt;
+	 * &lt;script src="crypto-1.0.js"&gt;&lt;/script&gt;
+	 * var md = new KJUR.crypto.MessageDigest({alg: "sha256", prov: "sjcl"}); // sjcl supports sha256 only
+	 * md.updateString('aaa')
+	 * var mdHex = md.digest()
+	 */KJUR.crypto.MessageDigest=function(params){var md=null;var algName=null;var provName=null; /**
+	     * set hash algorithm and provider
+	     * @name setAlgAndProvider
+	     * @memberOf KJUR.crypto.MessageDigest
+	     * @function
+	     * @param {String} alg hash algorithm name
+	     * @param {String} prov provider name
+	     * @description
+	     * @example
+	     * // for SHA1
+	     * md.setAlgAndProvider('sha1', 'cryptojs');
+	     * // for RIPEMD160
+	     * md.setAlgAndProvider('ripemd160', 'cryptojs');
+	     */this.setAlgAndProvider=function(alg,prov){if(alg!=null&&prov===undefined)prov=KJUR.crypto.Util.DEFAULTPROVIDER[alg]; // for cryptojs
+	if(':md5:sha1:sha224:sha256:sha384:sha512:ripemd160:'.indexOf(alg)!=-1&&prov=='cryptojs'){try{this.md=eval(KJUR.crypto.Util.CRYPTOJSMESSAGEDIGESTNAME[alg]).create();}catch(ex){throw "setAlgAndProvider hash alg set fail alg="+alg+"/"+ex;}this.updateString=function(str){this.md.update(str);};this.updateHex=function(hex){var wHex=CryptoJS.enc.Hex.parse(hex);this.md.update(wHex);};this.digest=function(){var hash=this.md.finalize();return hash.toString(CryptoJS.enc.Hex);};this.digestString=function(str){this.updateString(str);return this.digest();};this.digestHex=function(hex){this.updateHex(hex);return this.digest();};}if(':sha256:'.indexOf(alg)!=-1&&prov=='sjcl'){try{this.md=new sjcl.hash.sha256();}catch(ex){throw "setAlgAndProvider hash alg set fail alg="+alg+"/"+ex;}this.updateString=function(str){this.md.update(str);};this.updateHex=function(hex){var baHex=sjcl.codec.hex.toBits(hex);this.md.update(baHex);};this.digest=function(){var hash=this.md.finalize();return sjcl.codec.hex.fromBits(hash);};this.digestString=function(str){this.updateString(str);return this.digest();};this.digestHex=function(hex){this.updateHex(hex);return this.digest();};}}; /**
+	     * update digest by specified string
+	     * @name updateString
+	     * @memberOf KJUR.crypto.MessageDigest
+	     * @function
+	     * @param {String} str string to update
+	     * @description
+	     * @example
+	     * md.updateString('New York');
+	     */this.updateString=function(str){throw "updateString(str) not supported for this alg/prov: "+this.algName+"/"+this.provName;}; /**
+	     * update digest by specified hexadecimal string
+	     * @name updateHex
+	     * @memberOf KJUR.crypto.MessageDigest
+	     * @function
+	     * @param {String} hex hexadecimal string to update
+	     * @description
+	     * @example
+	     * md.updateHex('0afe36');
+	     */this.updateHex=function(hex){throw "updateHex(hex) not supported for this alg/prov: "+this.algName+"/"+this.provName;}; /**
+	     * completes hash calculation and returns hash result
+	     * @name digest
+	     * @memberOf KJUR.crypto.MessageDigest
+	     * @function
+	     * @description
+	     * @example
+	     * md.digest()
+	     */this.digest=function(){throw "digest() not supported for this alg/prov: "+this.algName+"/"+this.provName;}; /**
+	     * performs final update on the digest using string, then completes the digest computation
+	     * @name digestString
+	     * @memberOf KJUR.crypto.MessageDigest
+	     * @function
+	     * @param {String} str string to final update
+	     * @description
+	     * @example
+	     * md.digestString('aaa')
+	     */this.digestString=function(str){throw "digestString(str) not supported for this alg/prov: "+this.algName+"/"+this.provName;}; /**
+	     * performs final update on the digest using hexadecimal string, then completes the digest computation
+	     * @name digestHex
+	     * @memberOf KJUR.crypto.MessageDigest
+	     * @function
+	     * @param {String} hex hexadecimal string to final update
+	     * @description
+	     * @example
+	     * md.digestHex('0f2abd')
+	     */this.digestHex=function(hex){throw "digestHex(hex) not supported for this alg/prov: "+this.algName+"/"+this.provName;};if(params!==undefined){if(params['alg']!==undefined){this.algName=params['alg'];if(params['prov']===undefined)this.provName=KJUR.crypto.Util.DEFAULTPROVIDER[this.algName];this.setAlgAndProvider(this.algName,this.provName);}}}; /**
+	 * Mac(Message Authentication Code) class which is very similar to java.security.Mac class
+	 * @name KJUR.crypto.Mac
+	 * @class Mac class which is very similar to java.security.Mac class
+	 * @param {Array} params parameters for constructor
+	 * @description
+	 * <br/>
+	 * Currently this supports following algorithm and providers combination:
+	 * <ul>
+	 * <li>hmacmd5 - cryptojs</li>
+	 * <li>hmacsha1 - cryptojs</li>
+	 * <li>hmacsha224 - cryptojs</li>
+	 * <li>hmacsha256 - cryptojs</li>
+	 * <li>hmacsha384 - cryptojs</li>
+	 * <li>hmacsha512 - cryptojs</li>
+	 * </ul>
+	 * NOTE: HmacSHA224 and HmacSHA384 issue was fixed since jsrsasign 4.1.4.
+	 * Please use 'ext/cryptojs-312-core-fix*.js' instead of 'core.js' of original CryptoJS
+	 * to avoid those issue.
+	 * @example
+	 * var mac = new KJUR.crypto.Mac({alg: "HmacSHA1", prov: "cryptojs", "pass": "pass"});
+	 * mac.updateString('aaa')
+	 * var macHex = md.doFinal()
+	 */KJUR.crypto.Mac=function(params){var mac=null;var pass=null;var algName=null;var provName=null;var algProv=null;this.setAlgAndProvider=function(alg,prov){if(alg==null)alg="hmacsha1";alg=alg.toLowerCase();if(alg.substr(0,4)!="hmac"){throw "setAlgAndProvider unsupported HMAC alg: "+alg;}if(prov===undefined)prov=KJUR.crypto.Util.DEFAULTPROVIDER[alg];this.algProv=alg+"/"+prov;var hashAlg=alg.substr(4); // for cryptojs
+	if(':md5:sha1:sha224:sha256:sha384:sha512:ripemd160:'.indexOf(hashAlg)!=-1&&prov=='cryptojs'){try{var mdObj=eval(KJUR.crypto.Util.CRYPTOJSMESSAGEDIGESTNAME[hashAlg]);this.mac=CryptoJS.algo.HMAC.create(mdObj,this.pass);}catch(ex){throw "setAlgAndProvider hash alg set fail hashAlg="+hashAlg+"/"+ex;}this.updateString=function(str){this.mac.update(str);};this.updateHex=function(hex){var wHex=CryptoJS.enc.Hex.parse(hex);this.mac.update(wHex);};this.doFinal=function(){var hash=this.mac.finalize();return hash.toString(CryptoJS.enc.Hex);};this.doFinalString=function(str){this.updateString(str);return this.doFinal();};this.doFinalHex=function(hex){this.updateHex(hex);return this.doFinal();};}}; /**
+	     * update digest by specified string
+	     * @name updateString
+	     * @memberOf KJUR.crypto.Mac
+	     * @function
+	     * @param {String} str string to update
+	     * @description
+	     * @example
+	     * md.updateString('New York');
+	     */this.updateString=function(str){throw "updateString(str) not supported for this alg/prov: "+this.algProv;}; /**
+	     * update digest by specified hexadecimal string
+	     * @name updateHex
+	     * @memberOf KJUR.crypto.Mac
+	     * @function
+	     * @param {String} hex hexadecimal string to update
+	     * @description
+	     * @example
+	     * md.updateHex('0afe36');
+	     */this.updateHex=function(hex){throw "updateHex(hex) not supported for this alg/prov: "+this.algProv;}; /**
+	     * completes hash calculation and returns hash result
+	     * @name doFinal
+	     * @memberOf KJUR.crypto.Mac
+	     * @function
+	     * @description
+	     * @example
+	     * md.digest()
+	     */this.doFinal=function(){throw "digest() not supported for this alg/prov: "+this.algProv;}; /**
+	     * performs final update on the digest using string, then completes the digest computation
+	     * @name doFinalString
+	     * @memberOf KJUR.crypto.Mac
+	     * @function
+	     * @param {String} str string to final update
+	     * @description
+	     * @example
+	     * md.digestString('aaa')
+	     */this.doFinalString=function(str){throw "digestString(str) not supported for this alg/prov: "+this.algProv;}; /**
+	     * performs final update on the digest using hexadecimal string,
+	     * then completes the digest computation
+	     * @name doFinalHex
+	     * @memberOf KJUR.crypto.Mac
+	     * @function
+	     * @param {String} hex hexadecimal string to final update
+	     * @description
+	     * @example
+	     * md.digestHex('0f2abd')
+	     */this.doFinalHex=function(hex){throw "digestHex(hex) not supported for this alg/prov: "+this.algProv;};if(params!==undefined){if(params['pass']!==undefined){this.pass=params['pass'];}if(params['alg']!==undefined){this.algName=params['alg'];if(params['prov']===undefined)this.provName=KJUR.crypto.Util.DEFAULTPROVIDER[this.algName];this.setAlgAndProvider(this.algName,this.provName);}}}; /**
+	 * Signature class which is very similar to java.security.Signature class
+	 * @name KJUR.crypto.Signature
+	 * @class Signature class which is very similar to java.security.Signature class
+	 * @param {Array} params parameters for constructor
+	 * @property {String} state Current state of this signature object whether 'SIGN', 'VERIFY' or null
+	 * @description
+	 * <br/>
+	 * As for params of constructor's argument, it can be specify following attributes:
+	 * <ul>
+	 * <li>alg - signature algorithm name (ex. {MD5,SHA1,SHA224,SHA256,SHA384,SHA512,RIPEMD160}with{RSA,ECDSA,DSA})</li>
+	 * <li>provider - currently 'cryptojs/jsrsa' only</li>
+	 * </ul>
+	 * <h4>SUPPORTED ALGORITHMS AND PROVIDERS</h4>
+	 * This Signature class supports following signature algorithm and provider names:
+	 * <ul>
+	 * <li>MD5withRSA - cryptojs/jsrsa</li>
+	 * <li>SHA1withRSA - cryptojs/jsrsa</li>
+	 * <li>SHA224withRSA - cryptojs/jsrsa</li>
+	 * <li>SHA256withRSA - cryptojs/jsrsa</li>
+	 * <li>SHA384withRSA - cryptojs/jsrsa</li>
+	 * <li>SHA512withRSA - cryptojs/jsrsa</li>
+	 * <li>RIPEMD160withRSA - cryptojs/jsrsa</li>
+	 * <li>MD5withECDSA - cryptojs/jsrsa</li>
+	 * <li>SHA1withECDSA - cryptojs/jsrsa</li>
+	 * <li>SHA224withECDSA - cryptojs/jsrsa</li>
+	 * <li>SHA256withECDSA - cryptojs/jsrsa</li>
+	 * <li>SHA384withECDSA - cryptojs/jsrsa</li>
+	 * <li>SHA512withECDSA - cryptojs/jsrsa</li>
+	 * <li>RIPEMD160withECDSA - cryptojs/jsrsa</li>
+	 * <li>MD5withRSAandMGF1 - cryptojs/jsrsa</li>
+	 * <li>SHA1withRSAandMGF1 - cryptojs/jsrsa</li>
+	 * <li>SHA224withRSAandMGF1 - cryptojs/jsrsa</li>
+	 * <li>SHA256withRSAandMGF1 - cryptojs/jsrsa</li>
+	 * <li>SHA384withRSAandMGF1 - cryptojs/jsrsa</li>
+	 * <li>SHA512withRSAandMGF1 - cryptojs/jsrsa</li>
+	 * <li>RIPEMD160withRSAandMGF1 - cryptojs/jsrsa</li>
+	 * <li>SHA1withDSA - cryptojs/jsrsa</li>
+	 * <li>SHA224withDSA - cryptojs/jsrsa</li>
+	 * <li>SHA256withDSA - cryptojs/jsrsa</li>
+	 * </ul>
+	 * Here are supported elliptic cryptographic curve names and their aliases for ECDSA:
+	 * <ul>
+	 * <li>secp256k1</li>
+	 * <li>secp256r1, NIST P-256, P-256, prime256v1</li>
+	 * <li>secp384r1, NIST P-384, P-384</li>
+	 * </ul>
+	 * NOTE1: DSA signing algorithm is also supported since crypto 1.1.5.
+	 * <h4>EXAMPLES</h4>
+	 * @example
+	 * // RSA signature generation
+	 * var sig = new KJUR.crypto.Signature({"alg": "SHA1withRSA"});
+	 * sig.init(prvKeyPEM);
+	 * sig.updateString('aaa');
+	 * var hSigVal = sig.sign();
+	 *
+	 * // DSA signature validation
+	 * var sig2 = new KJUR.crypto.Signature({"alg": "SHA1withDSA"});
+	 * sig2.init(certPEM);
+	 * sig.updateString('aaa');
+	 * var isValid = sig2.verify(hSigVal);
+	 *
+	 * // ECDSA signing
+	 * var sig = new KJUR.crypto.Signature({'alg':'SHA1withECDSA'});
+	 * sig.init(prvKeyPEM);
+	 * sig.updateString('aaa');
+	 * var sigValueHex = sig.sign();
+	 *
+	 * // ECDSA verifying
+	 * var sig2 = new KJUR.crypto.Signature({'alg':'SHA1withECDSA'});
+	 * sig.init(certPEM);
+	 * sig.updateString('aaa');
+	 * var isValid = sig.verify(sigValueHex);
+	 */KJUR.crypto.Signature=function(params){var prvKey=null; // RSAKey/KJUR.crypto.{ECDSA,DSA} object for signing
+	var pubKey=null; // RSAKey/KJUR.crypto.{ECDSA,DSA} object for verifying
+	var md=null; // KJUR.crypto.MessageDigest object
+	var sig=null;var algName=null;var provName=null;var algProvName=null;var mdAlgName=null;var pubkeyAlgName=null; // rsa,ecdsa,rsaandmgf1(=rsapss)
+	var state=null;var pssSaltLen=-1;var initParams=null;var sHashHex=null; // hex hash value for hex
+	var hDigestInfo=null;var hPaddedDigestInfo=null;var hSign=null;this._setAlgNames=function(){if(this.algName.match(/^(.+)with(.+)$/)){this.mdAlgName=RegExp.$1.toLowerCase();this.pubkeyAlgName=RegExp.$2.toLowerCase();}};this._zeroPaddingOfSignature=function(hex,bitLength){var s="";var nZero=bitLength/4-hex.length;for(var i=0;i<nZero;i++){s=s+"0";}return s+hex;}; /**
+	     * set signature algorithm and provider
+	     * @name setAlgAndProvider
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {String} alg signature algorithm name
+	     * @param {String} prov provider name
+	     * @description
+	     * @example
+	     * md.setAlgAndProvider('SHA1withRSA', 'cryptojs/jsrsa');
+	     */this.setAlgAndProvider=function(alg,prov){this._setAlgNames();if(prov!='cryptojs/jsrsa')throw "provider not supported: "+prov;if(':md5:sha1:sha224:sha256:sha384:sha512:ripemd160:'.indexOf(this.mdAlgName)!=-1){try{this.md=new KJUR.crypto.MessageDigest({'alg':this.mdAlgName});}catch(ex){throw "setAlgAndProvider hash alg set fail alg="+this.mdAlgName+"/"+ex;}this.init=function(keyparam,pass){var keyObj=null;try{if(pass===undefined){keyObj=KEYUTIL.getKey(keyparam);}else {keyObj=KEYUTIL.getKey(keyparam,pass);}}catch(ex){throw "init failed:"+ex;}if(keyObj.isPrivate===true){this.prvKey=keyObj;this.state="SIGN";}else if(keyObj.isPublic===true){this.pubKey=keyObj;this.state="VERIFY";}else {throw "init failed.:"+keyObj;}};this.initSign=function(params){if(typeof params['ecprvhex']=='string'&&typeof params['eccurvename']=='string'){this.ecprvhex=params['ecprvhex'];this.eccurvename=params['eccurvename'];}else {this.prvKey=params;}this.state="SIGN";};this.initVerifyByPublicKey=function(params){if(typeof params['ecpubhex']=='string'&&typeof params['eccurvename']=='string'){this.ecpubhex=params['ecpubhex'];this.eccurvename=params['eccurvename'];}else if(params instanceof KJUR.crypto.ECDSA){this.pubKey=params;}else if(params instanceof RSAKey){this.pubKey=params;}this.state="VERIFY";};this.initVerifyByCertificatePEM=function(certPEM){var x509=new X509();x509.readCertPEM(certPEM);this.pubKey=x509.subjectPublicKeyRSA;this.state="VERIFY";};this.updateString=function(str){this.md.updateString(str);};this.updateHex=function(hex){this.md.updateHex(hex);};this.sign=function(){this.sHashHex=this.md.digest();if(typeof this.ecprvhex!="undefined"&&typeof this.eccurvename!="undefined"){var ec=new KJUR.crypto.ECDSA({'curve':this.eccurvename});this.hSign=ec.signHex(this.sHashHex,this.ecprvhex);}else if(this.pubkeyAlgName=="rsaandmgf1"){this.hSign=this.prvKey.signWithMessageHashPSS(this.sHashHex,this.mdAlgName,this.pssSaltLen);}else if(this.pubkeyAlgName=="rsa"){this.hSign=this.prvKey.signWithMessageHash(this.sHashHex,this.mdAlgName);}else if(this.prvKey instanceof KJUR.crypto.ECDSA){this.hSign=this.prvKey.signWithMessageHash(this.sHashHex);}else if(this.prvKey instanceof KJUR.crypto.DSA){this.hSign=this.prvKey.signWithMessageHash(this.sHashHex);}else {throw "Signature: unsupported public key alg: "+this.pubkeyAlgName;}return this.hSign;};this.signString=function(str){this.updateString(str);return this.sign();};this.signHex=function(hex){this.updateHex(hex);return this.sign();};this.verify=function(hSigVal){this.sHashHex=this.md.digest();if(typeof this.ecpubhex!="undefined"&&typeof this.eccurvename!="undefined"){var ec=new KJUR.crypto.ECDSA({curve:this.eccurvename});return ec.verifyHex(this.sHashHex,hSigVal,this.ecpubhex);}else if(this.pubkeyAlgName=="rsaandmgf1"){return this.pubKey.verifyWithMessageHashPSS(this.sHashHex,hSigVal,this.mdAlgName,this.pssSaltLen);}else if(this.pubkeyAlgName=="rsa"){return this.pubKey.verifyWithMessageHash(this.sHashHex,hSigVal);}else if(this.pubKey instanceof KJUR.crypto.ECDSA){return this.pubKey.verifyWithMessageHash(this.sHashHex,hSigVal);}else if(this.pubKey instanceof KJUR.crypto.DSA){return this.pubKey.verifyWithMessageHash(this.sHashHex,hSigVal);}else {throw "Signature: unsupported public key alg: "+this.pubkeyAlgName;}};}}; /**
+	     * Initialize this object for signing or verifying depends on key
+	     * @name init
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {Object} key specifying public or private key as plain/encrypted PKCS#5/8 PEM file, certificate PEM or {@link RSAKey}, {@link KJUR.crypto.DSA} or {@link KJUR.crypto.ECDSA} object
+	     * @param {String} pass (OPTION) passcode for encrypted private key
+	     * @since crypto 1.1.3
+	     * @description
+	     * This method is very useful initialize method for Signature class since
+	     * you just specify key then this method will automatically initialize it
+	     * using {@link KEYUTIL.getKey} method.
+	     * As for 'key',  following argument type are supported:
+	     * <h5>signing</h5>
+	     * <ul>
+	     * <li>PEM formatted PKCS#8 encrypted RSA/ECDSA private key concluding "BEGIN ENCRYPTED PRIVATE KEY"</li>
+	     * <li>PEM formatted PKCS#5 encrypted RSA/DSA private key concluding "BEGIN RSA/DSA PRIVATE KEY" and ",ENCRYPTED"</li>
+	     * <li>PEM formatted PKCS#8 plain RSA/ECDSA private key concluding "BEGIN PRIVATE KEY"</li>
+	     * <li>PEM formatted PKCS#5 plain RSA/DSA private key concluding "BEGIN RSA/DSA PRIVATE KEY" without ",ENCRYPTED"</li>
+	     * <li>RSAKey object of private key</li>
+	     * <li>KJUR.crypto.ECDSA object of private key</li>
+	     * <li>KJUR.crypto.DSA object of private key</li>
+	     * </ul>
+	     * <h5>verification</h5>
+	     * <ul>
+	     * <li>PEM formatted PKCS#8 RSA/EC/DSA public key concluding "BEGIN PUBLIC KEY"</li>
+	     * <li>PEM formatted X.509 certificate with RSA/EC/DSA public key concluding
+	     *     "BEGIN CERTIFICATE", "BEGIN X509 CERTIFICATE" or "BEGIN TRUSTED CERTIFICATE".</li>
+	     * <li>RSAKey object of public key</li>
+	     * <li>KJUR.crypto.ECDSA object of public key</li>
+	     * <li>KJUR.crypto.DSA object of public key</li>
+	     * </ul>
+	     * @example
+	     * sig.init(sCertPEM)
+	     */this.init=function(key,pass){throw "init(key, pass) not supported for this alg:prov="+this.algProvName;}; /**
+	     * Initialize this object for verifying with a public key
+	     * @name initVerifyByPublicKey
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {Object} param RSAKey object of public key or associative array for ECDSA
+	     * @since 1.0.2
+	     * @deprecated from crypto 1.1.5. please use init() method instead.
+	     * @description
+	     * Public key information will be provided as 'param' parameter and the value will be
+	     * following:
+	     * <ul>
+	     * <li>{@link RSAKey} object for RSA verification</li>
+	     * <li>associative array for ECDSA verification
+	     *     (ex. <code>{'ecpubhex': '041f..', 'eccurvename': 'secp256r1'}</code>)
+	     * </li>
+	     * </ul>
+	     * @example
+	     * sig.initVerifyByPublicKey(rsaPrvKey)
+	     */this.initVerifyByPublicKey=function(rsaPubKey){throw "initVerifyByPublicKey(rsaPubKeyy) not supported for this alg:prov="+this.algProvName;}; /**
+	     * Initialize this object for verifying with a certficate
+	     * @name initVerifyByCertificatePEM
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {String} certPEM PEM formatted string of certificate
+	     * @since 1.0.2
+	     * @deprecated from crypto 1.1.5. please use init() method instead.
+	     * @description
+	     * @example
+	     * sig.initVerifyByCertificatePEM(certPEM)
+	     */this.initVerifyByCertificatePEM=function(certPEM){throw "initVerifyByCertificatePEM(certPEM) not supported for this alg:prov="+this.algProvName;}; /**
+	     * Initialize this object for signing
+	     * @name initSign
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {Object} param RSAKey object of public key or associative array for ECDSA
+	     * @deprecated from crypto 1.1.5. please use init() method instead.
+	     * @description
+	     * Private key information will be provided as 'param' parameter and the value will be
+	     * following:
+	     * <ul>
+	     * <li>{@link RSAKey} object for RSA signing</li>
+	     * <li>associative array for ECDSA signing
+	     *     (ex. <code>{'ecprvhex': '1d3f..', 'eccurvename': 'secp256r1'}</code>)</li>
+	     * </ul>
+	     * @example
+	     * sig.initSign(prvKey)
+	     */this.initSign=function(prvKey){throw "initSign(prvKey) not supported for this alg:prov="+this.algProvName;}; /**
+	     * Updates the data to be signed or verified by a string
+	     * @name updateString
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {String} str string to use for the update
+	     * @description
+	     * @example
+	     * sig.updateString('aaa')
+	     */this.updateString=function(str){throw "updateString(str) not supported for this alg:prov="+this.algProvName;}; /**
+	     * Updates the data to be signed or verified by a hexadecimal string
+	     * @name updateHex
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {String} hex hexadecimal string to use for the update
+	     * @description
+	     * @example
+	     * sig.updateHex('1f2f3f')
+	     */this.updateHex=function(hex){throw "updateHex(hex) not supported for this alg:prov="+this.algProvName;}; /**
+	     * Returns the signature bytes of all data updates as a hexadecimal string
+	     * @name sign
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @return the signature bytes as a hexadecimal string
+	     * @description
+	     * @example
+	     * var hSigValue = sig.sign()
+	     */this.sign=function(){throw "sign() not supported for this alg:prov="+this.algProvName;}; /**
+	     * performs final update on the sign using string, then returns the signature bytes of all data updates as a hexadecimal string
+	     * @name signString
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {String} str string to final update
+	     * @return the signature bytes of a hexadecimal string
+	     * @description
+	     * @example
+	     * var hSigValue = sig.signString('aaa')
+	     */this.signString=function(str){throw "digestString(str) not supported for this alg:prov="+this.algProvName;}; /**
+	     * performs final update on the sign using hexadecimal string, then returns the signature bytes of all data updates as a hexadecimal string
+	     * @name signHex
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {String} hex hexadecimal string to final update
+	     * @return the signature bytes of a hexadecimal string
+	     * @description
+	     * @example
+	     * var hSigValue = sig.signHex('1fdc33')
+	     */this.signHex=function(hex){throw "digestHex(hex) not supported for this alg:prov="+this.algProvName;}; /**
+	     * verifies the passed-in signature.
+	     * @name verify
+	     * @memberOf KJUR.crypto.Signature
+	     * @function
+	     * @param {String} str string to final update
+	     * @return {Boolean} true if the signature was verified, otherwise false
+	     * @description
+	     * @example
+	     * var isValid = sig.verify('1fbcefdca4823a7(snip)')
+	     */this.verify=function(hSigVal){throw "verify(hSigVal) not supported for this alg:prov="+this.algProvName;};this.initParams=params;if(params!==undefined){if(params['alg']!==undefined){this.algName=params['alg'];if(params['prov']===undefined){this.provName=KJUR.crypto.Util.DEFAULTPROVIDER[this.algName];}else {this.provName=params['prov'];}this.algProvName=this.algName+":"+this.provName;this.setAlgAndProvider(this.algName,this.provName);this._setAlgNames();}if(params['psssaltlen']!==undefined)this.pssSaltLen=params['psssaltlen'];if(params['prvkeypem']!==undefined){if(params['prvkeypas']!==undefined){throw "both prvkeypem and prvkeypas parameters not supported";}else {try{var prvKey=new RSAKey();prvKey.readPrivateKeyFromPEMString(params['prvkeypem']);this.initSign(prvKey);}catch(ex){throw "fatal error to load pem private key: "+ex;}}}}}; /**
+	 * static object for cryptographic function utilities
+	 * @name KJUR.crypto.OID
+	 * @class static object for cryptography related OIDs
+	 * @property {Array} oidhex2name key value of hexadecimal OID and its name
+	 *           (ex. '2a8648ce3d030107' and 'secp256r1')
+	 * @since crypto 1.1.3
+	 * @description
+	 */KJUR.crypto.OID=new function(){this.oidhex2name={'2a864886f70d010101':'rsaEncryption','2a8648ce3d0201':'ecPublicKey','2a8648ce380401':'dsa','2a8648ce3d030107':'secp256r1','2b8104001f':'secp192k1','2b81040021':'secp224r1','2b8104000a':'secp256k1','2b81040023':'secp521r1','2b81040022':'secp384r1','2a8648ce380403':'SHA1withDSA', // 1.2.840.10040.4.3
+	'608648016503040301':'SHA224withDSA', // 2.16.840.1.101.3.4.3.1
+	'608648016503040302':'SHA256withDSA'};}(); /*! base64x-1.1.3 (c) 2012-2014 Kenji Urushima | kjur.github.com/jsjws/license
+	 */ /*
+	 * base64x.js - Base64url and supplementary functions for Tom Wu's base64.js library
+	 *
+	 * version: 1.1.3 (2014 May 25)
+	 *
+	 * Copyright (c) 2012-2014 Kenji Urushima (kenji.urushima@gmail.com)
+	 *
+	 * This software is licensed under the terms of the MIT License.
+	 * http://kjur.github.com/jsjws/license/
+	 *
+	 * The above copyright and license notice shall be
+	 * included in all copies or substantial portions of the Software.
+	 *
+	 * DEPENDS ON:
+	 *   - base64.js - Tom Wu's Base64 library
+	 */ /**
+	 * Base64URL and supplementary functions for Tom Wu's base64.js library.<br/>
+	 * This class is just provide information about global functions
+	 * defined in 'base64x.js'. The 'base64x.js' script file provides
+	 * global functions for converting following data each other.
+	 * <ul>
+	 * <li>(ASCII) String</li>
+	 * <li>UTF8 String including CJK, Latin and other characters</li>
+	 * <li>byte array</li>
+	 * <li>hexadecimal encoded String</li>
+	 * <li>Full URIComponent encoded String (such like "%69%94")</li>
+	 * <li>Base64 encoded String</li>
+	 * <li>Base64URL encoded String</li>
+	 * </ul>
+	 * All functions in 'base64x.js' are defined in {@link _global_} and not
+	 * in this class.
+	 *
+	 * @class Base64URL and supplementary functions for Tom Wu's base64.js library
+	 * @author Kenji Urushima
+	 * @version 1.1 (07 May 2012)
+	 * @requires base64.js
+	 * @see <a href="http://kjur.github.com/jsjws/">'jwjws'(JWS JavaScript Library) home page http://kjur.github.com/jsjws/</a>
+	 * @see <a href="http://kjur.github.com/jsrsasigns/">'jwrsasign'(RSA Sign JavaScript Library) home page http://kjur.github.com/jsrsasign/</a>
+	 */ // 2.16.840.1.101.3.4.3.2
+	function Base64x(){} // ==== string / byte array ================================
+	/**
+	 * convert a string to an array of character codes
+	 * @param {String} s
+	 * @return {Array of Numbers}
+	 */function stoBA(s){var a=new Array();for(var i=0;i<s.length;i++){a[i]=s.charCodeAt(i);}return a;} /**
+	 * convert an array of character codes to a string
+	 * @param {Array of Numbers} a array of character codes
+	 * @return {String} s
+	 */function BAtos(a){var s="";for(var i=0;i<a.length;i++){s=s+String.fromCharCode(a[i]);}return s;} // ==== byte array / hex ================================
+	/**
+	 * convert an array of bytes(Number) to hexadecimal string.<br/>
+	 * @param {Array of Numbers} a array of bytes
+	 * @return {String} hexadecimal string
+	 */function BAtohex(a){var s="";for(var i=0;i<a.length;i++){var hex1=a[i].toString(16);if(hex1.length==1)hex1="0"+hex1;s=s+hex1;}return s;} // ==== string / hex ================================
+	/**
+	 * convert a ASCII string to a hexadecimal string of ASCII codes.<br/>
+	 * NOTE: This can't be used for non ASCII characters.
+	 * @param {s} s ASCII string
+	 * @return {String} hexadecimal string
+	 */function stohex(s){return BAtohex(stoBA(s));} // ==== string / base64 ================================
+	/**
+	 * convert a ASCII string to a Base64 encoded string.<br/>
+	 * NOTE: This can't be used for non ASCII characters.
+	 * @param {s} s ASCII string
+	 * @return {String} Base64 encoded string
+	 */function stob64(s){return hex2b64(stohex(s));} // ==== string / base64url ================================
+	/**
+	 * convert a ASCII string to a Base64URL encoded string.<br/>
+	 * NOTE: This can't be used for non ASCII characters.
+	 * @param {s} s ASCII string
+	 * @return {String} Base64URL encoded string
+	 */function stob64u(s){return b64tob64u(hex2b64(stohex(s)));} /**
+	 * convert a Base64URL encoded string to a ASCII string.<br/>
+	 * NOTE: This can't be used for Base64URL encoded non ASCII characters.
+	 * @param {s} s Base64URL encoded string
+	 * @return {String} ASCII string
+	 */function b64utos(s){return BAtos(b64toBA(b64utob64(s)));} // ==== base64 / base64url ================================
+	/**
+	 * convert a Base64 encoded string to a Base64URL encoded string.<br/>
+	 * Example: "ab+c3f/==" &rarr; "ab-c3f_"
+	 * @param {String} s Base64 encoded string
+	 * @return {String} Base64URL encoded string
+	 */function b64tob64u(s){s=s.replace(/\=/g,"");s=s.replace(/\+/g,"-");s=s.replace(/\//g,"_");return s;} /**
+	 * convert a Base64URL encoded string to a Base64 encoded string.<br/>
+	 * Example: "ab-c3f_" &rarr; "ab+c3f/=="
+	 * @param {String} s Base64URL encoded string
+	 * @return {String} Base64 encoded string
+	 */function b64utob64(s){if(s.length%4==2)s=s+"==";else if(s.length%4==3)s=s+"=";s=s.replace(/-/g,"+");s=s.replace(/_/g,"/");return s;} // ==== hex / base64url ================================
+	/**
+	 * convert a hexadecimal string to a Base64URL encoded string.<br/>
+	 * @param {String} s hexadecimal string
+	 * @return {String} Base64URL encoded string
+	 */function hextob64u(s){return b64tob64u(hex2b64(s));} /**
+	 * convert a Base64URL encoded string to a hexadecimal string.<br/>
+	 * @param {String} s Base64URL encoded string
+	 * @return {String} hexadecimal string
+	 */function b64utohex(s){return b64tohex(b64utob64(s));}var utf8tob64u,b64utoutf8;if(typeof Buffer==='function'){utf8tob64u=function(){function utf8tob64u(s){return b64tob64u(new Buffer(s,'utf8').toString('base64'));}return utf8tob64u;}();b64utoutf8=function(){function b64utoutf8(s){return new Buffer(b64utob64(s),'base64').toString('utf8');}return b64utoutf8;}();}else { // ==== utf8 / base64url ================================
+	/**
+	 * convert a UTF-8 encoded string including CJK or Latin to a Base64URL encoded string.<br/>
+	 * @param {String} s UTF-8 encoded string
+	 * @return {String} Base64URL encoded string
+	 * @since 1.1
+	 */utf8tob64u=function(){function utf8tob64u(s){return hextob64u(uricmptohex(encodeURIComponentAll(s)));}return utf8tob64u;}(); /**
+	 * convert a Base64URL encoded string to a UTF-8 encoded string including CJK or Latin.<br/>
+	 * @param {String} s Base64URL encoded string
+	 * @return {String} UTF-8 encoded string
+	 * @since 1.1
+	 */b64utoutf8=function(){function b64utoutf8(s){return decodeURIComponent(hextouricmp(b64utohex(s)));}return b64utoutf8;}();} // ==== utf8 / base64url ================================
+	/**
+	 * convert a UTF-8 encoded string including CJK or Latin to a Base64 encoded string.<br/>
+	 * @param {String} s UTF-8 encoded string
+	 * @return {String} Base64 encoded string
+	 * @since 1.1.1
+	 */function utf8tob64(s){return hex2b64(uricmptohex(encodeURIComponentAll(s)));} /**
+	 * convert a Base64 encoded string to a UTF-8 encoded string including CJK or Latin.<br/>
+	 * @param {String} s Base64 encoded string
+	 * @return {String} UTF-8 encoded string
+	 * @since 1.1.1
+	 */function b64toutf8(s){return decodeURIComponent(hextouricmp(b64tohex(s)));} // ==== utf8 / hex ================================
+	/**
+	 * convert a UTF-8 encoded string including CJK or Latin to a hexadecimal encoded string.<br/>
+	 * @param {String} s UTF-8 encoded string
+	 * @return {String} hexadecimal encoded string
+	 * @since 1.1.1
+	 */function utf8tohex(s){return uricmptohex(encodeURIComponentAll(s));} /**
+	 * convert a hexadecimal encoded string to a UTF-8 encoded string including CJK or Latin.<br/>
+	 * Note that when input is improper hexadecimal string as UTF-8 string, this function returns
+	 * 'null'.
+	 * @param {String} s hexadecimal encoded string
+	 * @return {String} UTF-8 encoded string or null
+	 * @since 1.1.1
+	 */function hextoutf8(s){return decodeURIComponent(hextouricmp(s));} /**
+	 * convert a hexadecimal encoded string to raw string including non printable characters.<br/>
+	 * @param {String} s hexadecimal encoded string
+	 * @return {String} raw string
+	 * @since 1.1.2
+	 * @example
+	 * hextorstr("610061") &rarr; "a\x00a"
+	 */function hextorstr(sHex){var s="";for(var i=0;i<sHex.length-1;i+=2){s+=String.fromCharCode(parseInt(sHex.substr(i,2),16));}return s;} /**
+	 * convert a raw string including non printable characters to hexadecimal encoded string.<br/>
+	 * @param {String} s raw string
+	 * @return {String} hexadecimal encoded string
+	 * @since 1.1.2
+	 * @example
+	 * rstrtohex("a\x00a") &rarr; "610061"
+	 */function rstrtohex(s){var result="";for(var i=0;i<s.length;i++){result+=("0"+s.charCodeAt(i).toString(16)).slice(-2);}return result;} // ==== hex / b64nl =======================================
+	/*
+	 * since base64x 1.1.3
+	 */function hextob64(s){return hex2b64(s);} /*
+	 * since base64x 1.1.3
+	 */function hextob64nl(s){var b64=hextob64(s);var b64nl=b64.replace(/(.{64})/g,"$1\r\n");b64nl=b64nl.replace(/\r\n$/,'');return b64nl;} /*
+	 * since base64x 1.1.3
+	 */function b64nltohex(s){var b64=s.replace(/[^0-9A-Za-z\/+=]*/g,'');var hex=b64tohex(b64);return hex;} // ==== URIComponent / hex ================================
+	/**
+	 * convert a URLComponent string such like "%67%68" to a hexadecimal string.<br/>
+	 * @param {String} s URIComponent string such like "%67%68"
+	 * @return {String} hexadecimal string
+	 * @since 1.1
+	 */function uricmptohex(s){return s.replace(/%/g,"");} /**
+	 * convert a hexadecimal string to a URLComponent string such like "%67%68".<br/>
+	 * @param {String} s hexadecimal string
+	 * @return {String} URIComponent string such like "%67%68"
+	 * @since 1.1
+	 */function hextouricmp(s){return s.replace(/(..)/g,"%$1");} // ==== URIComponent ================================
+	/**
+	 * convert UTFa hexadecimal string to a URLComponent string such like "%67%68".<br/>
+	 * Note that these "<code>0-9A-Za-z!'()*-._~</code>" characters will not
+	 * converted to "%xx" format by builtin 'encodeURIComponent()' function.
+	 * However this 'encodeURIComponentAll()' function will convert
+	 * all of characters into "%xx" format.
+	 * @param {String} s hexadecimal string
+	 * @return {String} URIComponent string such like "%67%68"
+	 * @since 1.1
+	 */function encodeURIComponentAll(u8){var s=encodeURIComponent(u8);var s2="";for(var i=0;i<s.length;i++){if(s[i]=="%"){s2=s2+s.substr(i,3);i=i+2;}else {s2=s2+"%"+stohex(s[i]);}}return s2;} // ==== new lines ================================
+	/**
+	 * convert all DOS new line("\r\n") to UNIX new line("\n") in
+	 * a String "s".
+	 * @param {String} s string
+	 * @return {String} converted string
+	 */function newline_toUnix(s){s=s.replace(/\r\n/mg,"\n");return s;} /**
+	 * convert all UNIX new line("\r\n") to DOS new line("\n") in
+	 * a String "s".
+	 * @param {String} s string
+	 * @return {String} converted string
+	 */function newline_toDos(s){s=s.replace(/\r\n/mg,"\n");s=s.replace(/\n/mg,"\r\n");return s;} /*! Mike Samuel (c) 2009 | code.google.com/p/json-sans-eval
+	 */ // This source code is free for use in the public domain.
+	// NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+	// http://code.google.com/p/json-sans-eval/
+	/**
+	 * Parses a string of well-formed JSON text.
+	 *
+	 * If the input is not well-formed, then behavior is undefined, but it is
+	 * deterministic and is guaranteed not to modify any object other than its
+	 * return value.
+	 *
+	 * This does not use `eval` so is less likely to have obscure security bugs than
+	 * json2.js.
+	 * It is optimized for speed, so is much faster than json_parse.js.
+	 *
+	 * This library should be used whenever security is a concern (when JSON may
+	 * come from an untrusted source), speed is a concern, and erroring on malformed
+	 * JSON is *not* a concern.
+	 *
+	 *                      Pros                   Cons
+	 *                    +-----------------------+-----------------------+
+	 * json_sans_eval.js  | Fast, secure          | Not validating        |
+	 *                    +-----------------------+-----------------------+
+	 * json_parse.js      | Validating, secure    | Slow                  |
+	 *                    +-----------------------+-----------------------+
+	 * json2.js           | Fast, some validation | Potentially insecure  |
+	 *                    +-----------------------+-----------------------+
+	 *
+	 * json2.js is very fast, but potentially insecure since it calls `eval` to
+	 * parse JSON data, so an attacker might be able to supply strange JS that
+	 * looks like JSON, but that executes arbitrary javascript.
+	 * If you do have to use json2.js with untrusted data, make sure you keep
+	 * your version of json2.js up to date so that you get patches as they're
+	 * released.
+	 *
+	 * @param {string} json per RFC 4627
+	 * @param {function (this:Object, string, *):*} opt_reviver optional function
+	 *     that reworks JSON objects post-parse per Chapter 15.12 of EcmaScript3.1.
+	 *     If supplied, the function is called with a string key, and a value.
+	 *     The value is the property of 'this'.  The reviver should return
+	 *     the value to use in its place.  So if dates were serialized as
+	 *     {@code { "type": "Date", "time": 1234 }}, then a reviver might look like
+	 *     {@code
+	 *     function (key, value) {
+	 *       if (value && typeof value === 'object' && 'Date' === value.type) {
+	 *         return new Date(value.time);
+	 *       } else {
+	 *         return value;
+	 *       }
+	 *     }}.
+	 *     If the reviver returns {@code undefined} then the property named by key
+	 *     will be deleted from its container.
+	 *     {@code this} is bound to the object containing the specified property.
+	 * @return {Object|Array}
+	 * @author Mike Samuel <mikesamuel@gmail.com>
+	 */var jsonParse=function(){var number='(?:-?\\b(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\\b)';var oneChar='(?:[^\\0-\\x08\\x0a-\\x1f\"\\\\]'+'|\\\\(?:[\"/\\\\bfnrt]|u[0-9A-Fa-f]{4}))';var string='(?:\"'+oneChar+'*\")'; // Will match a value in a well-formed JSON file.
+	// If the input is not well-formed, may match strangely, but not in an unsafe
+	// way.
+	// Since this only matches value tokens, it does not match whitespace, colons,
+	// or commas.
+	var jsonToken=new RegExp('(?:false|true|null|[\\{\\}\\[\\]]'+'|'+number+'|'+string+')','g'); // Matches escape sequences in a string literal
+	var escapeSequence=new RegExp('\\\\(?:([^u])|u(.{4}))','g'); // Decodes escape sequences in object literals
+	var escapes={'"':'"','/':'/','\\':'\\','b':'\b','f':'\f','n':'\n','r':'\r','t':'\t'};function unescapeOne(_,ch,hex){return ch?escapes[ch]:String.fromCharCode(parseInt(hex,16));} // A non-falsy value that coerces to the empty string when used as a key.
+	var EMPTY_STRING=new String('');var SLASH='\\'; // Constructor to use based on an open token.
+	var firstTokenCtors={'{':Object,'[':Array};var hop=Object.hasOwnProperty;return function(json,opt_reviver){ // Split into tokens
+	var toks=json.match(jsonToken); // Construct the object to return
+	var result;var tok=toks[0];var topLevelPrimitive=false;if('{'===tok){result={};}else if('['===tok){result=[];}else { // The RFC only allows arrays or objects at the top level, but the JSON.parse
+	// defined by the EcmaScript 5 draft does allow strings, booleans, numbers, and null
+	// at the top level.
+	result=[];topLevelPrimitive=true;} // If undefined, the key in an object key/value record to use for the next
+	// value parsed.
+	var key; // Loop over remaining tokens maintaining a stack of uncompleted objects and
+	// arrays.
+	var stack=[result];for(var i=1-topLevelPrimitive,n=toks.length;i<n;++i){tok=toks[i];var cont;switch(tok.charCodeAt(0)){default: // sign or digit
+	cont=stack[0];cont[key||cont.length]=+tok;key=void 0;break;case 0x22: // '"'
+	tok=tok.substring(1,tok.length-1);if(tok.indexOf(SLASH)!==-1){tok=tok.replace(escapeSequence,unescapeOne);}cont=stack[0];if(!key){if(cont instanceof Array){key=cont.length;}else {key=tok||EMPTY_STRING; // Use as key for next value seen.
+	break;}}cont[key]=tok;key=void 0;break;case 0x5b: // '['
+	cont=stack[0];stack.unshift(cont[key||cont.length]=[]);key=void 0;break;case 0x5d: // ']'
+	stack.shift();break;case 0x66: // 'f'
+	cont=stack[0];cont[key||cont.length]=false;key=void 0;break;case 0x6e: // 'n'
+	cont=stack[0];cont[key||cont.length]=null;key=void 0;break;case 0x74: // 't'
+	cont=stack[0];cont[key||cont.length]=true;key=void 0;break;case 0x7b: // '{'
+	cont=stack[0];stack.unshift(cont[key||cont.length]={});key=void 0;break;case 0x7d: // '}'
+	stack.shift();break;}} // Fail if we've got an uncompleted object.
+	if(topLevelPrimitive){if(stack.length!==1){throw new Error();}result=result[0];}else {if(stack.length){throw new Error();}}if(opt_reviver){ // Based on walk as implemented in http://www.json.org/json2.js
+	var walk=function(){function walk(holder,key){var value=holder[key];if(value&&(typeof value==='undefined'?'undefined':_typeof(value))==='object'){var toDelete=null;for(var k in value){if(hop.call(value,k)&&value!==holder){ // Recurse to properties first.  This has the effect of causing
+	// the reviver to be called on the object graph depth-first.
+	// Since 'this' is bound to the holder of the property, the
+	// reviver can access sibling properties of k including ones
+	// that have not yet been revived.
+	// The value returned by the reviver is used in place of the
+	// current value of property k.
+	// If it returns undefined then the property is deleted.
+	var v=walk(value,k);if(v!==void 0){value[k]=v;}else { // Deleting properties inside the loop has vaguely defined
+	// semantics in ES3 and ES3.1.
+	if(!toDelete){toDelete=[];}toDelete.push(k);}}}if(toDelete){for(var i=toDelete.length;--i>=0;){delete value[toDelete[i]];}}}return opt_reviver.call(holder,key,value);}return walk;}();result=walk({'':result},'');}return result;};}(); /*! jws-3.0.2 (c) 2013 Kenji Urushima | kjur.github.com/jsjws/license
+	 */ /*
+	 * jws.js - JSON Web Signature Class
+	 *
+	 * version: 3.0.2 (2013 Sep 24)
+	 *
+	 * Copyright (c) 2010-2013 Kenji Urushima (kenji.urushima@gmail.com)
+	 *
+	 * This software is licensed under the terms of the MIT License.
+	 * http://kjur.github.com/jsjws/license/
+	 *
+	 * The above copyright and license notice shall be
+	 * included in all copies or substantial portions of the Software.
+	 */ /**
 	 * @fileOverview
 	 * @name jws-3.0.js
 	 * @author Kenji Urushima kenji.urushima@gmail.com
 	 * @version 3.0.1 (2013-Sep-24)
 	 * @since jsjws 1.0
 	 * @license <a href="http://kjur.github.io/jsjws/license/">MIT License</a>
-	 */
-"undefined"!=typeof KJUR&&KJUR||(KJUR={}),"undefined"!=typeof KJUR.jws&&KJUR.jws||(KJUR.jws={}),KJUR.jws.JWS=function(){function e(e,t){return utf8tob64u(e)+"."+utf8tob64u(t)}function t(e){var t=e.alg,n="";if("RS256"!=t&&"RS512"!=t&&"PS256"!=t&&"PS512"!=t)throw"JWS signature algorithm not supported: "+t;return"256"==t.substr(2)&&(n="sha256"),"512"==t.substr(2)&&(n="sha512"),n}function n(e){return t(jsonParse(e))}function r(e,t,r,o,i,a){var s=new RSAKey;s.setPrivate(o,i,a);var u=n(e),c=s.signString(r,u);return c}function o(e,r,o,i,a){var s=null;s="undefined"==typeof a?n(e):t(a);var u="PS"==a.alg.substr(0,2);return i.hashAndSign?b64tob64u(i.hashAndSign(s,o,"binary","base64",u)):hextob64u(u?i.signStringPSS(o,s):i.signString(o,s))}function i(e,t,r,o){var i=new RSAKey;i.readPrivateKeyFromPEMString(o);var a=n(e),s=i.signString(r,a);return s}this.parseJWS=function(e,t){if(void 0===this.parsedJWS||!t&&void 0===this.parsedJWS.sigvalH){if(null==e.match(/^([^.]+)\.([^.]+)\.([^.]+)$/))throw"JWS signature is not a form of 'Head.Payload.SigValue'.";var n=RegExp.$1,r=RegExp.$2,o=RegExp.$3,i=n+"."+r;if(this.parsedJWS={},this.parsedJWS.headB64U=n,this.parsedJWS.payloadB64U=r,this.parsedJWS.sigvalB64U=o,this.parsedJWS.si=i,!t){var a=b64utohex(o),s=parseBigInt(a,16);this.parsedJWS.sigvalH=a,this.parsedJWS.sigvalBI=s}var u=b64utoutf8(n),c=b64utoutf8(r);if(this.parsedJWS.headS=u,this.parsedJWS.payloadS=c,!KJUR.jws.JWS.isSafeJSONString(u,this.parsedJWS,"headP"))throw"malformed JSON string for JWS Head: "+u}},this.verifyJWSByNE=function(e,t,n){return this.parseJWS(e),_rsasign_verifySignatureWithArgs(this.parsedJWS.si,this.parsedJWS.sigvalBI,t,n)},this.verifyJWSByKey=function(e,n){this.parseJWS(e);var r=t(this.parsedJWS.headP),o="PS"==this.parsedJWS.headP.alg.substr(0,2);return n.hashAndVerify?n.hashAndVerify(r,new Buffer(this.parsedJWS.si,"utf8").toString("base64"),b64utob64(this.parsedJWS.sigvalB64U),"base64",o):o?n.verifyStringPSS(this.parsedJWS.si,this.parsedJWS.sigvalH,r):n.verifyString(this.parsedJWS.si,this.parsedJWS.sigvalH)},this.verifyJWSByPemX509Cert=function(e,t){this.parseJWS(e);var n=new X509;return n.readCertPEM(t),n.subjectPublicKeyRSA.verifyString(this.parsedJWS.si,this.parsedJWS.sigvalH)},this.generateJWSByNED=function(t,n,o,i,a){if(!KJUR.jws.JWS.isSafeJSONString(t))throw"JWS Head is not safe JSON string: "+t;var s=e(t,n),u=r(t,n,s,o,i,a),c=hextob64u(u);return this.parsedJWS={},this.parsedJWS.headB64U=s.split(".")[0],this.parsedJWS.payloadB64U=s.split(".")[1],this.parsedJWS.sigvalB64U=c,s+"."+c},this.generateJWSByKey=function(t,n,r){var i={};if(!KJUR.jws.JWS.isSafeJSONString(t,i,"headP"))throw"JWS Head is not safe JSON string: "+t;var a=e(t,n),s=o(t,n,a,r,i.headP);return this.parsedJWS={},this.parsedJWS.headB64U=a.split(".")[0],this.parsedJWS.payloadB64U=a.split(".")[1],this.parsedJWS.sigvalB64U=s,a+"."+s},this.generateJWSByP1PrvKey=function(t,n,r){if(!KJUR.jws.JWS.isSafeJSONString(t))throw"JWS Head is not safe JSON string: "+t;var o=e(t,n),a=i(t,n,o,r),s=hextob64u(a);return this.parsedJWS={},this.parsedJWS.headB64U=o.split(".")[0],this.parsedJWS.payloadB64U=o.split(".")[1],this.parsedJWS.sigvalB64U=s,o+"."+s}},KJUR.jws.JWS.sign=function(e,t,n,r,o){var i=KJUR.jws.JWS;if(!i.isSafeJSONString(t))throw"JWS Head is not safe JSON string: "+sHead;var a=i.readSafeJSONString(t);""!=e&&null!=e||void 0===a.alg||(e=a.alg),""!=e&&null!=e&&void 0===a.alg&&(a.alg=e,t=JSON.stringify(a));var s=null;if(void 0===i.jwsalg2sigalg[e])throw"unsupported alg name: "+e;s=i.jwsalg2sigalg[e];var u=utf8tob64u(t),c=utf8tob64u(n),l=u+"."+c,p="";if("Hmac"==s.substr(0,4)){if(void 0===r)throw"hexadecimal key shall be specified for HMAC";var d=new KJUR.crypto.Mac({alg:s,pass:hextorstr(r)});d.updateString(l),p=d.doFinal()}else if(-1!=s.indexOf("withECDSA")){var h=new KJUR.crypto.Signature({alg:s});h.init(r,o),h.updateString(l),hASN1Sig=h.sign(),p=KJUR.crypto.ECDSA.asn1SigToConcatSig(hASN1Sig)}else if("none"!=s){var h=new KJUR.crypto.Signature({alg:s});h.init(r,o),h.updateString(l),p=h.sign()}var f=hextob64u(p);return l+"."+f},KJUR.jws.JWS.verify=function(e,t){var n=KJUR.jws.JWS,r=e.split("."),o=r[0],i=r[1],a=o+"."+i,s=b64utohex(r[2]),u=n.readSafeJSONString(b64utoutf8(r[0])),c=null;if(void 0===u.alg)throw"algorithm not specified in header";c=u.alg;var l=null;if(void 0===n.jwsalg2sigalg[u.alg])throw"unsupported alg name: "+c;if(l=n.jwsalg2sigalg[c],"none"==l)return!0;if("Hmac"==l.substr(0,4)){if(void 0===t)throw"hexadecimal key shall be specified for HMAC";var p=new KJUR.crypto.Mac({alg:l,pass:hextorstr(t)});return p.updateString(a),hSig2=p.doFinal(),s==hSig2}if(-1!=l.indexOf("withECDSA")){var d=null;try{d=KJUR.crypto.ECDSA.concatSigToASN1Sig(s)}catch(h){return!1}var f=new KJUR.crypto.Signature({alg:l});return f.init(t),f.updateString(a),f.verify(d)}var f=new KJUR.crypto.Signature({alg:l});return f.init(t),f.updateString(a),f.verify(s)},KJUR.jws.JWS.jwsalg2sigalg={HS256:"HmacSHA256",HS512:"HmacSHA512",RS256:"SHA256withRSA",RS384:"SHA384withRSA",RS512:"SHA512withRSA",ES256:"SHA256withECDSA",ES384:"SHA384withECDSA",PS256:"SHA256withRSAandMGF1",PS384:"SHA384withRSAandMGF1",PS512:"SHA512withRSAandMGF1",none:"none"},KJUR.jws.JWS.isSafeJSONString=function(e,t,n){var r=null;try{return r=jsonParse(e),"object"!=typeof r?0:r.constructor===Array?0:(t&&(t[n]=r),1)}catch(o){return 0}},KJUR.jws.JWS.readSafeJSONString=function(e){var t=null;try{return t=jsonParse(e),"object"!=typeof t?null:t.constructor===Array?null:t}catch(n){return null}},KJUR.jws.JWS.getEncodedSignatureValueFromJWS=function(e){if(null==e.match(/^[^.]+\.[^.]+\.([^.]+)$/))throw"JWS signature is not a form of 'Head.Payload.SigValue'.";return RegExp.$1},KJUR.jws.IntDate=function(){},KJUR.jws.IntDate.get=function(e){if("now"==e)return KJUR.jws.IntDate.getNow();if("now + 1hour"==e)return KJUR.jws.IntDate.getNow()+3600;if("now + 1day"==e)return KJUR.jws.IntDate.getNow()+86400;if("now + 1month"==e)return KJUR.jws.IntDate.getNow()+2592e3;if("now + 1year"==e)return KJUR.jws.IntDate.getNow()+31536e3;if(e.match(/Z$/))return KJUR.jws.IntDate.getZulu(e);if(e.match(/^[0-9]+$/))return parseInt(e);throw"unsupported format: "+e},KJUR.jws.IntDate.getZulu=function(e){if(a=e.match(/(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z/)){var t=parseInt(RegExp.$1),n=parseInt(RegExp.$2)-1,r=parseInt(RegExp.$3),o=parseInt(RegExp.$4),i=parseInt(RegExp.$5),s=parseInt(RegExp.$6),u=new Date(Date.UTC(t,n,r,o,i,s));return~~(u/1e3)}throw"unsupported format: "+e},KJUR.jws.IntDate.getNow=function(){var e=~~(new Date/1e3);return e},KJUR.jws.IntDate.intDate2UTCString=function(e){var t=new Date(1e3*e);return t.toUTCString()},KJUR.jws.IntDate.intDate2Zulu=function(e){var t=new Date(1e3*e),n=("0000"+t.getUTCFullYear()).slice(-4),r=("00"+(t.getUTCMonth()+1)).slice(-2),o=("00"+t.getUTCDate()).slice(-2),i=("00"+t.getUTCHours()).slice(-2),a=("00"+t.getUTCMinutes()).slice(-2),s=("00"+t.getUTCSeconds()).slice(-2);return n+r+o+i+a+s+"Z"},/*!
+	 */if(typeof KJUR=="undefined"||!KJUR)KJUR={};if(typeof KJUR.jws=="undefined"||!KJUR.jws)KJUR.jws={}; /**
+	 * JSON Web Signature(JWS) class.<br/>
+	 * @name KJUR.jws.JWS
+	 * @class JSON Web Signature(JWS) class
+	 * @property {Dictionary} parsedJWS This property is set after JWS signature verification. <br/>
+	 *           Following "parsedJWS_*" properties can be accessed as "parsedJWS.*" because of
+	 *           JsDoc restriction.
+	 * @property {String} parsedJWS_headB64U string of Encrypted JWS Header
+	 * @property {String} parsedJWS_payloadB64U string of Encrypted JWS Payload
+	 * @property {String} parsedJWS_sigvalB64U string of Encrypted JWS signature value
+	 * @property {String} parsedJWS_si string of Signature Input
+	 * @property {String} parsedJWS_sigvalH hexadecimal string of JWS signature value
+	 * @property {String} parsedJWS_sigvalBI BigInteger(defined in jsbn.js) object of JWS signature value
+	 * @property {String} parsedJWS_headS string of decoded JWS Header
+	 * @property {String} parsedJWS_headS string of decoded JWS Payload
+	 * @requires base64x.js, json-sans-eval.js and jsrsasign library
+	 * @see <a href="http://kjur.github.com/jsjws/">'jwjws'(JWS JavaScript Library) home page http://kjur.github.com/jsjws/</a>
+	 * @see <a href="http://kjur.github.com/jsrsasigns/">'jwrsasign'(RSA Sign JavaScript Library) home page http://kjur.github.com/jsrsasign/</a>
+	 * @see <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-14">IETF I-D JSON Web Algorithms (JWA)</a>
+	 * @since jsjws 1.0
+	 * @description
+	 * <h4>Supported Algorithms</h4>
+	 * Here is supported algorithm names for {@link KJUR.jws.JWS.sign} and {@link KJUR.jws.JWS.verify}
+	 * methods.
+	 * <table>
+	 * <tr><th>alg value</th><th>spec requirement</th><th>jsjws support</th></tr>
+	 * <tr><td>HS256</td><td>REQUIRED</td><td>SUPPORTED</td></tr>
+	 * <tr><td>HS384</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>HS512</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>RS256</td><td>RECOMMENDED</td><td>SUPPORTED</td></tr>
+	 * <tr><td>RS384</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>RS512</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>ES256</td><td>RECOMMENDED+</td><td>SUPPORTED</td></tr>
+	 * <tr><td>ES384</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>ES512</td><td>OPTIONAL</td><td>-</td></tr>
+	 * <tr><td>PS256</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>PS384</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>PS512</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>none</td><td>REQUIRED</td><td>SUPPORTED</td></tr>
+	 * </table>
+	 * NOTE: HS384 is supported since jsjws 3.0.2 with jsrsasign 4.1.4.
+	 */KJUR.jws.JWS=function(){ // === utility =============================================================
+	/**
+	     * parse JWS string and set public property 'parsedJWS' dictionary.<br/>
+	     * @name parseJWS
+	     * @memberOf KJUR.jws.JWS
+	     * @function
+	     * @param {String} sJWS JWS signature string to be parsed.
+	     * @throws if sJWS is not comma separated string such like "Header.Payload.Signature".
+	     * @throws if JWS Header is a malformed JSON string.
+	     * @since jws 1.1
+	     */this.parseJWS=function(sJWS,sigValNotNeeded){if(this.parsedJWS!==undefined&&(sigValNotNeeded||this.parsedJWS.sigvalH!==undefined)){return;}if(sJWS.match(/^([^.]+)\.([^.]+)\.([^.]+)$/)==null){throw "JWS signature is not a form of 'Head.Payload.SigValue'.";}var b6Head=RegExp.$1;var b6Payload=RegExp.$2;var b6SigVal=RegExp.$3;var sSI=b6Head+"."+b6Payload;this.parsedJWS={};this.parsedJWS.headB64U=b6Head;this.parsedJWS.payloadB64U=b6Payload;this.parsedJWS.sigvalB64U=b6SigVal;this.parsedJWS.si=sSI;if(!sigValNotNeeded){var hSigVal=b64utohex(b6SigVal);var biSigVal=parseBigInt(hSigVal,16);this.parsedJWS.sigvalH=hSigVal;this.parsedJWS.sigvalBI=biSigVal;}var sHead=b64utoutf8(b6Head);var sPayload=b64utoutf8(b6Payload);this.parsedJWS.headS=sHead;this.parsedJWS.payloadS=sPayload;if(!KJUR.jws.JWS.isSafeJSONString(sHead,this.parsedJWS,'headP'))throw "malformed JSON string for JWS Head: "+sHead;}; // ==== JWS Validation =========================================================
+	function _getSignatureInputByString(sHead,sPayload){return utf8tob64u(sHead)+"."+utf8tob64u(sPayload);};function _getHashBySignatureInput(sSignatureInput,sHashAlg){var hashfunc=function(){function hashfunc(s){return KJUR.crypto.Util.hashString(s,sHashAlg);}return hashfunc;}();if(hashfunc==null)throw "hash function not defined in jsrsasign: "+sHashAlg;return hashfunc(sSignatureInput);};function _jws_verifySignature(sHead,sPayload,hSig,hN,hE){var sSignatureInput=_getSignatureInputByString(sHead,sPayload);var biSig=parseBigInt(hSig,16);return _rsasign_verifySignatureWithArgs(sSignatureInput,biSig,hN,hE);}; /**
+	     * verify JWS signature with naked RSA public key.<br/>
+	     * This only supports "RS256" and "RS512" algorithm.
+	     * @name verifyJWSByNE
+	     * @memberOf KJUR.jws.JWS
+	     * @function
+	     * @param {String} sJWS JWS signature string to be verified
+	     * @param {String} hN hexadecimal string for modulus of RSA public key
+	     * @param {String} hE hexadecimal string for public exponent of RSA public key
+	     * @return {String} returns 1 when JWS signature is valid, otherwise returns 0
+	     * @throws if sJWS is not comma separated string such like "Header.Payload.Signature".
+	     * @throws if JWS Header is a malformed JSON string.
+	     * @deprecated from 3.0.0 please move to {@link KJUR.jws.JWS.verify}
+	     */this.verifyJWSByNE=function(sJWS,hN,hE){this.parseJWS(sJWS);return _rsasign_verifySignatureWithArgs(this.parsedJWS.si,this.parsedJWS.sigvalBI,hN,hE);}; /**
+	     * verify JWS signature with RSA public key.<br/>
+	     * This only supports "RS256", "RS512", "PS256" and "PS512" algorithms.
+	     * @name verifyJWSByKey
+	     * @memberOf KJUR.jws.JWS
+	     * @function
+	     * @param {String} sJWS JWS signature string to be verified
+	     * @param {RSAKey} key RSA public key
+	     * @return {Boolean} returns true when JWS signature is valid, otherwise returns false
+	     * @throws if sJWS is not comma separated string such like "Header.Payload.Signature".
+	     * @throws if JWS Header is a malformed JSON string.
+	     * @deprecated from 3.0.0 please move to {@link KJUR.jws.JWS.verify}
+	     */this.verifyJWSByKey=function(sJWS,key){this.parseJWS(sJWS);var hashAlg=_jws_getHashAlgFromParsedHead(this.parsedJWS.headP);var isPSS=this.parsedJWS.headP['alg'].substr(0,2)=="PS";if(key.hashAndVerify){return key.hashAndVerify(hashAlg,new Buffer(this.parsedJWS.si,'utf8').toString('base64'),b64utob64(this.parsedJWS.sigvalB64U),'base64',isPSS);}else if(isPSS){return key.verifyStringPSS(this.parsedJWS.si,this.parsedJWS.sigvalH,hashAlg);}else {return key.verifyString(this.parsedJWS.si,this.parsedJWS.sigvalH);}}; /**
+	     * verify JWS signature by PEM formatted X.509 certificate.<br/>
+	     * This only supports "RS256" and "RS512" algorithm.
+	     * @name verifyJWSByPemX509Cert
+	     * @memberOf KJUR.jws.JWS
+	     * @function
+	     * @param {String} sJWS JWS signature string to be verified
+	     * @param {String} sPemX509Cert string of PEM formatted X.509 certificate
+	     * @return {String} returns 1 when JWS signature is valid, otherwise returns 0
+	     * @throws if sJWS is not comma separated string such like "Header.Payload.Signature".
+	     * @throws if JWS Header is a malformed JSON string.
+	     * @since 1.1
+	     * @deprecated from 3.0.0 please move to {@link KJUR.jws.JWS.verify}
+	     */this.verifyJWSByPemX509Cert=function(sJWS,sPemX509Cert){this.parseJWS(sJWS);var x509=new X509();x509.readCertPEM(sPemX509Cert);return x509.subjectPublicKeyRSA.verifyString(this.parsedJWS.si,this.parsedJWS.sigvalH);}; // ==== JWS Generation =========================================================
+	function _jws_getHashAlgFromParsedHead(head){var sigAlg=head["alg"];var hashAlg="";if(sigAlg!="RS256"&&sigAlg!="RS512"&&sigAlg!="PS256"&&sigAlg!="PS512")throw "JWS signature algorithm not supported: "+sigAlg;if(sigAlg.substr(2)=="256")hashAlg="sha256";if(sigAlg.substr(2)=="512")hashAlg="sha512";return hashAlg;};function _jws_getHashAlgFromHead(sHead){return _jws_getHashAlgFromParsedHead(jsonParse(sHead));};function _jws_generateSignatureValueBySI_NED(sHead,sPayload,sSI,hN,hE,hD){var rsa=new RSAKey();rsa.setPrivate(hN,hE,hD);var hashAlg=_jws_getHashAlgFromHead(sHead);var sigValue=rsa.signString(sSI,hashAlg);return sigValue;};function _jws_generateSignatureValueBySI_Key(sHead,sPayload,sSI,key,head){var hashAlg=null;if(typeof head=="undefined"){hashAlg=_jws_getHashAlgFromHead(sHead);}else {hashAlg=_jws_getHashAlgFromParsedHead(head);}var isPSS=head['alg'].substr(0,2)=="PS";if(key.hashAndSign){return b64tob64u(key.hashAndSign(hashAlg,sSI,'binary','base64',isPSS));}else if(isPSS){return hextob64u(key.signStringPSS(sSI,hashAlg));}else {return hextob64u(key.signString(sSI,hashAlg));}};function _jws_generateSignatureValueByNED(sHead,sPayload,hN,hE,hD){var sSI=_getSignatureInputByString(sHead,sPayload);return _jws_generateSignatureValueBySI_NED(sHead,sPayload,sSI,hN,hE,hD);}; /**
+	     * generate JWS signature by Header, Payload and a naked RSA private key.<br/>
+	     * This only supports "RS256" and "RS512" algorithm.
+	     * @name generateJWSByNED
+	     * @memberOf KJUR.jws.JWS
+	     * @function
+	     * @param {String} sHead string of JWS Header
+	     * @param {String} sPayload string of JWS Payload
+	     * @param {String} hN hexadecimal string for modulus of RSA public key
+	     * @param {String} hE hexadecimal string for public exponent of RSA public key
+	     * @param {String} hD hexadecimal string for private exponent of RSA private key
+	     * @return {String} JWS signature string
+	     * @throws if sHead is a malformed JSON string.
+	     * @throws if supported signature algorithm was not specified in JSON Header.
+	     * @deprecated from 3.0.0 please move to {@link KJUR.jws.JWS.sign}
+	     */this.generateJWSByNED=function(sHead,sPayload,hN,hE,hD){if(!KJUR.jws.JWS.isSafeJSONString(sHead))throw "JWS Head is not safe JSON string: "+sHead;var sSI=_getSignatureInputByString(sHead,sPayload);var hSigValue=_jws_generateSignatureValueBySI_NED(sHead,sPayload,sSI,hN,hE,hD);var b64SigValue=hextob64u(hSigValue);this.parsedJWS={};this.parsedJWS.headB64U=sSI.split(".")[0];this.parsedJWS.payloadB64U=sSI.split(".")[1];this.parsedJWS.sigvalB64U=b64SigValue;return sSI+"."+b64SigValue;}; /**
+	     * generate JWS signature by Header, Payload and a RSA private key.<br/>
+	     * This only supports "RS256", "RS512", "PS256" and "PS512" algorithms.
+	     * @name generateJWSByKey
+	     * @memberOf KJUR.jws.JWS
+	     * @function
+	     * @param {String} sHead string of JWS Header
+	     * @param {String} sPayload string of JWS Payload
+	     * @param {RSAKey} RSA private key
+	     * @return {String} JWS signature string
+	     * @throws if sHead is a malformed JSON string.
+	     * @throws if supported signature algorithm was not specified in JSON Header.
+	     * @deprecated from 3.0.0 please move to {@link KJUR.jws.JWS.sign}
+	     */this.generateJWSByKey=function(sHead,sPayload,key){var obj={};if(!KJUR.jws.JWS.isSafeJSONString(sHead,obj,'headP'))throw "JWS Head is not safe JSON string: "+sHead;var sSI=_getSignatureInputByString(sHead,sPayload);var b64SigValue=_jws_generateSignatureValueBySI_Key(sHead,sPayload,sSI,key,obj.headP);this.parsedJWS={};this.parsedJWS.headB64U=sSI.split(".")[0];this.parsedJWS.payloadB64U=sSI.split(".")[1];this.parsedJWS.sigvalB64U=b64SigValue;return sSI+"."+b64SigValue;}; // === sign with PKCS#1 RSA private key =====================================================
+	function _jws_generateSignatureValueBySI_PemPrvKey(sHead,sPayload,sSI,sPemPrvKey){var rsa=new RSAKey();rsa.readPrivateKeyFromPEMString(sPemPrvKey);var hashAlg=_jws_getHashAlgFromHead(sHead);var sigValue=rsa.signString(sSI,hashAlg);return sigValue;}; /**
+	     * generate JWS signature by Header, Payload and a PEM formatted PKCS#1 RSA private key.<br/>
+	     * This only supports "RS256" and "RS512" algorithm.
+	     * @name generateJWSByP1PrvKey
+	     * @memberOf KJUR.jws.JWS
+	     * @function
+	     * @param {String} sHead string of JWS Header
+	     * @param {String} sPayload string of JWS Payload
+	     * @param {String} string for sPemPrvKey PEM formatted PKCS#1 RSA private key<br/>
+	     *                 Heading and trailing space characters in PEM key will be ignored.
+	     * @return {String} JWS signature string
+	     * @throws if sHead is a malformed JSON string.
+	     * @throws if supported signature algorithm was not specified in JSON Header.
+	     * @since 1.1
+	     * @deprecated from 3.0.0 please move to {@link KJUR.jws.JWS.sign}
+	     */this.generateJWSByP1PrvKey=function(sHead,sPayload,sPemPrvKey){if(!KJUR.jws.JWS.isSafeJSONString(sHead))throw "JWS Head is not safe JSON string: "+sHead;var sSI=_getSignatureInputByString(sHead,sPayload);var hSigValue=_jws_generateSignatureValueBySI_PemPrvKey(sHead,sPayload,sSI,sPemPrvKey);var b64SigValue=hextob64u(hSigValue);this.parsedJWS={};this.parsedJWS.headB64U=sSI.split(".")[0];this.parsedJWS.payloadB64U=sSI.split(".")[1];this.parsedJWS.sigvalB64U=b64SigValue;return sSI+"."+b64SigValue;};}; // === major static method ========================================================
+	/**
+	 * generate JWS signature by specified key<br/>
+	 * @name sign
+	 * @memberOf KJUR.jws.JWS
+	 * @function
+	 * @static
+	 * @param {String} alg JWS algorithm name to sign and force set to sHead or null
+	 * @param {String} sHead string of JWS Header
+	 * @param {String} sPayload string of JWS Payload
+	 * @param {String} key string of private key or key object to sign
+	 * @param {String} pass (OPTION)passcode to use encrypted private key
+	 * @return {String} JWS signature string
+	 * @since jws 3.0.0
+	 * @see <a href="http://kjur.github.io/jsrsasign/api/symbols/KJUR.crypto.Signature.html">jsrsasign KJUR.crypto.Signature method</a>
+	 * @see <a href="http://kjur.github.io/jsrsasign/api/symbols/KJUR.crypto.Mac.html">jsrsasign KJUR.crypto.Mac method</a>
+	 * @description
+	 * This method supports following algorithms.
+	 * <table>
+	 * <tr><th>alg value</th><th>spec requirement</th><th>jsjws support</th></tr>
+	 * <tr><td>HS256</td><td>REQUIRED</td><td>SUPPORTED</td></tr>
+	 * <tr><td>HS384</td><td>OPTIONAL</td><td>-</td></tr>
+	 * <tr><td>HS512</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>RS256</td><td>RECOMMENDED</td><td>SUPPORTED</td></tr>
+	 * <tr><td>RS384</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>RS512</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>ES256</td><td>RECOMMENDED+</td><td>SUPPORTED</td></tr>
+	 * <tr><td>ES384</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>ES512</td><td>OPTIONAL</td><td>-</td></tr>
+	 * <tr><td>PS256</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>PS384</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>PS512</td><td>OPTIONAL</td><td>SUPPORTED</td></tr>
+	 * <tr><td>none</td><td>REQUIRED</td><td>SUPPORTED</td></tr>
+	 * </table>
+	 * <dl>
+	 * <dt>NOTE1:
+	 * <dd>salt length of RSAPSS signature is the same as the hash algorithm length
+	 * because of <a href="http://www.ietf.org/mail-archive/web/jose/current/msg02901.html">IETF JOSE ML discussion</a>.
+	 * <dt>NOTE2:
+	 * <dd>The reason of HS384 unsupport is
+	 * <a href="https://code.google.com/p/crypto-js/issues/detail?id=84">CryptoJS HmacSHA384 bug</a>.
+	 * </dl>
+	 */KJUR.jws.JWS.sign=function(alg,sHeader,sPayload,key,pass){var ns1=KJUR.jws.JWS;if(!ns1.isSafeJSONString(sHeader))throw "JWS Head is not safe JSON string: "+sHead;var pHeader=ns1.readSafeJSONString(sHeader); // 1. use alg if defined in sHeader
+	if((alg==''||alg==null)&&pHeader['alg']!==undefined){alg=pHeader['alg'];} // 2. set alg in sHeader if undefined
+	if(alg!=''&&alg!=null&&pHeader['alg']===undefined){pHeader['alg']=alg;sHeader=JSON.stringify(pHeader);} // 3. set signature algorithm like SHA1withRSA
+	var sigAlg=null;if(ns1.jwsalg2sigalg[alg]===undefined){throw "unsupported alg name: "+alg;}else {sigAlg=ns1.jwsalg2sigalg[alg];}var uHeader=utf8tob64u(sHeader);var uPayload=utf8tob64u(sPayload);var uSignatureInput=uHeader+"."+uPayload; // 4. sign
+	var hSig="";if(sigAlg.substr(0,4)=="Hmac"){if(key===undefined)throw "hexadecimal key shall be specified for HMAC";var mac=new KJUR.crypto.Mac({'alg':sigAlg,'pass':hextorstr(key)});mac.updateString(uSignatureInput);hSig=mac.doFinal();}else if(sigAlg.indexOf("withECDSA")!=-1){var sig=new KJUR.crypto.Signature({'alg':sigAlg});sig.init(key,pass);sig.updateString(uSignatureInput);hASN1Sig=sig.sign();hSig=KJUR.crypto.ECDSA.asn1SigToConcatSig(hASN1Sig);}else if(sigAlg!="none"){var sig=new KJUR.crypto.Signature({'alg':sigAlg});sig.init(key,pass);sig.updateString(uSignatureInput);hSig=sig.sign();}var uSig=hextob64u(hSig);return uSignatureInput+"."+uSig;}; /**
+	 * verify JWS signature by specified key or certificate<br/>
+	 * @name verify
+	 * @memberOf KJUR.jws.JWS
+	 * @function
+	 * @static
+	 * @param {String} sJWS string of JWS signature to verify
+	 * @param {String} key string of public key, certificate or key object to verify
+	 * @return {Boolean} true if the signature is valid otherwise false
+	 * @since jws 3.0.0
+	 * @see <a href="http://kjur.github.io/jsrsasign/api/symbols/KJUR.crypto.Signature.html">jsrsasign KJUR.crypto.Signature method</a>
+	 * @see <a href="http://kjur.github.io/jsrsasign/api/symbols/KJUR.crypto.Mac.html">jsrsasign KJUR.crypto.Mac method</a>
+	 */KJUR.jws.JWS.verify=function(sJWS,key){var jws=KJUR.jws.JWS;var a=sJWS.split(".");var uHeader=a[0];var uPayload=a[1];var uSignatureInput=uHeader+"."+uPayload;var hSig=b64utohex(a[2]);var pHeader=jws.readSafeJSONString(b64utoutf8(a[0]));var alg=null;if(pHeader.alg===undefined){throw "algorithm not specified in header";}else {alg=pHeader.alg;}var sigAlg=null;if(jws.jwsalg2sigalg[pHeader.alg]===undefined){throw "unsupported alg name: "+alg;}else {sigAlg=jws.jwsalg2sigalg[alg];} // x. verify
+	if(sigAlg=="none"){return true;}else if(sigAlg.substr(0,4)=="Hmac"){if(key===undefined)throw "hexadecimal key shall be specified for HMAC";var mac=new KJUR.crypto.Mac({'alg':sigAlg,'pass':hextorstr(key)});mac.updateString(uSignatureInput);hSig2=mac.doFinal();return hSig==hSig2;}else if(sigAlg.indexOf("withECDSA")!=-1){var hASN1Sig=null;try{hASN1Sig=KJUR.crypto.ECDSA.concatSigToASN1Sig(hSig);}catch(ex){return false;}var sig=new KJUR.crypto.Signature({'alg':sigAlg});sig.init(key);sig.updateString(uSignatureInput);return sig.verify(hASN1Sig);}else {var sig=new KJUR.crypto.Signature({'alg':sigAlg});sig.init(key);sig.updateString(uSignatureInput);return sig.verify(hSig);}}; /*
+	 * @since jws 3.0.0
+	 */KJUR.jws.JWS.jwsalg2sigalg={"HS256":"HmacSHA256", //"HS384":	"HmacSHA384", // unsupported because of CryptoJS bug
+	"HS512":"HmacSHA512","RS256":"SHA256withRSA","RS384":"SHA384withRSA","RS512":"SHA512withRSA","ES256":"SHA256withECDSA","ES384":"SHA384withECDSA", //"ES512":	"SHA512withECDSA", // unsupported because of jsrsasign's bug
+	"PS256":"SHA256withRSAandMGF1","PS384":"SHA384withRSAandMGF1","PS512":"SHA512withRSAandMGF1","none":"none"}; // === utility static method ======================================================
+	/**
+	 * check whether a String "s" is a safe JSON string or not.<br/>
+	 * If a String "s" is a malformed JSON string or an other object type
+	 * this returns 0, otherwise this returns 1.
+	 * @name isSafeJSONString
+	 * @memberOf KJUR.jws.JWS
+	 * @function
+	 * @static
+	 * @param {String} s JSON string
+	 * @return {Number} 1 or 0
+	 */KJUR.jws.JWS.isSafeJSONString=function(s,h,p){var o=null;try{o=jsonParse(s);if((typeof o==='undefined'?'undefined':_typeof(o))!="object")return 0;if(o.constructor===Array)return 0;if(h)h[p]=o;return 1;}catch(ex){return 0;}}; /**
+	 * read a String "s" as JSON object if it is safe.<br/>
+	 * If a String "s" is a malformed JSON string or not JSON string,
+	 * this returns null, otherwise returns JSON object.
+	 * @name readSafeJSONString
+	 * @memberOf KJUR.jws.JWS
+	 * @function
+	 * @static
+	 * @param {String} s JSON string
+	 * @return {Object} JSON object or null
+	 * @since 1.1.1
+	 */KJUR.jws.JWS.readSafeJSONString=function(s){var o=null;try{o=jsonParse(s);if((typeof o==='undefined'?'undefined':_typeof(o))!="object")return null;if(o.constructor===Array)return null;return o;}catch(ex){return null;}}; /**
+	 * get Encoed Signature Value from JWS string.<br/>
+	 * @name getEncodedSignatureValueFromJWS
+	 * @memberOf KJUR.jws.JWS
+	 * @function
+	 * @static
+	 * @param {String} sJWS JWS signature string to be verified
+	 * @return {String} string of Encoded Signature Value
+	 * @throws if sJWS is not comma separated string such like "Header.Payload.Signature".
+	 */KJUR.jws.JWS.getEncodedSignatureValueFromJWS=function(sJWS){if(sJWS.match(/^[^.]+\.[^.]+\.([^.]+)$/)==null){throw "JWS signature is not a form of 'Head.Payload.SigValue'.";}return RegExp.$1;}; /**
+	 * IntDate class for time representation for JSON Web Token(JWT)
+	 * @class KJUR.jws.IntDate class
+	 * @name KJUR.jws.IntDate
+	 * @since jws 3.0.1
+	 * @description
+	 * Utility class for IntDate which is integer representation of UNIX origin time
+	 * used in JSON Web Token(JWT).
+	 */KJUR.jws.IntDate=function(){}; /**
+	 * @name get
+	 * @memberOf KJUR.jws.IntDate
+	 * @function
+	 * @static
+	 * @param {String} s string of time representation
+	 * @return {Integer} UNIX origin time in seconds for argument 's'
+	 * @since jws 3.0.1
+	 * @throws "unsupported format: s" when malformed format
+	 * @description
+	 * This method will accept following representation of time.
+	 * <ul>
+	 * <li>now - current time</li>
+	 * <li>now + 1hour - after 1 hour from now</li>
+	 * <li>now + 1day - after 1 day from now</li>
+	 * <li>now + 1month - after 30 days from now</li>
+	 * <li>now + 1year - after 365 days from now</li>
+	 * <li>YYYYmmDDHHMMSSZ - UTC time (ex. 20130828235959Z)</li>
+	 * <li>number - UNIX origin time (seconds from 1970-01-01 00:00:00) (ex. 1377714748)</li>
+	 * </ul>
+	 */KJUR.jws.IntDate.get=function(s){if(s=="now"){return KJUR.jws.IntDate.getNow();}else if(s=="now + 1hour"){return KJUR.jws.IntDate.getNow()+60*60;}else if(s=="now + 1day"){return KJUR.jws.IntDate.getNow()+60*60*24;}else if(s=="now + 1month"){return KJUR.jws.IntDate.getNow()+60*60*24*30;}else if(s=="now + 1year"){return KJUR.jws.IntDate.getNow()+60*60*24*365;}else if(s.match(/Z$/)){return KJUR.jws.IntDate.getZulu(s);}else if(s.match(/^[0-9]+$/)){return parseInt(s);}throw "unsupported format: "+s;};KJUR.jws.IntDate.getZulu=function(s){if(a=s.match(/(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z/)){var year=parseInt(RegExp.$1);var month=parseInt(RegExp.$2)-1;var day=parseInt(RegExp.$3);var hour=parseInt(RegExp.$4);var min=parseInt(RegExp.$5);var sec=parseInt(RegExp.$6);var d=new Date(Date.UTC(year,month,day,hour,min,sec));return ~ ~(d/1000);}throw "unsupported format: "+s;}; /*
+	 * @since jws 3.0.1
+	 */KJUR.jws.IntDate.getNow=function(){var d=~ ~(new Date()/1000);return d;}; /*
+	 * @since jws 3.0.1
+	 */KJUR.jws.IntDate.intDate2UTCString=function(intDate){var d=new Date(intDate*1000);return d.toUTCString();}; /*
+	 * @since jws 3.0.1
+	 */KJUR.jws.IntDate.intDate2Zulu=function(intDate){var d=new Date(intDate*1000);var year=("0000"+d.getUTCFullYear()).slice(-4);var mon=("00"+(d.getUTCMonth()+1)).slice(-2);var day=("00"+d.getUTCDate()).slice(-2);var hour=("00"+d.getUTCHours()).slice(-2);var min=("00"+d.getUTCMinutes()).slice(-2);var sec=("00"+d.getUTCSeconds()).slice(-2);return year+mon+day+hour+min+sec+"Z";}; /*!
 	 * @overview es6-promise - a tiny implementation of Promises/A+.
 	 * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
 	 * @license   Licensed under MIT license
 	 *            See https://raw.githubusercontent.com/jakearchibald/es6-promise/master/LICENSE
 	 * @version   3.0.2
-	 */
-function(){"use strict";function e(e){return"function"==typeof e||"object"==typeof e&&null!==e}function t(e){return"function"==typeof e}function n(e){return"object"==typeof e&&null!==e}function r(e){H=e}function o(e){J=e}function i(){return function(){process.nextTick(l)}}function a(){return function(){j(l)}}function s(){var e=0,t=new Y(l),n=document.createTextNode("");return t.observe(n,{characterData:!0}),function(){n.data=e=++e%2}}function u(){var e=new MessageChannel;return e.port1.onmessage=l,function(){e.port2.postMessage(0)}}function c(){return function(){setTimeout(l,1)}}function l(){for(var e=0;W>e;e+=2){var t=$[e],n=$[e+1];t(n),$[e]=void 0,$[e+1]=void 0}W=0}function p(){try{var e=__webpack_require__(!function(){var e=new Error('Cannot find module "vertx"');throw e.code="MODULE_NOT_FOUND",e}());return j=e.runOnLoop||e.runOnContext,a()}catch(t){return c()}}function d(){}function h(){return new TypeError("You cannot resolve a promise with itself")}function f(){return new TypeError("A promises callback cannot return that same promise.")}function g(e){try{return e.then}catch(t){return te.error=t,te}}function v(e,t,n,r){try{e.call(t,n,r)}catch(o){return o}}function m(e,t,n){J(function(e){var r=!1,o=v(n,t,function(n){r||(r=!0,t!==n?b(e,n):N(e,n))},function(t){r||(r=!0,S(e,t))},"Settle: "+(e._label||" unknown promise"));!r&&o&&(r=!0,S(e,o))},e)}function y(e,t){t._state===Q?N(e,t._result):t._state===ee?S(e,t._result):w(t,void 0,function(t){b(e,t)},function(t){S(e,t)})}function _(e,n){if(n.constructor===e.constructor)y(e,n);else{var r=g(n);r===te?S(e,te.error):void 0===r?N(e,n):t(r)?m(e,n,r):N(e,n)}}function b(t,n){t===n?S(t,h()):e(n)?_(t,n):N(t,n)}function E(e){e._onerror&&e._onerror(e._result),C(e)}function N(e,t){e._state===Z&&(e._result=t,e._state=Q,0!==e._subscribers.length&&J(C,e))}function S(e,t){e._state===Z&&(e._state=ee,e._result=t,J(E,e))}function w(e,t,n,r){var o=e._subscribers,i=o.length;e._onerror=null,o[i]=t,o[i+Q]=n,o[i+ee]=r,0===i&&e._state&&J(C,e)}function C(e){var t=e._subscribers,n=e._state;if(0!==t.length){for(var r,o,i=e._result,a=0;a<t.length;a+=3)r=t[a],o=t[a+n],r?A(n,r,o,i):o(i);e._subscribers.length=0}}function D(){this.error=null}function O(e,t){try{return e(t)}catch(n){return ne.error=n,ne}}function A(e,n,r,o){var i,a,s,u,c=t(r);if(c){if(i=O(r,o),i===ne?(u=!0,a=i.error,i=null):s=!0,n===i)return void S(n,f())}else i=o,s=!0;n._state!==Z||(c&&s?b(n,i):u?S(n,a):e===Q?N(n,i):e===ee&&S(n,i))}function x(e,t){try{t(function(t){b(e,t)},function(t){S(e,t)})}catch(n){S(e,n)}}function R(e,t){var n=this;n._instanceConstructor=e,n.promise=new e(d),n._validateInput(t)?(n._input=t,n.length=t.length,n._remaining=t.length,n._init(),0===n.length?N(n.promise,n._result):(n.length=n.length||0,n._enumerate(),0===n._remaining&&N(n.promise,n._result))):S(n.promise,n._validationError())}function I(e){return new re(this,e).promise}function T(e){function t(e){b(o,e)}function n(e){S(o,e)}var r=this,o=new r(d);if(!K(e))return S(o,new TypeError("You must pass an array to race.")),o;for(var i=e.length,a=0;o._state===Z&&i>a;a++)w(r.resolve(e[a]),void 0,t,n);return o}function P(e){var t=this;if(e&&"object"==typeof e&&e.constructor===t)return e;var n=new t(d);return b(n,e),n}function M(e){var t=this,n=new t(d);return S(n,e),n}function k(){throw new TypeError("You must pass a resolver function as the first argument to the promise constructor")}function B(){throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.")}function U(e){this._id=ue++,this._state=void 0,this._result=void 0,this._subscribers=[],d!==e&&(t(e)||k(),this instanceof U||B(),x(this,e))}function V(){var e;if("undefined"!=typeof global)e=global;else if("undefined"!=typeof self)e=self;else try{e=Function("return this")()}catch(t){throw new Error("polyfill failed because global object is unavailable in this environment")}var n=e.Promise;n&&"[object Promise]"===Object.prototype.toString.call(n.resolve())&&!n.cast||(e.Promise=ce)}var L;L=Array.isArray?Array.isArray:function(e){return"[object Array]"===Object.prototype.toString.call(e)};var j,H,F,K=L,W=0,J=({}.toString,function(e,t){$[W]=e,$[W+1]=t,W+=2,2===W&&(H?H(l):F())}),q="undefined"!=typeof window?window:void 0,X=q||{},Y=X.MutationObserver||X.WebKitMutationObserver,z="undefined"!=typeof process&&"[object process]"==={}.toString.call(process),G="undefined"!=typeof Uint8ClampedArray&&"undefined"!=typeof importScripts&&"undefined"!=typeof MessageChannel,$=new Array(1e3);F=z?i():Y?s():G?u():void 0===q?p():c();var Z=void 0,Q=1,ee=2,te=new D,ne=new D;R.prototype._validateInput=function(e){return K(e)},R.prototype._validationError=function(){return new Error("Array Methods must be provided an Array")},R.prototype._init=function(){this._result=new Array(this.length)};var re=R;R.prototype._enumerate=function(){for(var e=this,t=e.length,n=e.promise,r=e._input,o=0;n._state===Z&&t>o;o++)e._eachEntry(r[o],o)},R.prototype._eachEntry=function(e,t){var r=this,o=r._instanceConstructor;n(e)?e.constructor===o&&e._state!==Z?(e._onerror=null,r._settledAt(e._state,t,e._result)):r._willSettleAt(o.resolve(e),t):(r._remaining--,r._result[t]=e)},R.prototype._settledAt=function(e,t,n){var r=this,o=r.promise;o._state===Z&&(r._remaining--,e===ee?S(o,n):r._result[t]=n),0===r._remaining&&N(o,r._result)},R.prototype._willSettleAt=function(e,t){var n=this;w(e,void 0,function(e){n._settledAt(Q,t,e)},function(e){n._settledAt(ee,t,e)})};var oe=I,ie=T,ae=P,se=M,ue=0,ce=U;U.all=oe,U.race=ie,U.resolve=ae,U.reject=se,U._setScheduler=r,U._setAsap=o,U._asap=J,U.prototype={constructor:U,then:function(e,t){var n=this,r=n._state;if(r===Q&&!e||r===ee&&!t)return this;var o=new this.constructor(d),i=n._result;if(r){var a=arguments[r-1];J(function(){A(r,o,a,i)})}else w(n,o,e,t);return o},"catch":function(e){return this.then(null,e)}};var le=V,pe={Promise:ce,polyfill:le};__webpack_require__(168).amd?(__WEBPACK_AMD_DEFINE_RESULT__=function(){return pe}.call(exports,__webpack_require__,exports,module),!(void 0!==__WEBPACK_AMD_DEFINE_RESULT__&&(module.exports=__WEBPACK_AMD_DEFINE_RESULT__))):"undefined"!=typeof module&&module.exports?module.exports=pe:"undefined"!=typeof this&&(this.ES6Promise=pe),le()}.call(this),_httpRequest=new DefaultHttpRequest,_promiseFactory=new DefaultPromiseFactory,OidcClient.parseOidcResult=parseOidcResult,OidcClient.prototype.loadMetadataAsync=function(){log("OidcClient.loadMetadataAsync");var e=this._settings;return e.metadata?resolve(e.metadata):e.authority?getJson(e.authority).then(function(t){return e.metadata=t,t},function(e){return error("Failed to load metadata ("+e&&e.message+")")}):error("No authority configured")},OidcClient.prototype.loadX509SigningKeyAsync=function(){function e(e){if(!e.keys||!e.keys.length)return error("Signing keys empty");var t=e.keys[0];return"RSA"!==t.kty?error("Signing key not RSA"):t.x5c&&t.x5c.length?resolve(t.x5c[0]):error("RSA keys empty")}log("OidcClient.loadX509SigningKeyAsync");var t=this._settings;return t.jwks?e(t.jwks):this.loadMetadataAsync().then(function(n){return n.jwks_uri?getJson(n.jwks_uri).then(function(n){return t.jwks=n,e(n)},function(e){return error("Failed to load signing keys ("+e&&e.message+")")}):error("Metadata does not contain jwks_uri")})},OidcClient.prototype.loadUserProfile=function(e){return log("OidcClient.loadUserProfile"),this.loadMetadataAsync().then(function(t){return t.userinfo_endpoint?getJson(t.userinfo_endpoint,e):error("Metadata does not contain userinfo_endpoint")})},OidcClient.prototype.loadAuthorizationEndpoint=function(){return log("OidcClient.loadAuthorizationEndpoint"),this._settings.authorization_endpoint?resolve(this._settings.authorization_endpoint):this._settings.authority?this.loadMetadataAsync().then(function(e){return e.authorization_endpoint?e.authorization_endpoint:error("Metadata does not contain authorization_endpoint")}):error("No authorization_endpoint configured")},OidcClient.prototype.createTokenRequestAsync=function(){log("OidcClient.createTokenRequestAsync");var e=this,t=e._settings;return e.loadAuthorizationEndpoint().then(function(n){var r=rand(),o=n+"?state="+encodeURIComponent(r);if(e.isOidc){var i=rand();o+="&nonce="+encodeURIComponent(i)}var a=["client_id","redirect_uri","response_type","scope"];a.forEach(function(e){var n=t[e];n&&(o+="&"+e+"="+encodeURIComponent(n))});var s=["prompt","display","max_age","ui_locales","id_token_hint","login_hint","acr_values"];s.forEach(function(e){var n=t[e];n&&(o+="&"+e+"="+encodeURIComponent(n))});var u={oidc:e.isOidc,oauth:e.isOAuth,state:r};return i&&(u.nonce=i),t.request_state_store.setItem(t.request_state_key,JSON.stringify(u)),{request_state:u,url:o}})},OidcClient.prototype.createLogoutRequestAsync=function(e){log("OidcClient.createLogoutRequestAsync");var t=this._settings;return this.loadMetadataAsync().then(function(n){if(!n.end_session_endpoint)return error("No end_session_endpoint in metadata");var r=n.end_session_endpoint;return e&&t.post_logout_redirect_uri&&(r+="?post_logout_redirect_uri="+encodeURIComponent(t.post_logout_redirect_uri),r+="&id_token_hint="+encodeURIComponent(e)),r})},OidcClient.prototype.validateIdTokenAsync=function(e,t,n){log("OidcClient.validateIdTokenAsync");var r=this,o=r._settings;return r.loadX509SigningKeyAsync().then(function(i){var a=new KJUR.jws.JWS;if(a.verifyJWSByPemX509Cert(e,i)){var s=JSON.parse(a.parsedJWS.payloadS);return t!==s.nonce?error("Invalid nonce"):r.loadMetadataAsync().then(function(e){if(s.iss!==e.issuer)return error("Invalid issuer");if(s.aud!==o.client_id)return error("Invalid audience");var t=parseInt(Date.now()/1e3),i=t-s.iat;return i>300?error("Token issued too long ago"):s.exp<t?error("Token expired"):n&&o.load_user_profile?r.loadUserProfile(n,s).then(function(e){return copy(e,s)}):s})}return error("JWT failed to validate")})},OidcClient.prototype.validateAccessTokenAsync=function(e,t){if(log("OidcClient.validateAccessTokenAsync"),!e.at_hash)return error("No at_hash in id_token");var n=KJUR.crypto.Util.sha256(t),r=n.substr(0,n.length/2),o=hextob64u(r);return o!==e.at_hash?error("at_hash failed to validate"):resolve()},OidcClient.prototype.validateIdTokenAndAccessTokenAsync=function(e,t,n){log("OidcClient.validateIdTokenAndAccessTokenAsync");var r=this;return r.validateIdTokenAsync(e,t,n).then(function(e){return r.validateAccessTokenAsync(e,n).then(function(){return e})})},OidcClient.prototype.processResponseAsync=function(e){log("OidcClient.processResponseAsync");var t=this,n=t._settings,r=n.request_state_store.getItem(n.request_state_key);if(n.request_state_store.removeItem(n.request_state_key),!r)return error("No request state loaded");if(r=JSON.parse(r),!r)return error("No request state loaded");if(!r.state)return error("No state loaded");var o=parseOidcResult(e);if(!o)return error("No OIDC response");if(o.error)return error(o.error);if(o.state!==r.state)return error("Invalid state");if(r.oidc){if(!o.id_token)return error("No identity token");if(!r.nonce)return error("No nonce loaded")}if(r.oauth){if(!o.access_token)return error("No access token");if(!o.token_type||"bearer"!==o.token_type.toLowerCase())return error("Invalid token type");if(!o.expires_in)return error("No token expiration")}var i=resolve();return r.oidc&&r.oauth?i=t.validateIdTokenAndAccessTokenAsync(o.id_token,r.nonce,o.access_token):r.oidc&&(i=t.validateIdTokenAsync(o.id_token,r.nonce)),i.then(function(e){if(e&&n.filter_protocol_claims){var t=["nonce","at_hash","iat","nbf","exp","aud","iss"];t.forEach(function(t){delete e[t]})}return{profile:e,id_token:o.id_token,access_token:o.access_token,expires_in:o.expires_in,scope:o.scope,session_state:o.session_state}})},OidcClient._promiseFactory=_promiseFactory,OidcClient._httpRequest=_httpRequest,window.OidcClient=OidcClient}(),function(){function e(e,t){t=t||{};for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n]);return t}function t(e){if(e){if(this.profile=e.profile,this.id_token=e.id_token,this.access_token=e.access_token,e.access_token)this.expires_at=parseInt(e.expires_at);else{if(!e.id_token)throw Error("Either access_token or id_token required.");this.expires_at=e.profile.exp}this.scope=e.scope,this.session_state=e.session_state}else this.expires_at=0;Object.defineProperty(this,"scopes",{get:function(){return(this.scope||"").split(" ")}}),Object.defineProperty(this,"expired",{get:function(){var e=parseInt(Date.now()/1e3);return this.expires_at<e}}),Object.defineProperty(this,"expires_in",{get:function(){var e=parseInt(Date.now()/1e3);return this.expires_at-e}})}function n(e,t){this.url=e,t=t||{},t.cancelDelay=t.cancelDelay||5e3,this.config=t}function r(e){if(e._token=null,e._settings.persist){var n=e._settings.store.getItem(e._settings.persistKey);if(n){var r=t.fromJSON(n);r.expired||(e._token=r)}}}function o(e){function t(){i=null,e._callTokenExpiring()}function n(){i&&(window.clearTimeout(i),i=null)}function r(e){i=window.setTimeout(t,1e3*e)}function o(){if(n(),!e.expired){var o=e.expires_in;o>60?r(o-60):t()}}var i=null;o(),e.addOnTokenObtained(o),e.addOnTokenRemoved(n)}function i(e){e._settings.silent_redirect_uri&&e._settings.silent_renew&&e.addOnTokenExpiring(function(){e.renewTokenSilentAsync()["catch"](function(t){e._callSilentTokenRenewFailed(),console.error(t&&t.message||"Unknown error")})})}function a(e){function t(){i=null,e._token&&e.saveToken(null),e._callTokenExpired()}function n(){i&&(window.clearTimeout(i),i=null)}function r(e){i=window.setTimeout(t,1e3*e)}function o(){n(),e.expires_in>0&&r(e.expires_in+1)}var i=null;o(),e.addOnTokenObtained(o),e.addOnTokenRemoved(n)}function s(e){this._settings=e||{},"undefined"==typeof this._settings.persist&&(this._settings.persist=!0),this._settings.store=this._settings.store||window.localStorage,this._settings.persistKey=this._settings.persistKey||"TokenManager.token",this.oidcClient=new OidcClient(this._settings),this._callbacks={tokenRemovedCallbacks:[],tokenExpiringCallbacks:[],tokenExpiredCallbacks:[],tokenObtainedCallbacks:[],silentTokenRenewFailedCallbacks:[]},Object.defineProperty(this,"profile",{get:function(){return this._token?this._token.profile:void 0}}),Object.defineProperty(this,"id_token",{get:function(){return this._token?this._token.id_token:void 0}}),Object.defineProperty(this,"access_token",{get:function(){return this._token&&!this._token.expired?this._token.access_token:void 0}}),Object.defineProperty(this,"expired",{get:function(){return this._token?this._token.expired:!0}}),Object.defineProperty(this,"expires_in",{get:function(){return this._token?this._token.expires_in:0}}),Object.defineProperty(this,"expires_at",{get:function(){return this._token?this._token.expires_at:0}}),Object.defineProperty(this,"scope",{get:function(){return this._token&&this._token.scope}}),Object.defineProperty(this,"scopes",{get:function(){return this._token?[].concat(this._token.scopes):[]}}),Object.defineProperty(this,"session_state",{get:function(){return this._token?this._token.session_state:void 0}});var t=this;r(t),t._settings.store instanceof window.localStorage.constructor&&window.addEventListener("storage",function(e){e.key===t._settings.persistKey&&(r(t),t._token?t._callTokenObtained():t._callTokenRemoved())}),a(t),i(t),window.setTimeout(function(){o(t)},0)}var u=OidcClient._promiseFactory,c=OidcClient._httpRequest;t.fromResponse=function(e){if(e.access_token){var n=parseInt(Date.now()/1e3);e.expires_at=n+parseInt(e.expires_in)}return new t(e)},t.fromJSON=function(e){if(e)try{var n=JSON.parse(e);return new t(n)}catch(r){}return new t(null)},t.prototype.toJSON=function(){return JSON.stringify({profile:this.profile,id_token:this.id_token,access_token:this.access_token,expires_at:this.expires_at,scope:this.scopes.join(" "),session_state:this.session_state})},n.prototype.loadAsync=function(e){var t=this;return e=e||this.url,e?u.create(function(n,r){function o(){window.removeEventListener("message",a,!1),u&&window.clearTimeout(u),u=null,window.document.body.removeChild(s)}function i(e){o(),r()}function a(e){u&&e.origin===location.protocol+"//"+location.host&&e.source==s.contentWindow&&(o(),n(e.data))}var s=window.document.createElement("iframe");s.style.display="none";var u=window.setTimeout(i,t.config.cancelDelay);window.addEventListener("message",a,!1),window.document.body.appendChild(s),s.src=e}):u.reject(Error("No url provided"))},s.setPromiseFactory=function(e){u=e},s.setHttpRequest=function(e){if("object"!=typeof e||"function"!=typeof e.getJSON)throw Error("The provided value is not a valid http request.");c=e},s.prototype._callTokenRemoved=function(){this._callbacks.tokenRemovedCallbacks.forEach(function(e){e()})},s.prototype._callTokenExpiring=function(){this._callbacks.tokenExpiringCallbacks.forEach(function(e){e()})},s.prototype._callTokenExpired=function(){this._callbacks.tokenExpiredCallbacks.forEach(function(e){e()})},s.prototype._callTokenObtained=function(){this._callbacks.tokenObtainedCallbacks.forEach(function(e){e()})},s.prototype._callSilentTokenRenewFailed=function(){this._callbacks.silentTokenRenewFailedCallbacks.forEach(function(e){e()})},s.prototype.saveToken=function(e){!e||e instanceof t||(e=t.fromResponse(e)),this._token=e,this._settings.persist&&!this.expired?this._settings.store.setItem(this._settings.persistKey,e.toJSON()):this._settings.store.removeItem(this._settings.persistKey),e?this._callTokenObtained():this._callTokenRemoved()},s.prototype.addOnTokenRemoved=function(e){this._callbacks.tokenRemovedCallbacks.push(e)},s.prototype.addOnTokenObtained=function(e){this._callbacks.tokenObtainedCallbacks.push(e)},s.prototype.addOnTokenExpiring=function(e){this._callbacks.tokenExpiringCallbacks.push(e)},s.prototype.addOnTokenExpired=function(e){this._callbacks.tokenExpiredCallbacks.push(e)},s.prototype.addOnSilentTokenRenewFailed=function(e){this._callbacks.silentTokenRenewFailedCallbacks.push(e)},s.prototype.removeToken=function(){this.saveToken(null)},s.prototype.redirectForToken=function(){var e=this.oidcClient;return e.createTokenRequestAsync().then(function(e){window.location=e.url},function(e){return console.error("TokenManager.redirectForToken error: "+(e&&e.message||"Unknown error")),u.reject(e)})},s.prototype.redirectForLogout=function(){var e=this;return e.oidcClient.createLogoutRequestAsync(e.id_token).then(function(t){e.removeToken(),window.location=t},function(e){return console.error("TokenManager.redirectForLogout error: "+(e&&e.message||"Unknown error")),u.reject(e)})},s.prototype.processTokenCallbackAsync=function(e){var t=this;return t.oidcClient.processResponseAsync(e).then(function(e){t.saveToken(e)})},s.prototype.renewTokenSilentAsync=function(){var t=this;if(!t._settings.silent_redirect_uri)return u.reject(Error("silent_redirect_uri not configured"));var r=e(t._settings);r.redirect_uri=r.silent_redirect_uri,r.prompt||(r.prompt="none");var o=new OidcClient(r);return o.createTokenRequestAsync().then(function(e){var r=new n(e.url,{cancelDelay:t._settings.silent_renew_timeout});return r.loadAsync().then(function(e){return o.processResponseAsync(e).then(function(e){t.saveToken(e)})})})},s.prototype.processTokenCallbackSilent=function(e){if(window.parent&&window!==window.parent){var e=e||window.location.hash;e&&window.parent.postMessage(e,location.protocol+"//"+location.host)}},s.prototype.openPopupForTokenAsync=function(t){function n(e){l&&window.clearInterval(l),s.close(),delete i._pendingPopup,e&&delete window[e]}function r(){s.window||(n(),c(Error("Popup closed")))}t=t||{},t.features=t.features||"location=no,toolbar=no",t.target=t.target||"_blank";var o="tokenmgr_callback_";window.openPopupForTokenAsyncCallback||(window.openPopupForTokenAsyncCallback=function(e){var t=OidcClient.parseOidcResult(e);t&&t.state&&window[o+t.state]&&window[o+t.state](e)});var i=this,a=e(i._settings);if(a.redirect_uri=a.popup_redirect_uri||a.redirect_uri,i._pendingPopup)return u.create(function(e,t){t(Error("Already a pending popup token request."))});var s=window.open(a.redirect_uri,t.target,t.features);if(!s)return u.create(function(e,t){t(Error("Error opening popup."))});i._pendingPopup=!0;var c,l=window.setInterval(r,1e3);return u.create(function(e,t){c=t;var r=new OidcClient(a);r.createTokenRequestAsync().then(function(a){function u(){s.setUrl?s.setUrl(a.url):d>h?(h++,window.setTimeout(u,p)):(n(c),t(Error("Timeout error on popup")))}var c=o+a.request_state.state;window[c]=function(o){n(c),r.processResponseAsync(o).then(function(t){i.saveToken(t),e()},function(e){t(e)})};var l=5,p=500,d=1e3*l/p,h=0;u()},function(e){n(),t(e)})})},s.prototype.processTokenPopup=function(e){e=e||window.location.hash,window.setUrl=function(e){window.location=e},e&&window.opener.openPopupForTokenAsyncCallback(e)},module.exports=s}()}).call(exports,__webpack_require__(54).Buffer,__webpack_require__(1),function(){return this}(),__webpack_require__(169)(module))},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}function o(e){return new a["default"](e)}Object.defineProperty(t,"__esModule",{value:!0}),t.createTokenManager=o;var i=n(52),a=r(i)},function(e,t,n){(function(e,r){/*!
+	 */(function(){"use strict";function lib$es6$promise$utils$$objectOrFunction(x){return typeof x==='function'||(typeof x==='undefined'?'undefined':_typeof(x))==='object'&&x!==null;}function lib$es6$promise$utils$$isFunction(x){return typeof x==='function';}function lib$es6$promise$utils$$isMaybeThenable(x){return (typeof x==='undefined'?'undefined':_typeof(x))==='object'&&x!==null;}var lib$es6$promise$utils$$_isArray;if(!Array.isArray){lib$es6$promise$utils$$_isArray=function(){function lib$es6$promise$utils$$_isArray(x){return Object.prototype.toString.call(x)==='[object Array]';}return lib$es6$promise$utils$$_isArray;}();}else {lib$es6$promise$utils$$_isArray=Array.isArray;}var lib$es6$promise$utils$$isArray=lib$es6$promise$utils$$_isArray;var lib$es6$promise$asap$$len=0;var lib$es6$promise$asap$$toString={}.toString;var lib$es6$promise$asap$$vertxNext;var lib$es6$promise$asap$$customSchedulerFn;var lib$es6$promise$asap$$asap=function(){function asap(callback,arg){lib$es6$promise$asap$$queue[lib$es6$promise$asap$$len]=callback;lib$es6$promise$asap$$queue[lib$es6$promise$asap$$len+1]=arg;lib$es6$promise$asap$$len+=2;if(lib$es6$promise$asap$$len===2){ // If len is 2, that means that we need to schedule an async flush.
+	// If additional callbacks are queued before the queue is flushed, they
+	// will be processed by this flush that we are scheduling.
+	if(lib$es6$promise$asap$$customSchedulerFn){lib$es6$promise$asap$$customSchedulerFn(lib$es6$promise$asap$$flush);}else {lib$es6$promise$asap$$scheduleFlush();}}}return asap;}();function lib$es6$promise$asap$$setScheduler(scheduleFn){lib$es6$promise$asap$$customSchedulerFn=scheduleFn;}function lib$es6$promise$asap$$setAsap(asapFn){lib$es6$promise$asap$$asap=asapFn;}var lib$es6$promise$asap$$browserWindow=typeof window!=='undefined'?window:undefined;var lib$es6$promise$asap$$browserGlobal=lib$es6$promise$asap$$browserWindow||{};var lib$es6$promise$asap$$BrowserMutationObserver=lib$es6$promise$asap$$browserGlobal.MutationObserver||lib$es6$promise$asap$$browserGlobal.WebKitMutationObserver;var lib$es6$promise$asap$$isNode=typeof process!=='undefined'&&{}.toString.call(process)==='[object process]'; // test for web worker but not in IE10
+	var lib$es6$promise$asap$$isWorker=typeof Uint8ClampedArray!=='undefined'&&typeof importScripts!=='undefined'&&typeof MessageChannel!=='undefined'; // node
+	function lib$es6$promise$asap$$useNextTick(){ // node version 0.10.x displays a deprecation warning when nextTick is used recursively
+	// see https://github.com/cujojs/when/issues/410 for details
+	return function(){process.nextTick(lib$es6$promise$asap$$flush);};} // vertx
+	function lib$es6$promise$asap$$useVertxTimer(){return function(){lib$es6$promise$asap$$vertxNext(lib$es6$promise$asap$$flush);};}function lib$es6$promise$asap$$useMutationObserver(){var iterations=0;var observer=new lib$es6$promise$asap$$BrowserMutationObserver(lib$es6$promise$asap$$flush);var node=document.createTextNode('');observer.observe(node,{characterData:true});return function(){node.data=iterations=++iterations%2;};} // web worker
+	function lib$es6$promise$asap$$useMessageChannel(){var channel=new MessageChannel();channel.port1.onmessage=lib$es6$promise$asap$$flush;return function(){channel.port2.postMessage(0);};}function lib$es6$promise$asap$$useSetTimeout(){return function(){setTimeout(lib$es6$promise$asap$$flush,1);};}var lib$es6$promise$asap$$queue=new Array(1000);function lib$es6$promise$asap$$flush(){for(var i=0;i<lib$es6$promise$asap$$len;i+=2){var callback=lib$es6$promise$asap$$queue[i];var arg=lib$es6$promise$asap$$queue[i+1];callback(arg);lib$es6$promise$asap$$queue[i]=undefined;lib$es6$promise$asap$$queue[i+1]=undefined;}lib$es6$promise$asap$$len=0;}function lib$es6$promise$asap$$attemptVertx(){try{var r=require;var vertx=__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"vertx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));lib$es6$promise$asap$$vertxNext=vertx.runOnLoop||vertx.runOnContext;return lib$es6$promise$asap$$useVertxTimer();}catch(e){return lib$es6$promise$asap$$useSetTimeout();}}var lib$es6$promise$asap$$scheduleFlush; // Decide what async method to use to triggering processing of queued callbacks:
+	if(lib$es6$promise$asap$$isNode){lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$useNextTick();}else if(lib$es6$promise$asap$$BrowserMutationObserver){lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$useMutationObserver();}else if(lib$es6$promise$asap$$isWorker){lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$useMessageChannel();}else if(lib$es6$promise$asap$$browserWindow===undefined&&"function"==='function'){lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$attemptVertx();}else {lib$es6$promise$asap$$scheduleFlush=lib$es6$promise$asap$$useSetTimeout();}function lib$es6$promise$$internal$$noop(){}var lib$es6$promise$$internal$$PENDING=void 0;var lib$es6$promise$$internal$$FULFILLED=1;var lib$es6$promise$$internal$$REJECTED=2;var lib$es6$promise$$internal$$GET_THEN_ERROR=new lib$es6$promise$$internal$$ErrorObject();function lib$es6$promise$$internal$$selfFulfillment(){return new TypeError("You cannot resolve a promise with itself");}function lib$es6$promise$$internal$$cannotReturnOwn(){return new TypeError('A promises callback cannot return that same promise.');}function lib$es6$promise$$internal$$getThen(promise){try{return promise.then;}catch(error){lib$es6$promise$$internal$$GET_THEN_ERROR.error=error;return lib$es6$promise$$internal$$GET_THEN_ERROR;}}function lib$es6$promise$$internal$$tryThen(then,value,fulfillmentHandler,rejectionHandler){try{then.call(value,fulfillmentHandler,rejectionHandler);}catch(e){return e;}}function lib$es6$promise$$internal$$handleForeignThenable(promise,thenable,then){lib$es6$promise$asap$$asap(function(promise){var sealed=false;var error=lib$es6$promise$$internal$$tryThen(then,thenable,function(value){if(sealed){return;}sealed=true;if(thenable!==value){lib$es6$promise$$internal$$resolve(promise,value);}else {lib$es6$promise$$internal$$fulfill(promise,value);}},function(reason){if(sealed){return;}sealed=true;lib$es6$promise$$internal$$reject(promise,reason);},'Settle: '+(promise._label||' unknown promise'));if(!sealed&&error){sealed=true;lib$es6$promise$$internal$$reject(promise,error);}},promise);}function lib$es6$promise$$internal$$handleOwnThenable(promise,thenable){if(thenable._state===lib$es6$promise$$internal$$FULFILLED){lib$es6$promise$$internal$$fulfill(promise,thenable._result);}else if(thenable._state===lib$es6$promise$$internal$$REJECTED){lib$es6$promise$$internal$$reject(promise,thenable._result);}else {lib$es6$promise$$internal$$subscribe(thenable,undefined,function(value){lib$es6$promise$$internal$$resolve(promise,value);},function(reason){lib$es6$promise$$internal$$reject(promise,reason);});}}function lib$es6$promise$$internal$$handleMaybeThenable(promise,maybeThenable){if(maybeThenable.constructor===promise.constructor){lib$es6$promise$$internal$$handleOwnThenable(promise,maybeThenable);}else {var then=lib$es6$promise$$internal$$getThen(maybeThenable);if(then===lib$es6$promise$$internal$$GET_THEN_ERROR){lib$es6$promise$$internal$$reject(promise,lib$es6$promise$$internal$$GET_THEN_ERROR.error);}else if(then===undefined){lib$es6$promise$$internal$$fulfill(promise,maybeThenable);}else if(lib$es6$promise$utils$$isFunction(then)){lib$es6$promise$$internal$$handleForeignThenable(promise,maybeThenable,then);}else {lib$es6$promise$$internal$$fulfill(promise,maybeThenable);}}}function lib$es6$promise$$internal$$resolve(promise,value){if(promise===value){lib$es6$promise$$internal$$reject(promise,lib$es6$promise$$internal$$selfFulfillment());}else if(lib$es6$promise$utils$$objectOrFunction(value)){lib$es6$promise$$internal$$handleMaybeThenable(promise,value);}else {lib$es6$promise$$internal$$fulfill(promise,value);}}function lib$es6$promise$$internal$$publishRejection(promise){if(promise._onerror){promise._onerror(promise._result);}lib$es6$promise$$internal$$publish(promise);}function lib$es6$promise$$internal$$fulfill(promise,value){if(promise._state!==lib$es6$promise$$internal$$PENDING){return;}promise._result=value;promise._state=lib$es6$promise$$internal$$FULFILLED;if(promise._subscribers.length!==0){lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publish,promise);}}function lib$es6$promise$$internal$$reject(promise,reason){if(promise._state!==lib$es6$promise$$internal$$PENDING){return;}promise._state=lib$es6$promise$$internal$$REJECTED;promise._result=reason;lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publishRejection,promise);}function lib$es6$promise$$internal$$subscribe(parent,child,onFulfillment,onRejection){var subscribers=parent._subscribers;var length=subscribers.length;parent._onerror=null;subscribers[length]=child;subscribers[length+lib$es6$promise$$internal$$FULFILLED]=onFulfillment;subscribers[length+lib$es6$promise$$internal$$REJECTED]=onRejection;if(length===0&&parent._state){lib$es6$promise$asap$$asap(lib$es6$promise$$internal$$publish,parent);}}function lib$es6$promise$$internal$$publish(promise){var subscribers=promise._subscribers;var settled=promise._state;if(subscribers.length===0){return;}var child,callback,detail=promise._result;for(var i=0;i<subscribers.length;i+=3){child=subscribers[i];callback=subscribers[i+settled];if(child){lib$es6$promise$$internal$$invokeCallback(settled,child,callback,detail);}else {callback(detail);}}promise._subscribers.length=0;}function lib$es6$promise$$internal$$ErrorObject(){this.error=null;}var lib$es6$promise$$internal$$TRY_CATCH_ERROR=new lib$es6$promise$$internal$$ErrorObject();function lib$es6$promise$$internal$$tryCatch(callback,detail){try{return callback(detail);}catch(e){lib$es6$promise$$internal$$TRY_CATCH_ERROR.error=e;return lib$es6$promise$$internal$$TRY_CATCH_ERROR;}}function lib$es6$promise$$internal$$invokeCallback(settled,promise,callback,detail){var hasCallback=lib$es6$promise$utils$$isFunction(callback),value,error,succeeded,failed;if(hasCallback){value=lib$es6$promise$$internal$$tryCatch(callback,detail);if(value===lib$es6$promise$$internal$$TRY_CATCH_ERROR){failed=true;error=value.error;value=null;}else {succeeded=true;}if(promise===value){lib$es6$promise$$internal$$reject(promise,lib$es6$promise$$internal$$cannotReturnOwn());return;}}else {value=detail;succeeded=true;}if(promise._state!==lib$es6$promise$$internal$$PENDING){ // noop
+	}else if(hasCallback&&succeeded){lib$es6$promise$$internal$$resolve(promise,value);}else if(failed){lib$es6$promise$$internal$$reject(promise,error);}else if(settled===lib$es6$promise$$internal$$FULFILLED){lib$es6$promise$$internal$$fulfill(promise,value);}else if(settled===lib$es6$promise$$internal$$REJECTED){lib$es6$promise$$internal$$reject(promise,value);}}function lib$es6$promise$$internal$$initializePromise(promise,resolver){try{resolver(function(){function resolvePromise(value){lib$es6$promise$$internal$$resolve(promise,value);}return resolvePromise;}(),function(){function rejectPromise(reason){lib$es6$promise$$internal$$reject(promise,reason);}return rejectPromise;}());}catch(e){lib$es6$promise$$internal$$reject(promise,e);}}function lib$es6$promise$enumerator$$Enumerator(Constructor,input){var enumerator=this;enumerator._instanceConstructor=Constructor;enumerator.promise=new Constructor(lib$es6$promise$$internal$$noop);if(enumerator._validateInput(input)){enumerator._input=input;enumerator.length=input.length;enumerator._remaining=input.length;enumerator._init();if(enumerator.length===0){lib$es6$promise$$internal$$fulfill(enumerator.promise,enumerator._result);}else {enumerator.length=enumerator.length||0;enumerator._enumerate();if(enumerator._remaining===0){lib$es6$promise$$internal$$fulfill(enumerator.promise,enumerator._result);}}}else {lib$es6$promise$$internal$$reject(enumerator.promise,enumerator._validationError());}}lib$es6$promise$enumerator$$Enumerator.prototype._validateInput=function(input){return lib$es6$promise$utils$$isArray(input);};lib$es6$promise$enumerator$$Enumerator.prototype._validationError=function(){return new Error('Array Methods must be provided an Array');};lib$es6$promise$enumerator$$Enumerator.prototype._init=function(){this._result=new Array(this.length);};var lib$es6$promise$enumerator$$default=lib$es6$promise$enumerator$$Enumerator;lib$es6$promise$enumerator$$Enumerator.prototype._enumerate=function(){var enumerator=this;var length=enumerator.length;var promise=enumerator.promise;var input=enumerator._input;for(var i=0;promise._state===lib$es6$promise$$internal$$PENDING&&i<length;i++){enumerator._eachEntry(input[i],i);}};lib$es6$promise$enumerator$$Enumerator.prototype._eachEntry=function(entry,i){var enumerator=this;var c=enumerator._instanceConstructor;if(lib$es6$promise$utils$$isMaybeThenable(entry)){if(entry.constructor===c&&entry._state!==lib$es6$promise$$internal$$PENDING){entry._onerror=null;enumerator._settledAt(entry._state,i,entry._result);}else {enumerator._willSettleAt(c.resolve(entry),i);}}else {enumerator._remaining--;enumerator._result[i]=entry;}};lib$es6$promise$enumerator$$Enumerator.prototype._settledAt=function(state,i,value){var enumerator=this;var promise=enumerator.promise;if(promise._state===lib$es6$promise$$internal$$PENDING){enumerator._remaining--;if(state===lib$es6$promise$$internal$$REJECTED){lib$es6$promise$$internal$$reject(promise,value);}else {enumerator._result[i]=value;}}if(enumerator._remaining===0){lib$es6$promise$$internal$$fulfill(promise,enumerator._result);}};lib$es6$promise$enumerator$$Enumerator.prototype._willSettleAt=function(promise,i){var enumerator=this;lib$es6$promise$$internal$$subscribe(promise,undefined,function(value){enumerator._settledAt(lib$es6$promise$$internal$$FULFILLED,i,value);},function(reason){enumerator._settledAt(lib$es6$promise$$internal$$REJECTED,i,reason);});};function lib$es6$promise$promise$all$$all(entries){return new lib$es6$promise$enumerator$$default(this,entries).promise;}var lib$es6$promise$promise$all$$default=lib$es6$promise$promise$all$$all;function lib$es6$promise$promise$race$$race(entries){ /*jshint validthis:true */var Constructor=this;var promise=new Constructor(lib$es6$promise$$internal$$noop);if(!lib$es6$promise$utils$$isArray(entries)){lib$es6$promise$$internal$$reject(promise,new TypeError('You must pass an array to race.'));return promise;}var length=entries.length;function onFulfillment(value){lib$es6$promise$$internal$$resolve(promise,value);}function onRejection(reason){lib$es6$promise$$internal$$reject(promise,reason);}for(var i=0;promise._state===lib$es6$promise$$internal$$PENDING&&i<length;i++){lib$es6$promise$$internal$$subscribe(Constructor.resolve(entries[i]),undefined,onFulfillment,onRejection);}return promise;}var lib$es6$promise$promise$race$$default=lib$es6$promise$promise$race$$race;function lib$es6$promise$promise$resolve$$resolve(object){ /*jshint validthis:true */var Constructor=this;if(object&&(typeof object==='undefined'?'undefined':_typeof(object))==='object'&&object.constructor===Constructor){return object;}var promise=new Constructor(lib$es6$promise$$internal$$noop);lib$es6$promise$$internal$$resolve(promise,object);return promise;}var lib$es6$promise$promise$resolve$$default=lib$es6$promise$promise$resolve$$resolve;function lib$es6$promise$promise$reject$$reject(reason){ /*jshint validthis:true */var Constructor=this;var promise=new Constructor(lib$es6$promise$$internal$$noop);lib$es6$promise$$internal$$reject(promise,reason);return promise;}var lib$es6$promise$promise$reject$$default=lib$es6$promise$promise$reject$$reject;var lib$es6$promise$promise$$counter=0;function lib$es6$promise$promise$$needsResolver(){throw new TypeError('You must pass a resolver function as the first argument to the promise constructor');}function lib$es6$promise$promise$$needsNew(){throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");}var lib$es6$promise$promise$$default=lib$es6$promise$promise$$Promise; /**
+	      Promise objects represent the eventual result of an asynchronous operation. The
+	      primary way of interacting with a promise is through its `then` method, which
+	      registers callbacks to receive either a promise's eventual value or the reason
+	      why the promise cannot be fulfilled.
+
+	      Terminology
+	      -----------
+
+	      - `promise` is an object or function with a `then` method whose behavior conforms to this specification.
+	      - `thenable` is an object or function that defines a `then` method.
+	      - `value` is any legal JavaScript value (including undefined, a thenable, or a promise).
+	      - `exception` is a value that is thrown using the throw statement.
+	      - `reason` is a value that indicates why a promise was rejected.
+	      - `settled` the final resting state of a promise, fulfilled or rejected.
+
+	      A promise can be in one of three states: pending, fulfilled, or rejected.
+
+	      Promises that are fulfilled have a fulfillment value and are in the fulfilled
+	      state.  Promises that are rejected have a rejection reason and are in the
+	      rejected state.  A fulfillment value is never a thenable.
+
+	      Promises can also be said to *resolve* a value.  If this value is also a
+	      promise, then the original promise's settled state will match the value's
+	      settled state.  So a promise that *resolves* a promise that rejects will
+	      itself reject, and a promise that *resolves* a promise that fulfills will
+	      itself fulfill.
+
+
+	      Basic Usage:
+	      ------------
+
+	      ```js
+	      var promise = new Promise(function(resolve, reject) {
+	        // on success
+	        resolve(value);
+
+	        // on failure
+	        reject(reason);
+	      });
+
+	      promise.then(function(value) {
+	        // on fulfillment
+	      }, function(reason) {
+	        // on rejection
+	      });
+	      ```
+
+	      Advanced Usage:
+	      ---------------
+
+	      Promises shine when abstracting away asynchronous interactions such as
+	      `XMLHttpRequest`s.
+
+	      ```js
+	      function getJSON(url) {
+	        return new Promise(function(resolve, reject){
+	          var xhr = new XMLHttpRequest();
+
+	          xhr.open('GET', url);
+	          xhr.onreadystatechange = handler;
+	          xhr.responseType = 'json';
+	          xhr.setRequestHeader('Accept', 'application/json');
+	          xhr.send();
+
+	          function handler() {
+	            if (this.readyState === this.DONE) {
+	              if (this.status === 200) {
+	                resolve(this.response);
+	              } else {
+	                reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
+	              }
+	            }
+	          };
+	        });
+	      }
+
+	      getJSON('/posts.json').then(function(json) {
+	        // on fulfillment
+	      }, function(reason) {
+	        // on rejection
+	      });
+	      ```
+
+	      Unlike callbacks, promises are great composable primitives.
+
+	      ```js
+	      Promise.all([
+	        getJSON('/posts'),
+	        getJSON('/comments')
+	      ]).then(function(values){
+	        values[0] // => postsJSON
+	        values[1] // => commentsJSON
+
+	        return values;
+	      });
+	      ```
+
+	      @class Promise
+	      @param {function} resolver
+	      Useful for tooling.
+	      @constructor
+	    */function lib$es6$promise$promise$$Promise(resolver){this._id=lib$es6$promise$promise$$counter++;this._state=undefined;this._result=undefined;this._subscribers=[];if(lib$es6$promise$$internal$$noop!==resolver){if(!lib$es6$promise$utils$$isFunction(resolver)){lib$es6$promise$promise$$needsResolver();}if(!(this instanceof lib$es6$promise$promise$$Promise)){lib$es6$promise$promise$$needsNew();}lib$es6$promise$$internal$$initializePromise(this,resolver);}}lib$es6$promise$promise$$Promise.all=lib$es6$promise$promise$all$$default;lib$es6$promise$promise$$Promise.race=lib$es6$promise$promise$race$$default;lib$es6$promise$promise$$Promise.resolve=lib$es6$promise$promise$resolve$$default;lib$es6$promise$promise$$Promise.reject=lib$es6$promise$promise$reject$$default;lib$es6$promise$promise$$Promise._setScheduler=lib$es6$promise$asap$$setScheduler;lib$es6$promise$promise$$Promise._setAsap=lib$es6$promise$asap$$setAsap;lib$es6$promise$promise$$Promise._asap=lib$es6$promise$asap$$asap;lib$es6$promise$promise$$Promise.prototype={constructor:lib$es6$promise$promise$$Promise, /**
+	      The primary way of interacting with a promise is through its `then` method,
+	      which registers callbacks to receive either a promise's eventual value or the
+	      reason why the promise cannot be fulfilled.
+
+	      ```js
+	      findUser().then(function(user){
+	        // user is available
+	      }, function(reason){
+	        // user is unavailable, and you are given the reason why
+	      });
+	      ```
+
+	      Chaining
+	      --------
+
+	      The return value of `then` is itself a promise.  This second, 'downstream'
+	      promise is resolved with the return value of the first promise's fulfillment
+	      or rejection handler, or rejected if the handler throws an exception.
+
+	      ```js
+	      findUser().then(function (user) {
+	        return user.name;
+	      }, function (reason) {
+	        return 'default name';
+	      }).then(function (userName) {
+	        // If `findUser` fulfilled, `userName` will be the user's name, otherwise it
+	        // will be `'default name'`
+	      });
+
+	      findUser().then(function (user) {
+	        throw new Error('Found user, but still unhappy');
+	      }, function (reason) {
+	        throw new Error('`findUser` rejected and we're unhappy');
+	      }).then(function (value) {
+	        // never reached
+	      }, function (reason) {
+	        // if `findUser` fulfilled, `reason` will be 'Found user, but still unhappy'.
+	        // If `findUser` rejected, `reason` will be '`findUser` rejected and we're unhappy'.
+	      });
+	      ```
+	      If the downstream promise does not specify a rejection handler, rejection reasons will be propagated further downstream.
+
+	      ```js
+	      findUser().then(function (user) {
+	        throw new PedagogicalException('Upstream error');
+	      }).then(function (value) {
+	        // never reached
+	      }).then(function (value) {
+	        // never reached
+	      }, function (reason) {
+	        // The `PedgagocialException` is propagated all the way down to here
+	      });
+	      ```
+
+	      Assimilation
+	      ------------
+
+	      Sometimes the value you want to propagate to a downstream promise can only be
+	      retrieved asynchronously. This can be achieved by returning a promise in the
+	      fulfillment or rejection handler. The downstream promise will then be pending
+	      until the returned promise is settled. This is called *assimilation*.
+
+	      ```js
+	      findUser().then(function (user) {
+	        return findCommentsByAuthor(user);
+	      }).then(function (comments) {
+	        // The user's comments are now available
+	      });
+	      ```
+
+	      If the assimliated promise rejects, then the downstream promise will also reject.
+
+	      ```js
+	      findUser().then(function (user) {
+	        return findCommentsByAuthor(user);
+	      }).then(function (comments) {
+	        // If `findCommentsByAuthor` fulfills, we'll have the value here
+	      }, function (reason) {
+	        // If `findCommentsByAuthor` rejects, we'll have the reason here
+	      });
+	      ```
+
+	      Simple Example
+	      --------------
+
+	      Synchronous Example
+
+	      ```javascript
+	      var result;
+
+	      try {
+	        result = findResult();
+	        // success
+	      } catch(reason) {
+	        // failure
+	      }
+	      ```
+
+	      Errback Example
+
+	      ```js
+	      findResult(function(result, err){
+	        if (err) {
+	          // failure
+	        } else {
+	          // success
+	        }
+	      });
+	      ```
+
+	      Promise Example;
+
+	      ```javascript
+	      findResult().then(function(result){
+	        // success
+	      }, function(reason){
+	        // failure
+	      });
+	      ```
+
+	      Advanced Example
+	      --------------
+
+	      Synchronous Example
+
+	      ```javascript
+	      var author, books;
+
+	      try {
+	        author = findAuthor();
+	        books  = findBooksByAuthor(author);
+	        // success
+	      } catch(reason) {
+	        // failure
+	      }
+	      ```
+
+	      Errback Example
+
+	      ```js
+
+	      function foundBooks(books) {
+
+	      }
+
+	      function failure(reason) {
+
+	      }
+
+	      findAuthor(function(author, err){
+	        if (err) {
+	          failure(err);
+	          // failure
+	        } else {
+	          try {
+	            findBoooksByAuthor(author, function(books, err) {
+	              if (err) {
+	                failure(err);
+	              } else {
+	                try {
+	                  foundBooks(books);
+	                } catch(reason) {
+	                  failure(reason);
+	                }
+	              }
+	            });
+	          } catch(error) {
+	            failure(err);
+	          }
+	          // success
+	        }
+	      });
+	      ```
+
+	      Promise Example;
+
+	      ```javascript
+	      findAuthor().
+	        then(findBooksByAuthor).
+	        then(function(books){
+	          // found books
+	      }).catch(function(reason){
+	        // something went wrong
+	      });
+	      ```
+
+	      @method then
+	      @param {Function} onFulfilled
+	      @param {Function} onRejected
+	      Useful for tooling.
+	      @return {Promise}
+	    */then:function(){function then(onFulfillment,onRejection){var parent=this;var state=parent._state;if(state===lib$es6$promise$$internal$$FULFILLED&&!onFulfillment||state===lib$es6$promise$$internal$$REJECTED&&!onRejection){return this;}var child=new this.constructor(lib$es6$promise$$internal$$noop);var result=parent._result;if(state){var callback=arguments[state-1];lib$es6$promise$asap$$asap(function(){lib$es6$promise$$internal$$invokeCallback(state,child,callback,result);});}else {lib$es6$promise$$internal$$subscribe(parent,child,onFulfillment,onRejection);}return child;}return then;}(), /**
+	      `catch` is simply sugar for `then(undefined, onRejection)` which makes it the same
+	      as the catch block of a try/catch statement.
+
+	      ```js
+	      function findAuthor(){
+	        throw new Error('couldn't find that author');
+	      }
+
+	      // synchronous
+	      try {
+	        findAuthor();
+	      } catch(reason) {
+	        // something went wrong
+	      }
+
+	      // async with promises
+	      findAuthor().catch(function(reason){
+	        // something went wrong
+	      });
+	      ```
+
+	      @method catch
+	      @param {Function} onRejection
+	      Useful for tooling.
+	      @return {Promise}
+	    */'catch':function(){function _catch(onRejection){return this.then(null,onRejection);}return _catch;}()};function lib$es6$promise$polyfill$$polyfill(){var local;if(typeof global!=='undefined'){local=global;}else if(typeof self!=='undefined'){local=self;}else {try{local=Function('return this')();}catch(e){throw new Error('polyfill failed because global object is unavailable in this environment');}}var P=local.Promise;if(P&&Object.prototype.toString.call(P.resolve())==='[object Promise]'&&!P.cast){return;}local.Promise=lib$es6$promise$promise$$default;}var lib$es6$promise$polyfill$$default=lib$es6$promise$polyfill$$polyfill;var lib$es6$promise$umd$$ES6Promise={'Promise':lib$es6$promise$promise$$default,'polyfill':lib$es6$promise$polyfill$$default}; /* global define:true module:true window: true */if("function"==='function'&&__webpack_require__(10)['amd']){!(__WEBPACK_AMD_DEFINE_RESULT__ = function(){return lib$es6$promise$umd$$ES6Promise;}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));}else if(typeof module!=='undefined'&&module['exports']){module['exports']=lib$es6$promise$umd$$ES6Promise;}else if(typeof this!=='undefined'){this['ES6Promise']=lib$es6$promise$umd$$ES6Promise;}lib$es6$promise$polyfill$$default();}).call(this); /**
+	 * @constructor
+	 */function DefaultHttpRequest(){ /**
+	     * @name _promiseFactory
+	     * @type DefaultPromiseFactory
+	     */ /**
+	     * @param {XMLHttpRequest} xhr
+	     * @param {object.<string, string>} headers
+	     */function setHeaders(xhr,headers){var keys=Object.keys(headers);for(var i=0;i<keys.length;i++){var key=keys[i];var value=headers[key];xhr.setRequestHeader(key,value);}} /**
+	     * @param {string} url
+	     * @param {{ headers: object.<string, string> }} [config]
+	     * @returns {Promise}
+	     */this.getJSON=function(url,config){return _promiseFactory.create(function(resolve,reject){try{var xhr=new XMLHttpRequest();xhr.open("GET",url);xhr.responseType="json";if(config){if(config.headers){setHeaders(xhr,config.headers);}}xhr.onload=function(){try{if(xhr.status===200){var response=""; // To support IE9 get the response from xhr.responseText not xhr.response
+	if(window.XDomainRequest){response=xhr.responseText;}else {response=xhr.response;}if(typeof response==="string"){response=JSON.parse(response);}resolve(response);}else {reject(Error(xhr.statusText+"("+xhr.status+")"));}}catch(err){reject(err);}};xhr.onerror=function(){reject(Error("Network error"));};xhr.send();}catch(err){return reject(err);}});};}_httpRequest=new DefaultHttpRequest(); /**
+	 * @constructor
+	 * @param {Promise} promise
+	 */function DefaultPromise(promise){ /**
+	     * @param {function(*):*} successCallback
+	     * @param {function(*):*} errorCallback
+	     * @returns {DefaultPromise}
+	     */this.then=function(successCallback,errorCallback){var childPromise=promise.then(successCallback,errorCallback);return new DefaultPromise(childPromise);}; /**
+	     *
+	     * @param {function(*):*} errorCallback
+	     * @returns {DefaultPromise}
+	     */this['catch']=function(errorCallback){var childPromise=promise['catch'](errorCallback);return new DefaultPromise(childPromise);};} /**
+	 * @constructor
+	 */function DefaultPromiseFactory(){this.resolve=function(value){return new DefaultPromise(Promise.resolve(value));};this.reject=function(reason){return new DefaultPromise(Promise.reject(reason));}; /**
+	     * @param {function(resolve:function, reject:function)} callback
+	     * @returns {DefaultPromise}
+	     */this.create=function(callback){return new DefaultPromise(new Promise(callback));};}_promiseFactory=new DefaultPromiseFactory(); /*
+	 * Copyright 2015 Dominick Baier, Brock Allen
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 *   http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 */function log(){ //var param = [].join.call(arguments);
+	//console.log(param);
+	}function copy(obj,target){target=target||{};for(var key in obj){if(obj.hasOwnProperty(key)){target[key]=obj[key];}}return target;}function rand(){return ((Date.now()+Math.random())*Math.random()).toString().replace(".","");}function resolve(param){return _promiseFactory.resolve(param);}function error(message){return _promiseFactory.reject(Error(message));}function parseOidcResult(queryString){log("parseOidcResult");queryString=queryString||location.hash;var idx=queryString.lastIndexOf("#");if(idx>=0){queryString=queryString.substr(idx+1);}var params={},regex=/([^&=]+)=([^&]*)/g,m;var counter=0;while(m=regex.exec(queryString)){params[decodeURIComponent(m[1])]=decodeURIComponent(m[2]);if(counter++>50){return {error:"Response exceeded expected number of parameters"};}}for(var prop in params){return params;}}function getJson(url,token){log("getJson",url);var config={};if(token){config.headers={"Authorization":"Bearer "+token};}return _httpRequest.getJSON(url,config);}function OidcClient(settings){this._settings=settings||{};if(!this._settings.request_state_key){this._settings.request_state_key="OidcClient.request_state";}if(!this._settings.request_state_store){this._settings.request_state_store=window.localStorage;}if(typeof this._settings.load_user_profile==='undefined'){this._settings.load_user_profile=true;}if(typeof this._settings.filter_protocol_claims==='undefined'){this._settings.filter_protocol_claims=true;}if(this._settings.authority&&this._settings.authority.indexOf('.well-known/openid-configuration')<0){if(this._settings.authority[this._settings.authority.length-1]!=='/'){this._settings.authority+='/';}this._settings.authority+='.well-known/openid-configuration';}if(!this._settings.response_type){this._settings.response_type="id_token token";}Object.defineProperty(this,"isOidc",{get:function(){function get(){if(this._settings.response_type){var result=this._settings.response_type.split(/\s+/g).filter(function(item){return item==="id_token";});return !!result[0];}return false;}return get;}()});Object.defineProperty(this,"isOAuth",{get:function(){function get(){if(this._settings.response_type){var result=this._settings.response_type.split(/\s+/g).filter(function(item){return item==="token";});return !!result[0];}return false;}return get;}()});}OidcClient.parseOidcResult=parseOidcResult;OidcClient.prototype.loadMetadataAsync=function(){log("OidcClient.loadMetadataAsync");var settings=this._settings;if(settings.metadata){return resolve(settings.metadata);}if(!settings.authority){return error("No authority configured");}return getJson(settings.authority).then(function(metadata){settings.metadata=metadata;return metadata;},function(err){return error("Failed to load metadata ("+err&&err.message+")");});};OidcClient.prototype.loadX509SigningKeyAsync=function(){log("OidcClient.loadX509SigningKeyAsync");var settings=this._settings;function getKeyAsync(jwks){if(!jwks.keys||!jwks.keys.length){return error("Signing keys empty");}var key=jwks.keys[0];if(key.kty!=="RSA"){return error("Signing key not RSA");}if(!key.x5c||!key.x5c.length){return error("RSA keys empty");}return resolve(key.x5c[0]);}if(settings.jwks){return getKeyAsync(settings.jwks);}return this.loadMetadataAsync().then(function(metadata){if(!metadata.jwks_uri){return error("Metadata does not contain jwks_uri");}return getJson(metadata.jwks_uri).then(function(jwks){settings.jwks=jwks;return getKeyAsync(jwks);},function(err){return error("Failed to load signing keys ("+err&&err.message+")");});});};OidcClient.prototype.loadUserProfile=function(access_token){log("OidcClient.loadUserProfile");return this.loadMetadataAsync().then(function(metadata){if(!metadata.userinfo_endpoint){return error("Metadata does not contain userinfo_endpoint");}return getJson(metadata.userinfo_endpoint,access_token);});};OidcClient.prototype.loadAuthorizationEndpoint=function(){log("OidcClient.loadAuthorizationEndpoint");if(this._settings.authorization_endpoint){return resolve(this._settings.authorization_endpoint);}if(!this._settings.authority){return error("No authorization_endpoint configured");}return this.loadMetadataAsync().then(function(metadata){if(!metadata.authorization_endpoint){return error("Metadata does not contain authorization_endpoint");}return metadata.authorization_endpoint;});};OidcClient.prototype.createTokenRequestAsync=function(){log("OidcClient.createTokenRequestAsync");var client=this;var settings=client._settings;return client.loadAuthorizationEndpoint().then(function(authorization_endpoint){var state=rand();var url=authorization_endpoint+"?state="+encodeURIComponent(state);if(client.isOidc){var nonce=rand();url+="&nonce="+encodeURIComponent(nonce);}var required=["client_id","redirect_uri","response_type","scope"];required.forEach(function(key){var value=settings[key];if(value){url+="&"+key+"="+encodeURIComponent(value);}});var optional=["prompt","display","max_age","ui_locales","id_token_hint","login_hint","acr_values"];optional.forEach(function(key){var value=settings[key];if(value){url+="&"+key+"="+encodeURIComponent(value);}});var request_state={oidc:client.isOidc,oauth:client.isOAuth,state:state};if(nonce){request_state["nonce"]=nonce;}settings.request_state_store.setItem(settings.request_state_key,JSON.stringify(request_state));return {request_state:request_state,url:url};});};OidcClient.prototype.createLogoutRequestAsync=function(id_token_hint){log("OidcClient.createLogoutRequestAsync");var settings=this._settings;return this.loadMetadataAsync().then(function(metadata){if(!metadata.end_session_endpoint){return error("No end_session_endpoint in metadata");}var url=metadata.end_session_endpoint;if(id_token_hint&&settings.post_logout_redirect_uri){url+="?post_logout_redirect_uri="+encodeURIComponent(settings.post_logout_redirect_uri);url+="&id_token_hint="+encodeURIComponent(id_token_hint);}return url;});};OidcClient.prototype.validateIdTokenAsync=function(id_token,nonce,access_token){log("OidcClient.validateIdTokenAsync");var client=this;var settings=client._settings;return client.loadX509SigningKeyAsync().then(function(cert){var jws=new KJUR.jws.JWS();if(jws.verifyJWSByPemX509Cert(id_token,cert)){var id_token_contents=JSON.parse(jws.parsedJWS.payloadS);if(nonce!==id_token_contents.nonce){return error("Invalid nonce");}return client.loadMetadataAsync().then(function(metadata){if(id_token_contents.iss!==metadata.issuer){return error("Invalid issuer");}if(id_token_contents.aud!==settings.client_id){return error("Invalid audience");}var now=parseInt(Date.now()/1000); // accept tokens issues up to 5 mins ago
+	var diff=now-id_token_contents.iat;if(diff>5*60){return error("Token issued too long ago");}if(id_token_contents.exp<now){return error("Token expired");}if(access_token&&settings.load_user_profile){ // if we have an access token, then call user info endpoint
+	return client.loadUserProfile(access_token,id_token_contents).then(function(profile){return copy(profile,id_token_contents);});}else { // no access token, so we have all our claims
+	return id_token_contents;}});}else {return error("JWT failed to validate");}});};OidcClient.prototype.validateAccessTokenAsync=function(id_token_contents,access_token){log("OidcClient.validateAccessTokenAsync");if(!id_token_contents.at_hash){return error("No at_hash in id_token");}var hash=KJUR.crypto.Util.sha256(access_token);var left=hash.substr(0,hash.length/2);var left_b64u=hextob64u(left);if(left_b64u!==id_token_contents.at_hash){return error("at_hash failed to validate");}return resolve();};OidcClient.prototype.validateIdTokenAndAccessTokenAsync=function(id_token,nonce,access_token){log("OidcClient.validateIdTokenAndAccessTokenAsync");var client=this;return client.validateIdTokenAsync(id_token,nonce,access_token).then(function(id_token_contents){return client.validateAccessTokenAsync(id_token_contents,access_token).then(function(){return id_token_contents;});});};OidcClient.prototype.processResponseAsync=function(queryString){log("OidcClient.processResponseAsync");var client=this;var settings=client._settings;var request_state=settings.request_state_store.getItem(settings.request_state_key);settings.request_state_store.removeItem(settings.request_state_key);if(!request_state){return error("No request state loaded");}request_state=JSON.parse(request_state);if(!request_state){return error("No request state loaded");}if(!request_state.state){return error("No state loaded");}var result=parseOidcResult(queryString);if(!result){return error("No OIDC response");}if(result.error){return error(result.error);}if(result.state!==request_state.state){return error("Invalid state");}if(request_state.oidc){if(!result.id_token){return error("No identity token");}if(!request_state.nonce){return error("No nonce loaded");}}if(request_state.oauth){if(!result.access_token){return error("No access token");}if(!result.token_type||result.token_type.toLowerCase()!=="bearer"){return error("Invalid token type");}if(!result.expires_in){return error("No token expiration");}}var promise=resolve();if(request_state.oidc&&request_state.oauth){promise=client.validateIdTokenAndAccessTokenAsync(result.id_token,request_state.nonce,result.access_token);}else if(request_state.oidc){promise=client.validateIdTokenAsync(result.id_token,request_state.nonce);}return promise.then(function(profile){if(profile&&settings.filter_protocol_claims){var remove=["nonce","at_hash","iat","nbf","exp","aud","iss"];remove.forEach(function(key){delete profile[key];});}return {profile:profile,id_token:result.id_token,access_token:result.access_token,expires_in:result.expires_in,scope:result.scope,session_state:result.session_state};});}; // exports
+	OidcClient._promiseFactory=_promiseFactory;OidcClient._httpRequest=_httpRequest;window.OidcClient=OidcClient;})();(function(){ /*
+	* Copyright 2014-2016 Dominick Baier, Brock Allen
+	*
+	* Licensed under the Apache License, Version 2.0 (the "License");
+	* you may not use this file except in compliance with the License.
+	* You may obtain a copy of the License at
+	*
+	*   http://www.apache.org/licenses/LICENSE-2.0
+	*
+	* Unless required by applicable law or agreed to in writing, software
+	* distributed under the License is distributed on an "AS IS" BASIS,
+	* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	* See the License for the specific language governing permissions and
+	* limitations under the License.
+	*/ // globals
+	var _promiseFactory=OidcClient._promiseFactory;var _httpRequest=OidcClient._httpRequest;function copy(obj,target){target=target||{};for(var key in obj){if(obj.hasOwnProperty(key)){target[key]=obj[key];}}return target;}function Token(other){if(other){this.profile=other.profile;this.id_token=other.id_token;this.access_token=other.access_token;if(other.access_token){this.expires_at=parseInt(other.expires_at);}else if(other.id_token){this.expires_at=other.profile.exp;}else {throw Error("Either access_token or id_token required.");}this.scope=other.scope;this.session_state=other.session_state;}else {this.expires_at=0;}Object.defineProperty(this,"scopes",{get:function(){function get(){return (this.scope||"").split(" ");}return get;}()});Object.defineProperty(this,"expired",{get:function(){function get(){var now=parseInt(Date.now()/1000);return this.expires_at<now;}return get;}()});Object.defineProperty(this,"expires_in",{get:function(){function get(){var now=parseInt(Date.now()/1000);return this.expires_at-now;}return get;}()});}Token.fromResponse=function(response){if(response.access_token){var now=parseInt(Date.now()/1000);response.expires_at=now+parseInt(response.expires_in);}return new Token(response);};Token.fromJSON=function(json){if(json){try{var obj=JSON.parse(json);return new Token(obj);}catch(e){}}return new Token(null);};Token.prototype.toJSON=function(){return JSON.stringify({profile:this.profile,id_token:this.id_token,access_token:this.access_token,expires_at:this.expires_at,scope:this.scopes.join(" "),session_state:this.session_state});};function FrameLoader(url,config){this.url=url;config=config||{};config.cancelDelay=config.cancelDelay||5000;this.config=config;}FrameLoader.prototype.loadAsync=function(url){var self=this;url=url||this.url;if(!url){return _promiseFactory.reject(Error("No url provided"));}return _promiseFactory.create(function(resolve,reject){var frame=window.document.createElement("iframe");frame.style.display="none";function cleanup(){window.removeEventListener("message",message,false);if(handle){window.clearTimeout(handle);}handle=null;window.document.body.removeChild(frame);}function cancel(e){cleanup();reject();}function message(e){if(handle&&e.origin===location.protocol+"//"+location.host&&e.source==frame.contentWindow){cleanup();resolve(e.data);}}var handle=window.setTimeout(cancel,self.config.cancelDelay);window.addEventListener("message",message,false);window.document.body.appendChild(frame);frame.src=url;});};function loadToken(mgr){mgr._token=null;if(mgr._settings.persist){var tokenJson=mgr._settings.store.getItem(mgr._settings.persistKey);if(tokenJson){var token=Token.fromJSON(tokenJson);if(!token.expired){mgr._token=token;}}}}function configureTokenExpiring(mgr){function callback(){handle=null;mgr._callTokenExpiring();}var handle=null;function cancel(){if(handle){window.clearTimeout(handle);handle=null;}}function setup(duration){handle=window.setTimeout(callback,duration*1000);}function configure(){cancel();if(!mgr.expired){var duration=mgr.expires_in;if(duration>60){setup(duration-60);}else {callback();}}}configure();mgr.addOnTokenObtained(configure);mgr.addOnTokenRemoved(cancel);}function configureAutoRenewToken(mgr){if(mgr._settings.silent_redirect_uri&&mgr._settings.silent_renew){mgr.addOnTokenExpiring(function(){mgr.renewTokenSilentAsync()['catch'](function(e){mgr._callSilentTokenRenewFailed();console.error(e&&e.message||"Unknown error");});});}}function configureTokenExpired(mgr){function callback(){handle=null;if(mgr._token){mgr.saveToken(null);}mgr._callTokenExpired();}var handle=null;function cancel(){if(handle){window.clearTimeout(handle);handle=null;}}function setup(duration){handle=window.setTimeout(callback,duration*1000);}function configure(){cancel();if(mgr.expires_in>0){ // register 1 second beyond expiration so we don't get into edge conditions for expiration
+	setup(mgr.expires_in+1);}}configure();mgr.addOnTokenObtained(configure);mgr.addOnTokenRemoved(cancel);}function TokenManager(settings){this._settings=settings||{};if(typeof this._settings.persist==='undefined'){this._settings.persist=true;}this._settings.store=this._settings.store||window.localStorage;this._settings.persistKey=this._settings.persistKey||"TokenManager.token";this.oidcClient=new OidcClient(this._settings);this._callbacks={tokenRemovedCallbacks:[],tokenExpiringCallbacks:[],tokenExpiredCallbacks:[],tokenObtainedCallbacks:[],silentTokenRenewFailedCallbacks:[]};Object.defineProperty(this,"profile",{get:function(){function get(){if(this._token){return this._token.profile;}}return get;}()});Object.defineProperty(this,"id_token",{get:function(){function get(){if(this._token){return this._token.id_token;}}return get;}()});Object.defineProperty(this,"access_token",{get:function(){function get(){if(this._token&&!this._token.expired){return this._token.access_token;}}return get;}()});Object.defineProperty(this,"expired",{get:function(){function get(){if(this._token){return this._token.expired;}return true;}return get;}()});Object.defineProperty(this,"expires_in",{get:function(){function get(){if(this._token){return this._token.expires_in;}return 0;}return get;}()});Object.defineProperty(this,"expires_at",{get:function(){function get(){if(this._token){return this._token.expires_at;}return 0;}return get;}()});Object.defineProperty(this,"scope",{get:function(){function get(){return this._token&&this._token.scope;}return get;}()});Object.defineProperty(this,"scopes",{get:function(){function get(){if(this._token){return [].concat(this._token.scopes);}return [];}return get;}()});Object.defineProperty(this,"session_state",{get:function(){function get(){if(this._token){return this._token.session_state;}}return get;}()});var mgr=this;loadToken(mgr);if(mgr._settings.store instanceof window.localStorage.constructor){window.addEventListener("storage",function(e){if(e.key===mgr._settings.persistKey){loadToken(mgr);if(mgr._token){mgr._callTokenObtained();}else {mgr._callTokenRemoved();}}});}configureTokenExpired(mgr);configureAutoRenewToken(mgr); // delay this so consuming apps can register for callbacks first
+	window.setTimeout(function(){configureTokenExpiring(mgr);},0);} /**
+	 * @param {{ create:function(successCallback:function(), errorCallback:function()):Promise, resolve:function(value:*):Promise, reject:function():Promise}} promiseFactory
+	 */TokenManager.setPromiseFactory=function(promiseFactory){_promiseFactory=promiseFactory;}; /**
+	 * @param {{getJSON:function(url:string, config:{ headers: object.<string, string> })}} httpRequest
+	 */TokenManager.setHttpRequest=function(httpRequest){if((typeof httpRequest==='undefined'?'undefined':_typeof(httpRequest))!=='object'||typeof httpRequest.getJSON!=='function'){throw Error('The provided value is not a valid http request.');}_httpRequest=httpRequest;};TokenManager.prototype._callTokenRemoved=function(){this._callbacks.tokenRemovedCallbacks.forEach(function(cb){cb();});};TokenManager.prototype._callTokenExpiring=function(){this._callbacks.tokenExpiringCallbacks.forEach(function(cb){cb();});};TokenManager.prototype._callTokenExpired=function(){this._callbacks.tokenExpiredCallbacks.forEach(function(cb){cb();});};TokenManager.prototype._callTokenObtained=function(){this._callbacks.tokenObtainedCallbacks.forEach(function(cb){cb();});};TokenManager.prototype._callSilentTokenRenewFailed=function(){this._callbacks.silentTokenRenewFailedCallbacks.forEach(function(cb){cb();});};TokenManager.prototype.saveToken=function(token){if(token&&!(token instanceof Token)){token=Token.fromResponse(token);}this._token=token;if(this._settings.persist&&!this.expired){this._settings.store.setItem(this._settings.persistKey,token.toJSON());}else {this._settings.store.removeItem(this._settings.persistKey);}if(token){this._callTokenObtained();}else {this._callTokenRemoved();}};TokenManager.prototype.addOnTokenRemoved=function(cb){this._callbacks.tokenRemovedCallbacks.push(cb);};TokenManager.prototype.addOnTokenObtained=function(cb){this._callbacks.tokenObtainedCallbacks.push(cb);};TokenManager.prototype.addOnTokenExpiring=function(cb){this._callbacks.tokenExpiringCallbacks.push(cb);};TokenManager.prototype.addOnTokenExpired=function(cb){this._callbacks.tokenExpiredCallbacks.push(cb);};TokenManager.prototype.addOnSilentTokenRenewFailed=function(cb){this._callbacks.silentTokenRenewFailedCallbacks.push(cb);};TokenManager.prototype.removeToken=function(){this.saveToken(null);};TokenManager.prototype.redirectForToken=function(){var oidc=this.oidcClient;return oidc.createTokenRequestAsync().then(function(request){window.location=request.url;},function(err){console.error("TokenManager.redirectForToken error: "+(err&&err.message||"Unknown error"));return _promiseFactory.reject(err);});};TokenManager.prototype.redirectForLogout=function(){var mgr=this;return mgr.oidcClient.createLogoutRequestAsync(mgr.id_token).then(function(url){mgr.removeToken();window.location=url;},function(err){console.error("TokenManager.redirectForLogout error: "+(err&&err.message||"Unknown error"));return _promiseFactory.reject(err);});};TokenManager.prototype.processTokenCallbackAsync=function(queryString){var mgr=this;return mgr.oidcClient.processResponseAsync(queryString).then(function(token){mgr.saveToken(token);});};TokenManager.prototype.renewTokenSilentAsync=function(){var mgr=this;if(!mgr._settings.silent_redirect_uri){return _promiseFactory.reject(Error("silent_redirect_uri not configured"));}var settings=copy(mgr._settings);settings.redirect_uri=settings.silent_redirect_uri;if(!settings.prompt){settings.prompt="none";}var oidc=new OidcClient(settings);return oidc.createTokenRequestAsync().then(function(request){var frame=new FrameLoader(request.url,{cancelDelay:mgr._settings.silent_renew_timeout});return frame.loadAsync().then(function(hash){return oidc.processResponseAsync(hash).then(function(token){mgr.saveToken(token);});});});};TokenManager.prototype.processTokenCallbackSilent=function(hash){if(window.parent&&window!==window.parent){var hash=hash||window.location.hash;if(hash){window.parent.postMessage(hash,location.protocol+"//"+location.host);}}};TokenManager.prototype.openPopupForTokenAsync=function(popupSettings){popupSettings=popupSettings||{};popupSettings.features=popupSettings.features||"location=no,toolbar=no";popupSettings.target=popupSettings.target||"_blank";var callback_prefix="tokenmgr_callback_"; // this is a shared callback
+	if(!window.openPopupForTokenAsyncCallback){window.openPopupForTokenAsyncCallback=function(hash){var result=OidcClient.parseOidcResult(hash);if(result&&result.state&&window[callback_prefix+result.state]){window[callback_prefix+result.state](hash);}};}var mgr=this;var settings=copy(mgr._settings);settings.redirect_uri=settings.popup_redirect_uri||settings.redirect_uri;if(mgr._pendingPopup){return _promiseFactory.create(function(resolve,reject){reject(Error("Already a pending popup token request."));});}var popup=window.open(settings.redirect_uri,popupSettings.target,popupSettings.features);if(!popup){return _promiseFactory.create(function(resolve,reject){reject(Error("Error opening popup."));});}mgr._pendingPopup=true;function cleanup(name){if(handle){window.clearInterval(handle);}popup.close();delete mgr._pendingPopup;if(name){delete window[name];}}var reject_popup;function checkClosed(){if(!popup.window){cleanup();reject_popup(Error("Popup closed"));}}var handle=window.setInterval(checkClosed,1000);return _promiseFactory.create(function(resolve,reject){reject_popup=reject;var oidc=new OidcClient(settings);oidc.createTokenRequestAsync().then(function(request){var callback_name=callback_prefix+request.request_state.state;window[callback_name]=function(hash){cleanup(callback_name);oidc.processResponseAsync(hash).then(function(token){mgr.saveToken(token);resolve();},function(err){reject(err);});}; // give the popup 5 seconds to ready itself, otherwise fail
+	var seconds_to_wait=5;var interval=500;var total_times=seconds_to_wait*1000/interval;var count=0;function redirectPopup(){if(popup.setUrl){popup.setUrl(request.url);}else if(count<total_times){count++;window.setTimeout(redirectPopup,interval);}else {cleanup(callback_name);reject(Error("Timeout error on popup"));}}redirectPopup();},function(err){cleanup();reject(err);});});};TokenManager.prototype.processTokenPopup=function(hash){hash=hash||window.location.hash;window.setUrl=function(url){window.location=url;};if(hash){window.opener.openPopupForTokenAsyncCallback(hash);}}; // exports
+	module.exports=TokenManager;})(); /*eslint-enable */ // jscs: enable
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer, __webpack_require__(7), (function() { return this; }()), __webpack_require__(8)(module)))
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
 	 * The buffer module from node.js, for the browser.
 	 *
 	 * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
 	 * @license  MIT
 	 */
-"use strict";function o(){function e(){}try{var t=new Uint8Array(1);return t.foo=function(){return 42},t.constructor=e,42===t.foo()&&t.constructor===e&&"function"==typeof t.subarray&&0===t.subarray(1,1).byteLength}catch(n){return!1}}function i(){return e.TYPED_ARRAY_SUPPORT?2147483647:1073741823}function e(t){return this instanceof e?(e.TYPED_ARRAY_SUPPORT||(this.length=0,this.parent=void 0),"number"==typeof t?a(this,t):"string"==typeof t?s(this,t,arguments.length>1?arguments[1]:"utf8"):u(this,t)):arguments.length>1?new e(t,arguments[1]):new e(t)}function a(t,n){if(t=g(t,0>n?0:0|v(n)),!e.TYPED_ARRAY_SUPPORT)for(var r=0;n>r;r++)t[r]=0;return t}function s(e,t,n){"string"==typeof n&&""!==n||(n="utf8");var r=0|y(t,n);return e=g(e,r),e.write(t,n),e}function u(t,n){if(e.isBuffer(n))return c(t,n);if(G(n))return l(t,n);if(null==n)throw new TypeError("must start with number, buffer, array or string");if("undefined"!=typeof ArrayBuffer){if(n.buffer instanceof ArrayBuffer)return p(t,n);if(n instanceof ArrayBuffer)return d(t,n)}return n.length?h(t,n):f(t,n)}function c(e,t){var n=0|v(t.length);return e=g(e,n),t.copy(e,0,0,n),e}function l(e,t){var n=0|v(t.length);e=g(e,n);for(var r=0;n>r;r+=1)e[r]=255&t[r];return e}function p(e,t){var n=0|v(t.length);e=g(e,n);for(var r=0;n>r;r+=1)e[r]=255&t[r];return e}function d(t,n){return e.TYPED_ARRAY_SUPPORT?(n.byteLength,t=e._augment(new Uint8Array(n))):t=p(t,new Uint8Array(n)),t}function h(e,t){var n=0|v(t.length);e=g(e,n);for(var r=0;n>r;r+=1)e[r]=255&t[r];return e}function f(e,t){var n,r=0;"Buffer"===t.type&&G(t.data)&&(n=t.data,r=0|v(n.length)),e=g(e,r);for(var o=0;r>o;o+=1)e[o]=255&n[o];return e}function g(t,n){e.TYPED_ARRAY_SUPPORT?(t=e._augment(new Uint8Array(n)),t.__proto__=e.prototype):(t.length=n,t._isBuffer=!0);var r=0!==n&&n<=e.poolSize>>>1;return r&&(t.parent=$),t}function v(e){if(e>=i())throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x"+i().toString(16)+" bytes");return 0|e}function m(t,n){if(!(this instanceof m))return new m(t,n);var r=new e(t,n);return delete r.parent,r}function y(e,t){"string"!=typeof e&&(e=""+e);var n=e.length;if(0===n)return 0;for(var r=!1;;)switch(t){case"ascii":case"binary":case"raw":case"raws":return n;case"utf8":case"utf-8":return K(e).length;case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return 2*n;case"hex":return n>>>1;case"base64":return q(e).length;default:if(r)return K(e).length;t=(""+t).toLowerCase(),r=!0}}function _(e,t,n){var r=!1;if(t=0|t,n=void 0===n||n===1/0?this.length:0|n,e||(e="utf8"),0>t&&(t=0),n>this.length&&(n=this.length),t>=n)return"";for(;;)switch(e){case"hex":return I(this,t,n);case"utf8":case"utf-8":return O(this,t,n);case"ascii":return x(this,t,n);case"binary":return R(this,t,n);case"base64":return D(this,t,n);case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return T(this,t,n);default:if(r)throw new TypeError("Unknown encoding: "+e);e=(e+"").toLowerCase(),r=!0}}function b(e,t,n,r){n=Number(n)||0;var o=e.length-n;r?(r=Number(r),r>o&&(r=o)):r=o;var i=t.length;if(i%2!==0)throw new Error("Invalid hex string");r>i/2&&(r=i/2);for(var a=0;r>a;a++){var s=parseInt(t.substr(2*a,2),16);if(isNaN(s))throw new Error("Invalid hex string");e[n+a]=s}return a}function E(e,t,n,r){return X(K(t,e.length-n),e,n,r)}function N(e,t,n,r){return X(W(t),e,n,r)}function S(e,t,n,r){return N(e,t,n,r)}function w(e,t,n,r){return X(q(t),e,n,r)}function C(e,t,n,r){return X(J(t,e.length-n),e,n,r)}function D(e,t,n){return 0===t&&n===e.length?Y.fromByteArray(e):Y.fromByteArray(e.slice(t,n))}function O(e,t,n){n=Math.min(e.length,n);for(var r=[],o=t;n>o;){var i=e[o],a=null,s=i>239?4:i>223?3:i>191?2:1;if(n>=o+s){var u,c,l,p;switch(s){case 1:128>i&&(a=i);break;case 2:u=e[o+1],128===(192&u)&&(p=(31&i)<<6|63&u,p>127&&(a=p));break;case 3:u=e[o+1],c=e[o+2],128===(192&u)&&128===(192&c)&&(p=(15&i)<<12|(63&u)<<6|63&c,p>2047&&(55296>p||p>57343)&&(a=p));break;case 4:u=e[o+1],c=e[o+2],l=e[o+3],128===(192&u)&&128===(192&c)&&128===(192&l)&&(p=(15&i)<<18|(63&u)<<12|(63&c)<<6|63&l,p>65535&&1114112>p&&(a=p))}}null===a?(a=65533,s=1):a>65535&&(a-=65536,r.push(a>>>10&1023|55296),a=56320|1023&a),r.push(a),o+=s}return A(r)}function A(e){var t=e.length;if(Z>=t)return String.fromCharCode.apply(String,e);for(var n="",r=0;t>r;)n+=String.fromCharCode.apply(String,e.slice(r,r+=Z));return n}function x(e,t,n){var r="";n=Math.min(e.length,n);for(var o=t;n>o;o++)r+=String.fromCharCode(127&e[o]);return r}function R(e,t,n){var r="";n=Math.min(e.length,n);for(var o=t;n>o;o++)r+=String.fromCharCode(e[o]);return r}function I(e,t,n){var r=e.length;(!t||0>t)&&(t=0),(!n||0>n||n>r)&&(n=r);for(var o="",i=t;n>i;i++)o+=F(e[i]);return o}function T(e,t,n){for(var r=e.slice(t,n),o="",i=0;i<r.length;i+=2)o+=String.fromCharCode(r[i]+256*r[i+1]);return o}function P(e,t,n){if(e%1!==0||0>e)throw new RangeError("offset is not uint");if(e+t>n)throw new RangeError("Trying to access beyond buffer length")}function M(t,n,r,o,i,a){if(!e.isBuffer(t))throw new TypeError("buffer must be a Buffer instance");if(n>i||a>n)throw new RangeError("value is out of bounds");if(r+o>t.length)throw new RangeError("index out of range")}function k(e,t,n,r){0>t&&(t=65535+t+1);for(var o=0,i=Math.min(e.length-n,2);i>o;o++)e[n+o]=(t&255<<8*(r?o:1-o))>>>8*(r?o:1-o)}function B(e,t,n,r){0>t&&(t=4294967295+t+1);for(var o=0,i=Math.min(e.length-n,4);i>o;o++)e[n+o]=t>>>8*(r?o:3-o)&255}function U(e,t,n,r,o,i){if(t>o||i>t)throw new RangeError("value is out of bounds");if(n+r>e.length)throw new RangeError("index out of range");if(0>n)throw new RangeError("index out of range")}function V(e,t,n,r,o){return o||U(e,t,n,4,3.4028234663852886e38,-3.4028234663852886e38),z.write(e,t,n,r,23,4),n+4}function L(e,t,n,r,o){return o||U(e,t,n,8,1.7976931348623157e308,-1.7976931348623157e308),z.write(e,t,n,r,52,8),n+8}function j(e){if(e=H(e).replace(ee,""),e.length<2)return"";for(;e.length%4!==0;)e+="=";return e}function H(e){return e.trim?e.trim():e.replace(/^\s+|\s+$/g,"")}function F(e){return 16>e?"0"+e.toString(16):e.toString(16)}function K(e,t){t=t||1/0;for(var n,r=e.length,o=null,i=[],a=0;r>a;a++){if(n=e.charCodeAt(a),n>55295&&57344>n){if(!o){if(n>56319){(t-=3)>-1&&i.push(239,191,189);continue}if(a+1===r){(t-=3)>-1&&i.push(239,191,189);continue}o=n;continue}if(56320>n){(t-=3)>-1&&i.push(239,191,189),o=n;continue}n=(o-55296<<10|n-56320)+65536}else o&&(t-=3)>-1&&i.push(239,191,189);if(o=null,128>n){if((t-=1)<0)break;i.push(n)}else if(2048>n){if((t-=2)<0)break;i.push(n>>6|192,63&n|128)}else if(65536>n){if((t-=3)<0)break;i.push(n>>12|224,n>>6&63|128,63&n|128)}else{if(!(1114112>n))throw new Error("Invalid code point");if((t-=4)<0)break;i.push(n>>18|240,n>>12&63|128,n>>6&63|128,63&n|128)}}return i}function W(e){for(var t=[],n=0;n<e.length;n++)t.push(255&e.charCodeAt(n));return t}function J(e,t){for(var n,r,o,i=[],a=0;a<e.length&&!((t-=2)<0);a++)n=e.charCodeAt(a),r=n>>8,o=n%256,i.push(o),i.push(r);return i}function q(e){return Y.toByteArray(j(e))}function X(e,t,n,r){for(var o=0;r>o&&!(o+n>=t.length||o>=e.length);o++)t[o+n]=e[o];return o}var Y=n(91),z=n(106),G=n(107);t.Buffer=e,t.SlowBuffer=m,t.INSPECT_MAX_BYTES=50,e.poolSize=8192;var $={};e.TYPED_ARRAY_SUPPORT=void 0!==r.TYPED_ARRAY_SUPPORT?r.TYPED_ARRAY_SUPPORT:o(),e.TYPED_ARRAY_SUPPORT?(e.prototype.__proto__=Uint8Array.prototype,e.__proto__=Uint8Array):(e.prototype.length=void 0,e.prototype.parent=void 0),e.isBuffer=function(e){return!(null==e||!e._isBuffer)},e.compare=function(t,n){if(!e.isBuffer(t)||!e.isBuffer(n))throw new TypeError("Arguments must be Buffers");if(t===n)return 0;for(var r=t.length,o=n.length,i=0,a=Math.min(r,o);a>i&&t[i]===n[i];)++i;return i!==a&&(r=t[i],o=n[i]),o>r?-1:r>o?1:0},e.isEncoding=function(e){switch(String(e).toLowerCase()){case"hex":case"utf8":case"utf-8":case"ascii":case"binary":case"base64":case"raw":case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return!0;default:return!1}},e.concat=function(t,n){if(!G(t))throw new TypeError("list argument must be an Array of Buffers.");if(0===t.length)return new e(0);var r;if(void 0===n)for(n=0,r=0;r<t.length;r++)n+=t[r].length;var o=new e(n),i=0;for(r=0;r<t.length;r++){var a=t[r];a.copy(o,i),i+=a.length}return o},e.byteLength=y,e.prototype.toString=function(){var e=0|this.length;return 0===e?"":0===arguments.length?O(this,0,e):_.apply(this,arguments)},e.prototype.equals=function(t){if(!e.isBuffer(t))throw new TypeError("Argument must be a Buffer");return this===t?!0:0===e.compare(this,t)},e.prototype.inspect=function(){var e="",n=t.INSPECT_MAX_BYTES;return this.length>0&&(e=this.toString("hex",0,n).match(/.{2}/g).join(" "),this.length>n&&(e+=" ... ")),"<Buffer "+e+">"},e.prototype.compare=function(t){if(!e.isBuffer(t))throw new TypeError("Argument must be a Buffer");return this===t?0:e.compare(this,t)},e.prototype.indexOf=function(t,n){function r(e,t,n){for(var r=-1,o=0;n+o<e.length;o++)if(e[n+o]===t[-1===r?0:o-r]){if(-1===r&&(r=o),o-r+1===t.length)return n+r}else r=-1;return-1}if(n>2147483647?n=2147483647:-2147483648>n&&(n=-2147483648),n>>=0,0===this.length)return-1;if(n>=this.length)return-1;if(0>n&&(n=Math.max(this.length+n,0)),"string"==typeof t)return 0===t.length?-1:String.prototype.indexOf.call(this,t,n);if(e.isBuffer(t))return r(this,t,n);if("number"==typeof t)return e.TYPED_ARRAY_SUPPORT&&"function"===Uint8Array.prototype.indexOf?Uint8Array.prototype.indexOf.call(this,t,n):r(this,[t],n);throw new TypeError("val must be string, number or Buffer")},e.prototype.get=function(e){return console.log(".get() is deprecated. Access using array indexes instead."),this.readUInt8(e)},e.prototype.set=function(e,t){return console.log(".set() is deprecated. Access using array indexes instead."),this.writeUInt8(e,t)},e.prototype.write=function(e,t,n,r){if(void 0===t)r="utf8",n=this.length,t=0;else if(void 0===n&&"string"==typeof t)r=t,n=this.length,t=0;else if(isFinite(t))t=0|t,isFinite(n)?(n=0|n,void 0===r&&(r="utf8")):(r=n,n=void 0);else{var o=r;r=t,t=0|n,n=o}var i=this.length-t;if((void 0===n||n>i)&&(n=i),e.length>0&&(0>n||0>t)||t>this.length)throw new RangeError("attempt to write outside buffer bounds");r||(r="utf8");for(var a=!1;;)switch(r){case"hex":return b(this,e,t,n);case"utf8":case"utf-8":return E(this,e,t,n);case"ascii":return N(this,e,t,n);case"binary":return S(this,e,t,n);case"base64":return w(this,e,t,n);case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return C(this,e,t,n);default:if(a)throw new TypeError("Unknown encoding: "+r);r=(""+r).toLowerCase(),a=!0}},e.prototype.toJSON=function(){return{type:"Buffer",data:Array.prototype.slice.call(this._arr||this,0)}};var Z=4096;e.prototype.slice=function(t,n){var r=this.length;t=~~t,n=void 0===n?r:~~n,0>t?(t+=r,0>t&&(t=0)):t>r&&(t=r),0>n?(n+=r,0>n&&(n=0)):n>r&&(n=r),t>n&&(n=t);var o;if(e.TYPED_ARRAY_SUPPORT)o=e._augment(this.subarray(t,n));else{var i=n-t;o=new e(i,void 0);for(var a=0;i>a;a++)o[a]=this[a+t]}return o.length&&(o.parent=this.parent||this),o},e.prototype.readUIntLE=function(e,t,n){e=0|e,t=0|t,n||P(e,t,this.length);for(var r=this[e],o=1,i=0;++i<t&&(o*=256);)r+=this[e+i]*o;return r},e.prototype.readUIntBE=function(e,t,n){e=0|e,t=0|t,n||P(e,t,this.length);for(var r=this[e+--t],o=1;t>0&&(o*=256);)r+=this[e+--t]*o;return r},e.prototype.readUInt8=function(e,t){return t||P(e,1,this.length),this[e]},e.prototype.readUInt16LE=function(e,t){return t||P(e,2,this.length),this[e]|this[e+1]<<8},e.prototype.readUInt16BE=function(e,t){return t||P(e,2,this.length),this[e]<<8|this[e+1]},e.prototype.readUInt32LE=function(e,t){return t||P(e,4,this.length),(this[e]|this[e+1]<<8|this[e+2]<<16)+16777216*this[e+3]},e.prototype.readUInt32BE=function(e,t){return t||P(e,4,this.length),16777216*this[e]+(this[e+1]<<16|this[e+2]<<8|this[e+3])},e.prototype.readIntLE=function(e,t,n){e=0|e,t=0|t,n||P(e,t,this.length);for(var r=this[e],o=1,i=0;++i<t&&(o*=256);)r+=this[e+i]*o;return o*=128,r>=o&&(r-=Math.pow(2,8*t)),r},e.prototype.readIntBE=function(e,t,n){e=0|e,t=0|t,n||P(e,t,this.length);for(var r=t,o=1,i=this[e+--r];r>0&&(o*=256);)i+=this[e+--r]*o;return o*=128,i>=o&&(i-=Math.pow(2,8*t)),i},e.prototype.readInt8=function(e,t){return t||P(e,1,this.length),128&this[e]?-1*(255-this[e]+1):this[e]},e.prototype.readInt16LE=function(e,t){t||P(e,2,this.length);var n=this[e]|this[e+1]<<8;return 32768&n?4294901760|n:n},e.prototype.readInt16BE=function(e,t){t||P(e,2,this.length);var n=this[e+1]|this[e]<<8;return 32768&n?4294901760|n:n},e.prototype.readInt32LE=function(e,t){return t||P(e,4,this.length),this[e]|this[e+1]<<8|this[e+2]<<16|this[e+3]<<24},e.prototype.readInt32BE=function(e,t){return t||P(e,4,this.length),this[e]<<24|this[e+1]<<16|this[e+2]<<8|this[e+3]},e.prototype.readFloatLE=function(e,t){return t||P(e,4,this.length),z.read(this,e,!0,23,4)},e.prototype.readFloatBE=function(e,t){return t||P(e,4,this.length),z.read(this,e,!1,23,4)},e.prototype.readDoubleLE=function(e,t){return t||P(e,8,this.length),z.read(this,e,!0,52,8)},e.prototype.readDoubleBE=function(e,t){return t||P(e,8,this.length),z.read(this,e,!1,52,8)},e.prototype.writeUIntLE=function(e,t,n,r){e=+e,t=0|t,n=0|n,r||M(this,e,t,n,Math.pow(2,8*n),0);var o=1,i=0;for(this[t]=255&e;++i<n&&(o*=256);)this[t+i]=e/o&255;return t+n},e.prototype.writeUIntBE=function(e,t,n,r){e=+e,t=0|t,n=0|n,r||M(this,e,t,n,Math.pow(2,8*n),0);var o=n-1,i=1;for(this[t+o]=255&e;--o>=0&&(i*=256);)this[t+o]=e/i&255;return t+n},e.prototype.writeUInt8=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,1,255,0),e.TYPED_ARRAY_SUPPORT||(t=Math.floor(t)),this[n]=255&t,n+1},e.prototype.writeUInt16LE=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,2,65535,0),e.TYPED_ARRAY_SUPPORT?(this[n]=255&t,this[n+1]=t>>>8):k(this,t,n,!0),n+2},e.prototype.writeUInt16BE=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,2,65535,0),e.TYPED_ARRAY_SUPPORT?(this[n]=t>>>8,this[n+1]=255&t):k(this,t,n,!1),n+2},e.prototype.writeUInt32LE=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,4,4294967295,0),e.TYPED_ARRAY_SUPPORT?(this[n+3]=t>>>24,this[n+2]=t>>>16,this[n+1]=t>>>8,this[n]=255&t):B(this,t,n,!0),n+4},e.prototype.writeUInt32BE=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,4,4294967295,0),e.TYPED_ARRAY_SUPPORT?(this[n]=t>>>24,this[n+1]=t>>>16,this[n+2]=t>>>8,this[n+3]=255&t):B(this,t,n,!1),n+4},e.prototype.writeIntLE=function(e,t,n,r){if(e=+e,t=0|t,!r){var o=Math.pow(2,8*n-1);M(this,e,t,n,o-1,-o)}var i=0,a=1,s=0>e?1:0;for(this[t]=255&e;++i<n&&(a*=256);)this[t+i]=(e/a>>0)-s&255;return t+n},e.prototype.writeIntBE=function(e,t,n,r){if(e=+e,t=0|t,!r){var o=Math.pow(2,8*n-1);M(this,e,t,n,o-1,-o)}var i=n-1,a=1,s=0>e?1:0;for(this[t+i]=255&e;--i>=0&&(a*=256);)this[t+i]=(e/a>>0)-s&255;return t+n},e.prototype.writeInt8=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,1,127,-128),e.TYPED_ARRAY_SUPPORT||(t=Math.floor(t)),0>t&&(t=255+t+1),this[n]=255&t,n+1},e.prototype.writeInt16LE=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,2,32767,-32768),e.TYPED_ARRAY_SUPPORT?(this[n]=255&t,this[n+1]=t>>>8):k(this,t,n,!0),n+2},e.prototype.writeInt16BE=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,2,32767,-32768),e.TYPED_ARRAY_SUPPORT?(this[n]=t>>>8,this[n+1]=255&t):k(this,t,n,!1),n+2},e.prototype.writeInt32LE=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,4,2147483647,-2147483648),e.TYPED_ARRAY_SUPPORT?(this[n]=255&t,this[n+1]=t>>>8,this[n+2]=t>>>16,this[n+3]=t>>>24):B(this,t,n,!0),n+4},e.prototype.writeInt32BE=function(t,n,r){return t=+t,n=0|n,r||M(this,t,n,4,2147483647,-2147483648),0>t&&(t=4294967295+t+1),e.TYPED_ARRAY_SUPPORT?(this[n]=t>>>24,this[n+1]=t>>>16,this[n+2]=t>>>8,this[n+3]=255&t):B(this,t,n,!1),n+4},e.prototype.writeFloatLE=function(e,t,n){return V(this,e,t,!0,n)},e.prototype.writeFloatBE=function(e,t,n){return V(this,e,t,!1,n)},e.prototype.writeDoubleLE=function(e,t,n){return L(this,e,t,!0,n)},e.prototype.writeDoubleBE=function(e,t,n){return L(this,e,t,!1,n)},e.prototype.copy=function(t,n,r,o){if(r||(r=0),o||0===o||(o=this.length),n>=t.length&&(n=t.length),n||(n=0),o>0&&r>o&&(o=r),o===r)return 0;if(0===t.length||0===this.length)return 0;if(0>n)throw new RangeError("targetStart out of bounds");if(0>r||r>=this.length)throw new RangeError("sourceStart out of bounds");if(0>o)throw new RangeError("sourceEnd out of bounds");o>this.length&&(o=this.length),t.length-n<o-r&&(o=t.length-n+r);var i,a=o-r;if(this===t&&n>r&&o>n)for(i=a-1;i>=0;i--)t[i+n]=this[i+r];else if(1e3>a||!e.TYPED_ARRAY_SUPPORT)for(i=0;a>i;i++)t[i+n]=this[i+r];else t._set(this.subarray(r,r+a),n);return a},e.prototype.fill=function(e,t,n){if(e||(e=0),t||(t=0),n||(n=this.length),t>n)throw new RangeError("end < start");if(n!==t&&0!==this.length){if(0>t||t>=this.length)throw new RangeError("start out of bounds");if(0>n||n>this.length)throw new RangeError("end out of bounds");var r;if("number"==typeof e)for(r=t;n>r;r++)this[r]=e;else{var o=K(e.toString()),i=o.length;for(r=t;n>r;r++)this[r]=o[r%i]}return this}},e.prototype.toArrayBuffer=function(){if("undefined"!=typeof Uint8Array){if(e.TYPED_ARRAY_SUPPORT)return new e(this).buffer;for(var t=new Uint8Array(this.length),n=0,r=t.length;r>n;n+=1)t[n]=this[n];return t.buffer}throw new TypeError("Buffer.toArrayBuffer not supported in this browser")};var Q=e.prototype;e._augment=function(t){return t.constructor=e,t._isBuffer=!0,t._set=t.set,t.get=Q.get,t.set=Q.set,t.write=Q.write,t.toString=Q.toString,t.toLocaleString=Q.toString,t.toJSON=Q.toJSON,t.equals=Q.equals,t.compare=Q.compare,t.indexOf=Q.indexOf,t.copy=Q.copy,t.slice=Q.slice,t.readUIntLE=Q.readUIntLE,t.readUIntBE=Q.readUIntBE,t.readUInt8=Q.readUInt8,t.readUInt16LE=Q.readUInt16LE,t.readUInt16BE=Q.readUInt16BE,t.readUInt32LE=Q.readUInt32LE,t.readUInt32BE=Q.readUInt32BE,t.readIntLE=Q.readIntLE,t.readIntBE=Q.readIntBE,t.readInt8=Q.readInt8,t.readInt16LE=Q.readInt16LE,t.readInt16BE=Q.readInt16BE,t.readInt32LE=Q.readInt32LE,t.readInt32BE=Q.readInt32BE,t.readFloatLE=Q.readFloatLE,t.readFloatBE=Q.readFloatBE,t.readDoubleLE=Q.readDoubleLE,t.readDoubleBE=Q.readDoubleBE,t.writeUInt8=Q.writeUInt8,t.writeUIntLE=Q.writeUIntLE,t.writeUIntBE=Q.writeUIntBE,t.writeUInt16LE=Q.writeUInt16LE,t.writeUInt16BE=Q.writeUInt16BE,t.writeUInt32LE=Q.writeUInt32LE,t.writeUInt32BE=Q.writeUInt32BE,t.writeIntLE=Q.writeIntLE,t.writeIntBE=Q.writeIntBE,t.writeInt8=Q.writeInt8,t.writeInt16LE=Q.writeInt16LE,t.writeInt16BE=Q.writeInt16BE,t.writeInt32LE=Q.writeInt32LE,t.writeInt32BE=Q.writeInt32BE,t.writeFloatLE=Q.writeFloatLE,t.writeFloatBE=Q.writeFloatBE,t.writeDoubleLE=Q.writeDoubleLE,t.writeDoubleBE=Q.writeDoubleBE,t.fill=Q.fill,t.inspect=Q.inspect,t.toArrayBuffer=Q.toArrayBuffer,t};var ee=/[^+\/0-9A-Za-z-_]/g}).call(t,n(54).Buffer,function(){return this}())},function(e,t,n){(function(t){"use strict";var r=n(10),o={listen:function(e,t,n){return e.addEventListener?(e.addEventListener(t,n,!1),{remove:function(){e.removeEventListener(t,n,!1)}}):e.attachEvent?(e.attachEvent("on"+t,n),{remove:function(){e.detachEvent("on"+t,n)}}):void 0},capture:function(e,n,o){return e.addEventListener?(e.addEventListener(n,o,!0),{remove:function(){e.removeEventListener(n,o,!0)}}):("production"!==t.env.NODE_ENV&&console.error("Attempted to listen to events during the capture phase on a browser that does not support the capture phase. Your application will not receive some events."),{remove:r})},registerDefault:function(){}};e.exports=o}).call(t,n(1))},function(e,t,n){"use strict";function r(e,t){var n=!0;e:for(;n;){var r=e,i=t;if(n=!1,r&&i){if(r===i)return!0;if(o(r))return!1;if(o(i)){e=r,t=i.parentNode,n=!0;continue e}return r.contains?r.contains(i):r.compareDocumentPosition?!!(16&r.compareDocumentPosition(i)):!1}return!1}}var o=n(100);e.exports=r},function(e,t){"use strict";function n(e){try{e.focus()}catch(t){}}e.exports=n},function(e,t){"use strict";function n(){if("undefined"==typeof document)return null;try{return document.activeElement||document.body}catch(e){return document.body}}e.exports=n},function(e,t,n){(function(t){"use strict";function r(e){return a?void 0:"production"!==t.env.NODE_ENV?i(!1,"Markup wrapping node not initialized"):i(!1),d.hasOwnProperty(e)||(e="*"),s.hasOwnProperty(e)||("*"===e?a.innerHTML="<link />":a.innerHTML="<"+e+"></"+e+">",s[e]=!a.firstChild),s[e]?d[e]:null}var o=n(5),i=n(2),a=o.canUseDOM?document.createElement("div"):null,s={},u=[1,'<select multiple="true">',"</select>"],c=[1,"<table>","</table>"],l=[3,"<table><tbody><tr>","</tr></tbody></table>"],p=[1,'<svg xmlns="http://www.w3.org/2000/svg">',"</svg>"],d={"*":[1,"?<div>","</div>"],area:[1,"<map>","</map>"],col:[2,"<table><tbody></tbody><colgroup>","</colgroup></table>"],legend:[1,"<fieldset>","</fieldset>"],param:[1,"<object>","</object>"],tr:[2,"<table><tbody>","</tbody></table>"],optgroup:u,option:u,caption:c,colgroup:c,tbody:c,tfoot:c,thead:c,td:l,th:l},h=["circle","clipPath","defs","ellipse","g","image","line","linearGradient","mask","path","pattern","polygon","polyline","radialGradient","rect","stop","text","tspan"];h.forEach(function(e){d[e]=p,s[e]=!0}),e.exports=r}).call(t,n(1))},function(e,t){"use strict";function n(e,t){if(e===t)return!0;if("object"!=typeof e||null===e||"object"!=typeof t||null===t)return!1;var n=Object.keys(e),o=Object.keys(t);if(n.length!==o.length)return!1;for(var i=r.bind(t),a=0;a<n.length;a++)if(!i(n[a])||e[n[a]]!==t[n[a]])return!1;return!0}var r=Object.prototype.hasOwnProperty;e.exports=n},function(e,t){"use strict";function n(e,t){return e+t.charAt(0).toUpperCase()+t.substring(1)}var r={animationIterationCount:!0,boxFlex:!0,boxFlexGroup:!0,boxOrdinalGroup:!0,columnCount:!0,flex:!0,flexGrow:!0,flexPositive:!0,flexShrink:!0,flexNegative:!0,flexOrder:!0,fontWeight:!0,lineClamp:!0,lineHeight:!0,opacity:!0,order:!0,orphans:!0,tabSize:!0,widows:!0,zIndex:!0,zoom:!0,fillOpacity:!0,stopOpacity:!0,strokeDashoffset:!0,strokeOpacity:!0,strokeWidth:!0},o=["Webkit","ms","Moz","O"];Object.keys(r).forEach(function(e){o.forEach(function(t){r[n(t,e)]=r[e]})});var i={background:{backgroundAttachment:!0,backgroundColor:!0,backgroundImage:!0,backgroundPositionX:!0,backgroundPositionY:!0,backgroundRepeat:!0},backgroundPosition:{backgroundPositionX:!0,backgroundPositionY:!0},border:{borderWidth:!0,borderStyle:!0,borderColor:!0},borderBottom:{borderBottomWidth:!0,borderBottomStyle:!0,borderBottomColor:!0},borderLeft:{borderLeftWidth:!0,borderLeftStyle:!0,borderLeftColor:!0},borderRight:{borderRightWidth:!0,borderRightStyle:!0,borderRightColor:!0},borderTop:{borderTopWidth:!0,borderTopStyle:!0,borderTopColor:!0},font:{fontStyle:!0,fontVariant:!0,fontWeight:!0,fontSize:!0,lineHeight:!0,fontFamily:!0},outline:{outlineWidth:!0,outlineStyle:!0,outlineColor:!0}},a={isUnitlessNumber:r,shorthandPropertyExpansions:i};e.exports=a},function(e,t,n){(function(t){"use strict";function r(e,t,n){var r=n>=e.childNodes.length?null:e.childNodes.item(n);e.insertBefore(t,r)}var o=n(114),i=n(78),a=n(8),s=n(32),u=n(48),c=n(2),l={dangerouslyReplaceNodeWithMarkup:o.dangerouslyReplaceNodeWithMarkup,updateTextContent:u,processUpdates:function(e,n){for(var a,l=null,p=null,d=0;d<e.length;d++)if(a=e[d],a.type===i.MOVE_EXISTING||a.type===i.REMOVE_NODE){var h=a.fromIndex,f=a.parentNode.childNodes[h],g=a.parentID;f?void 0:"production"!==t.env.NODE_ENV?c(!1,"processUpdates(): Unable to find child %s of element. This probably means the DOM was unexpectedly mutated (e.g., by the browser), usually due to forgetting a <tbody> when using tables, nesting tags like <form>, <p>, or <a>, or using non-SVG elements in an <svg> parent. Try inspecting the child nodes of the element with React ID `%s`.",h,g):c(!1),l=l||{},l[g]=l[g]||[],l[g][h]=f,p=p||[],p.push(f)}var v;if(v=n.length&&"string"==typeof n[0]?o.dangerouslyRenderMarkup(n):n,p)for(var m=0;m<p.length;m++)p[m].parentNode.removeChild(p[m]);for(var y=0;y<e.length;y++)switch(a=e[y],a.type){case i.INSERT_MARKUP:r(a.parentNode,v[a.markupIndex],a.toIndex);break;case i.MOVE_EXISTING:r(a.parentNode,l[a.parentID][a.fromIndex],a.toIndex);break;case i.SET_MARKUP:s(a.parentNode,a.content);break;case i.TEXT_CONTENT:u(a.parentNode,a.content);break;case i.REMOVE_NODE:}}};a.measureMethods(l,"DOMChildrenOperations",{updateTextContent:"updateTextContent"}),e.exports=l}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(){if(s)for(var e in u){var n=u[e],r=s.indexOf(e);if(r>-1?void 0:"production"!==t.env.NODE_ENV?a(!1,"EventPluginRegistry: Cannot inject event plugins that do not exist in the plugin ordering, `%s`.",e):a(!1),!c.plugins[r]){n.extractEvents?void 0:"production"!==t.env.NODE_ENV?a(!1,"EventPluginRegistry: Event plugins must implement an `extractEvents` method, but `%s` does not.",e):a(!1),c.plugins[r]=n;var i=n.eventTypes;for(var l in i)o(i[l],n,l)?void 0:"production"!==t.env.NODE_ENV?a(!1,"EventPluginRegistry: Failed to publish event `%s` for plugin `%s`.",l,e):a(!1)}}}function o(e,n,r){c.eventNameDispatchConfigs.hasOwnProperty(r)?"production"!==t.env.NODE_ENV?a(!1,"EventPluginHub: More than one plugin attempted to publish the same event name, `%s`.",r):a(!1):void 0,c.eventNameDispatchConfigs[r]=e;var o=e.phasedRegistrationNames;if(o){for(var s in o)if(o.hasOwnProperty(s)){var u=o[s];i(u,n,r)}return!0}return e.registrationName?(i(e.registrationName,n,r),!0):!1}function i(e,n,r){c.registrationNameModules[e]?"production"!==t.env.NODE_ENV?a(!1,"EventPluginHub: More than one plugin attempted to publish the same registration name, `%s`.",e):a(!1):void 0,c.registrationNameModules[e]=n,c.registrationNameDependencies[e]=n.eventTypes[r].dependencies}var a=n(2),s=null,u={},c={plugins:[],eventNameDispatchConfigs:{},registrationNameModules:{},registrationNameDependencies:{},injectEventPluginOrder:function(e){s?"production"!==t.env.NODE_ENV?a(!1,"EventPluginRegistry: Cannot inject event plugin ordering more than once. You are likely trying to load more than one copy of React."):a(!1):void 0,s=Array.prototype.slice.call(e),r()},injectEventPluginsByName:function(e){var n=!1;for(var o in e)if(e.hasOwnProperty(o)){var i=e[o];u.hasOwnProperty(o)&&u[o]===i||(u[o]?"production"!==t.env.NODE_ENV?a(!1,"EventPluginRegistry: Cannot inject two different event plugins using the same name, `%s`.",o):a(!1):void 0,u[o]=i,n=!0)}n&&r()},getPluginModuleForEvent:function(e){var t=e.dispatchConfig;if(t.registrationName)return c.registrationNameModules[t.registrationName]||null;for(var n in t.phasedRegistrationNames)if(t.phasedRegistrationNames.hasOwnProperty(n)){var r=c.registrationNameModules[t.phasedRegistrationNames[n]];if(r)return r}return null},_resetEventPlugins:function(){s=null;for(var e in u)u.hasOwnProperty(e)&&delete u[e];c.plugins.length=0;var t=c.eventNameDispatchConfigs;for(var n in t)t.hasOwnProperty(n)&&delete t[n];var r=c.registrationNameModules;for(var o in r)r.hasOwnProperty(o)&&delete r[o]}};e.exports=c}).call(t,n(1))},function(e,t,n){"use strict";function r(e){return(""+e).replace(b,"//")}function o(e,t){this.func=e,this.context=t,this.count=0}function i(e,t,n){var r=e.func,o=e.context;r.call(o,t,e.count++)}function a(e,t,n){if(null==e)return e;var r=o.getPooled(t,n);m(e,i,r),o.release(r)}function s(e,t,n,r){this.result=e,this.keyPrefix=t,this.func=n,this.context=r,this.count=0}function u(e,t,n){var o=e.result,i=e.keyPrefix,a=e.func,s=e.context,u=a.call(s,t,e.count++);Array.isArray(u)?c(u,o,n,v.thatReturnsArgument):null!=u&&(g.isValidElement(u)&&(u=g.cloneAndReplaceKey(u,i+(u!==t?r(u.key||"")+"/":"")+n)),o.push(u))}function c(e,t,n,o,i){var a="";null!=n&&(a=r(n)+"/");var c=s.getPooled(t,a,o,i);m(e,u,c),s.release(c)}function l(e,t,n){if(null==e)return e;var r=[];return c(e,r,null,t,n),r}function p(e,t,n){return null}function d(e,t){return m(e,p,null)}function h(e){var t=[];return c(e,t,null,v.thatReturnsArgument),t}var f=n(14),g=n(7),v=n(10),m=n(50),y=f.twoArgumentPooler,_=f.fourArgumentPooler,b=/\/(?!\/)/g;o.prototype.destructor=function(){this.func=null,this.context=null,this.count=0},f.addPoolingTo(o,y),s.prototype.destructor=function(){this.result=null,this.keyPrefix=null,this.func=null,this.context=null,this.count=0},f.addPoolingTo(s,_);var E={forEach:a,map:l,mapIntoWithKeyPrefixInternal:c,count:d,toArray:h};e.exports=E},function(e,t,n){(function(t){"use strict";function r(){O||(O=!0,"production"!==t.env.NODE_ENV?S(!1,"setProps(...) and replaceProps(...) are deprecated. Instead, call render again at the top level."):void 0)}function o(e,n,r){for(var o in n)n.hasOwnProperty(o)&&("production"!==t.env.NODE_ENV?S("function"==typeof n[o],"%s: %s type `%s` is invalid; it must be a function, usually from React.PropTypes.",e.displayName||"ReactClass",v[r],o):void 0)}function i(e,n){var r=A.hasOwnProperty(n)?A[n]:null;R.hasOwnProperty(n)&&(r!==C.OVERRIDE_BASE?"production"!==t.env.NODE_ENV?b(!1,"ReactClassInterface: You are attempting to override `%s` from your class specification. Ensure that your method names do not overlap with React methods.",n):b(!1):void 0),e.hasOwnProperty(n)&&(r!==C.DEFINE_MANY&&r!==C.DEFINE_MANY_MERGED?"production"!==t.env.NODE_ENV?b(!1,"ReactClassInterface: You are attempting to define `%s` on your component more than once. This conflict may be due to a mixin.",n):b(!1):void 0)}function a(e,n){if(n){"function"==typeof n?"production"!==t.env.NODE_ENV?b(!1,"ReactClass: You're attempting to use a component class as a mixin. Instead, just use a regular object."):b(!1):void 0,f.isValidElement(n)?"production"!==t.env.NODE_ENV?b(!1,"ReactClass: You're attempting to use a component as a mixin. Instead, just use a regular object."):b(!1):void 0;var r=e.prototype;n.hasOwnProperty(w)&&x.mixins(e,n.mixins);for(var o in n)if(n.hasOwnProperty(o)&&o!==w){var a=n[o];if(i(r,o),x.hasOwnProperty(o))x[o](e,a);else{var s=A.hasOwnProperty(o),u=r.hasOwnProperty(o),p="function"==typeof a,d=p&&!s&&!u&&n.autobind!==!1;if(d)r.__reactAutoBindMap||(r.__reactAutoBindMap={}),r.__reactAutoBindMap[o]=a,r[o]=a;else if(u){var h=A[o];!s||h!==C.DEFINE_MANY_MERGED&&h!==C.DEFINE_MANY?"production"!==t.env.NODE_ENV?b(!1,"ReactClass: Unexpected spec policy %s for key %s when mixing in component specs.",h,o):b(!1):void 0,h===C.DEFINE_MANY_MERGED?r[o]=c(r[o],a):h===C.DEFINE_MANY&&(r[o]=l(r[o],a))}else r[o]=a,"production"!==t.env.NODE_ENV&&"function"==typeof a&&n.displayName&&(r[o].displayName=n.displayName+"_"+o)}}}}function s(e,n){if(n)for(var r in n){var o=n[r];if(n.hasOwnProperty(r)){var i=r in x;i?"production"!==t.env.NODE_ENV?b(!1,'ReactClass: You are attempting to define a reserved property, `%s`, that shouldn\'t be on the "statics" key. Define it as an instance property instead; it will still be accessible on the constructor.',r):b(!1):void 0;var a=r in e;a?"production"!==t.env.NODE_ENV?b(!1,"ReactClass: You are attempting to define `%s` on your component more than once. This conflict may be due to a mixin.",r):b(!1):void 0,e[r]=o}}}function u(e,n){e&&n&&"object"==typeof e&&"object"==typeof n?void 0:"production"!==t.env.NODE_ENV?b(!1,"mergeIntoWithNoDuplicateKeys(): Cannot merge non-objects."):b(!1);for(var r in n)n.hasOwnProperty(r)&&(void 0!==e[r]?"production"!==t.env.NODE_ENV?b(!1,"mergeIntoWithNoDuplicateKeys(): Tried to merge two objects with the same key: `%s`. This conflict may be due to a mixin; in particular, this may be caused by two getInitialState() or getDefaultProps() methods returning objects with clashing keys.",r):b(!1):void 0,e[r]=n[r]);return e}function c(e,t){return function(){var n=e.apply(this,arguments),r=t.apply(this,arguments);if(null==n)return r;if(null==r)return n;var o={};return u(o,n),u(o,r),o}}function l(e,t){return function(){e.apply(this,arguments),t.apply(this,arguments)}}function p(e,n){var r=n.bind(e);if("production"!==t.env.NODE_ENV){r.__reactBoundContext=e,r.__reactBoundMethod=n,r.__reactBoundArguments=null;var o=e.constructor.displayName,i=r.bind;r.bind=function(a){for(var s=arguments.length,u=Array(s>1?s-1:0),c=1;s>c;c++)u[c-1]=arguments[c];if(a!==e&&null!==a)"production"!==t.env.NODE_ENV?S(!1,"bind(): React component methods may only be bound to the component instance. See %s",o):void 0;else if(!u.length)return"production"!==t.env.NODE_ENV?S(!1,"bind(): You are binding a component method to the component. React does this for you automatically in a high-performance way, so you can safely remove this call. See %s",o):void 0,
-r;var l=i.apply(r,arguments);return l.__reactBoundContext=e,l.__reactBoundMethod=n,l.__reactBoundArguments=u,l}}return r}function d(e){for(var t in e.__reactAutoBindMap)if(e.__reactAutoBindMap.hasOwnProperty(t)){var n=e.__reactAutoBindMap[t];e[t]=p(e,n)}}var h=n(66),f=n(7),g=n(27),v=n(26),m=n(80),y=n(3),_=n(19),b=n(2),E=n(24),N=n(13),S=n(4),w=N({mixins:null}),C=E({DEFINE_ONCE:null,DEFINE_MANY:null,OVERRIDE_BASE:null,DEFINE_MANY_MERGED:null}),D=[],O=!1,A={mixins:C.DEFINE_MANY,statics:C.DEFINE_MANY,propTypes:C.DEFINE_MANY,contextTypes:C.DEFINE_MANY,childContextTypes:C.DEFINE_MANY,getDefaultProps:C.DEFINE_MANY_MERGED,getInitialState:C.DEFINE_MANY_MERGED,getChildContext:C.DEFINE_MANY_MERGED,render:C.DEFINE_ONCE,componentWillMount:C.DEFINE_MANY,componentDidMount:C.DEFINE_MANY,componentWillReceiveProps:C.DEFINE_MANY,shouldComponentUpdate:C.DEFINE_ONCE,componentWillUpdate:C.DEFINE_MANY,componentDidUpdate:C.DEFINE_MANY,componentWillUnmount:C.DEFINE_MANY,updateComponent:C.OVERRIDE_BASE},x={displayName:function(e,t){e.displayName=t},mixins:function(e,t){if(t)for(var n=0;n<t.length;n++)a(e,t[n])},childContextTypes:function(e,n){"production"!==t.env.NODE_ENV&&o(e,n,g.childContext),e.childContextTypes=y({},e.childContextTypes,n)},contextTypes:function(e,n){"production"!==t.env.NODE_ENV&&o(e,n,g.context),e.contextTypes=y({},e.contextTypes,n)},getDefaultProps:function(e,t){e.getDefaultProps?e.getDefaultProps=c(e.getDefaultProps,t):e.getDefaultProps=t},propTypes:function(e,n){"production"!==t.env.NODE_ENV&&o(e,n,g.prop),e.propTypes=y({},e.propTypes,n)},statics:function(e,t){s(e,t)},autobind:function(){}},R={replaceState:function(e,t){this.updater.enqueueReplaceState(this,e),t&&this.updater.enqueueCallback(this,t)},isMounted:function(){return this.updater.isMounted(this)},setProps:function(e,n){"production"!==t.env.NODE_ENV&&r(),this.updater.enqueueSetProps(this,e),n&&this.updater.enqueueCallback(this,n)},replaceProps:function(e,n){"production"!==t.env.NODE_ENV&&r(),this.updater.enqueueReplaceProps(this,e),n&&this.updater.enqueueCallback(this,n)}},I=function(){};y(I.prototype,h.prototype,R);var T={createClass:function(e){var n=function(e,r,o){"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?S(this instanceof n,"Something is calling a React component directly. Use a factory or JSX instead. See: https://fb.me/react-legacyfactory"):void 0),this.__reactAutoBindMap&&d(this),this.props=e,this.context=r,this.refs=_,this.updater=o||m,this.state=null;var i=this.getInitialState?this.getInitialState():null;"production"!==t.env.NODE_ENV&&"undefined"==typeof i&&this.getInitialState._isMockFunction&&(i=null),"object"!=typeof i||Array.isArray(i)?"production"!==t.env.NODE_ENV?b(!1,"%s.getInitialState(): must return an object or null",n.displayName||"ReactCompositeComponent"):b(!1):void 0,this.state=i};n.prototype=new I,n.prototype.constructor=n,D.forEach(a.bind(null,n)),a(n,e),n.getDefaultProps&&(n.defaultProps=n.getDefaultProps()),"production"!==t.env.NODE_ENV&&(n.getDefaultProps&&(n.getDefaultProps.isReactClassApproved={}),n.prototype.getInitialState&&(n.prototype.getInitialState.isReactClassApproved={})),n.prototype.render?void 0:"production"!==t.env.NODE_ENV?b(!1,"createClass(...): Class specification must implement a `render` method."):b(!1),"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?S(!n.prototype.componentShouldUpdate,"%s has a method called componentShouldUpdate(). Did you mean shouldComponentUpdate()? The name is phrased as a question because the function is expected to return a value.",e.displayName||"A component"):void 0,"production"!==t.env.NODE_ENV?S(!n.prototype.componentWillRecieveProps,"%s has a method called componentWillRecieveProps(). Did you mean componentWillReceiveProps()?",e.displayName||"A component"):void 0);for(var r in A)n.prototype[r]||(n.prototype[r]=null);return n},injection:{injectMixin:function(e){D.push(e)}}};e.exports=T}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e,t,n){this.props=e,this.context=t,this.refs=a,this.updater=n||o}var o=n(80),i=n(30),a=n(19),s=n(2),u=n(4);if(r.prototype.isReactComponent={},r.prototype.setState=function(e,n){"object"!=typeof e&&"function"!=typeof e&&null!=e?"production"!==t.env.NODE_ENV?s(!1,"setState(...): takes an object of state variables to update or a function which returns an object of state variables."):s(!1):void 0,"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?u(null!=e,"setState(...): You passed an undefined or null state object; instead, use forceUpdate()."):void 0),this.updater.enqueueSetState(this,e),n&&this.updater.enqueueCallback(this,n)},r.prototype.forceUpdate=function(e){this.updater.enqueueForceUpdate(this),e&&this.updater.enqueueCallback(this,e)},"production"!==t.env.NODE_ENV){var c={getDOMNode:["getDOMNode","Use ReactDOM.findDOMNode(component) instead."],isMounted:["isMounted","Instead, make sure to clean up subscriptions and pending requests in componentWillUnmount to prevent memory leaks."],replaceProps:["replaceProps","Instead, call render again at the top level."],replaceState:["replaceState","Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."],setProps:["setProps","Instead, call render again at the top level."]},l=function(e,n){i&&Object.defineProperty(r.prototype,e,{get:function(){"production"!==t.env.NODE_ENV?u(!1,"%s(...) is deprecated in plain JavaScript React classes. %s",n[0],n[1]):void 0}})};for(var p in c)c.hasOwnProperty(p)&&l(p,c[p])}e.exports=r}).call(t,n(1))},function(e,t){"use strict";var n={useCreateElement:!1};e.exports=n},function(e,t,n){(function(t){"use strict";function r(){if(this._rootNodeID&&this._wrapperState.pendingUpdate){this._wrapperState.pendingUpdate=!1;var e=this._currentElement.props,t=u.getValue(e);null!=t&&a(this,Boolean(e.multiple),t)}}function o(e){if(e){var t=e.getName();if(t)return" Check the render method of `"+t+"`."}return""}function i(e,n){var r=e._currentElement._owner;u.checkPropTypes("select",n,r);for(var i=0;i<f.length;i++){var a=f[i];null!=n[a]&&(n.multiple?"production"!==t.env.NODE_ENV?d(Array.isArray(n[a]),"The `%s` prop supplied to <select> must be an array if `multiple` is true.%s",a,o(r)):void 0:"production"!==t.env.NODE_ENV?d(!Array.isArray(n[a]),"The `%s` prop supplied to <select> must be a scalar value if `multiple` is false.%s",a,o(r)):void 0)}}function a(e,t,n){var r,o,i=c.getNode(e._rootNodeID).options;if(t){for(r={},o=0;o<n.length;o++)r[""+n[o]]=!0;for(o=0;o<i.length;o++){var a=r.hasOwnProperty(i[o].value);i[o].selected!==a&&(i[o].selected=a)}}else{for(r=""+n,o=0;o<i.length;o++)if(i[o].value===r)return void(i[o].selected=!0);i.length&&(i[0].selected=!0)}}function s(e){var t=this._currentElement.props,n=u.executeOnChange(t,e);return this._wrapperState.pendingUpdate=!0,l.asap(r,this),n}var u=n(35),c=n(6),l=n(9),p=n(3),d=n(4),h="__ReactDOMSelect_value$"+Math.random().toString(36).slice(2),f=["value","defaultValue"],g={valueContextKey:h,getNativeProps:function(e,t,n){return p({},t,{onChange:e._wrapperState.onChange,value:void 0})},mountWrapper:function(e,n){"production"!==t.env.NODE_ENV&&i(e,n);var r=u.getValue(n);e._wrapperState={pendingUpdate:!1,initialValue:null!=r?r:n.defaultValue,onChange:s.bind(e),wasMultiple:Boolean(n.multiple)}},processChildContext:function(e,t,n){var r=p({},n);return r[h]=e._wrapperState.initialValue,r},postUpdateWrapper:function(e){var t=e._currentElement.props;e._wrapperState.initialValue=void 0;var n=e._wrapperState.wasMultiple;e._wrapperState.wasMultiple=Boolean(t.multiple);var r=u.getValue(t);null!=r?(e._wrapperState.pendingUpdate=!1,a(e,Boolean(t.multiple),r)):n!==Boolean(t.multiple)&&(null!=t.defaultValue?a(e,Boolean(t.multiple),t.defaultValue):a(e,Boolean(t.multiple),t.multiple?[]:""))}};e.exports=g}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var r=n(62),o=n(34),i=n(36),a=n(6),s=n(3),u=n(31),c=n(48),l=n(51),p=function(e){};s(p.prototype,{construct:function(e){this._currentElement=e,this._stringText=""+e,this._rootNodeID=null,this._mountIndex=0},mountComponent:function(e,n,r){if("production"!==t.env.NODE_ENV&&r[l.ancestorInfoContextKey]&&l("span",null,r[l.ancestorInfoContextKey]),this._rootNodeID=e,n.useCreateElement){var i=r[a.ownerDocumentContextKey],s=i.createElement("span");return o.setAttributeForID(s,e),a.getID(s),c(s,this._stringText),s}var p=u(this._stringText);return n.renderToStaticMarkup?p:"<span "+o.createMarkupForID(e)+">"+p+"</span>"},receiveComponent:function(e,t){if(e!==this._currentElement){this._currentElement=e;var n=""+e;if(n!==this._stringText){this._stringText=n;var o=a.getNode(this._rootNodeID);r.updateTextContent(o,n)}}},unmountComponent:function(){i.unmountIDFromEnvironment(this._rootNodeID)}}),e.exports=p}).call(t,n(1))},function(e,t,n){"use strict";function r(){this.reinitializeTransaction()}var o=n(9),i=n(29),a=n(3),s=n(10),u={initialize:s,close:function(){d.isBatchingUpdates=!1}},c={initialize:s,close:o.flushBatchedUpdates.bind(o)},l=[c,u];a(r.prototype,i.Mixin,{getTransactionWrappers:function(){return l}});var p=new r,d={isBatchingUpdates:!1,batchedUpdates:function(e,t,n,r,o,i){var a=d.isBatchingUpdates;d.isBatchingUpdates=!0,a?e(t,n,r,o,i):p.perform(e,null,t,n,r,o,i)}};e.exports=d},function(e,t,n){(function(t){"use strict";function r(){if(!C&&(C=!0,m.EventEmitter.injectReactEventListener(v),m.EventPluginHub.injectEventPluginOrder(s),m.EventPluginHub.injectInstanceHandle(y),m.EventPluginHub.injectMount(_),m.EventPluginHub.injectEventPluginsByName({SimpleEventPlugin:S,EnterLeaveEventPlugin:u,ChangeEventPlugin:i,SelectEventPlugin:E,BeforeInputEventPlugin:o}),m.NativeComponent.injectGenericComponentClass(f),m.NativeComponent.injectTextComponentClass(g),m.Class.injectMixin(p),m.DOMProperty.injectDOMPropertyConfig(l),m.DOMProperty.injectDOMPropertyConfig(w),m.EmptyComponent.injectEmptyComponent("noscript"),m.Updates.injectReconcileTransaction(b),m.Updates.injectBatchingStrategy(h),m.RootIndex.injectCreateReactRootIndex(c.canUseDOM?a.createReactRootIndex:N.createReactRootIndex),m.Component.injectEnvironment(d),"production"!==t.env.NODE_ENV)){var e=c.canUseDOM&&window.location.href||"";if(/[?&]react_perf\b/.test(e)){var r=n(133);r.start()}}}var o=n(110),i=n(112),a=n(113),s=n(115),u=n(116),c=n(5),l=n(119),p=n(121),d=n(36),h=n(70),f=n(126),g=n(69),v=n(136),m=n(137),y=n(18),_=n(6),b=n(141),E=n(147),N=n(148),S=n(149),w=n(146),C=!1;e.exports={inject:r}}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(){if(d.current){var e=d.current.getName();if(e)return" Check the render method of `"+e+"`."}return""}function o(e,n){if(e._store&&!e._store.validated&&null==e.key){e._store.validated=!0;var r=i("uniqueKey",e,n);null!==r&&("production"!==t.env.NODE_ENV?v(!1,'Each child in an array or iterator should have a unique "key" prop.%s%s%s',r.parentOrOwner||"",r.childOwner||"",r.url||""):void 0)}}function i(e,t,n){var o=r();if(!o){var i="string"==typeof n?n:n.displayName||n.name;i&&(o=" Check the top-level render call using <"+i+">.")}var a=m[e]||(m[e]={});if(a[o])return null;a[o]=!0;var s={parentOrOwner:o,url:" See https://fb.me/react-warning-keys for more information.",childOwner:null};return t&&t._owner&&t._owner!==d.current&&(s.childOwner=" It was passed a child from "+t._owner.getName()+"."),s}function a(e,t){if("object"==typeof e)if(Array.isArray(e))for(var n=0;n<e.length;n++){var r=e[n];c.isValidElement(r)&&o(r,t)}else if(c.isValidElement(e))e._store&&(e._store.validated=!0);else if(e){var i=f(e);if(i&&i!==e.entries)for(var a,s=i.call(e);!(a=s.next()).done;)c.isValidElement(a.value)&&o(a.value,t)}}function s(e,n,o,i){for(var a in n)if(n.hasOwnProperty(a)){var s;try{"function"!=typeof n[a]?"production"!==t.env.NODE_ENV?g(!1,"%s: %s type `%s` is invalid; it must be a function, usually from React.PropTypes.",e||"React class",p[i],a):g(!1):void 0,s=n[a](o,a,e,i)}catch(u){s=u}if("production"!==t.env.NODE_ENV?v(!s||s instanceof Error,"%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).",e||"React class",p[i],a,typeof s):void 0,s instanceof Error&&!(s.message in y)){y[s.message]=!0;var c=r();"production"!==t.env.NODE_ENV?v(!1,"Failed propType: %s%s",s.message,c):void 0}}}function u(e){var n=e.type;if("function"==typeof n){var r=n.displayName||n.name;n.propTypes&&s(r,n.propTypes,e.props,l.prop),"function"==typeof n.getDefaultProps&&("production"!==t.env.NODE_ENV?v(n.getDefaultProps.isReactClassApproved,"getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead."):void 0)}}var c=n(7),l=n(27),p=n(26),d=n(12),h=n(30),f=n(45),g=n(2),v=n(4),m={},y={},_={createElement:function(e,n,o){var i="string"==typeof e||"function"==typeof e;"production"!==t.env.NODE_ENV?v(i,"React.createElement: type should not be null, undefined, boolean, or number. It should be a string (for DOM elements) or a ReactClass (for composite components).%s",r()):void 0;var s=c.createElement.apply(this,arguments);if(null==s)return s;if(i)for(var l=2;l<arguments.length;l++)a(arguments[l],e);return u(s),s},createFactory:function(e){var n=_.createElement.bind(null,e);return n.type=e,"production"!==t.env.NODE_ENV&&h&&Object.defineProperty(n,"type",{enumerable:!1,get:function(){return"production"!==t.env.NODE_ENV?v(!1,"Factory.type is deprecated. Access the class directly before passing it to createFactory."):void 0,Object.defineProperty(this,"type",{value:e}),e}}),n},cloneElement:function(e,t,n){for(var r=c.cloneElement.apply(this,arguments),o=2;o<arguments.length;o++)a(arguments[o],r.type);return u(r),r}};e.exports=_}).call(t,n(1))},function(e,t,n){"use strict";function r(){a.registerNullComponentID(this._rootNodeID)}var o,i=n(7),a=n(74),s=n(16),u=n(3),c={injectEmptyComponent:function(e){o=i.createElement(e)}},l=function(e){this._currentElement=null,this._rootNodeID=null,this._renderedComponent=e(o)};u(l.prototype,{construct:function(e){},mountComponent:function(e,t,n){return t.getReactMountReady().enqueue(r,this),this._rootNodeID=e,s.mountComponent(this._renderedComponent,e,t,n)},receiveComponent:function(){},unmountComponent:function(e,t,n){s.unmountComponent(this._renderedComponent),a.deregisterNullComponentID(this._rootNodeID),this._rootNodeID=null,this._renderedComponent=null}}),l.injection=c,e.exports=l},function(e,t){"use strict";function n(e){return!!i[e]}function r(e){i[e]=!0}function o(e){delete i[e]}var i={},a={isNullComponentID:n,registerNullComponentID:r,deregisterNullComponentID:o};e.exports=a},function(e,t,n){(function(t){"use strict";function n(e,t,n,o){try{return t(n,o)}catch(i){return void(null===r&&(r=i))}}var r=null,o={invokeGuardedCallback:n,invokeGuardedCallbackWithCatch:n,rethrowCaughtError:function(){if(r){var e=r;throw r=null,e}}};if("production"!==t.env.NODE_ENV&&"undefined"!=typeof window&&"function"==typeof window.dispatchEvent&&"undefined"!=typeof document&&"function"==typeof document.createEvent){var i=document.createElement("react");o.invokeGuardedCallback=function(e,t,n,r){var o=t.bind(null,n,r),a="react-"+e;i.addEventListener(a,o,!1);var s=document.createEvent("Event");s.initEvent(a,!1,!1),i.dispatchEvent(s),i.removeEventListener(a,o,!1)}}e.exports=o}).call(t,n(1))},function(e,t,n){"use strict";function r(e){return i(document.documentElement,e)}var o=n(130),i=n(56),a=n(57),s=n(58),u={hasSelectionCapabilities:function(e){var t=e&&e.nodeName&&e.nodeName.toLowerCase();return t&&("input"===t&&"text"===e.type||"textarea"===t||"true"===e.contentEditable)},getSelectionInformation:function(){var e=s();return{focusedElem:e,selectionRange:u.hasSelectionCapabilities(e)?u.getSelection(e):null}},restoreSelection:function(e){var t=s(),n=e.focusedElem,o=e.selectionRange;t!==n&&r(n)&&(u.hasSelectionCapabilities(n)&&u.setSelection(n,o),a(n))},getSelection:function(e){var t;if("selectionStart"in e)t={start:e.selectionStart,end:e.selectionEnd};else if(document.selection&&e.nodeName&&"input"===e.nodeName.toLowerCase()){var n=document.selection.createRange();n.parentElement()===e&&(t={start:-n.moveStart("character",-e.value.length),end:-n.moveEnd("character",-e.value.length)})}else t=o.getOffsets(e);return t||{start:0,end:0}},setSelection:function(e,t){var n=t.start,r=t.end;if("undefined"==typeof r&&(r=n),"selectionStart"in e)e.selectionStart=n,e.selectionEnd=Math.min(r,e.value.length);else if(document.selection&&e.nodeName&&"input"===e.nodeName.toLowerCase()){var i=e.createTextRange();i.collapse(!0),i.moveStart("character",n),i.moveEnd("character",r-n),i.select()}else o.setOffsets(e,t)}};e.exports=u},function(e,t,n){"use strict";var r=n(158),o=/\/?>/,i={CHECKSUM_ATTR_NAME:"data-react-checksum",addChecksumToMarkup:function(e){var t=r(e);return e.replace(o," "+i.CHECKSUM_ATTR_NAME+'="'+t+'"$&')},canReuseMarkup:function(e,t){var n=t.getAttribute(i.CHECKSUM_ATTR_NAME);n=n&&parseInt(n,10);var o=r(e);return o===n}};e.exports=i},function(e,t,n){"use strict";var r=n(24),o=r({INSERT_MARKUP:null,MOVE_EXISTING:null,REMOVE_NODE:null,SET_MARKUP:null,TEXT_CONTENT:null});e.exports=o},function(e,t,n){(function(t){"use strict";function r(e){if("function"==typeof e.type)return e.type;var t=e.type,n=p[t];return null==n&&(p[t]=n=c(t)),n}function o(e){return l?void 0:"production"!==t.env.NODE_ENV?u(!1,"There is no registered component for the tag %s",e.type):u(!1),new l(e.type,e.props)}function i(e){return new d(e)}function a(e){return e instanceof d}var s=n(3),u=n(2),c=null,l=null,p={},d=null,h={injectGenericComponentClass:function(e){l=e},injectTextComponentClass:function(e){d=e},injectComponentClasses:function(e){s(p,e)}},f={getComponentClassForElement:r,createInternalComponent:o,createInstanceForText:i,isTextComponent:a,injection:h};e.exports=f}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e,n){"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?o(!1,"%s(...): Can only update a mounted or mounting component. This usually means you called %s() on an unmounted component. This is a no-op. Please check the code for the %s component.",n,n,e.constructor&&e.constructor.displayName||""):void 0)}var o=n(4),i={isMounted:function(e){return!1},enqueueCallback:function(e,t){},enqueueForceUpdate:function(e){r(e,"forceUpdate")},enqueueReplaceState:function(e,t){r(e,"replaceState")},enqueueSetState:function(e,t){r(e,"setState")},enqueueSetProps:function(e,t){r(e,"setProps")},enqueueReplaceProps:function(e,t){r(e,"replaceProps")}};e.exports=i}).call(t,n(1))},function(e,t,n){"use strict";function r(e){function t(t,n,r,o,i,a){if(o=o||N,a=a||r,null==n[r]){var s=_[i];return t?new Error("Required "+s+" `"+a+"` was not specified in "+("`"+o+"`.")):null}return e(n,r,o,i,a)}var n=t.bind(null,!1);return n.isRequired=t.bind(null,!0),n}function o(e){function t(t,n,r,o,i){var a=t[n],s=g(a);if(s!==e){var u=_[o],c=v(a);return new Error("Invalid "+u+" `"+i+"` of type "+("`"+c+"` supplied to `"+r+"`, expected ")+("`"+e+"`."))}return null}return r(t)}function i(){return r(b.thatReturns(null))}function a(e){function t(t,n,r,o,i){var a=t[n];if(!Array.isArray(a)){var s=_[o],u=g(a);return new Error("Invalid "+s+" `"+i+"` of type "+("`"+u+"` supplied to `"+r+"`, expected an array."))}for(var c=0;c<a.length;c++){var l=e(a,c,r,o,i+"["+c+"]");if(l instanceof Error)return l}return null}return r(t)}function s(){function e(e,t,n,r,o){if(!y.isValidElement(e[t])){var i=_[r];return new Error("Invalid "+i+" `"+o+"` supplied to "+("`"+n+"`, expected a single ReactElement."))}return null}return r(e)}function u(e){function t(t,n,r,o,i){if(!(t[n]instanceof e)){var a=_[o],s=e.name||N,u=m(t[n]);return new Error("Invalid "+a+" `"+i+"` of type "+("`"+u+"` supplied to `"+r+"`, expected ")+("instance of `"+s+"`."))}return null}return r(t)}function c(e){function t(t,n,r,o,i){for(var a=t[n],s=0;s<e.length;s++)if(a===e[s])return null;var u=_[o],c=JSON.stringify(e);return new Error("Invalid "+u+" `"+i+"` of value `"+a+"` "+("supplied to `"+r+"`, expected one of "+c+"."))}return r(Array.isArray(e)?t:function(){return new Error("Invalid argument supplied to oneOf, expected an instance of array.")})}function l(e){function t(t,n,r,o,i){var a=t[n],s=g(a);if("object"!==s){var u=_[o];return new Error("Invalid "+u+" `"+i+"` of type "+("`"+s+"` supplied to `"+r+"`, expected an object."))}for(var c in a)if(a.hasOwnProperty(c)){var l=e(a,c,r,o,i+"."+c);if(l instanceof Error)return l}return null}return r(t)}function p(e){function t(t,n,r,o,i){for(var a=0;a<e.length;a++){var s=e[a];if(null==s(t,n,r,o,i))return null}var u=_[o];return new Error("Invalid "+u+" `"+i+"` supplied to "+("`"+r+"`."))}return r(Array.isArray(e)?t:function(){return new Error("Invalid argument supplied to oneOfType, expected an instance of array.")})}function d(){function e(e,t,n,r,o){if(!f(e[t])){var i=_[r];return new Error("Invalid "+i+" `"+o+"` supplied to "+("`"+n+"`, expected a ReactNode."))}return null}return r(e)}function h(e){function t(t,n,r,o,i){var a=t[n],s=g(a);if("object"!==s){var u=_[o];return new Error("Invalid "+u+" `"+i+"` of type `"+s+"` "+("supplied to `"+r+"`, expected `object`."))}for(var c in e){var l=e[c];if(l){var p=l(a,c,r,o,i+"."+c);if(p)return p}}return null}return r(t)}function f(e){switch(typeof e){case"number":case"string":case"undefined":return!0;case"boolean":return!e;case"object":if(Array.isArray(e))return e.every(f);if(null===e||y.isValidElement(e))return!0;var t=E(e);if(!t)return!1;var n,r=t.call(e);if(t!==e.entries){for(;!(n=r.next()).done;)if(!f(n.value))return!1}else for(;!(n=r.next()).done;){var o=n.value;if(o&&!f(o[1]))return!1}return!0;default:return!1}}function g(e){var t=typeof e;return Array.isArray(e)?"array":e instanceof RegExp?"object":t}function v(e){var t=g(e);if("object"===t){if(e instanceof Date)return"date";if(e instanceof RegExp)return"regexp"}return t}function m(e){return e.constructor&&e.constructor.name?e.constructor.name:"<<anonymous>>"}var y=n(7),_=n(26),b=n(10),E=n(45),N="<<anonymous>>",S={array:o("array"),bool:o("boolean"),func:o("function"),number:o("number"),object:o("object"),string:o("string"),any:i(),arrayOf:a,element:s(),instanceOf:u,node:d(),objectOf:l,oneOf:c,oneOfType:p,shape:h};e.exports=S},function(e,t){"use strict";var n={injectCreateReactRootIndex:function(e){r.createReactRootIndex=e}},r={createReactRootIndex:null,injection:n};e.exports=r},function(e,t){"use strict";var n={currentScrollLeft:0,currentScrollTop:0,refreshScrollValues:function(e){n.currentScrollLeft=e.x,n.currentScrollTop=e.y}};e.exports=n},function(e,t,n){(function(t){"use strict";function r(e,n){if(null==n?"production"!==t.env.NODE_ENV?o(!1,"accumulateInto(...): Accumulated items must not be null or undefined."):o(!1):void 0,null==e)return n;var r=Array.isArray(e),i=Array.isArray(n);return r&&i?(e.push.apply(e,n),e):r?(e.push(n),e):i?[e].concat(n):[e,n]}var o=n(2);e.exports=r}).call(t,n(1))},function(e,t){"use strict";var n=function(e,t,n){Array.isArray(e)?e.forEach(t,n):e&&t.call(n,e)};e.exports=n},function(e,t,n){"use strict";function r(){return!i&&o.canUseDOM&&(i="textContent"in document.documentElement?"textContent":"innerText"),i}var o=n(5),i=null;e.exports=r},function(e,t){"use strict";function n(e){var t=e&&e.nodeName&&e.nodeName.toLowerCase();return t&&("input"===t&&r[e.type]||"textarea"===t)}var r={color:!0,date:!0,datetime:!0,"datetime-local":!0,email:!0,month:!0,number:!0,password:!0,range:!0,search:!0,tel:!0,text:!0,time:!0,url:!0,week:!0};e.exports=n},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var s=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),u=n(167),c=r(u),l=n(53);(function(e){function t(){return o(this,t),i(this,Object.getPrototypeOf(t).apply(this,arguments))}return a(t,e),s(t,[{key:"componentDidMount",value:function(){function e(){var e=this,t=this.props.config,n=t.storageKey,r=t.tokenManagerConfig,o=(this.props.errorCallback,(0,l.createTokenManager)(r));o.processTokenCallbackAsync().then(function(){var e=localStorage.getItem(n);localStorage.setItem(n,null),window.location=e},function(t){e.props.errorCallback&&e.props.errorCallback(t)})}return e}()},{key:"render",value:function(){function e(){return c["default"].createElement("div",null,this.props.children||this.defaultContent)}return e}()},{key:"defaultContent",get:function(){function e(){return c["default"].createElement("div",null,"Redirecting...")}return e}()},{key:"options",get:function(){function e(){return{storageKey:this.props.storageKey||"oidc.redirectTo"}}return e}()}]),t})(c["default"].Component)},function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(52),i=(r(o),n(90)),a=r(i),s=n(88),u=r(s),c=n(53);t["default"]={createTokenManager:c.createTokenManager,createTokenMiddleware:a["default"],CallbackComponent:u["default"]}},function(e,t){"use strict";function n(e){if(!options.tokenManagerConfig)throw new Error("You must provide token manager configuration!");return function(t){return function(t){return function(n){var r=createTokenManager(options.tokenManagerConfig);if(r.expired&&!localStorage.getItem("redirectTo")){e.storageKey||"redirectTo";return localStorage.setItem(e.storageKey,window.location.href),tokenManager.redirectForToken(),null}return t(n)}}}}Object.defineProperty(t,"__esModule",{value:!0}),t["default"]=n},function(e,t,n){var r="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";!function(e){"use strict";function t(e){var t=e.charCodeAt(0);return t===a||t===p?62:t===s||t===d?63:u>t?-1:u+10>t?t-u+26+26:l+26>t?t-l:c+26>t?t-c+26:void 0}function n(e){function n(e){c[p++]=e}var r,o,a,s,u,c;if(e.length%4>0)throw new Error("Invalid string. Length must be a multiple of 4");var l=e.length;u="="===e.charAt(l-2)?2:"="===e.charAt(l-1)?1:0,c=new i(3*e.length/4-u),a=u>0?e.length-4:e.length;var p=0;for(r=0,o=0;a>r;r+=4,o+=3)s=t(e.charAt(r))<<18|t(e.charAt(r+1))<<12|t(e.charAt(r+2))<<6|t(e.charAt(r+3)),n((16711680&s)>>16),n((65280&s)>>8),n(255&s);return 2===u?(s=t(e.charAt(r))<<2|t(e.charAt(r+1))>>4,n(255&s)):1===u&&(s=t(e.charAt(r))<<10|t(e.charAt(r+1))<<4|t(e.charAt(r+2))>>2,n(s>>8&255),n(255&s)),c}function o(e){function t(e){return r.charAt(e)}function n(e){return t(e>>18&63)+t(e>>12&63)+t(e>>6&63)+t(63&e)}var o,i,a,s=e.length%3,u="";for(o=0,a=e.length-s;a>o;o+=3)i=(e[o]<<16)+(e[o+1]<<8)+e[o+2],u+=n(i);switch(s){case 1:i=e[e.length-1],u+=t(i>>2),u+=t(i<<4&63),u+="==";break;case 2:i=(e[e.length-2]<<8)+e[e.length-1],u+=t(i>>10),u+=t(i>>4&63),u+=t(i<<2&63),u+="="}return u}var i="undefined"!=typeof Uint8Array?Uint8Array:Array,a="+".charCodeAt(0),s="/".charCodeAt(0),u="0".charCodeAt(0),c="a".charCodeAt(0),l="A".charCodeAt(0),p="-".charCodeAt(0),d="_".charCodeAt(0);e.toByteArray=n,e.fromByteArray=o}(t)},function(e,t){"use strict";function n(e){return e.replace(r,function(e,t){return t.toUpperCase()})}var r=/-(.)/g;e.exports=n},function(e,t,n){"use strict";function r(e){return o(e.replace(i,"ms-"))}var o=n(92),i=/^-ms-/;e.exports=r},function(e,t,n){"use strict";function r(e){return!!e&&("object"==typeof e||"function"==typeof e)&&"length"in e&&!("setInterval"in e)&&"number"!=typeof e.nodeType&&(Array.isArray(e)||"callee"in e||"item"in e)}function o(e){return r(e)?Array.isArray(e)?e.slice():i(e):[e]}var i=n(105);e.exports=o},function(e,t,n){(function(t){"use strict";function r(e){var t=e.match(l);return t&&t[1].toLowerCase()}function o(e,n){var o=c;c?void 0:"production"!==t.env.NODE_ENV?u(!1,"createNodesFromMarkup dummy not initialized"):u(!1);var i=r(e),l=i&&s(i);if(l){o.innerHTML=l[1]+e+l[2];for(var p=l[0];p--;)o=o.lastChild}else o.innerHTML=e;var d=o.getElementsByTagName("script");d.length&&(n?void 0:"production"!==t.env.NODE_ENV?u(!1,"createNodesFromMarkup(...): Unexpected <script> element rendered."):u(!1),a(d).forEach(n));for(var h=a(o.childNodes);o.lastChild;)o.removeChild(o.lastChild);return h}var i=n(5),a=n(94),s=n(59),u=n(2),c=i.canUseDOM?document.createElement("div"):null,l=/^\s*<(\w+)/;e.exports=o}).call(t,n(1))},function(e,t){"use strict";function n(e){return e===window?{x:window.pageXOffset||document.documentElement.scrollLeft,y:window.pageYOffset||document.documentElement.scrollTop}:{x:e.scrollLeft,y:e.scrollTop}}e.exports=n},function(e,t){"use strict";function n(e){return e.replace(r,"-$1").toLowerCase()}var r=/([A-Z])/g;e.exports=n},function(e,t,n){"use strict";function r(e){return o(e).replace(i,"-ms-")}var o=n(97),i=/^ms-/;e.exports=r},function(e,t){"use strict";function n(e){return!(!e||!("function"==typeof Node?e instanceof Node:"object"==typeof e&&"number"==typeof e.nodeType&&"string"==typeof e.nodeName))}e.exports=n},function(e,t,n){"use strict";function r(e){return o(e)&&3==e.nodeType}var o=n(99);e.exports=r},function(e,t){"use strict";function n(e,t,n){if(!e)return null;var o={};for(var i in e)r.call(e,i)&&(o[i]=t.call(n,e[i],i,e));return o}var r=Object.prototype.hasOwnProperty;e.exports=n},function(e,t){"use strict";function n(e){var t={};return function(n){return t.hasOwnProperty(n)||(t[n]=e.call(this,n)),t[n]}}e.exports=n},function(e,t,n){"use strict";var r,o=n(5);o.canUseDOM&&(r=window.performance||window.msPerformance||window.webkitPerformance),e.exports=r||{}},function(e,t,n){"use strict";var r,o=n(103);r=o.now?function(){return o.now()}:function(){return Date.now()},e.exports=r},function(e,t,n){(function(t){"use strict";function r(e){var n=e.length;if(Array.isArray(e)||"object"!=typeof e&&"function"!=typeof e?"production"!==t.env.NODE_ENV?o(!1,"toArray: Array-like object expected"):o(!1):void 0,"number"!=typeof n?"production"!==t.env.NODE_ENV?o(!1,"toArray: Object needs a length property"):o(!1):void 0,0===n||n-1 in e?void 0:"production"!==t.env.NODE_ENV?o(!1,"toArray: Object should have keys for indices"):o(!1),e.hasOwnProperty)try{return Array.prototype.slice.call(e)}catch(r){}for(var i=Array(n),a=0;n>a;a++)i[a]=e[a];return i}var o=n(2);e.exports=r}).call(t,n(1))},function(e,t){t.read=function(e,t,n,r,o){var i,a,s=8*o-r-1,u=(1<<s)-1,c=u>>1,l=-7,p=n?o-1:0,d=n?-1:1,h=e[t+p];for(p+=d,i=h&(1<<-l)-1,h>>=-l,l+=s;l>0;i=256*i+e[t+p],p+=d,l-=8);for(a=i&(1<<-l)-1,i>>=-l,l+=r;l>0;a=256*a+e[t+p],p+=d,l-=8);if(0===i)i=1-c;else{if(i===u)return a?NaN:(h?-1:1)*(1/0);a+=Math.pow(2,r),i-=c}return(h?-1:1)*a*Math.pow(2,i-r)},t.write=function(e,t,n,r,o,i){var a,s,u,c=8*i-o-1,l=(1<<c)-1,p=l>>1,d=23===o?Math.pow(2,-24)-Math.pow(2,-77):0,h=r?0:i-1,f=r?1:-1,g=0>t||0===t&&0>1/t?1:0;for(t=Math.abs(t),isNaN(t)||t===1/0?(s=isNaN(t)?1:0,a=l):(a=Math.floor(Math.log(t)/Math.LN2),t*(u=Math.pow(2,-a))<1&&(a--,u*=2),t+=a+p>=1?d/u:d*Math.pow(2,1-p),t*u>=2&&(a++,u/=2),a+p>=l?(s=0,a=l):a+p>=1?(s=(t*u-1)*Math.pow(2,o),a+=p):(s=t*Math.pow(2,p-1)*Math.pow(2,o),a=0));o>=8;e[n+h]=255&s,h+=f,s/=256,o-=8);for(a=a<<o|s,c+=o;c>0;e[n+h]=255&a,h+=f,a/=256,c-=8);e[n+h-f]|=128*g}},function(e,t){var n={}.toString;e.exports=Array.isArray||function(e){return"[object Array]"==n.call(e)}},function(e,t){function n(){}function r(e,t){t=t||{};for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n]);return t}function o(){return((Date.now()+Math.random())*Math.random()).toString().replace(".","");
-}function i(e){return _promiseFactory.resolve(e)}function a(e){return _promiseFactory.reject(Error(e))}function s(e){n("parseOidcResult"),e=e||location.hash;var t=e.lastIndexOf("#");t>=0&&(e=e.substr(t+1));for(var r,o={},i=/([^&=]+)=([^&]*)/g,a=0;r=i.exec(e);)if(o[decodeURIComponent(r[1])]=decodeURIComponent(r[2]),a++>50)return{error:"Response exceeded expected number of parameters"};for(var s in o)return o}function u(e,t){n("getJson",e);var r={};return t&&(r.headers={Authorization:"Bearer "+t}),_httpRequest.getJSON(e,r)}function c(e){this._settings=e||{},this._settings.request_state_key||(this._settings.request_state_key="OidcClient.request_state"),this._settings.request_state_store||(this._settings.request_state_store=window.localStorage),"undefined"==typeof this._settings.load_user_profile&&(this._settings.load_user_profile=!0),"undefined"==typeof this._settings.filter_protocol_claims&&(this._settings.filter_protocol_claims=!0),this._settings.authority&&this._settings.authority.indexOf(".well-known/openid-configuration")<0&&("/"!==this._settings.authority[this._settings.authority.length-1]&&(this._settings.authority+="/"),this._settings.authority+=".well-known/openid-configuration"),this._settings.response_type||(this._settings.response_type="id_token token"),Object.defineProperty(this,"isOidc",{get:function(){if(this._settings.response_type){var e=this._settings.response_type.split(/\s+/g).filter(function(e){return"id_token"===e});return!!e[0]}return!1}}),Object.defineProperty(this,"isOAuth",{get:function(){if(this._settings.response_type){var e=this._settings.response_type.split(/\s+/g).filter(function(e){return"token"===e});return!!e[0]}return!1}})}c.parseOidcResult=s,c.prototype.loadMetadataAsync=function(){n("OidcClient.loadMetadataAsync");var e=this._settings;return e.metadata?i(e.metadata):e.authority?u(e.authority).then(function(t){return e.metadata=t,t},function(e){return a("Failed to load metadata ("+e&&e.message+")")}):a("No authority configured")},c.prototype.loadX509SigningKeyAsync=function(){function e(e){if(!e.keys||!e.keys.length)return a("Signing keys empty");var t=e.keys[0];return"RSA"!==t.kty?a("Signing key not RSA"):t.x5c&&t.x5c.length?i(t.x5c[0]):a("RSA keys empty")}n("OidcClient.loadX509SigningKeyAsync");var t=this._settings;return t.jwks?e(t.jwks):this.loadMetadataAsync().then(function(n){return n.jwks_uri?u(n.jwks_uri).then(function(n){return t.jwks=n,e(n)},function(e){return a("Failed to load signing keys ("+e&&e.message+")")}):a("Metadata does not contain jwks_uri")})},c.prototype.loadUserProfile=function(e){return n("OidcClient.loadUserProfile"),this.loadMetadataAsync().then(function(t){return t.userinfo_endpoint?u(t.userinfo_endpoint,e):a("Metadata does not contain userinfo_endpoint")})},c.prototype.loadAuthorizationEndpoint=function(){return n("OidcClient.loadAuthorizationEndpoint"),this._settings.authorization_endpoint?i(this._settings.authorization_endpoint):this._settings.authority?this.loadMetadataAsync().then(function(e){return e.authorization_endpoint?e.authorization_endpoint:a("Metadata does not contain authorization_endpoint")}):a("No authorization_endpoint configured")},c.prototype.createTokenRequestAsync=function(){n("OidcClient.createTokenRequestAsync");var e=this,t=e._settings;return e.loadAuthorizationEndpoint().then(function(n){var r=o(),i=n+"?state="+encodeURIComponent(r);if(e.isOidc){var a=o();i+="&nonce="+encodeURIComponent(a)}var s=["client_id","redirect_uri","response_type","scope"];s.forEach(function(e){var n=t[e];n&&(i+="&"+e+"="+encodeURIComponent(n))});var u=["prompt","display","max_age","ui_locales","id_token_hint","login_hint","acr_values"];u.forEach(function(e){var n=t[e];n&&(i+="&"+e+"="+encodeURIComponent(n))});var c={oidc:e.isOidc,oauth:e.isOAuth,state:r};return a&&(c.nonce=a),t.request_state_store.setItem(t.request_state_key,JSON.stringify(c)),{request_state:c,url:i}})},c.prototype.createLogoutRequestAsync=function(e){n("OidcClient.createLogoutRequestAsync");var t=this._settings;return this.loadMetadataAsync().then(function(n){if(!n.end_session_endpoint)return a("No end_session_endpoint in metadata");var r=n.end_session_endpoint;return e&&t.post_logout_redirect_uri&&(r+="?post_logout_redirect_uri="+encodeURIComponent(t.post_logout_redirect_uri),r+="&id_token_hint="+encodeURIComponent(e)),r})},c.prototype.validateIdTokenAsync=function(e,t,o){n("OidcClient.validateIdTokenAsync");var i=this,s=i._settings;return i.loadX509SigningKeyAsync().then(function(n){var u=new KJUR.jws.JWS;if(u.verifyJWSByPemX509Cert(e,n)){var c=JSON.parse(u.parsedJWS.payloadS);return t!==c.nonce?a("Invalid nonce"):i.loadMetadataAsync().then(function(e){if(c.iss!==e.issuer)return a("Invalid issuer");if(c.aud!==s.client_id)return a("Invalid audience");var t=parseInt(Date.now()/1e3),n=t-c.iat;return n>300?a("Token issued too long ago"):c.exp<t?a("Token expired"):o&&s.load_user_profile?i.loadUserProfile(o,c).then(function(e){return r(e,c)}):c})}return a("JWT failed to validate")})},c.prototype.validateAccessTokenAsync=function(e,t){if(n("OidcClient.validateAccessTokenAsync"),!e.at_hash)return a("No at_hash in id_token");var r=KJUR.crypto.Util.sha256(t),o=r.substr(0,r.length/2),s=hextob64u(o);return s!==e.at_hash?a("at_hash failed to validate"):i()},c.prototype.validateIdTokenAndAccessTokenAsync=function(e,t,r){n("OidcClient.validateIdTokenAndAccessTokenAsync");var o=this;return o.validateIdTokenAsync(e,t,r).then(function(e){return o.validateAccessTokenAsync(e,r).then(function(){return e})})},c.prototype.processResponseAsync=function(e){n("OidcClient.processResponseAsync");var t=this,r=t._settings,o=r.request_state_store.getItem(r.request_state_key);if(r.request_state_store.removeItem(r.request_state_key),!o)return a("No request state loaded");if(o=JSON.parse(o),!o)return a("No request state loaded");if(!o.state)return a("No state loaded");var u=s(e);if(!u)return a("No OIDC response");if(u.error)return a(u.error);if(u.state!==o.state)return a("Invalid state");if(o.oidc){if(!u.id_token)return a("No identity token");if(!o.nonce)return a("No nonce loaded")}if(o.oauth){if(!u.access_token)return a("No access token");if(!u.token_type||"bearer"!==u.token_type.toLowerCase())return a("Invalid token type");if(!u.expires_in)return a("No token expiration")}var c=i();return o.oidc&&o.oauth?c=t.validateIdTokenAndAccessTokenAsync(u.id_token,o.nonce,u.access_token):o.oidc&&(c=t.validateIdTokenAsync(u.id_token,o.nonce)),c.then(function(e){if(e&&r.filter_protocol_claims){var t=["nonce","at_hash","iat","nbf","exp","aud","iss"];t.forEach(function(t){delete e[t]})}return{profile:e,id_token:u.id_token,access_token:u.access_token,expires_in:u.expires_in,scope:u.scope,session_state:u.session_state}})}},function(e,t,n){"use strict";var r=n(6),o=n(41),i=n(57),a={componentDidMount:function(){this.props.autoFocus&&i(o(this))}},s={Mixin:a,focusDOMComponent:function(){i(r.getNode(this._rootNodeID))}};e.exports=s},function(e,t,n){"use strict";function r(){var e=window.opera;return"object"==typeof e&&"function"==typeof e.version&&parseInt(e.version(),10)<=12}function o(e){return(e.ctrlKey||e.altKey||e.metaKey)&&!(e.ctrlKey&&e.altKey)}function i(e){switch(e){case A.topCompositionStart:return x.compositionStart;case A.topCompositionEnd:return x.compositionEnd;case A.topCompositionUpdate:return x.compositionUpdate}}function a(e,t){return e===A.topKeyDown&&t.keyCode===E}function s(e,t){switch(e){case A.topKeyUp:return-1!==b.indexOf(t.keyCode);case A.topKeyDown:return t.keyCode!==E;case A.topKeyPress:case A.topMouseDown:case A.topBlur:return!0;default:return!1}}function u(e){var t=e.detail;return"object"==typeof t&&"data"in t?t.data:null}function c(e,t,n,r,o){var c,l;if(N?c=i(e):I?s(e,r)&&(c=x.compositionEnd):a(e,r)&&(c=x.compositionStart),!c)return null;C&&(I||c!==x.compositionStart?c===x.compositionEnd&&I&&(l=I.getData()):I=v.getPooled(t));var p=m.getPooled(c,n,r,o);if(l)p.data=l;else{var d=u(r);null!==d&&(p.data=d)}return f.accumulateTwoPhaseDispatches(p),p}function l(e,t){switch(e){case A.topCompositionEnd:return u(t);case A.topKeyPress:var n=t.which;return n!==D?null:(R=!0,O);case A.topTextInput:var r=t.data;return r===O&&R?null:r;default:return null}}function p(e,t){if(I){if(e===A.topCompositionEnd||s(e,t)){var n=I.getData();return v.release(I),I=null,n}return null}switch(e){case A.topPaste:return null;case A.topKeyPress:return t.which&&!o(t)?String.fromCharCode(t.which):null;case A.topCompositionEnd:return C?null:t.data;default:return null}}function d(e,t,n,r,o){var i;if(i=w?l(e,r):p(e,r),!i)return null;var a=y.getPooled(x.beforeInput,n,r,o);return a.data=i,f.accumulateTwoPhaseDispatches(a),a}var h=n(11),f=n(21),g=n(5),v=n(118),m=n(151),y=n(154),_=n(13),b=[9,13,27,32],E=229,N=g.canUseDOM&&"CompositionEvent"in window,S=null;g.canUseDOM&&"documentMode"in document&&(S=document.documentMode);var w=g.canUseDOM&&"TextEvent"in window&&!S&&!r(),C=g.canUseDOM&&(!N||S&&S>8&&11>=S),D=32,O=String.fromCharCode(D),A=h.topLevelTypes,x={beforeInput:{phasedRegistrationNames:{bubbled:_({onBeforeInput:null}),captured:_({onBeforeInputCapture:null})},dependencies:[A.topCompositionEnd,A.topKeyPress,A.topTextInput,A.topPaste]},compositionEnd:{phasedRegistrationNames:{bubbled:_({onCompositionEnd:null}),captured:_({onCompositionEndCapture:null})},dependencies:[A.topBlur,A.topCompositionEnd,A.topKeyDown,A.topKeyPress,A.topKeyUp,A.topMouseDown]},compositionStart:{phasedRegistrationNames:{bubbled:_({onCompositionStart:null}),captured:_({onCompositionStartCapture:null})},dependencies:[A.topBlur,A.topCompositionStart,A.topKeyDown,A.topKeyPress,A.topKeyUp,A.topMouseDown]},compositionUpdate:{phasedRegistrationNames:{bubbled:_({onCompositionUpdate:null}),captured:_({onCompositionUpdateCapture:null})},dependencies:[A.topBlur,A.topCompositionUpdate,A.topKeyDown,A.topKeyPress,A.topKeyUp,A.topMouseDown]}},R=!1,I=null,T={eventTypes:x,extractEvents:function(e,t,n,r,o){return[c(e,t,n,r,o),d(e,t,n,r,o)]}};e.exports=T},function(e,t,n){(function(t){"use strict";var r=n(61),o=n(5),i=n(8),a=n(93),s=n(159),u=n(98),c=n(102),l=n(4),p=c(function(e){return u(e)}),d=!1,h="cssFloat";if(o.canUseDOM){var f=document.createElement("div").style;try{f.font=""}catch(g){d=!0}void 0===document.documentElement.style.cssFloat&&(h="styleFloat")}if("production"!==t.env.NODE_ENV)var v=/^(?:webkit|moz|o)[A-Z]/,m=/;\s*$/,y={},_={},b=function(e){y.hasOwnProperty(e)&&y[e]||(y[e]=!0,"production"!==t.env.NODE_ENV?l(!1,"Unsupported style property %s. Did you mean %s?",e,a(e)):void 0)},E=function(e){y.hasOwnProperty(e)&&y[e]||(y[e]=!0,"production"!==t.env.NODE_ENV?l(!1,"Unsupported vendor-prefixed style property %s. Did you mean %s?",e,e.charAt(0).toUpperCase()+e.slice(1)):void 0)},N=function(e,n){_.hasOwnProperty(n)&&_[n]||(_[n]=!0,"production"!==t.env.NODE_ENV?l(!1,'Style property values shouldn\'t contain a semicolon. Try "%s: %s" instead.',e,n.replace(m,"")):void 0)},S=function(e,t){e.indexOf("-")>-1?b(e):v.test(e)?E(e):m.test(t)&&N(e,t)};var w={createMarkupForStyles:function(e){var n="";for(var r in e)if(e.hasOwnProperty(r)){var o=e[r];"production"!==t.env.NODE_ENV&&S(r,o),null!=o&&(n+=p(r)+":",n+=s(r,o)+";")}return n||null},setValueForStyles:function(e,n){var o=e.style;for(var i in n)if(n.hasOwnProperty(i)){"production"!==t.env.NODE_ENV&&S(i,n[i]);var a=s(i,n[i]);if("float"===i&&(i=h),a)o[i]=a;else{var u=d&&r.shorthandPropertyExpansions[i];if(u)for(var c in u)o[c]="";else o[i]=""}}}};i.measureMethods(w,"CSSPropertyOperations",{setValueForStyles:"setValueForStyles"}),e.exports=w}).call(t,n(1))},function(e,t,n){"use strict";function r(e){var t=e.nodeName&&e.nodeName.toLowerCase();return"select"===t||"input"===t&&"file"===e.type}function o(e){var t=S.getPooled(x.change,I,e,w(e));b.accumulateTwoPhaseDispatches(t),N.batchedUpdates(i,t)}function i(e){_.enqueueEvents(e),_.processEventQueue(!1)}function a(e,t){R=e,I=t,R.attachEvent("onchange",o)}function s(){R&&(R.detachEvent("onchange",o),R=null,I=null)}function u(e,t,n){return e===A.topChange?n:void 0}function c(e,t,n){e===A.topFocus?(s(),a(t,n)):e===A.topBlur&&s()}function l(e,t){R=e,I=t,T=e.value,P=Object.getOwnPropertyDescriptor(e.constructor.prototype,"value"),Object.defineProperty(R,"value",B),R.attachEvent("onpropertychange",d)}function p(){R&&(delete R.value,R.detachEvent("onpropertychange",d),R=null,I=null,T=null,P=null)}function d(e){if("value"===e.propertyName){var t=e.srcElement.value;t!==T&&(T=t,o(e))}}function h(e,t,n){return e===A.topInput?n:void 0}function f(e,t,n){e===A.topFocus?(p(),l(t,n)):e===A.topBlur&&p()}function g(e,t,n){return e!==A.topSelectionChange&&e!==A.topKeyUp&&e!==A.topKeyDown||!R||R.value===T?void 0:(T=R.value,I)}function v(e){return e.nodeName&&"input"===e.nodeName.toLowerCase()&&("checkbox"===e.type||"radio"===e.type)}function m(e,t,n){return e===A.topClick?n:void 0}var y=n(11),_=n(20),b=n(21),E=n(5),N=n(9),S=n(17),w=n(44),C=n(47),D=n(87),O=n(13),A=y.topLevelTypes,x={change:{phasedRegistrationNames:{bubbled:O({onChange:null}),captured:O({onChangeCapture:null})},dependencies:[A.topBlur,A.topChange,A.topClick,A.topFocus,A.topInput,A.topKeyDown,A.topKeyUp,A.topSelectionChange]}},R=null,I=null,T=null,P=null,M=!1;E.canUseDOM&&(M=C("change")&&(!("documentMode"in document)||document.documentMode>8));var k=!1;E.canUseDOM&&(k=C("input")&&(!("documentMode"in document)||document.documentMode>9));var B={get:function(){return P.get.call(this)},set:function(e){T=""+e,P.set.call(this,e)}},U={eventTypes:x,extractEvents:function(e,t,n,o,i){var a,s;if(r(t)?M?a=u:s=c:D(t)?k?a=h:(a=g,s=f):v(t)&&(a=m),a){var l=a(e,t,n);if(l){var p=S.getPooled(x.change,l,o,i);return p.type="change",b.accumulateTwoPhaseDispatches(p),p}}s&&s(e,t,n)}};e.exports=U},function(e,t){"use strict";var n=0,r={createReactRootIndex:function(){return n++}};e.exports=r},function(e,t,n){(function(t){"use strict";function r(e){return e.substring(1,e.indexOf(" "))}var o=n(5),i=n(95),a=n(10),s=n(59),u=n(2),c=/^(<[^ \/>]+)/,l="data-danger-index",p={dangerouslyRenderMarkup:function(e){o.canUseDOM?void 0:"production"!==t.env.NODE_ENV?u(!1,"dangerouslyRenderMarkup(...): Cannot render markup in a worker thread. Make sure `window` and `document` are available globally before requiring React when unit testing or use ReactDOMServer.renderToString for server rendering."):u(!1);for(var n,p={},d=0;d<e.length;d++)e[d]?void 0:"production"!==t.env.NODE_ENV?u(!1,"dangerouslyRenderMarkup(...): Missing markup."):u(!1),n=r(e[d]),n=s(n)?n:"*",p[n]=p[n]||[],p[n][d]=e[d];var h=[],f=0;for(n in p)if(p.hasOwnProperty(n)){var g,v=p[n];for(g in v)if(v.hasOwnProperty(g)){var m=v[g];v[g]=m.replace(c,"$1 "+l+'="'+g+'" ')}for(var y=i(v.join(""),a),_=0;_<y.length;++_){var b=y[_];b.hasAttribute&&b.hasAttribute(l)?(g=+b.getAttribute(l),b.removeAttribute(l),h.hasOwnProperty(g)?"production"!==t.env.NODE_ENV?u(!1,"Danger: Assigning to an already-occupied result index."):u(!1):void 0,h[g]=b,f+=1):"production"!==t.env.NODE_ENV&&console.error("Danger: Discarding unexpected node:",b)}}return f!==h.length?"production"!==t.env.NODE_ENV?u(!1,"Danger: Did not assign to every index of resultList."):u(!1):void 0,h.length!==e.length?"production"!==t.env.NODE_ENV?u(!1,"Danger: Expected markup to render %s nodes, but rendered %s.",e.length,h.length):u(!1):void 0,h},dangerouslyReplaceNodeWithMarkup:function(e,n){o.canUseDOM?void 0:"production"!==t.env.NODE_ENV?u(!1,"dangerouslyReplaceNodeWithMarkup(...): Cannot render markup in a worker thread. Make sure `window` and `document` are available globally before requiring React when unit testing or use ReactDOMServer.renderToString() for server rendering."):u(!1),n?void 0:"production"!==t.env.NODE_ENV?u(!1,"dangerouslyReplaceNodeWithMarkup(...): Missing markup."):u(!1),"html"===e.tagName.toLowerCase()?"production"!==t.env.NODE_ENV?u(!1,"dangerouslyReplaceNodeWithMarkup(...): Cannot replace markup of the <html> node. This is because browser quirks make this unreliable and/or slow. If you want to render to the root you must use server rendering. See ReactDOMServer.renderToString()."):u(!1):void 0;var r;r="string"==typeof n?i(n,a)[0]:n,e.parentNode.replaceChild(r,e)}};e.exports=p}).call(t,n(1))},function(e,t,n){"use strict";var r=n(13),o=[r({ResponderEventPlugin:null}),r({SimpleEventPlugin:null}),r({TapEventPlugin:null}),r({EnterLeaveEventPlugin:null}),r({ChangeEventPlugin:null}),r({SelectEventPlugin:null}),r({BeforeInputEventPlugin:null})];e.exports=o},function(e,t,n){"use strict";var r=n(11),o=n(21),i=n(28),a=n(6),s=n(13),u=r.topLevelTypes,c=a.getFirstReactDOM,l={mouseEnter:{registrationName:s({onMouseEnter:null}),dependencies:[u.topMouseOut,u.topMouseOver]},mouseLeave:{registrationName:s({onMouseLeave:null}),dependencies:[u.topMouseOut,u.topMouseOver]}},p=[null,null],d={eventTypes:l,extractEvents:function(e,t,n,r,s){if(e===u.topMouseOver&&(r.relatedTarget||r.fromElement))return null;if(e!==u.topMouseOut&&e!==u.topMouseOver)return null;var d;if(t.window===t)d=t;else{var h=t.ownerDocument;d=h?h.defaultView||h.parentWindow:window}var f,g,v="",m="";if(e===u.topMouseOut?(f=t,v=n,g=c(r.relatedTarget||r.toElement),g?m=a.getID(g):g=d,g=g||d):(f=d,g=t,m=n),f===g)return null;var y=i.getPooled(l.mouseLeave,v,r,s);y.type="mouseleave",y.target=f,y.relatedTarget=g;var _=i.getPooled(l.mouseEnter,m,r,s);return _.type="mouseenter",_.target=g,_.relatedTarget=f,o.accumulateEnterLeaveDispatches(y,_,v,m),p[0]=y,p[1]=_,p}};e.exports=d},function(e,t,n){(function(t){"use strict";function r(e){return e===y.topMouseUp||e===y.topTouchEnd||e===y.topTouchCancel}function o(e){return e===y.topMouseMove||e===y.topTouchMove}function i(e){return e===y.topMouseDown||e===y.topTouchStart}function a(e,t,n,r){var o=e.type||"unknown-event";e.currentTarget=m.Mount.getNode(r),t?f.invokeGuardedCallbackWithCatch(o,n,e,r):f.invokeGuardedCallback(o,n,e,r),e.currentTarget=null}function s(e,n){var r=e._dispatchListeners,o=e._dispatchIDs;if("production"!==t.env.NODE_ENV&&d(e),Array.isArray(r))for(var i=0;i<r.length&&!e.isPropagationStopped();i++)a(e,n,r[i],o[i]);else r&&a(e,n,r,o);e._dispatchListeners=null,e._dispatchIDs=null}function u(e){var n=e._dispatchListeners,r=e._dispatchIDs;if("production"!==t.env.NODE_ENV&&d(e),Array.isArray(n)){for(var o=0;o<n.length&&!e.isPropagationStopped();o++)if(n[o](e,r[o]))return r[o]}else if(n&&n(e,r))return r;return null}function c(e){var t=u(e);return e._dispatchIDs=null,e._dispatchListeners=null,t}function l(e){"production"!==t.env.NODE_ENV&&d(e);var n=e._dispatchListeners,r=e._dispatchIDs;Array.isArray(n)?"production"!==t.env.NODE_ENV?g(!1,"executeDirectDispatch(...): Invalid `event`."):g(!1):void 0;var o=n?n(e,r):null;return e._dispatchListeners=null,e._dispatchIDs=null,o}function p(e){return!!e._dispatchListeners}var d,h=n(11),f=n(75),g=n(2),v=n(4),m={Mount:null,injectMount:function(e){m.Mount=e,"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?v(e&&e.getNode&&e.getID,"EventPluginUtils.injection.injectMount(...): Injected Mount module is missing getNode or getID."):void 0)}},y=h.topLevelTypes;"production"!==t.env.NODE_ENV&&(d=function(e){var n=e._dispatchListeners,r=e._dispatchIDs,o=Array.isArray(n),i=Array.isArray(r),a=i?r.length:r?1:0,s=o?n.length:n?1:0;"production"!==t.env.NODE_ENV?v(i===o&&a===s,"EventPluginUtils: Invalid `event`."):void 0});var _={isEndish:r,isMoveish:o,isStartish:i,executeDirectDispatch:l,executeDispatchesInOrder:s,executeDispatchesInOrderStopAtTrue:c,hasDispatches:p,getNode:function(e){return m.Mount.getNode(e)},getID:function(e){return m.Mount.getID(e)},injection:m};e.exports=_}).call(t,n(1))},function(e,t,n){"use strict";function r(e){this._root=e,this._startText=this.getText(),this._fallbackText=null}var o=n(14),i=n(3),a=n(86);i(r.prototype,{destructor:function(){this._root=null,this._startText=null,this._fallbackText=null},getText:function(){return"value"in this._root?this._root.value:this._root[a()]},getData:function(){if(this._fallbackText)return this._fallbackText;var e,t,n=this._startText,r=n.length,o=this.getText(),i=o.length;for(e=0;r>e&&n[e]===o[e];e++);var a=r-e;for(t=1;a>=t&&n[r-t]===o[i-t];t++);var s=t>1?1-t:void 0;return this._fallbackText=o.slice(e,s),this._fallbackText}}),o.addPoolingTo(r),e.exports=r},function(e,t,n){"use strict";var r,o=n(15),i=n(5),a=o.injection.MUST_USE_ATTRIBUTE,s=o.injection.MUST_USE_PROPERTY,u=o.injection.HAS_BOOLEAN_VALUE,c=o.injection.HAS_SIDE_EFFECTS,l=o.injection.HAS_NUMERIC_VALUE,p=o.injection.HAS_POSITIVE_NUMERIC_VALUE,d=o.injection.HAS_OVERLOADED_BOOLEAN_VALUE;if(i.canUseDOM){var h=document.implementation;r=h&&h.hasFeature&&h.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure","1.1")}var f={isCustomAttribute:RegExp.prototype.test.bind(/^(data|aria)-[a-z_][a-z\d_.\-]*$/),Properties:{accept:null,acceptCharset:null,accessKey:null,action:null,allowFullScreen:a|u,allowTransparency:a,alt:null,async:u,autoComplete:null,autoPlay:u,capture:a|u,cellPadding:null,cellSpacing:null,charSet:a,challenge:a,checked:s|u,classID:a,className:r?a:s,cols:a|p,colSpan:null,content:null,contentEditable:null,contextMenu:a,controls:s|u,coords:null,crossOrigin:null,data:null,dateTime:a,"default":u,defer:u,dir:null,disabled:a|u,download:d,draggable:null,encType:null,form:a,formAction:a,formEncType:a,formMethod:a,formNoValidate:u,formTarget:a,frameBorder:a,headers:null,height:a,hidden:a|u,high:null,href:null,hrefLang:null,htmlFor:null,httpEquiv:null,icon:null,id:s,inputMode:a,integrity:null,is:a,keyParams:a,keyType:a,kind:null,label:null,lang:null,list:a,loop:s|u,low:null,manifest:a,marginHeight:null,marginWidth:null,max:null,maxLength:a,media:a,mediaGroup:null,method:null,min:null,minLength:a,multiple:s|u,muted:s|u,name:null,nonce:a,noValidate:u,open:u,optimum:null,pattern:null,placeholder:null,poster:null,preload:null,radioGroup:null,readOnly:s|u,rel:null,required:u,reversed:u,role:a,rows:a|p,rowSpan:null,sandbox:null,scope:null,scoped:u,scrolling:null,seamless:a|u,selected:s|u,shape:null,size:a|p,sizes:a,span:p,spellCheck:null,src:null,srcDoc:s,srcLang:null,srcSet:a,start:l,step:null,style:null,summary:null,tabIndex:null,target:null,title:null,type:null,useMap:null,value:s|c,width:a,wmode:a,wrap:null,about:a,datatype:a,inlist:a,prefix:a,property:a,resource:a,"typeof":a,vocab:a,autoCapitalize:a,autoCorrect:a,autoSave:null,color:null,itemProp:a,itemScope:a|u,itemType:a,itemID:a,itemRef:a,results:null,security:a,unselectable:a},DOMAttributeNames:{acceptCharset:"accept-charset",className:"class",htmlFor:"for",httpEquiv:"http-equiv"},DOMPropertyNames:{autoComplete:"autocomplete",autoFocus:"autofocus",autoPlay:"autoplay",autoSave:"autosave",encType:"encoding",hrefLang:"hreflang",radioGroup:"radiogroup",spellCheck:"spellcheck",srcDoc:"srcdoc",srcSet:"srcset"}};e.exports=f},function(e,t,n){"use strict";var r=n(124),o=n(131),i=n(138),a=n(3),s=n(160),u={};a(u,i),a(u,{findDOMNode:s("findDOMNode","ReactDOM","react-dom",r,r.findDOMNode),render:s("render","ReactDOM","react-dom",r,r.render),unmountComponentAtNode:s("unmountComponentAtNode","ReactDOM","react-dom",r,r.unmountComponentAtNode),renderToString:s("renderToString","ReactDOMServer","react-dom/server",o,o.renderToString),renderToStaticMarkup:s("renderToStaticMarkup","ReactDOMServer","react-dom/server",o,o.renderToStaticMarkup)}),u.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED=r,u.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED=o,e.exports=u},function(e,t,n){(function(t){"use strict";var r=n(22),o=n(41),i=n(4),a="_getDOMNodeDidWarn",s={getDOMNode:function(){return"production"!==t.env.NODE_ENV?i(this.constructor[a],"%s.getDOMNode(...) is deprecated. Please use ReactDOM.findDOMNode(instance) instead.",r.get(this).getName()||this.tagName||"Unknown"):void 0,this.constructor[a]=!0,o(this)}};e.exports=s}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e,n,r){var o=void 0===e[r];"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?u(o,"flattenChildren(...): Encountered two children with the same key, `%s`. Child keys must be unique; when two children share a key, only the first child will be used.",r):void 0),null!=n&&o&&(e[r]=i(n,null))}var o=n(16),i=n(46),a=n(49),s=n(50),u=n(4),c={instantiateChildren:function(e,t,n){if(null==e)return null;var o={};return s(e,r,o),o},updateChildren:function(e,t,n,r){if(!t&&!e)return null;var s;for(s in t)if(t.hasOwnProperty(s)){var u=e&&e[s],c=u&&u._currentElement,l=t[s];if(null!=u&&a(c,l))o.receiveComponent(u,l,n,r),t[s]=u;else{u&&o.unmountComponent(u,s);var p=i(l,null);t[s]=p}}for(s in e)!e.hasOwnProperty(s)||t&&t.hasOwnProperty(s)||o.unmountComponent(e[s]);return t},unmountChildren:function(e){for(var t in e)if(e.hasOwnProperty(t)){var n=e[t];o.unmountComponent(n)}}};e.exports=c}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e){var t=e._currentElement._owner||null;if(t){var n=t.getName();if(n)return" Check the render method of `"+n+"`."}return""}function o(e){}var i=n(37),a=n(12),s=n(7),u=n(22),c=n(8),l=n(27),p=n(26),d=n(16),h=n(39),f=n(3),g=n(19),v=n(2),m=n(49),y=n(4);o.prototype.render=function(){var e=u.get(this)._currentElement.type;return e(this.props,this.context,this.updater)};var _=1,b={construct:function(e){this._currentElement=e,this._rootNodeID=null,this._instance=null,this._pendingElement=null,this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1,this._renderedComponent=null,this._context=null,this._mountOrder=0,this._topLevelWrapper=null,this._pendingCallbacks=null},mountComponent:function(e,n,r){this._context=r,this._mountOrder=_++,this._rootNodeID=e;var i,c,l=this._processProps(this._currentElement.props),p=this._processContext(r),f=this._currentElement.type,m="prototype"in f;if(m)if("production"!==t.env.NODE_ENV){a.current=this;try{i=new f(l,p,h)}finally{a.current=null}}else i=new f(l,p,h);m&&null!==i&&i!==!1&&!s.isValidElement(i)||(c=i,i=new o(f)),"production"!==t.env.NODE_ENV&&(null==i.render?"production"!==t.env.NODE_ENV?y(!1,"%s(...): No `render` method found on the returned component instance: you may have forgotten to define `render`, returned null/false from a stateless component, or tried to render an element whose type is a function that isn't a React component.",f.displayName||f.name||"Component"):void 0:"production"!==t.env.NODE_ENV?y(f.prototype&&f.prototype.isReactComponent||!m||!(i instanceof f),"%s(...): React component classes must extend React.Component.",f.displayName||f.name||"Component"):void 0),i.props=l,i.context=p,i.refs=g,i.updater=h,this._instance=i,u.set(i,this),"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?y(!i.getInitialState||i.getInitialState.isReactClassApproved,"getInitialState was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Did you mean to define a state property instead?",this.getName()||"a component"):void 0,"production"!==t.env.NODE_ENV?y(!i.getDefaultProps||i.getDefaultProps.isReactClassApproved,"getDefaultProps was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Use a static property to define defaultProps instead.",this.getName()||"a component"):void 0,"production"!==t.env.NODE_ENV?y(!i.propTypes,"propTypes was defined as an instance property on %s. Use a static property to define propTypes instead.",this.getName()||"a component"):void 0,"production"!==t.env.NODE_ENV?y(!i.contextTypes,"contextTypes was defined as an instance property on %s. Use a static property to define contextTypes instead.",this.getName()||"a component"):void 0,"production"!==t.env.NODE_ENV?y("function"!=typeof i.componentShouldUpdate,"%s has a method called componentShouldUpdate(). Did you mean shouldComponentUpdate()? The name is phrased as a question because the function is expected to return a value.",this.getName()||"A component"):void 0,"production"!==t.env.NODE_ENV?y("function"!=typeof i.componentDidUnmount,"%s has a method called componentDidUnmount(). But there is no such lifecycle method. Did you mean componentWillUnmount()?",this.getName()||"A component"):void 0,"production"!==t.env.NODE_ENV?y("function"!=typeof i.componentWillRecieveProps,"%s has a method called componentWillRecieveProps(). Did you mean componentWillReceiveProps()?",this.getName()||"A component"):void 0);var b=i.state;void 0===b&&(i.state=b=null),"object"!=typeof b||Array.isArray(b)?"production"!==t.env.NODE_ENV?v(!1,"%s.state: must be set to an object or null",this.getName()||"ReactCompositeComponent"):v(!1):void 0,this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1,i.componentWillMount&&(i.componentWillMount(),this._pendingStateQueue&&(i.state=this._processPendingState(i.props,i.context))),void 0===c&&(c=this._renderValidatedComponent()),this._renderedComponent=this._instantiateReactComponent(c);var E=d.mountComponent(this._renderedComponent,e,n,this._processChildContext(r));return i.componentDidMount&&n.getReactMountReady().enqueue(i.componentDidMount,i),E},unmountComponent:function(){var e=this._instance;e.componentWillUnmount&&e.componentWillUnmount(),d.unmountComponent(this._renderedComponent),this._renderedComponent=null,this._instance=null,this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1,this._pendingCallbacks=null,this._pendingElement=null,this._context=null,this._rootNodeID=null,this._topLevelWrapper=null,u.remove(e)},_maskContext:function(e){var t=null,n=this._currentElement.type,r=n.contextTypes;if(!r)return g;t={};for(var o in r)t[o]=e[o];return t},_processContext:function(e){var n=this._maskContext(e);if("production"!==t.env.NODE_ENV){var r=this._currentElement.type;r.contextTypes&&this._checkPropTypes(r.contextTypes,n,l.context)}return n},_processChildContext:function(e){var n=this._currentElement.type,r=this._instance,o=r.getChildContext&&r.getChildContext();if(o){"object"!=typeof n.childContextTypes?"production"!==t.env.NODE_ENV?v(!1,"%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().",this.getName()||"ReactCompositeComponent"):v(!1):void 0,"production"!==t.env.NODE_ENV&&this._checkPropTypes(n.childContextTypes,o,l.childContext);for(var i in o)i in n.childContextTypes?void 0:"production"!==t.env.NODE_ENV?v(!1,'%s.getChildContext(): key "%s" is not defined in childContextTypes.',this.getName()||"ReactCompositeComponent",i):v(!1);return f({},e,o)}return e},_processProps:function(e){if("production"!==t.env.NODE_ENV){var n=this._currentElement.type;n.propTypes&&this._checkPropTypes(n.propTypes,e,l.prop)}return e},_checkPropTypes:function(e,n,o){var i=this.getName();for(var a in e)if(e.hasOwnProperty(a)){var s;try{"function"!=typeof e[a]?"production"!==t.env.NODE_ENV?v(!1,"%s: %s type `%s` is invalid; it must be a function, usually from React.PropTypes.",i||"React class",p[o],a):v(!1):void 0,s=e[a](n,a,i,o)}catch(u){s=u}if(s instanceof Error){var c=r(this);o===l.prop?"production"!==t.env.NODE_ENV?y(!1,"Failed Composite propType: %s%s",s.message,c):void 0:"production"!==t.env.NODE_ENV?y(!1,"Failed Context Types: %s%s",s.message,c):void 0}}},receiveComponent:function(e,t,n){var r=this._currentElement,o=this._context;this._pendingElement=null,this.updateComponent(t,r,e,o,n)},performUpdateIfNecessary:function(e){null!=this._pendingElement&&d.receiveComponent(this,this._pendingElement||this._currentElement,e,this._context),(null!==this._pendingStateQueue||this._pendingForceUpdate)&&this.updateComponent(e,this._currentElement,this._currentElement,this._context,this._context)},updateComponent:function(e,n,r,o,i){var a,s=this._instance,u=this._context===i?s.context:this._processContext(i);n===r?a=r.props:(a=this._processProps(r.props),s.componentWillReceiveProps&&s.componentWillReceiveProps(a,u));var c=this._processPendingState(a,u),l=this._pendingForceUpdate||!s.shouldComponentUpdate||s.shouldComponentUpdate(a,c,u);"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?y("undefined"!=typeof l,"%s.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false.",this.getName()||"ReactCompositeComponent"):void 0),
-l?(this._pendingForceUpdate=!1,this._performComponentUpdate(r,a,c,u,e,i)):(this._currentElement=r,this._context=i,s.props=a,s.state=c,s.context=u)},_processPendingState:function(e,t){var n=this._instance,r=this._pendingStateQueue,o=this._pendingReplaceState;if(this._pendingReplaceState=!1,this._pendingStateQueue=null,!r)return n.state;if(o&&1===r.length)return r[0];for(var i=f({},o?r[0]:n.state),a=o?1:0;a<r.length;a++){var s=r[a];f(i,"function"==typeof s?s.call(n,i,e,t):s)}return i},_performComponentUpdate:function(e,t,n,r,o,i){var a,s,u,c=this._instance,l=Boolean(c.componentDidUpdate);l&&(a=c.props,s=c.state,u=c.context),c.componentWillUpdate&&c.componentWillUpdate(t,n,r),this._currentElement=e,this._context=i,c.props=t,c.state=n,c.context=r,this._updateRenderedComponent(o,i),l&&o.getReactMountReady().enqueue(c.componentDidUpdate.bind(c,a,s,u),c)},_updateRenderedComponent:function(e,t){var n=this._renderedComponent,r=n._currentElement,o=this._renderValidatedComponent();if(m(r,o))d.receiveComponent(n,o,e,this._processChildContext(t));else{var i=this._rootNodeID,a=n._rootNodeID;d.unmountComponent(n),this._renderedComponent=this._instantiateReactComponent(o);var s=d.mountComponent(this._renderedComponent,i,e,this._processChildContext(t));this._replaceNodeWithMarkupByID(a,s)}},_replaceNodeWithMarkupByID:function(e,t){i.replaceNodeWithMarkupByID(e,t)},_renderValidatedComponentWithoutOwnerOrContext:function(){var e=this._instance,n=e.render();return"production"!==t.env.NODE_ENV&&"undefined"==typeof n&&e.render._isMockFunction&&(n=null),n},_renderValidatedComponent:function(){var e;a.current=this;try{e=this._renderValidatedComponentWithoutOwnerOrContext()}finally{a.current=null}return null===e||e===!1||s.isValidElement(e)?void 0:"production"!==t.env.NODE_ENV?v(!1,"%s.render(): A valid ReactComponent must be returned. You may have returned undefined, an array or some other invalid object.",this.getName()||"ReactCompositeComponent"):v(!1),e},attachRef:function(e,n){var r=this.getPublicInstance();null==r?"production"!==t.env.NODE_ENV?v(!1,"Stateless function components cannot have refs."):v(!1):void 0;var o=n.getPublicInstance();if("production"!==t.env.NODE_ENV){var i=n&&n.getName?n.getName():"a component";"production"!==t.env.NODE_ENV?y(null!=o,'Stateless function components cannot be given refs (See ref "%s" in %s created by %s). Attempts to access this ref will fail.',e,i,this.getName()):void 0}var a=r.refs===g?r.refs={}:r.refs;a[e]=o},detachRef:function(e){var t=this.getPublicInstance().refs;delete t[e]},getName:function(){var e=this._currentElement.type,t=this._instance&&this._instance.constructor;return e.displayName||t&&t.displayName||e.name||t&&t.name||null},getPublicInstance:function(){var e=this._instance;return e instanceof o?null:e},_instantiateReactComponent:null};c.measureMethods(b,"ReactCompositeComponent",{mountComponent:"mountComponent",updateComponent:"updateComponent",_renderValidatedComponent:"_renderValidatedComponent"});var E={Mixin:b};e.exports=E}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var r=n(12),o=n(69),i=n(71),a=n(18),s=n(6),u=n(8),c=n(16),l=n(9),p=n(40),d=n(41),h=n(166),f=n(4);i.inject();var g=u.measure("React","render",s.render),v={findDOMNode:d,render:g,unmountComponentAtNode:s.unmountComponentAtNode,version:p,unstable_batchedUpdates:l.batchedUpdates,unstable_renderSubtreeIntoContainer:h};if("undefined"!=typeof __REACT_DEVTOOLS_GLOBAL_HOOK__&&"function"==typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.inject&&__REACT_DEVTOOLS_GLOBAL_HOOK__.inject({CurrentOwner:r,InstanceHandles:a,Mount:s,Reconciler:c,TextComponent:o}),"production"!==t.env.NODE_ENV){var m=n(5);if(m.canUseDOM&&window.top===window.self){"undefined"==typeof __REACT_DEVTOOLS_GLOBAL_HOOK__&&(navigator.userAgent.indexOf("Chrome")>-1&&-1===navigator.userAgent.indexOf("Edge")||navigator.userAgent.indexOf("Firefox")>-1)&&console.debug("Download the React DevTools for a better development experience: https://fb.me/react-devtools");var y=document.documentMode&&document.documentMode<8;"production"!==t.env.NODE_ENV?f(!y,'Internet Explorer is running in compatibility mode; please add the following tag to your HTML to prevent this from happening: <meta http-equiv="X-UA-Compatible" content="IE=edge" />'):void 0;for(var _=[Array.isArray,Array.prototype.every,Array.prototype.forEach,Array.prototype.indexOf,Array.prototype.map,Date.now,Function.prototype.bind,Object.keys,String.prototype.split,String.prototype.trim,Object.create,Object.freeze],b=0;b<_.length;b++)if(!_[b]){console.error("One or more ES5 shim/shams expected by React are not available: https://fb.me/react-warning-polyfills");break}}}e.exports=v}).call(t,n(1))},function(e,t){"use strict";var n={onClick:!0,onDoubleClick:!0,onMouseDown:!0,onMouseMove:!0,onMouseUp:!0,onClickCapture:!0,onDoubleClickCapture:!0,onMouseDownCapture:!0,onMouseMoveCapture:!0,onMouseUpCapture:!0},r={getNativeProps:function(e,t,r){if(!t.disabled)return t;var o={};for(var i in t)t.hasOwnProperty(i)&&!n[i]&&(o[i]=t[i]);return o}};e.exports=r},function(e,t,n){(function(t){"use strict";function r(e){if(e){var t=e._currentElement._owner||null;if(t){var n=t.getName();if(n)return" This DOM node was rendered by `"+n+"`."}}return""}function o(){if("production"!==t.env.NODE_ENV){var e=this._reactInternalComponent;"production"!==t.env.NODE_ENV?Y(!1,"ReactDOMComponent: Do not access .getDOMNode() of a DOM node; instead, use the node directly.%s",r(e)):void 0}return this}function i(){var e=this._reactInternalComponent;return"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?Y(!1,"ReactDOMComponent: Do not access .isMounted() of a DOM node.%s",r(e)):void 0),!!e}function a(){if("production"!==t.env.NODE_ENV){var e=this._reactInternalComponent;"production"!==t.env.NODE_ENV?Y(!1,"ReactDOMComponent: Do not access .setState(), .replaceState(), or .forceUpdate() of a DOM node. This is a no-op.%s",r(e)):void 0}}function s(e,n){var o=this._reactInternalComponent;"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?Y(!1,"ReactDOMComponent: Do not access .setProps() of a DOM node. Instead, call ReactDOM.render again at the top level.%s",r(o)):void 0),o&&(U.enqueueSetPropsInternal(o,e),n&&U.enqueueCallbackInternal(o,n))}function u(e,n){var o=this._reactInternalComponent;"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?Y(!1,"ReactDOMComponent: Do not access .replaceProps() of a DOM node. Instead, call ReactDOM.render again at the top level.%s",r(o)):void 0),o&&(U.enqueueReplacePropsInternal(o,e),n&&U.enqueueCallbackInternal(o,n))}function c(e){if("object"==typeof e){if(Array.isArray(e))return"["+e.map(c).join(", ")+"]";var t=[];for(var n in e)if(Object.prototype.hasOwnProperty.call(e,n)){var r=/^[a-z$_][\w$_]*$/i.test(n)?n:JSON.stringify(n);t.push(r+": "+c(e[n]))}return"{"+t.join(", ")+"}"}return"string"==typeof e?JSON.stringify(e):"function"==typeof e?"[function object]":String(e)}function l(e,n,r){if(null!=e&&null!=n&&!q(e,n)){var o,i=r._tag,a=r._currentElement._owner;a&&(o=a.getName());var s=o+"|"+i;re.hasOwnProperty(s)||(re[s]=!0,"production"!==t.env.NODE_ENV?Y(!1,"`%s` was passed a style object that has previously been mutated. Mutating `style` is deprecated. Consider cloning it beforehand. Check the `render` %s. Previous style: %s. Mutated style: %s.",i,a?"of `"+o+"`":"using <"+i+">",c(e),c(n)):void 0)}}function p(e,n){n&&("production"!==t.env.NODE_ENV&&se[e._tag]&&("production"!==t.env.NODE_ENV?Y(null==n.children&&null==n.dangerouslySetInnerHTML,"%s is a void element tag and must not have `children` or use `props.dangerouslySetInnerHTML`.%s",e._tag,e._currentElement._owner?" Check the render method of "+e._currentElement._owner.getName()+".":""):void 0),null!=n.dangerouslySetInnerHTML&&(null!=n.children?"production"!==t.env.NODE_ENV?H(!1,"Can only set one of `children` or `props.dangerouslySetInnerHTML`."):H(!1):void 0,"object"==typeof n.dangerouslySetInnerHTML&&te in n.dangerouslySetInnerHTML?void 0:"production"!==t.env.NODE_ENV?H(!1,"`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://fb.me/react-invariant-dangerously-set-inner-html for more information."):H(!1)),"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?Y(null==n.innerHTML,"Directly setting property `innerHTML` is not permitted. For more information, lookup documentation on `dangerouslySetInnerHTML`."):void 0,"production"!==t.env.NODE_ENV?Y(!n.contentEditable||null==n.children,"A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional."):void 0),null!=n.style&&"object"!=typeof n.style?"production"!==t.env.NODE_ENV?H(!1,"The `style` prop expects a mapping from style properties to values, not a string. For example, style={{marginRight: spacing + 'em'}} when using JSX.%s",r(e)):H(!1):void 0)}function d(e,n,r,o){"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?Y("onScroll"!==n||F("scroll",!0),"This browser doesn't support the `onScroll` event"):void 0);var i=M.findReactContainerForID(e);if(i){var a=i.nodeType===ne?i.ownerDocument:i;G(n,a)}o.getReactMountReady().enqueue(h,{id:e,registrationName:n,listener:r})}function h(){var e=this;O.putListener(e.id,e.registrationName,e.listener)}function f(){var e=this;e._rootNodeID?void 0:"production"!==t.env.NODE_ENV?H(!1,"Must be mounted to trap events"):H(!1);var n=M.getNode(e._rootNodeID);switch(n?void 0:"production"!==t.env.NODE_ENV?H(!1,"trapBubbledEvent(...): Requires node to be rendered."):H(!1),e._tag){case"iframe":e._wrapperState.listeners=[O.trapBubbledEvent(D.topLevelTypes.topLoad,"load",n)];break;case"video":case"audio":e._wrapperState.listeners=[];for(var r in oe)oe.hasOwnProperty(r)&&e._wrapperState.listeners.push(O.trapBubbledEvent(D.topLevelTypes[r],oe[r],n));break;case"img":e._wrapperState.listeners=[O.trapBubbledEvent(D.topLevelTypes.topError,"error",n),O.trapBubbledEvent(D.topLevelTypes.topLoad,"load",n)];break;case"form":e._wrapperState.listeners=[O.trapBubbledEvent(D.topLevelTypes.topReset,"reset",n),O.trapBubbledEvent(D.topLevelTypes.topSubmit,"submit",n)]}}function g(){R.mountReadyWrapper(this)}function v(){T.postUpdateWrapper(this)}function m(e){le.call(ce,e)||(ue.test(e)?void 0:"production"!==t.env.NODE_ENV?H(!1,"Invalid tag: %s",e):H(!1),ce[e]=!0)}function y(e,t){e=V({},e);var n=e[X.ancestorInfoContextKey];return e[X.ancestorInfoContextKey]=X.updatedAncestorInfo(n,t._tag,t),e}function _(e,t){return e.indexOf("-")>=0||null!=t.is}function b(e){m(e),this._tag=e.toLowerCase(),this._renderedChildren=null,this._previousStyle=null,this._previousStyleCopy=null,this._rootNodeID=null,this._wrapperState=null,this._topLevelWrapper=null,this._nodeWithLegacyProperties=null,"production"!==t.env.NODE_ENV&&(this._unprocessedContextDev=null,this._processedContextDev=null)}var E,N=n(109),S=n(111),w=n(15),C=n(34),D=n(11),O=n(25),A=n(36),x=n(125),R=n(128),I=n(129),T=n(68),P=n(132),M=n(6),k=n(139),B=n(8),U=n(39),V=n(3),L=n(30),j=n(31),H=n(2),F=n(47),K=n(13),W=n(32),J=n(48),q=n(60),X=n(51),Y=n(4),z=O.deleteListener,G=O.listenTo,$=O.registrationNameModules,Z={string:!0,number:!0},Q=K({children:null}),ee=K({style:null}),te=K({__html:null}),ne=1;"production"!==t.env.NODE_ENV&&(E={props:{enumerable:!1,get:function(){var e=this._reactInternalComponent;return"production"!==t.env.NODE_ENV?Y(!1,"ReactDOMComponent: Do not access .props of a DOM node; instead, recreate the props as `render` did originally or read the DOM properties/attributes directly from this node (e.g., this.refs.box.className).%s",r(e)):void 0,e._currentElement.props}}});var re={},oe={topAbort:"abort",topCanPlay:"canplay",topCanPlayThrough:"canplaythrough",topDurationChange:"durationchange",topEmptied:"emptied",topEncrypted:"encrypted",topEnded:"ended",topError:"error",topLoadedData:"loadeddata",topLoadedMetadata:"loadedmetadata",topLoadStart:"loadstart",topPause:"pause",topPlay:"play",topPlaying:"playing",topProgress:"progress",topRateChange:"ratechange",topSeeked:"seeked",topSeeking:"seeking",topStalled:"stalled",topSuspend:"suspend",topTimeUpdate:"timeupdate",topVolumeChange:"volumechange",topWaiting:"waiting"},ie={area:!0,base:!0,br:!0,col:!0,embed:!0,hr:!0,img:!0,input:!0,keygen:!0,link:!0,meta:!0,param:!0,source:!0,track:!0,wbr:!0},ae={listing:!0,pre:!0,textarea:!0},se=V({menuitem:!0},ie),ue=/^[a-zA-Z][a-zA-Z:_\.\-\d]*$/,ce={},le={}.hasOwnProperty;b.displayName="ReactDOMComponent",b.Mixin={construct:function(e){this._currentElement=e},mountComponent:function(e,n,r){this._rootNodeID=e;var o=this._currentElement.props;switch(this._tag){case"iframe":case"img":case"form":case"video":case"audio":this._wrapperState={listeners:null},n.getReactMountReady().enqueue(f,this);break;case"button":o=x.getNativeProps(this,o,r);break;case"input":R.mountWrapper(this,o,r),o=R.getNativeProps(this,o,r);break;case"option":I.mountWrapper(this,o,r),o=I.getNativeProps(this,o,r);break;case"select":T.mountWrapper(this,o,r),o=T.getNativeProps(this,o,r),r=T.processChildContext(this,o,r);break;case"textarea":P.mountWrapper(this,o,r),o=P.getNativeProps(this,o,r)}p(this,o),"production"!==t.env.NODE_ENV&&r[X.ancestorInfoContextKey]&&X(this._tag,this,r[X.ancestorInfoContextKey]),"production"!==t.env.NODE_ENV&&(this._unprocessedContextDev=r,this._processedContextDev=y(r,this),r=this._processedContextDev);var i;if(n.useCreateElement){var a=r[M.ownerDocumentContextKey],s=a.createElement(this._currentElement.type);C.setAttributeForID(s,this._rootNodeID),M.getID(s),this._updateDOMProperties({},o,n,s),this._createInitialChildren(n,o,r,s),i=s}else{var u=this._createOpenTagMarkupAndPutListeners(n,o),c=this._createContentMarkup(n,o,r);i=!c&&ie[this._tag]?u+"/>":u+">"+c+"</"+this._currentElement.type+">"}switch(this._tag){case"input":n.getReactMountReady().enqueue(g,this);case"button":case"select":case"textarea":o.autoFocus&&n.getReactMountReady().enqueue(N.focusDOMComponent,this)}return i},_createOpenTagMarkupAndPutListeners:function(e,n){var r="<"+this._currentElement.type;for(var o in n)if(n.hasOwnProperty(o)){var i=n[o];if(null!=i)if($.hasOwnProperty(o))i&&d(this._rootNodeID,o,i,e);else{o===ee&&(i&&("production"!==t.env.NODE_ENV&&(this._previousStyle=i),i=this._previousStyleCopy=V({},n.style)),i=S.createMarkupForStyles(i));var a=null;null!=this._tag&&_(this._tag,n)?o!==Q&&(a=C.createMarkupForCustomAttribute(o,i)):a=C.createMarkupForProperty(o,i),a&&(r+=" "+a)}}if(e.renderToStaticMarkup)return r;var s=C.createMarkupForID(this._rootNodeID);return r+" "+s},_createContentMarkup:function(e,t,n){var r="",o=t.dangerouslySetInnerHTML;if(null!=o)null!=o.__html&&(r=o.__html);else{var i=Z[typeof t.children]?t.children:null,a=null!=i?null:t.children;if(null!=i)r=j(i);else if(null!=a){var s=this.mountChildren(a,e,n);r=s.join("")}}return ae[this._tag]&&"\n"===r.charAt(0)?"\n"+r:r},_createInitialChildren:function(e,t,n,r){var o=t.dangerouslySetInnerHTML;if(null!=o)null!=o.__html&&W(r,o.__html);else{var i=Z[typeof t.children]?t.children:null,a=null!=i?null:t.children;if(null!=i)J(r,i);else if(null!=a)for(var s=this.mountChildren(a,e,n),u=0;u<s.length;u++)r.appendChild(s[u])}},receiveComponent:function(e,t,n){var r=this._currentElement;this._currentElement=e,this.updateComponent(t,r,e,n)},updateComponent:function(e,n,r,o){var i=n.props,a=this._currentElement.props;switch(this._tag){case"button":i=x.getNativeProps(this,i),a=x.getNativeProps(this,a);break;case"input":R.updateWrapper(this),i=R.getNativeProps(this,i),a=R.getNativeProps(this,a);break;case"option":i=I.getNativeProps(this,i),a=I.getNativeProps(this,a);break;case"select":i=T.getNativeProps(this,i),a=T.getNativeProps(this,a);break;case"textarea":P.updateWrapper(this),i=P.getNativeProps(this,i),a=P.getNativeProps(this,a)}"production"!==t.env.NODE_ENV&&(this._unprocessedContextDev!==o&&(this._unprocessedContextDev=o,this._processedContextDev=y(o,this)),o=this._processedContextDev),p(this,a),this._updateDOMProperties(i,a,e,null),this._updateDOMChildren(i,a,e,o),!L&&this._nodeWithLegacyProperties&&(this._nodeWithLegacyProperties.props=a),"select"===this._tag&&e.getReactMountReady().enqueue(v,this)},_updateDOMProperties:function(e,n,r,o){var i,a,s;for(i in e)if(!n.hasOwnProperty(i)&&e.hasOwnProperty(i))if(i===ee){var u=this._previousStyleCopy;for(a in u)u.hasOwnProperty(a)&&(s=s||{},s[a]="");this._previousStyleCopy=null}else $.hasOwnProperty(i)?e[i]&&z(this._rootNodeID,i):(w.properties[i]||w.isCustomAttribute(i))&&(o||(o=M.getNode(this._rootNodeID)),C.deleteValueForProperty(o,i));for(i in n){var c=n[i],p=i===ee?this._previousStyleCopy:e[i];if(n.hasOwnProperty(i)&&c!==p)if(i===ee)if(c?("production"!==t.env.NODE_ENV&&(l(this._previousStyleCopy,this._previousStyle,this),this._previousStyle=c),c=this._previousStyleCopy=V({},c)):this._previousStyleCopy=null,p){for(a in p)!p.hasOwnProperty(a)||c&&c.hasOwnProperty(a)||(s=s||{},s[a]="");for(a in c)c.hasOwnProperty(a)&&p[a]!==c[a]&&(s=s||{},s[a]=c[a])}else s=c;else $.hasOwnProperty(i)?c?d(this._rootNodeID,i,c,r):p&&z(this._rootNodeID,i):_(this._tag,n)?(o||(o=M.getNode(this._rootNodeID)),i===Q&&(c=null),C.setValueForAttribute(o,i,c)):(w.properties[i]||w.isCustomAttribute(i))&&(o||(o=M.getNode(this._rootNodeID)),null!=c?C.setValueForProperty(o,i,c):C.deleteValueForProperty(o,i))}s&&(o||(o=M.getNode(this._rootNodeID)),S.setValueForStyles(o,s))},_updateDOMChildren:function(e,t,n,r){var o=Z[typeof e.children]?e.children:null,i=Z[typeof t.children]?t.children:null,a=e.dangerouslySetInnerHTML&&e.dangerouslySetInnerHTML.__html,s=t.dangerouslySetInnerHTML&&t.dangerouslySetInnerHTML.__html,u=null!=o?null:e.children,c=null!=i?null:t.children,l=null!=o||null!=a,p=null!=i||null!=s;null!=u&&null==c?this.updateChildren(null,n,r):l&&!p&&this.updateTextContent(""),null!=i?o!==i&&this.updateTextContent(""+i):null!=s?a!==s&&this.updateMarkup(""+s):null!=c&&this.updateChildren(c,n,r)},unmountComponent:function(){switch(this._tag){case"iframe":case"img":case"form":case"video":case"audio":var e=this._wrapperState.listeners;if(e)for(var n=0;n<e.length;n++)e[n].remove();break;case"input":R.unmountWrapper(this);break;case"html":case"head":case"body":"production"!==t.env.NODE_ENV?H(!1,"<%s> tried to unmount. Because of cross-browser quirks it is impossible to unmount some top-level components (eg <html>, <head>, and <body>) reliably and efficiently. To fix this, have a single top-level component that never unmounts render these elements.",this._tag):H(!1)}if(this.unmountChildren(),O.deleteAllListeners(this._rootNodeID),A.unmountIDFromEnvironment(this._rootNodeID),this._rootNodeID=null,this._wrapperState=null,this._nodeWithLegacyProperties){var r=this._nodeWithLegacyProperties;r._reactInternalComponent=null,this._nodeWithLegacyProperties=null}},getPublicInstance:function(){if(!this._nodeWithLegacyProperties){var e=M.getNode(this._rootNodeID);e._reactInternalComponent=this,e.getDOMNode=o,e.isMounted=i,e.setState=a,e.replaceState=a,e.forceUpdate=a,e.setProps=s,e.replaceProps=u,"production"!==t.env.NODE_ENV&&L?Object.defineProperties(e,E):e.props=this._currentElement.props,this._nodeWithLegacyProperties=e}return this._nodeWithLegacyProperties}},B.measureMethods(b,"ReactDOMComponent",{mountComponent:"mountComponent",updateComponent:"updateComponent"}),V(b.prototype,b.Mixin,k.Mixin),e.exports=b}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e){return"production"!==t.env.NODE_ENV?i.createFactory(e):o.createFactory(e)}var o=n(7),i=n(72),a=n(101),s=a({a:"a",abbr:"abbr",address:"address",area:"area",article:"article",aside:"aside",audio:"audio",b:"b",base:"base",bdi:"bdi",bdo:"bdo",big:"big",blockquote:"blockquote",body:"body",br:"br",button:"button",canvas:"canvas",caption:"caption",cite:"cite",code:"code",col:"col",colgroup:"colgroup",data:"data",datalist:"datalist",dd:"dd",del:"del",details:"details",dfn:"dfn",dialog:"dialog",div:"div",dl:"dl",dt:"dt",em:"em",embed:"embed",fieldset:"fieldset",figcaption:"figcaption",figure:"figure",footer:"footer",form:"form",h1:"h1",h2:"h2",h3:"h3",h4:"h4",h5:"h5",h6:"h6",head:"head",header:"header",hgroup:"hgroup",hr:"hr",html:"html",i:"i",iframe:"iframe",img:"img",input:"input",ins:"ins",kbd:"kbd",keygen:"keygen",label:"label",legend:"legend",li:"li",link:"link",main:"main",map:"map",mark:"mark",menu:"menu",menuitem:"menuitem",meta:"meta",meter:"meter",nav:"nav",noscript:"noscript",object:"object",ol:"ol",optgroup:"optgroup",option:"option",output:"output",p:"p",param:"param",picture:"picture",pre:"pre",progress:"progress",q:"q",rp:"rp",rt:"rt",ruby:"ruby",s:"s",samp:"samp",script:"script",section:"section",select:"select",small:"small",source:"source",span:"span",strong:"strong",style:"style",sub:"sub",summary:"summary",sup:"sup",table:"table",tbody:"tbody",td:"td",textarea:"textarea",tfoot:"tfoot",th:"th",thead:"thead",time:"time",title:"title",tr:"tr",track:"track",u:"u",ul:"ul","var":"var",video:"video",wbr:"wbr",circle:"circle",clipPath:"clipPath",defs:"defs",ellipse:"ellipse",g:"g",image:"image",line:"line",linearGradient:"linearGradient",mask:"mask",path:"path",pattern:"pattern",polygon:"polygon",polyline:"polyline",radialGradient:"radialGradient",rect:"rect",stop:"stop",svg:"svg",text:"text",tspan:"tspan"},r);e.exports=s}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(){this._rootNodeID&&d.updateWrapper(this)}function o(e){var n=this._currentElement.props,o=a.executeOnChange(n,e);u.asap(r,this);var i=n.name;if("radio"===n.type&&null!=i){for(var c=s.getNode(this._rootNodeID),d=c;d.parentNode;)d=d.parentNode;for(var h=d.querySelectorAll("input[name="+JSON.stringify(""+i)+'][type="radio"]'),f=0;f<h.length;f++){var g=h[f];if(g!==c&&g.form===c.form){var v=s.getID(g);v?void 0:"production"!==t.env.NODE_ENV?l(!1,"ReactDOMInput: Mixing React and non-React radio inputs with the same `name` is not supported."):l(!1);var m=p[v];m?void 0:"production"!==t.env.NODE_ENV?l(!1,"ReactDOMInput: Unknown radio button ID %s.",v):l(!1),u.asap(r,m)}}}return o}var i=n(38),a=n(35),s=n(6),u=n(9),c=n(3),l=n(2),p={},d={getNativeProps:function(e,t,n){var r=a.getValue(t),o=a.getChecked(t),i=c({},t,{defaultChecked:void 0,defaultValue:void 0,value:null!=r?r:e._wrapperState.initialValue,checked:null!=o?o:e._wrapperState.initialChecked,onChange:e._wrapperState.onChange});return i},mountWrapper:function(e,n){"production"!==t.env.NODE_ENV&&a.checkPropTypes("input",n,e._currentElement._owner);var r=n.defaultValue;e._wrapperState={initialChecked:n.defaultChecked||!1,initialValue:null!=r?r:null,onChange:o.bind(e)}},mountReadyWrapper:function(e){p[e._rootNodeID]=e},unmountWrapper:function(e){delete p[e._rootNodeID]},updateWrapper:function(e){var t=e._currentElement.props,n=t.checked;null!=n&&i.updatePropertyByID(e._rootNodeID,"checked",n||!1);var r=a.getValue(t);null!=r&&i.updatePropertyByID(e._rootNodeID,"value",""+r)}};e.exports=d}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var r=n(64),o=n(68),i=n(3),a=n(4),s=o.valueContextKey,u={mountWrapper:function(e,n,r){"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?a(null==n.selected,"Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>."):void 0);var o=r[s],i=null;if(null!=o)if(i=!1,Array.isArray(o)){for(var u=0;u<o.length;u++)if(""+o[u]==""+n.value){i=!0;break}}else i=""+o==""+n.value;e._wrapperState={selected:i}},getNativeProps:function(e,n,o){var s=i({selected:void 0,children:void 0},n);null!=e._wrapperState.selected&&(s.selected=e._wrapperState.selected);var u="";return r.forEach(n.children,function(e){null!=e&&("string"==typeof e||"number"==typeof e?u+=e:"production"!==t.env.NODE_ENV?a(!1,"Only strings and numbers are supported as <option> children."):void 0)}),u&&(s.children=u),s}};e.exports=u}).call(t,n(1))},function(e,t,n){"use strict";function r(e,t,n,r){return e===n&&t===r}function o(e){var t=document.selection,n=t.createRange(),r=n.text.length,o=n.duplicate();o.moveToElementText(e),o.setEndPoint("EndToStart",n);var i=o.text.length,a=i+r;return{start:i,end:a}}function i(e){var t=window.getSelection&&window.getSelection();if(!t||0===t.rangeCount)return null;var n=t.anchorNode,o=t.anchorOffset,i=t.focusNode,a=t.focusOffset,s=t.getRangeAt(0);try{s.startContainer.nodeType,s.endContainer.nodeType}catch(u){return null}var c=r(t.anchorNode,t.anchorOffset,t.focusNode,t.focusOffset),l=c?0:s.toString().length,p=s.cloneRange();p.selectNodeContents(e),p.setEnd(s.startContainer,s.startOffset);var d=r(p.startContainer,p.startOffset,p.endContainer,p.endOffset),h=d?0:p.toString().length,f=h+l,g=document.createRange();g.setStart(n,o),g.setEnd(i,a);var v=g.collapsed;return{start:v?f:h,end:v?h:f}}function a(e,t){var n,r,o=document.selection.createRange().duplicate();"undefined"==typeof t.end?(n=t.start,r=n):t.start>t.end?(n=t.end,r=t.start):(n=t.start,r=t.end),o.moveToElementText(e),o.moveStart("character",n),o.setEndPoint("EndToStart",o),o.moveEnd("character",r-n),o.select()}function s(e,t){if(window.getSelection){var n=window.getSelection(),r=e[l()].length,o=Math.min(t.start,r),i="undefined"==typeof t.end?o:Math.min(t.end,r);if(!n.extend&&o>i){var a=i;i=o,o=a}var s=c(e,o),u=c(e,i);if(s&&u){var p=document.createRange();p.setStart(s.node,s.offset),n.removeAllRanges(),o>i?(n.addRange(p),n.extend(u.node,u.offset)):(p.setEnd(u.node,u.offset),n.addRange(p))}}}var u=n(5),c=n(163),l=n(86),p=u.canUseDOM&&"selection"in document&&!("getSelection"in window),d={getOffsets:p?o:i,setOffsets:p?a:s};e.exports=d},function(e,t,n){"use strict";var r=n(71),o=n(144),i=n(40);r.inject();var a={renderToString:o.renderToString,renderToStaticMarkup:o.renderToStaticMarkup,version:i};e.exports=a},function(e,t,n){(function(t){"use strict";function r(){this._rootNodeID&&p.updateWrapper(this)}function o(e){var t=this._currentElement.props,n=i.executeOnChange(t,e);return s.asap(r,this),n}var i=n(35),a=n(38),s=n(9),u=n(3),c=n(2),l=n(4),p={getNativeProps:function(e,n,r){null!=n.dangerouslySetInnerHTML?"production"!==t.env.NODE_ENV?c(!1,"`dangerouslySetInnerHTML` does not make sense on <textarea>."):c(!1):void 0;var o=u({},n,{defaultValue:void 0,value:void 0,children:e._wrapperState.initialValue,onChange:e._wrapperState.onChange});return o},mountWrapper:function(e,n){"production"!==t.env.NODE_ENV&&i.checkPropTypes("textarea",n,e._currentElement._owner);var r=n.defaultValue,a=n.children;null!=a&&("production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?l(!1,"Use the `defaultValue` or `value` props instead of setting children on <textarea>."):void 0),null!=r?"production"!==t.env.NODE_ENV?c(!1,"If you supply `defaultValue` on a <textarea>, do not pass children."):c(!1):void 0,Array.isArray(a)&&(a.length<=1?void 0:"production"!==t.env.NODE_ENV?c(!1,"<textarea> can only have at most one child."):c(!1),a=a[0]),r=""+a),null==r&&(r="");var s=i.getValue(n);e._wrapperState={initialValue:""+(null!=s?s:r),onChange:o.bind(e)}},updateWrapper:function(e){var t=e._currentElement.props,n=i.getValue(t);null!=n&&a.updatePropertyByID(e._rootNodeID,"value",""+n)}};e.exports=p}).call(t,n(1))},function(e,t,n){"use strict";function r(e){return Math.floor(100*e)/100}function o(e,t,n){e[t]=(e[t]||0)+n}var i=n(15),a=n(134),s=n(6),u=n(8),c=n(104),l={_allMeasurements:[],_mountStack:[0],_injected:!1,start:function(){l._injected||u.injection.injectMeasure(l.measure),l._allMeasurements.length=0,u.enableMeasure=!0},stop:function(){u.enableMeasure=!1},getLastMeasurements:function(){return l._allMeasurements},printExclusive:function(e){e=e||l._allMeasurements;var t=a.getExclusiveSummary(e);console.table(t.map(function(e){return{"Component class name":e.componentName,"Total inclusive time (ms)":r(e.inclusive),"Exclusive mount time (ms)":r(e.exclusive),"Exclusive render time (ms)":r(e.render),"Mount time per instance (ms)":r(e.exclusive/e.count),"Render time per instance (ms)":r(e.render/e.count),Instances:e.count}}))},printInclusive:function(e){e=e||l._allMeasurements;var t=a.getInclusiveSummary(e);console.table(t.map(function(e){return{"Owner > component":e.componentName,"Inclusive time (ms)":r(e.time),Instances:e.count}})),console.log("Total time:",a.getTotalTime(e).toFixed(2)+" ms")},getMeasurementsSummaryMap:function(e){var t=a.getInclusiveSummary(e,!0);return t.map(function(e){return{"Owner > component":e.componentName,"Wasted time (ms)":e.time,Instances:e.count}})},printWasted:function(e){e=e||l._allMeasurements,console.table(l.getMeasurementsSummaryMap(e)),console.log("Total time:",a.getTotalTime(e).toFixed(2)+" ms")},printDOM:function(e){e=e||l._allMeasurements;var t=a.getDOMSummary(e);console.table(t.map(function(e){var t={};return t[i.ID_ATTRIBUTE_NAME]=e.id,t.type=e.type,t.args=JSON.stringify(e.args),t})),console.log("Total time:",a.getTotalTime(e).toFixed(2)+" ms")},_recordWrite:function(e,t,n,r){var o=l._allMeasurements[l._allMeasurements.length-1].writes;o[e]=o[e]||[],o[e].push({type:t,time:n,args:r})},measure:function(e,t,n){return function(){for(var r=arguments.length,i=Array(r),a=0;r>a;a++)i[a]=arguments[a];var u,p,d;if("_renderNewRootComponent"===t||"flushBatchedUpdates"===t)return l._allMeasurements.push({exclusive:{},inclusive:{},render:{},counts:{},writes:{},displayNames:{},totalTime:0,created:{}}),d=c(),p=n.apply(this,i),l._allMeasurements[l._allMeasurements.length-1].totalTime=c()-d,p;if("_mountImageIntoNode"===t||"ReactBrowserEventEmitter"===e||"ReactDOMIDOperations"===e||"CSSPropertyOperations"===e||"DOMChildrenOperations"===e||"DOMPropertyOperations"===e){if(d=c(),p=n.apply(this,i),u=c()-d,"_mountImageIntoNode"===t){var h=s.getID(i[1]);l._recordWrite(h,t,u,i[0])}else if("dangerouslyProcessChildrenUpdates"===t)i[0].forEach(function(e){var t={};null!==e.fromIndex&&(t.fromIndex=e.fromIndex),null!==e.toIndex&&(t.toIndex=e.toIndex),null!==e.textContent&&(t.textContent=e.textContent),null!==e.markupIndex&&(t.markup=i[1][e.markupIndex]),l._recordWrite(e.parentID,e.type,u,t)});else{var f=i[0];"object"==typeof f&&(f=s.getID(i[0])),l._recordWrite(f,t,u,Array.prototype.slice.call(i,1))}return p}if("ReactCompositeComponent"!==e||"mountComponent"!==t&&"updateComponent"!==t&&"_renderValidatedComponent"!==t)return n.apply(this,i);if(this._currentElement.type===s.TopLevelWrapper)return n.apply(this,i);var g="mountComponent"===t?i[0]:this._rootNodeID,v="_renderValidatedComponent"===t,m="mountComponent"===t,y=l._mountStack,_=l._allMeasurements[l._allMeasurements.length-1];if(v?o(_.counts,g,1):m&&(_.created[g]=!0,y.push(0)),d=c(),p=n.apply(this,i),u=c()-d,v)o(_.render,g,u);else if(m){var b=y.pop();y[y.length-1]+=u,o(_.exclusive,g,u-b),o(_.inclusive,g,u)}else o(_.inclusive,g,u);return _.displayNames[g]={current:this.getName(),owner:this._currentElement._owner?this._currentElement._owner.getName():"<root>"},p}}};e.exports=l},function(e,t,n){"use strict";function r(e){for(var t=0,n=0;n<e.length;n++){var r=e[n];t+=r.totalTime}return t}function o(e){var t=[];return e.forEach(function(e){Object.keys(e.writes).forEach(function(n){e.writes[n].forEach(function(e){t.push({id:n,type:l[e.type]||e.type,args:e.args})})})}),t}function i(e){for(var t,n={},r=0;r<e.length;r++){var o=e[r],i=u({},o.exclusive,o.inclusive);for(var a in i)t=o.displayNames[a].current,n[t]=n[t]||{componentName:t,inclusive:0,exclusive:0,render:0,count:0},o.render[a]&&(n[t].render+=o.render[a]),o.exclusive[a]&&(n[t].exclusive+=o.exclusive[a]),o.inclusive[a]&&(n[t].inclusive+=o.inclusive[a]),o.counts[a]&&(n[t].count+=o.counts[a])}var s=[];for(t in n)n[t].exclusive>=c&&s.push(n[t]);return s.sort(function(e,t){return t.exclusive-e.exclusive}),s}function a(e,t){for(var n,r={},o=0;o<e.length;o++){var i,a=e[o],l=u({},a.exclusive,a.inclusive);t&&(i=s(a));for(var p in l)if(!t||i[p]){var d=a.displayNames[p];n=d.owner+" > "+d.current,r[n]=r[n]||{componentName:n,time:0,count:0},a.inclusive[p]&&(r[n].time+=a.inclusive[p]),a.counts[p]&&(r[n].count+=a.counts[p])}}var h=[];for(n in r)r[n].time>=c&&h.push(r[n]);return h.sort(function(e,t){
-return t.time-e.time}),h}function s(e){var t={},n=Object.keys(e.writes),r=u({},e.exclusive,e.inclusive);for(var o in r){for(var i=!1,a=0;a<n.length;a++)if(0===n[a].indexOf(o)){i=!0;break}e.created[o]&&(i=!0),!i&&e.counts[o]>0&&(t[o]=!0)}return t}var u=n(3),c=1.2,l={_mountImageIntoNode:"set innerHTML",INSERT_MARKUP:"set innerHTML",MOVE_EXISTING:"move",REMOVE_NODE:"remove",SET_MARKUP:"set innerHTML",TEXT_CONTENT:"set textContent",setValueForProperty:"update attribute",setValueForAttribute:"update attribute",deleteValueForProperty:"remove attribute",setValueForStyles:"update styles",replaceNodeWithMarkup:"replace",updateTextContent:"set textContent"},p={getExclusiveSummary:i,getInclusiveSummary:a,getDOMSummary:o,getTotalTime:r};e.exports=p},function(e,t,n){"use strict";function r(e){o.enqueueEvents(e),o.processEventQueue(!1)}var o=n(20),i={handleTopLevel:function(e,t,n,i,a){var s=o.extractEvents(e,t,n,i,a);r(s)}};e.exports=i},function(e,t,n){"use strict";function r(e){var t=d.getID(e),n=p.getReactRootIDFromNodeID(t),r=d.findReactContainerForID(n),o=d.getFirstReactDOM(r);return o}function o(e,t){this.topLevelType=e,this.nativeEvent=t,this.ancestors=[]}function i(e){a(e)}function a(e){for(var t=d.getFirstReactDOM(g(e.nativeEvent))||window,n=t;n;)e.ancestors.push(n),n=r(n);for(var o=0;o<e.ancestors.length;o++){t=e.ancestors[o];var i=d.getID(t)||"";m._handleTopLevel(e.topLevelType,t,i,e.nativeEvent,g(e.nativeEvent))}}function s(e){var t=v(window);e(t)}var u=n(55),c=n(5),l=n(14),p=n(18),d=n(6),h=n(9),f=n(3),g=n(44),v=n(96);f(o.prototype,{destructor:function(){this.topLevelType=null,this.nativeEvent=null,this.ancestors.length=0}}),l.addPoolingTo(o,l.twoArgumentPooler);var m={_enabled:!0,_handleTopLevel:null,WINDOW_HANDLE:c.canUseDOM?window:null,setHandleTopLevel:function(e){m._handleTopLevel=e},setEnabled:function(e){m._enabled=!!e},isEnabled:function(){return m._enabled},trapBubbledEvent:function(e,t,n){var r=n;return r?u.listen(r,t,m.dispatchEvent.bind(null,e)):null},trapCapturedEvent:function(e,t,n){var r=n;return r?u.capture(r,t,m.dispatchEvent.bind(null,e)):null},monitorScrollValue:function(e){var t=s.bind(null,e);u.listen(window,"scroll",t)},dispatchEvent:function(e,t){if(m._enabled){var n=o.getPooled(e,t);try{h.batchedUpdates(i,n)}finally{o.release(n)}}}};e.exports=m},function(e,t,n){"use strict";var r=n(15),o=n(20),i=n(37),a=n(65),s=n(73),u=n(25),c=n(79),l=n(8),p=n(82),d=n(9),h={Component:i.injection,Class:a.injection,DOMProperty:r.injection,EmptyComponent:s.injection,EventPluginHub:o.injection,EventEmitter:u.injection,NativeComponent:c.injection,Perf:l.injection,RootIndex:p.injection,Updates:d.injection};e.exports=h},function(e,t,n){(function(t){"use strict";var r=n(64),o=n(66),i=n(65),a=n(127),s=n(7),u=n(72),c=n(81),l=n(40),p=n(3),d=n(164),h=s.createElement,f=s.createFactory,g=s.cloneElement;"production"!==t.env.NODE_ENV&&(h=u.createElement,f=u.createFactory,g=u.cloneElement);var v={Children:{map:r.map,forEach:r.forEach,count:r.count,toArray:r.toArray,only:d},Component:o,createElement:h,cloneElement:g,isValidElement:s.isValidElement,PropTypes:c,createClass:i.createClass,createFactory:f,createMixin:function(e){return e},DOM:a,version:l,__spread:p};e.exports=v}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e,t,n){m.push({parentID:e,parentNode:null,type:p.INSERT_MARKUP,markupIndex:y.push(t)-1,content:null,fromIndex:null,toIndex:n})}function o(e,t,n){m.push({parentID:e,parentNode:null,type:p.MOVE_EXISTING,markupIndex:null,content:null,fromIndex:t,toIndex:n})}function i(e,t){m.push({parentID:e,parentNode:null,type:p.REMOVE_NODE,markupIndex:null,content:null,fromIndex:t,toIndex:null})}function a(e,t){m.push({parentID:e,parentNode:null,type:p.SET_MARKUP,markupIndex:null,content:t,fromIndex:null,toIndex:null})}function s(e,t){m.push({parentID:e,parentNode:null,type:p.TEXT_CONTENT,markupIndex:null,content:t,fromIndex:null,toIndex:null})}function u(){m.length&&(l.processChildrenUpdates(m,y),c())}function c(){m.length=0,y.length=0}var l=n(37),p=n(78),d=n(12),h=n(16),f=n(122),g=n(161),v=0,m=[],y=[],_={Mixin:{_reconcilerInstantiateChildren:function(e,n,r){if("production"!==t.env.NODE_ENV&&this._currentElement)try{return d.current=this._currentElement._owner,f.instantiateChildren(e,n,r)}finally{d.current=null}return f.instantiateChildren(e,n,r)},_reconcilerUpdateChildren:function(e,n,r,o){var i;if("production"!==t.env.NODE_ENV&&this._currentElement){try{d.current=this._currentElement._owner,i=g(n)}finally{d.current=null}return f.updateChildren(e,i,r,o)}return i=g(n),f.updateChildren(e,i,r,o)},mountChildren:function(e,t,n){var r=this._reconcilerInstantiateChildren(e,t,n);this._renderedChildren=r;var o=[],i=0;for(var a in r)if(r.hasOwnProperty(a)){var s=r[a],u=this._rootNodeID+a,c=h.mountComponent(s,u,t,n);s._mountIndex=i++,o.push(c)}return o},updateTextContent:function(e){v++;var t=!0;try{var n=this._renderedChildren;f.unmountChildren(n);for(var r in n)n.hasOwnProperty(r)&&this._unmountChild(n[r]);this.setTextContent(e),t=!1}finally{v--,v||(t?c():u())}},updateMarkup:function(e){v++;var t=!0;try{var n=this._renderedChildren;f.unmountChildren(n);for(var r in n)n.hasOwnProperty(r)&&this._unmountChildByName(n[r],r);this.setMarkup(e),t=!1}finally{v--,v||(t?c():u())}},updateChildren:function(e,t,n){v++;var r=!0;try{this._updateChildren(e,t,n),r=!1}finally{v--,v||(r?c():u())}},_updateChildren:function(e,t,n){var r=this._renderedChildren,o=this._reconcilerUpdateChildren(r,e,t,n);if(this._renderedChildren=o,o||r){var i,a=0,s=0;for(i in o)if(o.hasOwnProperty(i)){var u=r&&r[i],c=o[i];u===c?(this.moveChild(u,s,a),a=Math.max(u._mountIndex,a),u._mountIndex=s):(u&&(a=Math.max(u._mountIndex,a),this._unmountChild(u)),this._mountChildByNameAtIndex(c,i,s,t,n)),s++}for(i in r)!r.hasOwnProperty(i)||o&&o.hasOwnProperty(i)||this._unmountChild(r[i])}},unmountChildren:function(){var e=this._renderedChildren;f.unmountChildren(e),this._renderedChildren=null},moveChild:function(e,t,n){e._mountIndex<n&&o(this._rootNodeID,e._mountIndex,t)},createChild:function(e,t){r(this._rootNodeID,t,e._mountIndex)},removeChild:function(e){i(this._rootNodeID,e._mountIndex)},setTextContent:function(e){s(this._rootNodeID,e)},setMarkup:function(e){a(this._rootNodeID,e)},_mountChildByNameAtIndex:function(e,t,n,r,o){var i=this._rootNodeID+t,a=h.mountComponent(e,i,r,o);e._mountIndex=n,this.createChild(e,a)},_unmountChild:function(e){this.removeChild(e),e._mountIndex=null}}};e.exports=_}).call(t,n(1))},function(e,t,n){(function(t){"use strict";var r=n(2),o={isValidOwner:function(e){return!(!e||"function"!=typeof e.attachRef||"function"!=typeof e.detachRef)},addComponentAsRefTo:function(e,n,i){o.isValidOwner(i)?void 0:"production"!==t.env.NODE_ENV?r(!1,"addComponentAsRefTo(...): Only a ReactOwner can have refs. You might be adding a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded (details: https://fb.me/react-refs-must-have-owner)."):r(!1),i.attachRef(n,e)},removeComponentAsRefFrom:function(e,n,i){o.isValidOwner(i)?void 0:"production"!==t.env.NODE_ENV?r(!1,"removeComponentAsRefFrom(...): Only a ReactOwner can have refs. You might be removing a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded (details: https://fb.me/react-refs-must-have-owner)."):r(!1),i.getPublicInstance().refs[n]===e.getPublicInstance()&&i.detachRef(n)}};e.exports=o}).call(t,n(1))},function(e,t,n){"use strict";function r(e){this.reinitializeTransaction(),this.renderToStaticMarkup=!1,this.reactMountReady=o.getPooled(null),this.useCreateElement=!e&&s.useCreateElement}var o=n(33),i=n(14),a=n(25),s=n(67),u=n(76),c=n(29),l=n(3),p={initialize:u.getSelectionInformation,close:u.restoreSelection},d={initialize:function(){var e=a.isEnabled();return a.setEnabled(!1),e},close:function(e){a.setEnabled(e)}},h={initialize:function(){this.reactMountReady.reset()},close:function(){this.reactMountReady.notifyAll()}},f=[p,d,h],g={getTransactionWrappers:function(){return f},getReactMountReady:function(){return this.reactMountReady},destructor:function(){o.release(this.reactMountReady),this.reactMountReady=null}};l(r.prototype,c.Mixin,g),i.addPoolingTo(r),e.exports=r},function(e,t,n){"use strict";function r(e,t,n){"function"==typeof e?e(t.getPublicInstance()):i.addComponentAsRefTo(t,e,n)}function o(e,t,n){"function"==typeof e?e(null):i.removeComponentAsRefFrom(t,e,n)}var i=n(140),a={};a.attachRefs=function(e,t){if(null!==t&&t!==!1){var n=t.ref;null!=n&&r(n,e,t._owner)}},a.shouldUpdateRefs=function(e,t){var n=null===e||e===!1,r=null===t||t===!1;return n||r||t._owner!==e._owner||t.ref!==e.ref},a.detachRefs=function(e,t){if(null!==t&&t!==!1){var n=t.ref;null!=n&&o(n,e,t._owner)}},e.exports=a},function(e,t){"use strict";var n={isBatchingUpdates:!1,batchedUpdates:function(e){}};e.exports=n},function(e,t,n){(function(t){"use strict";function r(e){a.isValidElement(e)?void 0:"production"!==t.env.NODE_ENV?f(!1,"renderToString(): You must pass a valid ReactElement."):f(!1);var n;try{p.injection.injectBatchingStrategy(c);var r=s.createReactRootID();return n=l.getPooled(!1),n.perform(function(){var t=h(e,null),o=t.mountComponent(r,n,d);return u.addChecksumToMarkup(o)},null)}finally{l.release(n),p.injection.injectBatchingStrategy(i)}}function o(e){a.isValidElement(e)?void 0:"production"!==t.env.NODE_ENV?f(!1,"renderToStaticMarkup(): You must pass a valid ReactElement."):f(!1);var n;try{p.injection.injectBatchingStrategy(c);var r=s.createReactRootID();return n=l.getPooled(!0),n.perform(function(){var t=h(e,null);return t.mountComponent(r,n,d)},null)}finally{l.release(n),p.injection.injectBatchingStrategy(i)}}var i=n(70),a=n(7),s=n(18),u=n(77),c=n(143),l=n(145),p=n(9),d=n(19),h=n(46),f=n(2);e.exports={renderToString:r,renderToStaticMarkup:o}}).call(t,n(1))},function(e,t,n){"use strict";function r(e){this.reinitializeTransaction(),this.renderToStaticMarkup=e,this.reactMountReady=i.getPooled(null),this.useCreateElement=!1}var o=n(14),i=n(33),a=n(29),s=n(3),u=n(10),c={initialize:function(){this.reactMountReady.reset()},close:u},l=[c],p={getTransactionWrappers:function(){return l},getReactMountReady:function(){return this.reactMountReady},destructor:function(){i.release(this.reactMountReady),this.reactMountReady=null}};s(r.prototype,a.Mixin,p),o.addPoolingTo(r),e.exports=r},function(e,t,n){"use strict";var r=n(15),o=r.injection.MUST_USE_ATTRIBUTE,i={xlink:"http://www.w3.org/1999/xlink",xml:"http://www.w3.org/XML/1998/namespace"},a={Properties:{clipPath:o,cx:o,cy:o,d:o,dx:o,dy:o,fill:o,fillOpacity:o,fontFamily:o,fontSize:o,fx:o,fy:o,gradientTransform:o,gradientUnits:o,markerEnd:o,markerMid:o,markerStart:o,offset:o,opacity:o,patternContentUnits:o,patternUnits:o,points:o,preserveAspectRatio:o,r:o,rx:o,ry:o,spreadMethod:o,stopColor:o,stopOpacity:o,stroke:o,strokeDasharray:o,strokeLinecap:o,strokeOpacity:o,strokeWidth:o,textAnchor:o,transform:o,version:o,viewBox:o,x1:o,x2:o,x:o,xlinkActuate:o,xlinkArcrole:o,xlinkHref:o,xlinkRole:o,xlinkShow:o,xlinkTitle:o,xlinkType:o,xmlBase:o,xmlLang:o,xmlSpace:o,y1:o,y2:o,y:o},DOMAttributeNamespaces:{xlinkActuate:i.xlink,xlinkArcrole:i.xlink,xlinkHref:i.xlink,xlinkRole:i.xlink,xlinkShow:i.xlink,xlinkTitle:i.xlink,xlinkType:i.xlink,xmlBase:i.xml,xmlLang:i.xml,xmlSpace:i.xml},DOMAttributeNames:{clipPath:"clip-path",fillOpacity:"fill-opacity",fontFamily:"font-family",fontSize:"font-size",gradientTransform:"gradientTransform",gradientUnits:"gradientUnits",markerEnd:"marker-end",markerMid:"marker-mid",markerStart:"marker-start",patternContentUnits:"patternContentUnits",patternUnits:"patternUnits",preserveAspectRatio:"preserveAspectRatio",spreadMethod:"spreadMethod",stopColor:"stop-color",stopOpacity:"stop-opacity",strokeDasharray:"stroke-dasharray",strokeLinecap:"stroke-linecap",strokeOpacity:"stroke-opacity",strokeWidth:"stroke-width",textAnchor:"text-anchor",viewBox:"viewBox",xlinkActuate:"xlink:actuate",xlinkArcrole:"xlink:arcrole",xlinkHref:"xlink:href",xlinkRole:"xlink:role",xlinkShow:"xlink:show",xlinkTitle:"xlink:title",xlinkType:"xlink:type",xmlBase:"xml:base",xmlLang:"xml:lang",xmlSpace:"xml:space"}};e.exports=a},function(e,t,n){"use strict";function r(e){if("selectionStart"in e&&u.hasSelectionCapabilities(e))return{start:e.selectionStart,end:e.selectionEnd};if(window.getSelection){var t=window.getSelection();return{anchorNode:t.anchorNode,anchorOffset:t.anchorOffset,focusNode:t.focusNode,focusOffset:t.focusOffset}}if(document.selection){var n=document.selection.createRange();return{parentElement:n.parentElement(),text:n.text,top:n.boundingTop,left:n.boundingLeft}}}function o(e,t){if(b||null==m||m!==l())return null;var n=r(m);if(!_||!h(_,n)){_=n;var o=c.getPooled(v.select,y,e,t);return o.type="select",o.target=m,a.accumulateTwoPhaseDispatches(o),o}return null}var i=n(11),a=n(21),s=n(5),u=n(76),c=n(17),l=n(58),p=n(87),d=n(13),h=n(60),f=i.topLevelTypes,g=s.canUseDOM&&"documentMode"in document&&document.documentMode<=11,v={select:{phasedRegistrationNames:{bubbled:d({onSelect:null}),captured:d({onSelectCapture:null})},dependencies:[f.topBlur,f.topContextMenu,f.topFocus,f.topKeyDown,f.topMouseDown,f.topMouseUp,f.topSelectionChange]}},m=null,y=null,_=null,b=!1,E=!1,N=d({onSelect:null}),S={eventTypes:v,extractEvents:function(e,t,n,r,i){if(!E)return null;switch(e){case f.topFocus:(p(t)||"true"===t.contentEditable)&&(m=t,y=n,_=null);break;case f.topBlur:m=null,y=null,_=null;break;case f.topMouseDown:b=!0;break;case f.topContextMenu:case f.topMouseUp:return b=!1,o(r,i);case f.topSelectionChange:if(g)break;case f.topKeyDown:case f.topKeyUp:return o(r,i)}return null},didPutListener:function(e,t,n){t===N&&(E=!0)}};e.exports=S},function(e,t){"use strict";var n=Math.pow(2,53),r={createReactRootIndex:function(){return Math.ceil(Math.random()*n)}};e.exports=r},function(e,t,n){(function(t){"use strict";var r=n(11),o=n(55),i=n(21),a=n(6),s=n(150),u=n(17),c=n(153),l=n(155),p=n(28),d=n(152),h=n(156),f=n(23),g=n(157),v=n(10),m=n(42),y=n(2),_=n(13),b=r.topLevelTypes,E={abort:{phasedRegistrationNames:{bubbled:_({onAbort:!0}),captured:_({onAbortCapture:!0})}},blur:{phasedRegistrationNames:{bubbled:_({onBlur:!0}),captured:_({onBlurCapture:!0})}},canPlay:{phasedRegistrationNames:{bubbled:_({onCanPlay:!0}),captured:_({onCanPlayCapture:!0})}},canPlayThrough:{phasedRegistrationNames:{bubbled:_({onCanPlayThrough:!0}),captured:_({onCanPlayThroughCapture:!0})}},click:{phasedRegistrationNames:{bubbled:_({onClick:!0}),captured:_({onClickCapture:!0})}},contextMenu:{phasedRegistrationNames:{bubbled:_({onContextMenu:!0}),captured:_({onContextMenuCapture:!0})}},copy:{phasedRegistrationNames:{bubbled:_({onCopy:!0}),captured:_({onCopyCapture:!0})}},cut:{phasedRegistrationNames:{bubbled:_({onCut:!0}),captured:_({onCutCapture:!0})}},doubleClick:{phasedRegistrationNames:{bubbled:_({onDoubleClick:!0}),captured:_({onDoubleClickCapture:!0})}},drag:{phasedRegistrationNames:{bubbled:_({onDrag:!0}),captured:_({onDragCapture:!0})}},dragEnd:{phasedRegistrationNames:{bubbled:_({onDragEnd:!0}),captured:_({onDragEndCapture:!0})}},dragEnter:{phasedRegistrationNames:{bubbled:_({onDragEnter:!0}),captured:_({onDragEnterCapture:!0})}},dragExit:{phasedRegistrationNames:{bubbled:_({onDragExit:!0}),captured:_({onDragExitCapture:!0})}},dragLeave:{phasedRegistrationNames:{bubbled:_({onDragLeave:!0}),captured:_({onDragLeaveCapture:!0})}},dragOver:{phasedRegistrationNames:{bubbled:_({onDragOver:!0}),captured:_({onDragOverCapture:!0})}},dragStart:{phasedRegistrationNames:{bubbled:_({onDragStart:!0}),captured:_({onDragStartCapture:!0})}},drop:{phasedRegistrationNames:{bubbled:_({onDrop:!0}),captured:_({onDropCapture:!0})}},durationChange:{phasedRegistrationNames:{bubbled:_({onDurationChange:!0}),captured:_({onDurationChangeCapture:!0})}},emptied:{phasedRegistrationNames:{bubbled:_({onEmptied:!0}),captured:_({onEmptiedCapture:!0})}},encrypted:{phasedRegistrationNames:{bubbled:_({onEncrypted:!0}),captured:_({onEncryptedCapture:!0})}},ended:{phasedRegistrationNames:{bubbled:_({onEnded:!0}),captured:_({onEndedCapture:!0})}},error:{phasedRegistrationNames:{bubbled:_({onError:!0}),captured:_({onErrorCapture:!0})}},focus:{phasedRegistrationNames:{bubbled:_({onFocus:!0}),captured:_({onFocusCapture:!0})}},input:{phasedRegistrationNames:{bubbled:_({onInput:!0}),captured:_({onInputCapture:!0})}},keyDown:{phasedRegistrationNames:{bubbled:_({onKeyDown:!0}),captured:_({onKeyDownCapture:!0})}},keyPress:{phasedRegistrationNames:{bubbled:_({onKeyPress:!0}),captured:_({onKeyPressCapture:!0})}},keyUp:{phasedRegistrationNames:{bubbled:_({onKeyUp:!0}),captured:_({onKeyUpCapture:!0})}},load:{phasedRegistrationNames:{bubbled:_({onLoad:!0}),captured:_({onLoadCapture:!0})}},loadedData:{phasedRegistrationNames:{bubbled:_({onLoadedData:!0}),captured:_({onLoadedDataCapture:!0})}},loadedMetadata:{phasedRegistrationNames:{bubbled:_({onLoadedMetadata:!0}),captured:_({onLoadedMetadataCapture:!0})}},loadStart:{phasedRegistrationNames:{bubbled:_({onLoadStart:!0}),captured:_({onLoadStartCapture:!0})}},mouseDown:{phasedRegistrationNames:{bubbled:_({onMouseDown:!0}),captured:_({onMouseDownCapture:!0})}},mouseMove:{phasedRegistrationNames:{bubbled:_({onMouseMove:!0}),captured:_({onMouseMoveCapture:!0})}},mouseOut:{phasedRegistrationNames:{bubbled:_({onMouseOut:!0}),captured:_({onMouseOutCapture:!0})}},mouseOver:{phasedRegistrationNames:{bubbled:_({onMouseOver:!0}),captured:_({onMouseOverCapture:!0})}},mouseUp:{phasedRegistrationNames:{bubbled:_({onMouseUp:!0}),captured:_({onMouseUpCapture:!0})}},paste:{phasedRegistrationNames:{bubbled:_({onPaste:!0}),captured:_({onPasteCapture:!0})}},pause:{phasedRegistrationNames:{bubbled:_({onPause:!0}),captured:_({onPauseCapture:!0})}},play:{phasedRegistrationNames:{bubbled:_({onPlay:!0}),captured:_({onPlayCapture:!0})}},playing:{phasedRegistrationNames:{bubbled:_({onPlaying:!0}),captured:_({onPlayingCapture:!0})}},progress:{phasedRegistrationNames:{bubbled:_({onProgress:!0}),captured:_({onProgressCapture:!0})}},rateChange:{phasedRegistrationNames:{bubbled:_({onRateChange:!0}),captured:_({onRateChangeCapture:!0})}},reset:{phasedRegistrationNames:{bubbled:_({onReset:!0}),captured:_({onResetCapture:!0})}},scroll:{phasedRegistrationNames:{bubbled:_({onScroll:!0}),captured:_({onScrollCapture:!0})}},seeked:{phasedRegistrationNames:{bubbled:_({onSeeked:!0}),captured:_({onSeekedCapture:!0})}},seeking:{phasedRegistrationNames:{bubbled:_({onSeeking:!0}),captured:_({onSeekingCapture:!0})}},stalled:{phasedRegistrationNames:{bubbled:_({onStalled:!0}),captured:_({onStalledCapture:!0})}},submit:{phasedRegistrationNames:{bubbled:_({onSubmit:!0}),captured:_({onSubmitCapture:!0})}},suspend:{phasedRegistrationNames:{bubbled:_({onSuspend:!0}),captured:_({onSuspendCapture:!0})}},timeUpdate:{phasedRegistrationNames:{bubbled:_({onTimeUpdate:!0}),captured:_({onTimeUpdateCapture:!0})}},touchCancel:{phasedRegistrationNames:{bubbled:_({onTouchCancel:!0}),captured:_({onTouchCancelCapture:!0})}},touchEnd:{phasedRegistrationNames:{bubbled:_({onTouchEnd:!0}),captured:_({onTouchEndCapture:!0})}},touchMove:{phasedRegistrationNames:{bubbled:_({onTouchMove:!0}),captured:_({onTouchMoveCapture:!0})}},touchStart:{phasedRegistrationNames:{bubbled:_({onTouchStart:!0}),captured:_({onTouchStartCapture:!0})}},volumeChange:{phasedRegistrationNames:{bubbled:_({onVolumeChange:!0}),captured:_({onVolumeChangeCapture:!0})}},waiting:{phasedRegistrationNames:{bubbled:_({onWaiting:!0}),captured:_({onWaitingCapture:!0})}},wheel:{phasedRegistrationNames:{bubbled:_({onWheel:!0}),captured:_({onWheelCapture:!0})}}},N={topAbort:E.abort,topBlur:E.blur,topCanPlay:E.canPlay,topCanPlayThrough:E.canPlayThrough,topClick:E.click,topContextMenu:E.contextMenu,topCopy:E.copy,topCut:E.cut,topDoubleClick:E.doubleClick,topDrag:E.drag,topDragEnd:E.dragEnd,topDragEnter:E.dragEnter,topDragExit:E.dragExit,topDragLeave:E.dragLeave,topDragOver:E.dragOver,topDragStart:E.dragStart,topDrop:E.drop,topDurationChange:E.durationChange,topEmptied:E.emptied,topEncrypted:E.encrypted,topEnded:E.ended,topError:E.error,topFocus:E.focus,topInput:E.input,topKeyDown:E.keyDown,topKeyPress:E.keyPress,topKeyUp:E.keyUp,topLoad:E.load,topLoadedData:E.loadedData,topLoadedMetadata:E.loadedMetadata,topLoadStart:E.loadStart,topMouseDown:E.mouseDown,topMouseMove:E.mouseMove,topMouseOut:E.mouseOut,topMouseOver:E.mouseOver,topMouseUp:E.mouseUp,topPaste:E.paste,topPause:E.pause,topPlay:E.play,topPlaying:E.playing,topProgress:E.progress,topRateChange:E.rateChange,topReset:E.reset,topScroll:E.scroll,topSeeked:E.seeked,topSeeking:E.seeking,topStalled:E.stalled,topSubmit:E.submit,topSuspend:E.suspend,topTimeUpdate:E.timeUpdate,topTouchCancel:E.touchCancel,topTouchEnd:E.touchEnd,topTouchMove:E.touchMove,topTouchStart:E.touchStart,topVolumeChange:E.volumeChange,topWaiting:E.waiting,topWheel:E.wheel};for(var S in N)N[S].dependencies=[S];var w=_({onClick:null}),C={},D={eventTypes:E,extractEvents:function(e,n,r,o,a){var v=N[e];if(!v)return null;var _;switch(e){case b.topAbort:case b.topCanPlay:case b.topCanPlayThrough:case b.topDurationChange:case b.topEmptied:case b.topEncrypted:case b.topEnded:case b.topError:case b.topInput:case b.topLoad:case b.topLoadedData:case b.topLoadedMetadata:case b.topLoadStart:case b.topPause:case b.topPlay:case b.topPlaying:case b.topProgress:case b.topRateChange:case b.topReset:case b.topSeeked:case b.topSeeking:case b.topStalled:case b.topSubmit:case b.topSuspend:case b.topTimeUpdate:case b.topVolumeChange:case b.topWaiting:_=u;break;case b.topKeyPress:if(0===m(o))return null;case b.topKeyDown:case b.topKeyUp:_=l;break;case b.topBlur:case b.topFocus:_=c;break;case b.topClick:if(2===o.button)return null;case b.topContextMenu:case b.topDoubleClick:case b.topMouseDown:case b.topMouseMove:case b.topMouseOut:case b.topMouseOver:case b.topMouseUp:_=p;break;case b.topDrag:case b.topDragEnd:case b.topDragEnter:case b.topDragExit:case b.topDragLeave:case b.topDragOver:case b.topDragStart:case b.topDrop:_=d;break;case b.topTouchCancel:case b.topTouchEnd:case b.topTouchMove:case b.topTouchStart:_=h;break;case b.topScroll:_=f;break;case b.topWheel:_=g;break;case b.topCopy:case b.topCut:case b.topPaste:_=s}_?void 0:"production"!==t.env.NODE_ENV?y(!1,"SimpleEventPlugin: Unhandled event type, `%s`.",e):y(!1);var E=_.getPooled(v,r,o,a);return i.accumulateTwoPhaseDispatches(E),E},didPutListener:function(e,t,n){if(t===w){var r=a.getNode(e);C[e]||(C[e]=o.listen(r,"click",v))}},willDeleteListener:function(e,t){t===w&&(C[e].remove(),delete C[e])}};e.exports=D}).call(t,n(1))},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(17),i={clipboardData:function(e){return"clipboardData"in e?e.clipboardData:window.clipboardData}};o.augmentClass(r,i),e.exports=r},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(17),i={data:null};o.augmentClass(r,i),e.exports=r},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(28),i={dataTransfer:null};o.augmentClass(r,i),e.exports=r},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(23),i={relatedTarget:null};o.augmentClass(r,i),e.exports=r},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(17),i={data:null};o.augmentClass(r,i),e.exports=r},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(23),i=n(42),a=n(162),s=n(43),u={key:a,location:null,ctrlKey:null,shiftKey:null,altKey:null,metaKey:null,repeat:null,locale:null,getModifierState:s,charCode:function(e){return"keypress"===e.type?i(e):0},keyCode:function(e){return"keydown"===e.type||"keyup"===e.type?e.keyCode:0},which:function(e){return"keypress"===e.type?i(e):"keydown"===e.type||"keyup"===e.type?e.keyCode:0}};o.augmentClass(r,u),e.exports=r},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(23),i=n(43),a={touches:null,targetTouches:null,changedTouches:null,altKey:null,metaKey:null,ctrlKey:null,shiftKey:null,getModifierState:i};o.augmentClass(r,a),e.exports=r},function(e,t,n){"use strict";function r(e,t,n,r){o.call(this,e,t,n,r)}var o=n(28),i={deltaX:function(e){return"deltaX"in e?e.deltaX:"wheelDeltaX"in e?-e.wheelDeltaX:0},deltaY:function(e){return"deltaY"in e?e.deltaY:"wheelDeltaY"in e?-e.wheelDeltaY:"wheelDelta"in e?-e.wheelDelta:0},deltaZ:null,deltaMode:null};o.augmentClass(r,i),e.exports=r},function(e,t){"use strict";function n(e){for(var t=1,n=0,o=0,i=e.length,a=-4&i;a>o;){for(;o<Math.min(o+4096,a);o+=4)n+=(t+=e.charCodeAt(o))+(t+=e.charCodeAt(o+1))+(t+=e.charCodeAt(o+2))+(t+=e.charCodeAt(o+3));t%=r,n%=r}for(;i>o;o++)n+=t+=e.charCodeAt(o);return t%=r,n%=r,t|n<<16}var r=65521;e.exports=n},function(e,t,n){"use strict";function r(e,t){var n=null==t||"boolean"==typeof t||""===t;if(n)return"";var r=isNaN(t);return r||0===t||i.hasOwnProperty(e)&&i[e]?""+t:("string"==typeof t&&(t=t.trim()),t+"px")}var o=n(61),i=o.isUnitlessNumber;e.exports=r},function(e,t,n){(function(t){"use strict";function r(e,n,r,a,s){var u=!1;if("production"!==t.env.NODE_ENV){var c=function(){return"production"!==t.env.NODE_ENV?i(u,"React.%s is deprecated. Please use %s.%s from require('%s') instead.",e,n,e,r):void 0,u=!0,s.apply(a,arguments)};return o(c,s)}return s}var o=n(3),i=n(4);e.exports=r}).call(t,n(1))},function(e,t,n){(function(t){"use strict";function r(e,n,r){var o=e,i=void 0===o[r];"production"!==t.env.NODE_ENV&&("production"!==t.env.NODE_ENV?a(i,"flattenChildren(...): Encountered two children with the same key, `%s`. Child keys must be unique; when two children share a key, only the first child will be used.",r):void 0),i&&null!=n&&(o[r]=n)}function o(e){if(null==e)return e;var t={};return i(e,r,t),t}var i=n(50),a=n(4);e.exports=o}).call(t,n(1))},function(e,t,n){"use strict";function r(e){if(e.key){var t=i[e.key]||e.key;if("Unidentified"!==t)return t}if("keypress"===e.type){var n=o(e);return 13===n?"Enter":String.fromCharCode(n)}return"keydown"===e.type||"keyup"===e.type?a[e.keyCode]||"Unidentified":""}var o=n(42),i={Esc:"Escape",Spacebar:" ",Left:"ArrowLeft",Up:"ArrowUp",Right:"ArrowRight",Down:"ArrowDown",Del:"Delete",Win:"OS",Menu:"ContextMenu",Apps:"ContextMenu",Scroll:"ScrollLock",MozPrintableKey:"Unidentified"},a={8:"Backspace",9:"Tab",12:"Clear",13:"Enter",16:"Shift",17:"Control",18:"Alt",19:"Pause",20:"CapsLock",27:"Escape",32:" ",33:"PageUp",34:"PageDown",35:"End",36:"Home",37:"ArrowLeft",38:"ArrowUp",39:"ArrowRight",40:"ArrowDown",45:"Insert",46:"Delete",112:"F1",113:"F2",114:"F3",115:"F4",116:"F5",117:"F6",118:"F7",119:"F8",120:"F9",121:"F10",122:"F11",123:"F12",144:"NumLock",145:"ScrollLock",224:"Meta"};e.exports=r},function(e,t){"use strict";function n(e){for(;e&&e.firstChild;)e=e.firstChild;return e}function r(e){for(;e;){if(e.nextSibling)return e.nextSibling;e=e.parentNode}}function o(e,t){for(var o=n(e),i=0,a=0;o;){if(3===o.nodeType){if(a=i+o.textContent.length,t>=i&&a>=t)return{node:o,offset:t-i};i=a}o=n(r(o))}}e.exports=o},function(e,t,n){(function(t){"use strict";function r(e){return o.isValidElement(e)?void 0:"production"!==t.env.NODE_ENV?i(!1,"onlyChild must be passed a children with exactly one child."):i(!1),e}var o=n(7),i=n(2);e.exports=r}).call(t,n(1))},function(e,t,n){"use strict";function r(e){return'"'+o(e)+'"'}var o=n(31);e.exports=r},function(e,t,n){"use strict";var r=n(6);e.exports=r.renderSubtreeIntoContainer},function(e,t,n){"use strict";e.exports=n(120)},function(e,t){e.exports=function(){throw new Error("define cannot be used indirect")}},function(e,t){e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children=[],e.webpackPolyfill=1),e}}]);
+	/* eslint-disable no-proto */
+
+	'use strict'
+
+	var base64 = __webpack_require__(4)
+	var ieee754 = __webpack_require__(5)
+	var isArray = __webpack_require__(6)
+
+	exports.Buffer = Buffer
+	exports.SlowBuffer = SlowBuffer
+	exports.INSPECT_MAX_BYTES = 50
+	Buffer.poolSize = 8192 // not used by this implementation
+
+	var rootParent = {}
+
+	/**
+	 * If `Buffer.TYPED_ARRAY_SUPPORT`:
+	 *   === true    Use Uint8Array implementation (fastest)
+	 *   === false   Use Object implementation (most compatible, even IE6)
+	 *
+	 * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+	 * Opera 11.6+, iOS 4.2+.
+	 *
+	 * Due to various browser bugs, sometimes the Object implementation will be used even
+	 * when the browser supports typed arrays.
+	 *
+	 * Note:
+	 *
+	 *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+	 *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+	 *
+	 *   - Safari 5-7 lacks support for changing the `Object.prototype.constructor` property
+	 *     on objects.
+	 *
+	 *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+	 *
+	 *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+	 *     incorrect length in some situations.
+
+	 * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+	 * get the Object implementation, which is slower but behaves correctly.
+	 */
+	Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined
+	  ? global.TYPED_ARRAY_SUPPORT
+	  : typedArraySupport()
+
+	function typedArraySupport () {
+	  function Bar () {}
+	  try {
+	    var arr = new Uint8Array(1)
+	    arr.foo = function () { return 42 }
+	    arr.constructor = Bar
+	    return arr.foo() === 42 && // typed array instances can be augmented
+	        arr.constructor === Bar && // constructor can be set
+	        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+	        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+	  } catch (e) {
+	    return false
+	  }
+	}
+
+	function kMaxLength () {
+	  return Buffer.TYPED_ARRAY_SUPPORT
+	    ? 0x7fffffff
+	    : 0x3fffffff
+	}
+
+	/**
+	 * Class: Buffer
+	 * =============
+	 *
+	 * The Buffer constructor returns instances of `Uint8Array` that are augmented
+	 * with function properties for all the node `Buffer` API functions. We use
+	 * `Uint8Array` so that square bracket notation works as expected -- it returns
+	 * a single octet.
+	 *
+	 * By augmenting the instances, we can avoid modifying the `Uint8Array`
+	 * prototype.
+	 */
+	function Buffer (arg) {
+	  if (!(this instanceof Buffer)) {
+	    // Avoid going through an ArgumentsAdaptorTrampoline in the common case.
+	    if (arguments.length > 1) return new Buffer(arg, arguments[1])
+	    return new Buffer(arg)
+	  }
+
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+	    this.length = 0
+	    this.parent = undefined
+	  }
+
+	  // Common case.
+	  if (typeof arg === 'number') {
+	    return fromNumber(this, arg)
+	  }
+
+	  // Slightly less common case.
+	  if (typeof arg === 'string') {
+	    return fromString(this, arg, arguments.length > 1 ? arguments[1] : 'utf8')
+	  }
+
+	  // Unusual.
+	  return fromObject(this, arg)
+	}
+
+	function fromNumber (that, length) {
+	  that = allocate(that, length < 0 ? 0 : checked(length) | 0)
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+	    for (var i = 0; i < length; i++) {
+	      that[i] = 0
+	    }
+	  }
+	  return that
+	}
+
+	function fromString (that, string, encoding) {
+	  if (typeof encoding !== 'string' || encoding === '') encoding = 'utf8'
+
+	  // Assumption: byteLength() return value is always < kMaxLength.
+	  var length = byteLength(string, encoding) | 0
+	  that = allocate(that, length)
+
+	  that.write(string, encoding)
+	  return that
+	}
+
+	function fromObject (that, object) {
+	  if (Buffer.isBuffer(object)) return fromBuffer(that, object)
+
+	  if (isArray(object)) return fromArray(that, object)
+
+	  if (object == null) {
+	    throw new TypeError('must start with number, buffer, array or string')
+	  }
+
+	  if (typeof ArrayBuffer !== 'undefined') {
+	    if (object.buffer instanceof ArrayBuffer) {
+	      return fromTypedArray(that, object)
+	    }
+	    if (object instanceof ArrayBuffer) {
+	      return fromArrayBuffer(that, object)
+	    }
+	  }
+
+	  if (object.length) return fromArrayLike(that, object)
+
+	  return fromJsonObject(that, object)
+	}
+
+	function fromBuffer (that, buffer) {
+	  var length = checked(buffer.length) | 0
+	  that = allocate(that, length)
+	  buffer.copy(that, 0, 0, length)
+	  return that
+	}
+
+	function fromArray (that, array) {
+	  var length = checked(array.length) | 0
+	  that = allocate(that, length)
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255
+	  }
+	  return that
+	}
+
+	// Duplicate of fromArray() to keep fromArray() monomorphic.
+	function fromTypedArray (that, array) {
+	  var length = checked(array.length) | 0
+	  that = allocate(that, length)
+	  // Truncating the elements is probably not what people expect from typed
+	  // arrays with BYTES_PER_ELEMENT > 1 but it's compatible with the behavior
+	  // of the old Buffer constructor.
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255
+	  }
+	  return that
+	}
+
+	function fromArrayBuffer (that, array) {
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    // Return an augmented `Uint8Array` instance, for best performance
+	    array.byteLength
+	    that = Buffer._augment(new Uint8Array(array))
+	  } else {
+	    // Fallback: Return an object instance of the Buffer class
+	    that = fromTypedArray(that, new Uint8Array(array))
+	  }
+	  return that
+	}
+
+	function fromArrayLike (that, array) {
+	  var length = checked(array.length) | 0
+	  that = allocate(that, length)
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255
+	  }
+	  return that
+	}
+
+	// Deserialize { type: 'Buffer', data: [1,2,3,...] } into a Buffer object.
+	// Returns a zero-length buffer for inputs that don't conform to the spec.
+	function fromJsonObject (that, object) {
+	  var array
+	  var length = 0
+
+	  if (object.type === 'Buffer' && isArray(object.data)) {
+	    array = object.data
+	    length = checked(array.length) | 0
+	  }
+	  that = allocate(that, length)
+
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255
+	  }
+	  return that
+	}
+
+	if (Buffer.TYPED_ARRAY_SUPPORT) {
+	  Buffer.prototype.__proto__ = Uint8Array.prototype
+	  Buffer.__proto__ = Uint8Array
+	} else {
+	  // pre-set for values that may exist in the future
+	  Buffer.prototype.length = undefined
+	  Buffer.prototype.parent = undefined
+	}
+
+	function allocate (that, length) {
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    // Return an augmented `Uint8Array` instance, for best performance
+	    that = Buffer._augment(new Uint8Array(length))
+	    that.__proto__ = Buffer.prototype
+	  } else {
+	    // Fallback: Return an object instance of the Buffer class
+	    that.length = length
+	    that._isBuffer = true
+	  }
+
+	  var fromPool = length !== 0 && length <= Buffer.poolSize >>> 1
+	  if (fromPool) that.parent = rootParent
+
+	  return that
+	}
+
+	function checked (length) {
+	  // Note: cannot use `length < kMaxLength` here because that fails when
+	  // length is NaN (which is otherwise coerced to zero.)
+	  if (length >= kMaxLength()) {
+	    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+	                         'size: 0x' + kMaxLength().toString(16) + ' bytes')
+	  }
+	  return length | 0
+	}
+
+	function SlowBuffer (subject, encoding) {
+	  if (!(this instanceof SlowBuffer)) return new SlowBuffer(subject, encoding)
+
+	  var buf = new Buffer(subject, encoding)
+	  delete buf.parent
+	  return buf
+	}
+
+	Buffer.isBuffer = function isBuffer (b) {
+	  return !!(b != null && b._isBuffer)
+	}
+
+	Buffer.compare = function compare (a, b) {
+	  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
+	    throw new TypeError('Arguments must be Buffers')
+	  }
+
+	  if (a === b) return 0
+
+	  var x = a.length
+	  var y = b.length
+
+	  var i = 0
+	  var len = Math.min(x, y)
+	  while (i < len) {
+	    if (a[i] !== b[i]) break
+
+	    ++i
+	  }
+
+	  if (i !== len) {
+	    x = a[i]
+	    y = b[i]
+	  }
+
+	  if (x < y) return -1
+	  if (y < x) return 1
+	  return 0
+	}
+
+	Buffer.isEncoding = function isEncoding (encoding) {
+	  switch (String(encoding).toLowerCase()) {
+	    case 'hex':
+	    case 'utf8':
+	    case 'utf-8':
+	    case 'ascii':
+	    case 'binary':
+	    case 'base64':
+	    case 'raw':
+	    case 'ucs2':
+	    case 'ucs-2':
+	    case 'utf16le':
+	    case 'utf-16le':
+	      return true
+	    default:
+	      return false
+	  }
+	}
+
+	Buffer.concat = function concat (list, length) {
+	  if (!isArray(list)) throw new TypeError('list argument must be an Array of Buffers.')
+
+	  if (list.length === 0) {
+	    return new Buffer(0)
+	  }
+
+	  var i
+	  if (length === undefined) {
+	    length = 0
+	    for (i = 0; i < list.length; i++) {
+	      length += list[i].length
+	    }
+	  }
+
+	  var buf = new Buffer(length)
+	  var pos = 0
+	  for (i = 0; i < list.length; i++) {
+	    var item = list[i]
+	    item.copy(buf, pos)
+	    pos += item.length
+	  }
+	  return buf
+	}
+
+	function byteLength (string, encoding) {
+	  if (typeof string !== 'string') string = '' + string
+
+	  var len = string.length
+	  if (len === 0) return 0
+
+	  // Use a for loop to avoid recursion
+	  var loweredCase = false
+	  for (;;) {
+	    switch (encoding) {
+	      case 'ascii':
+	      case 'binary':
+	      // Deprecated
+	      case 'raw':
+	      case 'raws':
+	        return len
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8ToBytes(string).length
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return len * 2
+	      case 'hex':
+	        return len >>> 1
+	      case 'base64':
+	        return base64ToBytes(string).length
+	      default:
+	        if (loweredCase) return utf8ToBytes(string).length // assume utf8
+	        encoding = ('' + encoding).toLowerCase()
+	        loweredCase = true
+	    }
+	  }
+	}
+	Buffer.byteLength = byteLength
+
+	function slowToString (encoding, start, end) {
+	  var loweredCase = false
+
+	  start = start | 0
+	  end = end === undefined || end === Infinity ? this.length : end | 0
+
+	  if (!encoding) encoding = 'utf8'
+	  if (start < 0) start = 0
+	  if (end > this.length) end = this.length
+	  if (end <= start) return ''
+
+	  while (true) {
+	    switch (encoding) {
+	      case 'hex':
+	        return hexSlice(this, start, end)
+
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8Slice(this, start, end)
+
+	      case 'ascii':
+	        return asciiSlice(this, start, end)
+
+	      case 'binary':
+	        return binarySlice(this, start, end)
+
+	      case 'base64':
+	        return base64Slice(this, start, end)
+
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return utf16leSlice(this, start, end)
+
+	      default:
+	        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+	        encoding = (encoding + '').toLowerCase()
+	        loweredCase = true
+	    }
+	  }
+	}
+
+	Buffer.prototype.toString = function toString () {
+	  var length = this.length | 0
+	  if (length === 0) return ''
+	  if (arguments.length === 0) return utf8Slice(this, 0, length)
+	  return slowToString.apply(this, arguments)
+	}
+
+	Buffer.prototype.equals = function equals (b) {
+	  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+	  if (this === b) return true
+	  return Buffer.compare(this, b) === 0
+	}
+
+	Buffer.prototype.inspect = function inspect () {
+	  var str = ''
+	  var max = exports.INSPECT_MAX_BYTES
+	  if (this.length > 0) {
+	    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
+	    if (this.length > max) str += ' ... '
+	  }
+	  return '<Buffer ' + str + '>'
+	}
+
+	Buffer.prototype.compare = function compare (b) {
+	  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+	  if (this === b) return 0
+	  return Buffer.compare(this, b)
+	}
+
+	Buffer.prototype.indexOf = function indexOf (val, byteOffset) {
+	  if (byteOffset > 0x7fffffff) byteOffset = 0x7fffffff
+	  else if (byteOffset < -0x80000000) byteOffset = -0x80000000
+	  byteOffset >>= 0
+
+	  if (this.length === 0) return -1
+	  if (byteOffset >= this.length) return -1
+
+	  // Negative offsets start from the end of the buffer
+	  if (byteOffset < 0) byteOffset = Math.max(this.length + byteOffset, 0)
+
+	  if (typeof val === 'string') {
+	    if (val.length === 0) return -1 // special case: looking for empty string always fails
+	    return String.prototype.indexOf.call(this, val, byteOffset)
+	  }
+	  if (Buffer.isBuffer(val)) {
+	    return arrayIndexOf(this, val, byteOffset)
+	  }
+	  if (typeof val === 'number') {
+	    if (Buffer.TYPED_ARRAY_SUPPORT && Uint8Array.prototype.indexOf === 'function') {
+	      return Uint8Array.prototype.indexOf.call(this, val, byteOffset)
+	    }
+	    return arrayIndexOf(this, [ val ], byteOffset)
+	  }
+
+	  function arrayIndexOf (arr, val, byteOffset) {
+	    var foundIndex = -1
+	    for (var i = 0; byteOffset + i < arr.length; i++) {
+	      if (arr[byteOffset + i] === val[foundIndex === -1 ? 0 : i - foundIndex]) {
+	        if (foundIndex === -1) foundIndex = i
+	        if (i - foundIndex + 1 === val.length) return byteOffset + foundIndex
+	      } else {
+	        foundIndex = -1
+	      }
+	    }
+	    return -1
+	  }
+
+	  throw new TypeError('val must be string, number or Buffer')
+	}
+
+	// `get` is deprecated
+	Buffer.prototype.get = function get (offset) {
+	  console.log('.get() is deprecated. Access using array indexes instead.')
+	  return this.readUInt8(offset)
+	}
+
+	// `set` is deprecated
+	Buffer.prototype.set = function set (v, offset) {
+	  console.log('.set() is deprecated. Access using array indexes instead.')
+	  return this.writeUInt8(v, offset)
+	}
+
+	function hexWrite (buf, string, offset, length) {
+	  offset = Number(offset) || 0
+	  var remaining = buf.length - offset
+	  if (!length) {
+	    length = remaining
+	  } else {
+	    length = Number(length)
+	    if (length > remaining) {
+	      length = remaining
+	    }
+	  }
+
+	  // must be an even number of digits
+	  var strLen = string.length
+	  if (strLen % 2 !== 0) throw new Error('Invalid hex string')
+
+	  if (length > strLen / 2) {
+	    length = strLen / 2
+	  }
+	  for (var i = 0; i < length; i++) {
+	    var parsed = parseInt(string.substr(i * 2, 2), 16)
+	    if (isNaN(parsed)) throw new Error('Invalid hex string')
+	    buf[offset + i] = parsed
+	  }
+	  return i
+	}
+
+	function utf8Write (buf, string, offset, length) {
+	  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
+	}
+
+	function asciiWrite (buf, string, offset, length) {
+	  return blitBuffer(asciiToBytes(string), buf, offset, length)
+	}
+
+	function binaryWrite (buf, string, offset, length) {
+	  return asciiWrite(buf, string, offset, length)
+	}
+
+	function base64Write (buf, string, offset, length) {
+	  return blitBuffer(base64ToBytes(string), buf, offset, length)
+	}
+
+	function ucs2Write (buf, string, offset, length) {
+	  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
+	}
+
+	Buffer.prototype.write = function write (string, offset, length, encoding) {
+	  // Buffer#write(string)
+	  if (offset === undefined) {
+	    encoding = 'utf8'
+	    length = this.length
+	    offset = 0
+	  // Buffer#write(string, encoding)
+	  } else if (length === undefined && typeof offset === 'string') {
+	    encoding = offset
+	    length = this.length
+	    offset = 0
+	  // Buffer#write(string, offset[, length][, encoding])
+	  } else if (isFinite(offset)) {
+	    offset = offset | 0
+	    if (isFinite(length)) {
+	      length = length | 0
+	      if (encoding === undefined) encoding = 'utf8'
+	    } else {
+	      encoding = length
+	      length = undefined
+	    }
+	  // legacy write(string, encoding, offset, length) - remove in v0.13
+	  } else {
+	    var swap = encoding
+	    encoding = offset
+	    offset = length | 0
+	    length = swap
+	  }
+
+	  var remaining = this.length - offset
+	  if (length === undefined || length > remaining) length = remaining
+
+	  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
+	    throw new RangeError('attempt to write outside buffer bounds')
+	  }
+
+	  if (!encoding) encoding = 'utf8'
+
+	  var loweredCase = false
+	  for (;;) {
+	    switch (encoding) {
+	      case 'hex':
+	        return hexWrite(this, string, offset, length)
+
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8Write(this, string, offset, length)
+
+	      case 'ascii':
+	        return asciiWrite(this, string, offset, length)
+
+	      case 'binary':
+	        return binaryWrite(this, string, offset, length)
+
+	      case 'base64':
+	        // Warning: maxLength not taken into account in base64Write
+	        return base64Write(this, string, offset, length)
+
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return ucs2Write(this, string, offset, length)
+
+	      default:
+	        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+	        encoding = ('' + encoding).toLowerCase()
+	        loweredCase = true
+	    }
+	  }
+	}
+
+	Buffer.prototype.toJSON = function toJSON () {
+	  return {
+	    type: 'Buffer',
+	    data: Array.prototype.slice.call(this._arr || this, 0)
+	  }
+	}
+
+	function base64Slice (buf, start, end) {
+	  if (start === 0 && end === buf.length) {
+	    return base64.fromByteArray(buf)
+	  } else {
+	    return base64.fromByteArray(buf.slice(start, end))
+	  }
+	}
+
+	function utf8Slice (buf, start, end) {
+	  end = Math.min(buf.length, end)
+	  var res = []
+
+	  var i = start
+	  while (i < end) {
+	    var firstByte = buf[i]
+	    var codePoint = null
+	    var bytesPerSequence = (firstByte > 0xEF) ? 4
+	      : (firstByte > 0xDF) ? 3
+	      : (firstByte > 0xBF) ? 2
+	      : 1
+
+	    if (i + bytesPerSequence <= end) {
+	      var secondByte, thirdByte, fourthByte, tempCodePoint
+
+	      switch (bytesPerSequence) {
+	        case 1:
+	          if (firstByte < 0x80) {
+	            codePoint = firstByte
+	          }
+	          break
+	        case 2:
+	          secondByte = buf[i + 1]
+	          if ((secondByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0x1F) << 0x6 | (secondByte & 0x3F)
+	            if (tempCodePoint > 0x7F) {
+	              codePoint = tempCodePoint
+	            }
+	          }
+	          break
+	        case 3:
+	          secondByte = buf[i + 1]
+	          thirdByte = buf[i + 2]
+	          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | (thirdByte & 0x3F)
+	            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
+	              codePoint = tempCodePoint
+	            }
+	          }
+	          break
+	        case 4:
+	          secondByte = buf[i + 1]
+	          thirdByte = buf[i + 2]
+	          fourthByte = buf[i + 3]
+	          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | (fourthByte & 0x3F)
+	            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
+	              codePoint = tempCodePoint
+	            }
+	          }
+	      }
+	    }
+
+	    if (codePoint === null) {
+	      // we did not generate a valid codePoint so insert a
+	      // replacement char (U+FFFD) and advance only 1 byte
+	      codePoint = 0xFFFD
+	      bytesPerSequence = 1
+	    } else if (codePoint > 0xFFFF) {
+	      // encode to utf16 (surrogate pair dance)
+	      codePoint -= 0x10000
+	      res.push(codePoint >>> 10 & 0x3FF | 0xD800)
+	      codePoint = 0xDC00 | codePoint & 0x3FF
+	    }
+
+	    res.push(codePoint)
+	    i += bytesPerSequence
+	  }
+
+	  return decodeCodePointsArray(res)
+	}
+
+	// Based on http://stackoverflow.com/a/22747272/680742, the browser with
+	// the lowest limit is Chrome, with 0x10000 args.
+	// We go 1 magnitude less, for safety
+	var MAX_ARGUMENTS_LENGTH = 0x1000
+
+	function decodeCodePointsArray (codePoints) {
+	  var len = codePoints.length
+	  if (len <= MAX_ARGUMENTS_LENGTH) {
+	    return String.fromCharCode.apply(String, codePoints) // avoid extra slice()
+	  }
+
+	  // Decode in chunks to avoid "call stack size exceeded".
+	  var res = ''
+	  var i = 0
+	  while (i < len) {
+	    res += String.fromCharCode.apply(
+	      String,
+	      codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH)
+	    )
+	  }
+	  return res
+	}
+
+	function asciiSlice (buf, start, end) {
+	  var ret = ''
+	  end = Math.min(buf.length, end)
+
+	  for (var i = start; i < end; i++) {
+	    ret += String.fromCharCode(buf[i] & 0x7F)
+	  }
+	  return ret
+	}
+
+	function binarySlice (buf, start, end) {
+	  var ret = ''
+	  end = Math.min(buf.length, end)
+
+	  for (var i = start; i < end; i++) {
+	    ret += String.fromCharCode(buf[i])
+	  }
+	  return ret
+	}
+
+	function hexSlice (buf, start, end) {
+	  var len = buf.length
+
+	  if (!start || start < 0) start = 0
+	  if (!end || end < 0 || end > len) end = len
+
+	  var out = ''
+	  for (var i = start; i < end; i++) {
+	    out += toHex(buf[i])
+	  }
+	  return out
+	}
+
+	function utf16leSlice (buf, start, end) {
+	  var bytes = buf.slice(start, end)
+	  var res = ''
+	  for (var i = 0; i < bytes.length; i += 2) {
+	    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
+	  }
+	  return res
+	}
+
+	Buffer.prototype.slice = function slice (start, end) {
+	  var len = this.length
+	  start = ~~start
+	  end = end === undefined ? len : ~~end
+
+	  if (start < 0) {
+	    start += len
+	    if (start < 0) start = 0
+	  } else if (start > len) {
+	    start = len
+	  }
+
+	  if (end < 0) {
+	    end += len
+	    if (end < 0) end = 0
+	  } else if (end > len) {
+	    end = len
+	  }
+
+	  if (end < start) end = start
+
+	  var newBuf
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    newBuf = Buffer._augment(this.subarray(start, end))
+	  } else {
+	    var sliceLen = end - start
+	    newBuf = new Buffer(sliceLen, undefined)
+	    for (var i = 0; i < sliceLen; i++) {
+	      newBuf[i] = this[i + start]
+	    }
+	  }
+
+	  if (newBuf.length) newBuf.parent = this.parent || this
+
+	  return newBuf
+	}
+
+	/*
+	 * Need to make sure that buffer isn't trying to write out of bounds.
+	 */
+	function checkOffset (offset, ext, length) {
+	  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
+	  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
+	}
+
+	Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+	  var val = this[offset]
+	  var mul = 1
+	  var i = 0
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    val += this[offset + i] * mul
+	  }
+
+	  return val
+	}
+
+	Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) {
+	    checkOffset(offset, byteLength, this.length)
+	  }
+
+	  var val = this[offset + --byteLength]
+	  var mul = 1
+	  while (byteLength > 0 && (mul *= 0x100)) {
+	    val += this[offset + --byteLength] * mul
+	  }
+
+	  return val
+	}
+
+	Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 1, this.length)
+	  return this[offset]
+	}
+
+	Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length)
+	  return this[offset] | (this[offset + 1] << 8)
+	}
+
+	Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length)
+	  return (this[offset] << 8) | this[offset + 1]
+	}
+
+	Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+
+	  return ((this[offset]) |
+	      (this[offset + 1] << 8) |
+	      (this[offset + 2] << 16)) +
+	      (this[offset + 3] * 0x1000000)
+	}
+
+	Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+
+	  return (this[offset] * 0x1000000) +
+	    ((this[offset + 1] << 16) |
+	    (this[offset + 2] << 8) |
+	    this[offset + 3])
+	}
+
+	Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+	  var val = this[offset]
+	  var mul = 1
+	  var i = 0
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    val += this[offset + i] * mul
+	  }
+	  mul *= 0x80
+
+	  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+	  return val
+	}
+
+	Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+	  var i = byteLength
+	  var mul = 1
+	  var val = this[offset + --i]
+	  while (i > 0 && (mul *= 0x100)) {
+	    val += this[offset + --i] * mul
+	  }
+	  mul *= 0x80
+
+	  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+	  return val
+	}
+
+	Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 1, this.length)
+	  if (!(this[offset] & 0x80)) return (this[offset])
+	  return ((0xff - this[offset] + 1) * -1)
+	}
+
+	Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length)
+	  var val = this[offset] | (this[offset + 1] << 8)
+	  return (val & 0x8000) ? val | 0xFFFF0000 : val
+	}
+
+	Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length)
+	  var val = this[offset + 1] | (this[offset] << 8)
+	  return (val & 0x8000) ? val | 0xFFFF0000 : val
+	}
+
+	Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+
+	  return (this[offset]) |
+	    (this[offset + 1] << 8) |
+	    (this[offset + 2] << 16) |
+	    (this[offset + 3] << 24)
+	}
+
+	Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+
+	  return (this[offset] << 24) |
+	    (this[offset + 1] << 16) |
+	    (this[offset + 2] << 8) |
+	    (this[offset + 3])
+	}
+
+	Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+	  return ieee754.read(this, offset, true, 23, 4)
+	}
+
+	Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+	  return ieee754.read(this, offset, false, 23, 4)
+	}
+
+	Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 8, this.length)
+	  return ieee754.read(this, offset, true, 52, 8)
+	}
+
+	Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 8, this.length)
+	  return ieee754.read(this, offset, false, 52, 8)
+	}
+
+	function checkInt (buf, value, offset, ext, max, min) {
+	  if (!Buffer.isBuffer(buf)) throw new TypeError('buffer must be a Buffer instance')
+	  if (value > max || value < min) throw new RangeError('value is out of bounds')
+	  if (offset + ext > buf.length) throw new RangeError('index out of range')
+	}
+
+	Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
+
+	  var mul = 1
+	  var i = 0
+	  this[offset] = value & 0xFF
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    this[offset + i] = (value / mul) & 0xFF
+	  }
+
+	  return offset + byteLength
+	}
+
+	Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
+
+	  var i = byteLength - 1
+	  var mul = 1
+	  this[offset + i] = value & 0xFF
+	  while (--i >= 0 && (mul *= 0x100)) {
+	    this[offset + i] = (value / mul) & 0xFF
+	  }
+
+	  return offset + byteLength
+	}
+
+	Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+	  this[offset] = (value & 0xff)
+	  return offset + 1
+	}
+
+	function objectWriteUInt16 (buf, value, offset, littleEndian) {
+	  if (value < 0) value = 0xffff + value + 1
+	  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; i++) {
+	    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+	      (littleEndian ? i : 1 - i) * 8
+	  }
+	}
+
+	Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value & 0xff)
+	    this[offset + 1] = (value >>> 8)
+	  } else {
+	    objectWriteUInt16(this, value, offset, true)
+	  }
+	  return offset + 2
+	}
+
+	Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value >>> 8)
+	    this[offset + 1] = (value & 0xff)
+	  } else {
+	    objectWriteUInt16(this, value, offset, false)
+	  }
+	  return offset + 2
+	}
+
+	function objectWriteUInt32 (buf, value, offset, littleEndian) {
+	  if (value < 0) value = 0xffffffff + value + 1
+	  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; i++) {
+	    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
+	  }
+	}
+
+	Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset + 3] = (value >>> 24)
+	    this[offset + 2] = (value >>> 16)
+	    this[offset + 1] = (value >>> 8)
+	    this[offset] = (value & 0xff)
+	  } else {
+	    objectWriteUInt32(this, value, offset, true)
+	  }
+	  return offset + 4
+	}
+
+	Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value >>> 24)
+	    this[offset + 1] = (value >>> 16)
+	    this[offset + 2] = (value >>> 8)
+	    this[offset + 3] = (value & 0xff)
+	  } else {
+	    objectWriteUInt32(this, value, offset, false)
+	  }
+	  return offset + 4
+	}
+
+	Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) {
+	    var limit = Math.pow(2, 8 * byteLength - 1)
+
+	    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+	  }
+
+	  var i = 0
+	  var mul = 1
+	  var sub = value < 0 ? 1 : 0
+	  this[offset] = value & 0xFF
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+	  }
+
+	  return offset + byteLength
+	}
+
+	Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) {
+	    var limit = Math.pow(2, 8 * byteLength - 1)
+
+	    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+	  }
+
+	  var i = byteLength - 1
+	  var mul = 1
+	  var sub = value < 0 ? 1 : 0
+	  this[offset + i] = value & 0xFF
+	  while (--i >= 0 && (mul *= 0x100)) {
+	    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+	  }
+
+	  return offset + byteLength
+	}
+
+	Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+	  if (value < 0) value = 0xff + value + 1
+	  this[offset] = (value & 0xff)
+	  return offset + 1
+	}
+
+	Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value & 0xff)
+	    this[offset + 1] = (value >>> 8)
+	  } else {
+	    objectWriteUInt16(this, value, offset, true)
+	  }
+	  return offset + 2
+	}
+
+	Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value >>> 8)
+	    this[offset + 1] = (value & 0xff)
+	  } else {
+	    objectWriteUInt16(this, value, offset, false)
+	  }
+	  return offset + 2
+	}
+
+	Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value & 0xff)
+	    this[offset + 1] = (value >>> 8)
+	    this[offset + 2] = (value >>> 16)
+	    this[offset + 3] = (value >>> 24)
+	  } else {
+	    objectWriteUInt32(this, value, offset, true)
+	  }
+	  return offset + 4
+	}
+
+	Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+	  if (value < 0) value = 0xffffffff + value + 1
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value >>> 24)
+	    this[offset + 1] = (value >>> 16)
+	    this[offset + 2] = (value >>> 8)
+	    this[offset + 3] = (value & 0xff)
+	  } else {
+	    objectWriteUInt32(this, value, offset, false)
+	  }
+	  return offset + 4
+	}
+
+	function checkIEEE754 (buf, value, offset, ext, max, min) {
+	  if (value > max || value < min) throw new RangeError('value is out of bounds')
+	  if (offset + ext > buf.length) throw new RangeError('index out of range')
+	  if (offset < 0) throw new RangeError('index out of range')
+	}
+
+	function writeFloat (buf, value, offset, littleEndian, noAssert) {
+	  if (!noAssert) {
+	    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
+	  }
+	  ieee754.write(buf, value, offset, littleEndian, 23, 4)
+	  return offset + 4
+	}
+
+	Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
+	  return writeFloat(this, value, offset, true, noAssert)
+	}
+
+	Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
+	  return writeFloat(this, value, offset, false, noAssert)
+	}
+
+	function writeDouble (buf, value, offset, littleEndian, noAssert) {
+	  if (!noAssert) {
+	    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
+	  }
+	  ieee754.write(buf, value, offset, littleEndian, 52, 8)
+	  return offset + 8
+	}
+
+	Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
+	  return writeDouble(this, value, offset, true, noAssert)
+	}
+
+	Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
+	  return writeDouble(this, value, offset, false, noAssert)
+	}
+
+	// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+	Buffer.prototype.copy = function copy (target, targetStart, start, end) {
+	  if (!start) start = 0
+	  if (!end && end !== 0) end = this.length
+	  if (targetStart >= target.length) targetStart = target.length
+	  if (!targetStart) targetStart = 0
+	  if (end > 0 && end < start) end = start
+
+	  // Copy 0 bytes; we're done
+	  if (end === start) return 0
+	  if (target.length === 0 || this.length === 0) return 0
+
+	  // Fatal error conditions
+	  if (targetStart < 0) {
+	    throw new RangeError('targetStart out of bounds')
+	  }
+	  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
+	  if (end < 0) throw new RangeError('sourceEnd out of bounds')
+
+	  // Are we oob?
+	  if (end > this.length) end = this.length
+	  if (target.length - targetStart < end - start) {
+	    end = target.length - targetStart + start
+	  }
+
+	  var len = end - start
+	  var i
+
+	  if (this === target && start < targetStart && targetStart < end) {
+	    // descending copy from end
+	    for (i = len - 1; i >= 0; i--) {
+	      target[i + targetStart] = this[i + start]
+	    }
+	  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
+	    // ascending copy from start
+	    for (i = 0; i < len; i++) {
+	      target[i + targetStart] = this[i + start]
+	    }
+	  } else {
+	    target._set(this.subarray(start, start + len), targetStart)
+	  }
+
+	  return len
+	}
+
+	// fill(value, start=0, end=buffer.length)
+	Buffer.prototype.fill = function fill (value, start, end) {
+	  if (!value) value = 0
+	  if (!start) start = 0
+	  if (!end) end = this.length
+
+	  if (end < start) throw new RangeError('end < start')
+
+	  // Fill 0 bytes; we're done
+	  if (end === start) return
+	  if (this.length === 0) return
+
+	  if (start < 0 || start >= this.length) throw new RangeError('start out of bounds')
+	  if (end < 0 || end > this.length) throw new RangeError('end out of bounds')
+
+	  var i
+	  if (typeof value === 'number') {
+	    for (i = start; i < end; i++) {
+	      this[i] = value
+	    }
+	  } else {
+	    var bytes = utf8ToBytes(value.toString())
+	    var len = bytes.length
+	    for (i = start; i < end; i++) {
+	      this[i] = bytes[i % len]
+	    }
+	  }
+
+	  return this
+	}
+
+	/**
+	 * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
+	 * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
+	 */
+	Buffer.prototype.toArrayBuffer = function toArrayBuffer () {
+	  if (typeof Uint8Array !== 'undefined') {
+	    if (Buffer.TYPED_ARRAY_SUPPORT) {
+	      return (new Buffer(this)).buffer
+	    } else {
+	      var buf = new Uint8Array(this.length)
+	      for (var i = 0, len = buf.length; i < len; i += 1) {
+	        buf[i] = this[i]
+	      }
+	      return buf.buffer
+	    }
+	  } else {
+	    throw new TypeError('Buffer.toArrayBuffer not supported in this browser')
+	  }
+	}
+
+	// HELPER FUNCTIONS
+	// ================
+
+	var BP = Buffer.prototype
+
+	/**
+	 * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
+	 */
+	Buffer._augment = function _augment (arr) {
+	  arr.constructor = Buffer
+	  arr._isBuffer = true
+
+	  // save reference to original Uint8Array set method before overwriting
+	  arr._set = arr.set
+
+	  // deprecated
+	  arr.get = BP.get
+	  arr.set = BP.set
+
+	  arr.write = BP.write
+	  arr.toString = BP.toString
+	  arr.toLocaleString = BP.toString
+	  arr.toJSON = BP.toJSON
+	  arr.equals = BP.equals
+	  arr.compare = BP.compare
+	  arr.indexOf = BP.indexOf
+	  arr.copy = BP.copy
+	  arr.slice = BP.slice
+	  arr.readUIntLE = BP.readUIntLE
+	  arr.readUIntBE = BP.readUIntBE
+	  arr.readUInt8 = BP.readUInt8
+	  arr.readUInt16LE = BP.readUInt16LE
+	  arr.readUInt16BE = BP.readUInt16BE
+	  arr.readUInt32LE = BP.readUInt32LE
+	  arr.readUInt32BE = BP.readUInt32BE
+	  arr.readIntLE = BP.readIntLE
+	  arr.readIntBE = BP.readIntBE
+	  arr.readInt8 = BP.readInt8
+	  arr.readInt16LE = BP.readInt16LE
+	  arr.readInt16BE = BP.readInt16BE
+	  arr.readInt32LE = BP.readInt32LE
+	  arr.readInt32BE = BP.readInt32BE
+	  arr.readFloatLE = BP.readFloatLE
+	  arr.readFloatBE = BP.readFloatBE
+	  arr.readDoubleLE = BP.readDoubleLE
+	  arr.readDoubleBE = BP.readDoubleBE
+	  arr.writeUInt8 = BP.writeUInt8
+	  arr.writeUIntLE = BP.writeUIntLE
+	  arr.writeUIntBE = BP.writeUIntBE
+	  arr.writeUInt16LE = BP.writeUInt16LE
+	  arr.writeUInt16BE = BP.writeUInt16BE
+	  arr.writeUInt32LE = BP.writeUInt32LE
+	  arr.writeUInt32BE = BP.writeUInt32BE
+	  arr.writeIntLE = BP.writeIntLE
+	  arr.writeIntBE = BP.writeIntBE
+	  arr.writeInt8 = BP.writeInt8
+	  arr.writeInt16LE = BP.writeInt16LE
+	  arr.writeInt16BE = BP.writeInt16BE
+	  arr.writeInt32LE = BP.writeInt32LE
+	  arr.writeInt32BE = BP.writeInt32BE
+	  arr.writeFloatLE = BP.writeFloatLE
+	  arr.writeFloatBE = BP.writeFloatBE
+	  arr.writeDoubleLE = BP.writeDoubleLE
+	  arr.writeDoubleBE = BP.writeDoubleBE
+	  arr.fill = BP.fill
+	  arr.inspect = BP.inspect
+	  arr.toArrayBuffer = BP.toArrayBuffer
+
+	  return arr
+	}
+
+	var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g
+
+	function base64clean (str) {
+	  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+	  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
+	  // Node converts strings with length < 2 to ''
+	  if (str.length < 2) return ''
+	  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+	  while (str.length % 4 !== 0) {
+	    str = str + '='
+	  }
+	  return str
+	}
+
+	function stringtrim (str) {
+	  if (str.trim) return str.trim()
+	  return str.replace(/^\s+|\s+$/g, '')
+	}
+
+	function toHex (n) {
+	  if (n < 16) return '0' + n.toString(16)
+	  return n.toString(16)
+	}
+
+	function utf8ToBytes (string, units) {
+	  units = units || Infinity
+	  var codePoint
+	  var length = string.length
+	  var leadSurrogate = null
+	  var bytes = []
+
+	  for (var i = 0; i < length; i++) {
+	    codePoint = string.charCodeAt(i)
+
+	    // is surrogate component
+	    if (codePoint > 0xD7FF && codePoint < 0xE000) {
+	      // last char was a lead
+	      if (!leadSurrogate) {
+	        // no lead yet
+	        if (codePoint > 0xDBFF) {
+	          // unexpected trail
+	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+	          continue
+	        } else if (i + 1 === length) {
+	          // unpaired lead
+	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+	          continue
+	        }
+
+	        // valid lead
+	        leadSurrogate = codePoint
+
+	        continue
+	      }
+
+	      // 2 leads in a row
+	      if (codePoint < 0xDC00) {
+	        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+	        leadSurrogate = codePoint
+	        continue
+	      }
+
+	      // valid surrogate pair
+	      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
+	    } else if (leadSurrogate) {
+	      // valid bmp char, but last char was a lead
+	      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+	    }
+
+	    leadSurrogate = null
+
+	    // encode utf8
+	    if (codePoint < 0x80) {
+	      if ((units -= 1) < 0) break
+	      bytes.push(codePoint)
+	    } else if (codePoint < 0x800) {
+	      if ((units -= 2) < 0) break
+	      bytes.push(
+	        codePoint >> 0x6 | 0xC0,
+	        codePoint & 0x3F | 0x80
+	      )
+	    } else if (codePoint < 0x10000) {
+	      if ((units -= 3) < 0) break
+	      bytes.push(
+	        codePoint >> 0xC | 0xE0,
+	        codePoint >> 0x6 & 0x3F | 0x80,
+	        codePoint & 0x3F | 0x80
+	      )
+	    } else if (codePoint < 0x110000) {
+	      if ((units -= 4) < 0) break
+	      bytes.push(
+	        codePoint >> 0x12 | 0xF0,
+	        codePoint >> 0xC & 0x3F | 0x80,
+	        codePoint >> 0x6 & 0x3F | 0x80,
+	        codePoint & 0x3F | 0x80
+	      )
+	    } else {
+	      throw new Error('Invalid code point')
+	    }
+	  }
+
+	  return bytes
+	}
+
+	function asciiToBytes (str) {
+	  var byteArray = []
+	  for (var i = 0; i < str.length; i++) {
+	    // Node's code seems to be doing this and not & 0x7F..
+	    byteArray.push(str.charCodeAt(i) & 0xFF)
+	  }
+	  return byteArray
+	}
+
+	function utf16leToBytes (str, units) {
+	  var c, hi, lo
+	  var byteArray = []
+	  for (var i = 0; i < str.length; i++) {
+	    if ((units -= 2) < 0) break
+
+	    c = str.charCodeAt(i)
+	    hi = c >> 8
+	    lo = c % 256
+	    byteArray.push(lo)
+	    byteArray.push(hi)
+	  }
+
+	  return byteArray
+	}
+
+	function base64ToBytes (str) {
+	  return base64.toByteArray(base64clean(str))
+	}
+
+	function blitBuffer (src, dst, offset, length) {
+	  for (var i = 0; i < length; i++) {
+	    if ((i + offset >= dst.length) || (i >= src.length)) break
+	    dst[i + offset] = src[i]
+	  }
+	  return i
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer, (function() { return this; }())))
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+	;(function (exports) {
+		'use strict';
+
+	  var Arr = (typeof Uint8Array !== 'undefined')
+	    ? Uint8Array
+	    : Array
+
+		var PLUS   = '+'.charCodeAt(0)
+		var SLASH  = '/'.charCodeAt(0)
+		var NUMBER = '0'.charCodeAt(0)
+		var LOWER  = 'a'.charCodeAt(0)
+		var UPPER  = 'A'.charCodeAt(0)
+		var PLUS_URL_SAFE = '-'.charCodeAt(0)
+		var SLASH_URL_SAFE = '_'.charCodeAt(0)
+
+		function decode (elt) {
+			var code = elt.charCodeAt(0)
+			if (code === PLUS ||
+			    code === PLUS_URL_SAFE)
+				return 62 // '+'
+			if (code === SLASH ||
+			    code === SLASH_URL_SAFE)
+				return 63 // '/'
+			if (code < NUMBER)
+				return -1 //no match
+			if (code < NUMBER + 10)
+				return code - NUMBER + 26 + 26
+			if (code < UPPER + 26)
+				return code - UPPER
+			if (code < LOWER + 26)
+				return code - LOWER + 26
+		}
+
+		function b64ToByteArray (b64) {
+			var i, j, l, tmp, placeHolders, arr
+
+			if (b64.length % 4 > 0) {
+				throw new Error('Invalid string. Length must be a multiple of 4')
+			}
+
+			// the number of equal signs (place holders)
+			// if there are two placeholders, than the two characters before it
+			// represent one byte
+			// if there is only one, then the three characters before it represent 2 bytes
+			// this is just a cheap hack to not do indexOf twice
+			var len = b64.length
+			placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
+
+			// base64 is 4/3 + up to two characters of the original data
+			arr = new Arr(b64.length * 3 / 4 - placeHolders)
+
+			// if there are placeholders, only get up to the last complete 4 chars
+			l = placeHolders > 0 ? b64.length - 4 : b64.length
+
+			var L = 0
+
+			function push (v) {
+				arr[L++] = v
+			}
+
+			for (i = 0, j = 0; i < l; i += 4, j += 3) {
+				tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
+				push((tmp & 0xFF0000) >> 16)
+				push((tmp & 0xFF00) >> 8)
+				push(tmp & 0xFF)
+			}
+
+			if (placeHolders === 2) {
+				tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
+				push(tmp & 0xFF)
+			} else if (placeHolders === 1) {
+				tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
+				push((tmp >> 8) & 0xFF)
+				push(tmp & 0xFF)
+			}
+
+			return arr
+		}
+
+		function uint8ToBase64 (uint8) {
+			var i,
+				extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
+				output = "",
+				temp, length
+
+			function encode (num) {
+				return lookup.charAt(num)
+			}
+
+			function tripletToBase64 (num) {
+				return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
+			}
+
+			// go through the array every three bytes, we'll deal with trailing stuff later
+			for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
+				temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
+				output += tripletToBase64(temp)
+			}
+
+			// pad the end with zeros, but make sure to not forget the extra bytes
+			switch (extraBytes) {
+				case 1:
+					temp = uint8[uint8.length - 1]
+					output += encode(temp >> 2)
+					output += encode((temp << 4) & 0x3F)
+					output += '=='
+					break
+				case 2:
+					temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
+					output += encode(temp >> 10)
+					output += encode((temp >> 4) & 0x3F)
+					output += encode((temp << 2) & 0x3F)
+					output += '='
+					break
+			}
+
+			return output
+		}
+
+		exports.toByteArray = b64ToByteArray
+		exports.fromByteArray = uint8ToBase64
+	}( false ? (this.base64js = {}) : exports))
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
+	  var e, m
+	  var eLen = nBytes * 8 - mLen - 1
+	  var eMax = (1 << eLen) - 1
+	  var eBias = eMax >> 1
+	  var nBits = -7
+	  var i = isLE ? (nBytes - 1) : 0
+	  var d = isLE ? -1 : 1
+	  var s = buffer[offset + i]
+
+	  i += d
+
+	  e = s & ((1 << (-nBits)) - 1)
+	  s >>= (-nBits)
+	  nBits += eLen
+	  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+
+	  m = e & ((1 << (-nBits)) - 1)
+	  e >>= (-nBits)
+	  nBits += mLen
+	  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+
+	  if (e === 0) {
+	    e = 1 - eBias
+	  } else if (e === eMax) {
+	    return m ? NaN : ((s ? -1 : 1) * Infinity)
+	  } else {
+	    m = m + Math.pow(2, mLen)
+	    e = e - eBias
+	  }
+	  return (s ? -1 : 1) * m * Math.pow(2, e - mLen)
+	}
+
+	exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+	  var e, m, c
+	  var eLen = nBytes * 8 - mLen - 1
+	  var eMax = (1 << eLen) - 1
+	  var eBias = eMax >> 1
+	  var rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0)
+	  var i = isLE ? 0 : (nBytes - 1)
+	  var d = isLE ? 1 : -1
+	  var s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0
+
+	  value = Math.abs(value)
+
+	  if (isNaN(value) || value === Infinity) {
+	    m = isNaN(value) ? 1 : 0
+	    e = eMax
+	  } else {
+	    e = Math.floor(Math.log(value) / Math.LN2)
+	    if (value * (c = Math.pow(2, -e)) < 1) {
+	      e--
+	      c *= 2
+	    }
+	    if (e + eBias >= 1) {
+	      value += rt / c
+	    } else {
+	      value += rt * Math.pow(2, 1 - eBias)
+	    }
+	    if (value * c >= 2) {
+	      e++
+	      c /= 2
+	    }
+
+	    if (e + eBias >= eMax) {
+	      m = 0
+	      e = eMax
+	    } else if (e + eBias >= 1) {
+	      m = (value * c - 1) * Math.pow(2, mLen)
+	      e = e + eBias
+	    } else {
+	      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen)
+	      e = 0
+	    }
+	  }
+
+	  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
+
+	  e = (e << mLen) | m
+	  eLen += mLen
+	  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
+
+	  buffer[offset + i - d] |= s * 128
+	}
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	var toString = {}.toString;
+
+	module.exports = Array.isArray || function (arr) {
+	  return toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	// shim for using process in browser
+
+	var process = module.exports = {};
+	var queue = [];
+	var draining = false;
+	var currentQueue;
+	var queueIndex = -1;
+
+	function cleanUpNextTick() {
+	    draining = false;
+	    if (currentQueue.length) {
+	        queue = currentQueue.concat(queue);
+	    } else {
+	        queueIndex = -1;
+	    }
+	    if (queue.length) {
+	        drainQueue();
+	    }
+	}
+
+	function drainQueue() {
+	    if (draining) {
+	        return;
+	    }
+	    var timeout = setTimeout(cleanUpNextTick);
+	    draining = true;
+
+	    var len = queue.length;
+	    while(len) {
+	        currentQueue = queue;
+	        queue = [];
+	        while (++queueIndex < len) {
+	            if (currentQueue) {
+	                currentQueue[queueIndex].run();
+	            }
+	        }
+	        queueIndex = -1;
+	        len = queue.length;
+	    }
+	    currentQueue = null;
+	    draining = false;
+	    clearTimeout(timeout);
+	}
+
+	process.nextTick = function (fun) {
+	    var args = new Array(arguments.length - 1);
+	    if (arguments.length > 1) {
+	        for (var i = 1; i < arguments.length; i++) {
+	            args[i - 1] = arguments[i];
+	        }
+	    }
+	    queue.push(new Item(fun, args));
+	    if (queue.length === 1 && !draining) {
+	        setTimeout(drainQueue, 0);
+	    }
+	};
+
+	// v8 likes predictible objects
+	function Item(fun, array) {
+	    this.fun = fun;
+	    this.array = array;
+	}
+	Item.prototype.run = function () {
+	    this.fun.apply(null, this.array);
+	};
+	process.title = 'browser';
+	process.browser = true;
+	process.env = {};
+	process.argv = [];
+	process.version = ''; // empty string to avoid regexp issues
+	process.versions = {};
+
+	function noop() {}
+
+	process.on = noop;
+	process.addListener = noop;
+	process.once = noop;
+	process.off = noop;
+	process.removeListener = noop;
+	process.removeAllListeners = noop;
+	process.emit = noop;
+
+	process.binding = function (name) {
+	    throw new Error('process.binding is not supported');
+	};
+
+	process.cwd = function () { return '/' };
+	process.chdir = function (dir) {
+	    throw new Error('process.chdir is not supported');
+	};
+	process.umask = function() { return 0; };
+
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	/*
+	 * Copyright 2015 Dominick Baier, Brock Allen
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 *   http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 */
+
+	function log() {
+	    //var param = [].join.call(arguments);
+	    //console.log(param);
+	}
+
+	function copy(obj, target) {
+	    target = target || {};
+	    for (var key in obj) {
+	        if (obj.hasOwnProperty(key)) {
+	            target[key] = obj[key];
+	        }
+	    }
+	    return target;
+	}
+
+	function rand() {
+	    return ((Date.now() + Math.random()) * Math.random()).toString().replace(".", "");
+	}
+
+	function resolve(param) {
+	    return _promiseFactory.resolve(param);
+	}
+
+	function error(message) {
+	    return _promiseFactory.reject(Error(message));
+	}
+
+	function parseOidcResult(queryString) {
+	    log("parseOidcResult");
+
+	    queryString = queryString || location.hash;
+
+	    var idx = queryString.lastIndexOf("#");
+	    if (idx >= 0) {
+	        queryString = queryString.substr(idx + 1);
+	    }
+
+	    var params = {},
+	        regex = /([^&=]+)=([^&]*)/g,
+	        m;
+
+	    var counter = 0;
+	    while (m = regex.exec(queryString)) {
+	        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+	        if (counter++ > 50) {
+	            return {
+	                error: "Response exceeded expected number of parameters"
+	            };
+	        }
+	    }
+
+	    for (var prop in params) {
+	        return params;
+	    }
+	}
+
+	function getJson(url, token) {
+	    log("getJson", url);
+
+	    var config = {};
+
+	    if (token) {
+	        config.headers = {"Authorization": "Bearer " + token};
+	    }
+
+	    return _httpRequest.getJSON(url, config);
+	}
+
+	function OidcClient(settings) {
+	    this._settings = settings || {};
+
+	    if (!this._settings.request_state_key) {
+	        this._settings.request_state_key = "OidcClient.request_state";
+	    }
+
+	    if (!this._settings.request_state_store) {
+	        this._settings.request_state_store = window.localStorage;
+	    }
+
+	    if (typeof this._settings.load_user_profile === 'undefined') {
+	        this._settings.load_user_profile = true;
+	    }
+
+	    if (typeof this._settings.filter_protocol_claims === 'undefined') {
+	        this._settings.filter_protocol_claims = true;
+	    }
+
+	    if (this._settings.authority && this._settings.authority.indexOf('.well-known/openid-configuration') < 0) {
+	        if (this._settings.authority[this._settings.authority.length - 1] !== '/') {
+	            this._settings.authority += '/';
+	        }
+	        this._settings.authority += '.well-known/openid-configuration';
+	    }
+
+	    if (!this._settings.response_type) {
+	        this._settings.response_type = "id_token token";
+	    }
+
+	    Object.defineProperty(this, "isOidc", {
+	        get: function () {
+	            if (this._settings.response_type) {
+	                var result = this._settings.response_type.split(/\s+/g).filter(function (item) {
+	                    return item === "id_token";
+	                });
+	                return !!(result[0]);
+	            }
+	            return false;
+	        }
+	    });
+
+	    Object.defineProperty(this, "isOAuth", {
+	        get: function () {
+	            if (this._settings.response_type) {
+	                var result = this._settings.response_type.split(/\s+/g).filter(function (item) {
+	                    return item === "token";
+	                });
+	                return !!(result[0]);
+	            }
+	            return false;
+	        }
+	    });
+	}
+
+	OidcClient.parseOidcResult = parseOidcResult;
+
+	OidcClient.prototype.loadMetadataAsync = function () {
+	    log("OidcClient.loadMetadataAsync");
+
+	    var settings = this._settings;
+
+	    if (settings.metadata) {
+	        return resolve(settings.metadata);
+	    }
+
+	    if (!settings.authority) {
+	        return error("No authority configured");
+	    }
+
+	    return getJson(settings.authority)
+	        .then(function (metadata) {
+	            settings.metadata = metadata;
+	            return metadata;
+	        }, function (err) {
+	            return error("Failed to load metadata (" + err && err.message + ")");
+	        });
+	};
+
+	OidcClient.prototype.loadX509SigningKeyAsync = function () {
+	    log("OidcClient.loadX509SigningKeyAsync");
+
+	    var settings = this._settings;
+
+	    function getKeyAsync(jwks) {
+	        if (!jwks.keys || !jwks.keys.length) {
+	            return error("Signing keys empty");
+	        }
+
+	        var key = jwks.keys[0];
+	        if (key.kty !== "RSA") {
+	            return error("Signing key not RSA");
+	        }
+
+	        if (!key.x5c || !key.x5c.length) {
+	            return error("RSA keys empty");
+	        }
+
+	        return resolve(key.x5c[0]);
+	    }
+
+	    if (settings.jwks) {
+	        return getKeyAsync(settings.jwks);
+	    }
+
+	    return this.loadMetadataAsync().then(function (metadata) {
+	        if (!metadata.jwks_uri) {
+	            return error("Metadata does not contain jwks_uri");
+	        }
+
+	        return getJson(metadata.jwks_uri).then(function (jwks) {
+	            settings.jwks = jwks;
+	            return getKeyAsync(jwks);
+	        }, function (err) {
+	            return error("Failed to load signing keys (" + err && err.message + ")");
+	        });
+	    });
+	};
+
+	OidcClient.prototype.loadUserProfile = function (access_token) {
+	    log("OidcClient.loadUserProfile");
+
+	    return this.loadMetadataAsync().then(function (metadata) {
+
+	        if (!metadata.userinfo_endpoint) {
+	            return error("Metadata does not contain userinfo_endpoint");
+	        }
+
+	        return getJson(metadata.userinfo_endpoint, access_token);
+	    });
+	}
+
+	OidcClient.prototype.loadAuthorizationEndpoint = function () {
+	    log("OidcClient.loadAuthorizationEndpoint");
+
+	    if (this._settings.authorization_endpoint) {
+	        return resolve(this._settings.authorization_endpoint);
+	    }
+
+	    if (!this._settings.authority) {
+	        return error("No authorization_endpoint configured");
+	    }
+
+	    return this.loadMetadataAsync().then(function (metadata) {
+	        if (!metadata.authorization_endpoint) {
+	            return error("Metadata does not contain authorization_endpoint");
+	        }
+
+	        return metadata.authorization_endpoint;
+	    });
+	};
+
+	OidcClient.prototype.createTokenRequestAsync = function () {
+	    log("OidcClient.createTokenRequestAsync");
+
+	    var client = this;
+	    var settings = client._settings;
+
+	    return client.loadAuthorizationEndpoint().then(function (authorization_endpoint) {
+
+	        var state = rand();
+	        var url = authorization_endpoint + "?state=" + encodeURIComponent(state);
+
+	        if (client.isOidc) {
+	            var nonce = rand();
+	            url += "&nonce=" + encodeURIComponent(nonce);
+	        }
+
+	        var required = ["client_id", "redirect_uri", "response_type", "scope"];
+	        required.forEach(function (key) {
+	            var value = settings[key];
+	            if (value) {
+	                url += "&" + key + "=" + encodeURIComponent(value);
+	            }
+	        });
+
+	        var optional = ["prompt", "display", "max_age", "ui_locales", "id_token_hint", "login_hint", "acr_values"];
+	        optional.forEach(function (key) {
+	            var value = settings[key];
+	            if (value) {
+	                url += "&" + key + "=" + encodeURIComponent(value);
+	            }
+	        });
+
+	        var request_state = {
+	            oidc: client.isOidc,
+	            oauth: client.isOAuth,
+	            state: state
+	        };
+
+	        if (nonce) {
+	            request_state["nonce"] = nonce;
+	        }
+
+	        settings.request_state_store.setItem(settings.request_state_key, JSON.stringify(request_state));
+
+	        return {
+	            request_state: request_state,
+	            url: url
+	        };
+	    });
+	}
+
+	OidcClient.prototype.createLogoutRequestAsync = function (id_token_hint) {
+	    log("OidcClient.createLogoutRequestAsync");
+
+	    var settings = this._settings;
+	    return this.loadMetadataAsync().then(function (metadata) {
+	        if (!metadata.end_session_endpoint) {
+	            return error("No end_session_endpoint in metadata");
+	        }
+
+	        var url = metadata.end_session_endpoint;
+	        if (id_token_hint && settings.post_logout_redirect_uri) {
+	            url += "?post_logout_redirect_uri=" + encodeURIComponent(settings.post_logout_redirect_uri);
+	            url += "&id_token_hint=" + encodeURIComponent(id_token_hint);
+	        }
+	        return url;
+	    });
+	}
+
+	OidcClient.prototype.validateIdTokenAsync = function (id_token, nonce, access_token) {
+	    log("OidcClient.validateIdTokenAsync");
+
+	    var client = this;
+	    var settings = client._settings;
+
+	    return client.loadX509SigningKeyAsync().then(function (cert) {
+
+	        var jws = new KJUR.jws.JWS();
+	        if (jws.verifyJWSByPemX509Cert(id_token, cert)) {
+	            var id_token_contents = JSON.parse(jws.parsedJWS.payloadS);
+
+	            if (nonce !== id_token_contents.nonce) {
+	                return error("Invalid nonce");
+	            }
+
+	            return client.loadMetadataAsync().then(function (metadata) {
+
+	                if (id_token_contents.iss !== metadata.issuer) {
+	                    return error("Invalid issuer");
+	                }
+
+	                if (id_token_contents.aud !== settings.client_id) {
+	                    return error("Invalid audience");
+	                }
+
+	                var now = parseInt(Date.now() / 1000);
+
+	                // accept tokens issues up to 5 mins ago
+	                var diff = now - id_token_contents.iat;
+	                if (diff > (5 * 60)) {
+	                    return error("Token issued too long ago");
+	                }
+
+	                if (id_token_contents.exp < now) {
+	                    return error("Token expired");
+	                }
+
+	                if (access_token && settings.load_user_profile) {
+	                    // if we have an access token, then call user info endpoint
+	                    return client.loadUserProfile(access_token, id_token_contents).then(function (profile) {
+	                        return copy(profile, id_token_contents);
+	                    });
+	                }
+	                else {
+	                    // no access token, so we have all our claims
+	                    return id_token_contents;
+	                }
+
+	            });
+	        }
+	        else {
+	            return error("JWT failed to validate");
+	        }
+
+	    });
+
+	};
+
+	OidcClient.prototype.validateAccessTokenAsync = function (id_token_contents, access_token) {
+	    log("OidcClient.validateAccessTokenAsync");
+
+	    if (!id_token_contents.at_hash) {
+	        return error("No at_hash in id_token");
+	    }
+
+	    var hash = KJUR.crypto.Util.sha256(access_token);
+	    var left = hash.substr(0, hash.length / 2);
+	    var left_b64u = hextob64u(left);
+
+	    if (left_b64u !== id_token_contents.at_hash) {
+	        return error("at_hash failed to validate");
+	    }
+
+	    return resolve();
+	};
+
+	OidcClient.prototype.validateIdTokenAndAccessTokenAsync = function (id_token, nonce, access_token) {
+	    log("OidcClient.validateIdTokenAndAccessTokenAsync");
+
+	    var client = this;
+
+	    return client.validateIdTokenAsync(id_token, nonce, access_token).then(function (id_token_contents) {
+
+	        return client.validateAccessTokenAsync(id_token_contents, access_token).then(function () {
+
+	            return id_token_contents;
+
+	        });
+
+	    });
+	}
+
+	OidcClient.prototype.processResponseAsync = function (queryString) {
+	    log("OidcClient.processResponseAsync");
+
+	    var client = this;
+	    var settings = client._settings;
+
+	    var request_state = settings.request_state_store.getItem(settings.request_state_key);
+	    settings.request_state_store.removeItem(settings.request_state_key);
+
+	    if (!request_state) {
+	        return error("No request state loaded");
+	    }
+
+	    request_state = JSON.parse(request_state);
+	    if (!request_state) {
+	        return error("No request state loaded");
+	    }
+
+	    if (!request_state.state) {
+	        return error("No state loaded");
+	    }
+
+	    var result = parseOidcResult(queryString);
+	    if (!result) {
+	        return error("No OIDC response");
+	    }
+
+	    if (result.error) {
+	        return error(result.error);
+	    }
+
+	    if (result.state !== request_state.state) {
+	        return error("Invalid state");
+	    }
+
+	    if (request_state.oidc) {
+	        if (!result.id_token) {
+	            return error("No identity token");
+	        }
+
+	        if (!request_state.nonce) {
+	            return error("No nonce loaded");
+	        }
+	    }
+
+	    if (request_state.oauth) {
+	        if (!result.access_token) {
+	            return error("No access token");
+	        }
+
+	        if (!result.token_type || result.token_type.toLowerCase() !== "bearer") {
+	            return error("Invalid token type");
+	        }
+
+	        if (!result.expires_in) {
+	            return error("No token expiration");
+	        }
+	    }
+
+	    var promise = resolve();
+	    if (request_state.oidc && request_state.oauth) {
+	        promise = client.validateIdTokenAndAccessTokenAsync(result.id_token, request_state.nonce, result.access_token);
+	    }
+	    else if (request_state.oidc) {
+	        promise = client.validateIdTokenAsync(result.id_token, request_state.nonce);
+	    }
+
+	    return promise.then(function (profile) {
+	        if (profile && settings.filter_protocol_claims) {
+	            var remove = ["nonce", "at_hash", "iat", "nbf", "exp", "aud", "iss"];
+	            remove.forEach(function (key) {
+	                delete profile[key];
+	            });
+	        }
+
+	        return {
+	            profile: profile,
+	            id_token: result.id_token,
+	            access_token: result.access_token,
+	            expires_in: result.expires_in,
+	            scope: result.scope,
+	            session_state : result.session_state
+	        };
+	    });
+	}
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	module.exports = function() { throw new Error("define cannot be used indirect"); };
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	function createTokenMiddleware(config) {
+	  if (!options.tokenManagerConfig) {
+	    throw new Error('You must provide token manager configuration!');
+	  }
+
+	  return function (store) {
+	    return function (next) {
+	      return function (action) {
+	        var manager = createTokenManager(options.tokenManagerConfig);
+	        if (manager.expired && !localStorage.getItem('redirectTo')) {
+	          var storageKey = config.storageKey || 'redirectTo';
+	          localStorage.setItem(config.storageKey, window.location.href);
+	          tokenManager.redirectForToken();
+	          return null;
+	        }
+
+	        return next(action);
+	      };
+	    };
+	  };
+	};
+
+	exports['default'] = createTokenMiddleware;
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(13);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _helpers = __webpack_require__(14);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CallbackComponent = function (_React$Component) {
+	  _inherits(CallbackComponent, _React$Component);
+
+	  function CallbackComponent() {
+	    _classCallCheck(this, CallbackComponent);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CallbackComponent).apply(this, arguments));
+	  }
+
+	  _createClass(CallbackComponent, [{
+	    key: 'componentDidMount',
+	    value: function () {
+	      function componentDidMount() {
+	        var _this2 = this;
+
+	        var _props$config = this.props.config;
+	        var storageKey = _props$config.storageKey;
+	        var tokenManagerConfig = _props$config.tokenManagerConfig;
+	        var errorCallback = this.props.errorCallback;
+
+
+	        var manager = (0, _helpers.createTokenManager)(tokenManagerConfig);
+
+	        // process the token callback
+	        manager.processTokenCallbackAsync().then(function () {
+	          var redirectUri = localStorage.getItem(storageKey);
+	          localStorage.setItem(storageKey, null);
+	          window.location = redirectUri;
+	        }, function (error) {
+	          if (_this2.props.errorCallback) {
+	            _this2.props.errorCallback(error);
+	          }
+	        });
+	      }
+
+	      return componentDidMount;
+	    }()
+	  }, {
+	    key: 'render',
+	    value: function () {
+	      function render() {
+	        return _react2['default'].createElement(
+	          'div',
+	          null,
+	          this.props.children || this.defaultContent
+	        );
+	      }
+
+	      return render;
+	    }()
+	  }, {
+	    key: 'defaultContent',
+	    get: function () {
+	      function get() {
+	        return _react2['default'].createElement(
+	          'div',
+	          null,
+	          'Redirecting...'
+	        );
+	      }
+
+	      return get;
+	    }()
+	  }, {
+	    key: 'options',
+	    get: function () {
+	      function get() {
+	        return {
+	          storageKey: this.props.storageKey || 'oidc.redirectTo'
+	        };
+	      }
+
+	      return get;
+	    }()
+	  }]);
+
+	  return CallbackComponent;
+	}(_react2['default'].Component);
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.createTokenManager = createTokenManager;
+
+	var _oidcTokenManager = __webpack_require__(2);
+
+	var _oidcTokenManager2 = _interopRequireDefault(_oidcTokenManager);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function createTokenManager(config) {
+	  return new _oidcTokenManager2['default'](config);
+	};
+
+/***/ }
+/******/ ])
+});
+;
