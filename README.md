@@ -1,20 +1,23 @@
 # redux-oidc
 Middleware component for managing the [OpenID Connect](http://openid.net/connect/) authentication flow in [redux](https://github.com/reactjs/redux) apps.
 
-##Installation
+###Installation
 
 `npm install --save redux-oidc`
 
-##Description
+###Description
 This project was created to enable redux apps to use the OpenID-Connect authentication flow for JavaScript apps (OAuth implicit flow). It was created by me to connect my redux app to an API protected by
 an [IdentityServer3](https://github.com/IdentityServer/IdentityServer3) authentication service, but it should work with other services as well as long as they are
 implementing the OpenID Connect specification.
 
-It contains two parts:
+It uses the [oidc-token-manager](https://github.com/IdentityModel/oidc-token-manager) in the background to manage the calls to the token service.
+
+It contains these parts:
 - `TokenMiddleware`: `redux` middleware validating the access token present in `localStorage`.
 - `CallbackComponent`: a `React` component to use for processing the token callback by the OpenID-Connect token service.
+- `Helper methods`: methods to create `oidc-token-manager` instances and handle logouts.
 
-It uses the [oidc-token-manager](https://github.com/IdentityModel/oidc-token-manager) in the background to manage the calls to the token service.
+
 
 The combination of the two parts does the following in a redux app:
 - verify token lifetime at every dispatch.
@@ -25,7 +28,7 @@ The combination of the two parts does the following in a redux app:
 It doesn't (yet) use any reducers as the nature of the OAuth implicit flow requires redirecting the browser to another host, thus losing the redux state in the process.
 It does however include a function called `createTokenManager(config)` where you can create an `oidc-token-manager` instance to read data from the token into your reducers.
 
-##Usage
+###Usage
 Recommended: Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create a helper method which returns the config object to use it in the middleware and Callback component:
 
         function createTokenManagerConfig() {
@@ -103,8 +106,19 @@ Optionally you can create a TokenManager instance to read the token information 
         export function myReducer(state = getInitialState(), action) {
           // your reducer logic...
         }
-        
-##TODOs
+
+###Helpers
+The following helper methods are available to you. You can bind them to components like `<button/>`s or to your middleware (sagas, thunks etc.):
+
+`import { createTokenManager, logout, logoutAtIdentityService } from 'redux-oidc'`
+
+- `createTokenManager(config)`: takes a `config` object and returns an instance of `oidc-token-manager`,
+- `logout(redirectTo)`: logs out the user locally and (optionally) redirects the browser to an url,
+- `logoutAtIdentityService(config)`: logs out the user at the identity service. Takes a `config` object.
+
+`config` objects are objects required to create the token manager instances (see Usage).
+
+###TODOs
 - Testing. Tests have been written, however the testing environment setup is giving me problems. Need to fix that ASAP.
 - More options for the middleware & component - for example trigger token validation only on specific action types, etc.
 - Provide a reducer & actions containing all the information obtained by the token manager (similar to the one in the example).
