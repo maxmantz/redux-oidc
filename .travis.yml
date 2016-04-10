@@ -5,7 +5,7 @@ node_js:
   - "4"
 
 before_install:
-  - npm install react
+  - npm install react@0.14.8
 
 after_success:
   - coveralls
