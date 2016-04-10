@@ -110,7 +110,57 @@ Optionally you can create a TokenManager instance to read the token information 
           // your reducer logic...
         }
 
-###Helpers
+###API
+#####`createTokenMiddleware`
+
+        import createTokenMiddleware from 'redux-oidc';
+        import { compose, createStore, applyMiddleware } from 'redux';
+        
+        const config = {/* token manager config */};
+        const shouldValidate = (state, action) => true; // this is the default
+        const dispatchOnInvalid = { type: 'TOKEN_INVALID' };
+        
+        const tokenMiddleware = createTokenMiddleware(config, shouldValidate, dispatchOnInvalid);
+        const store = compose(
+                applyMiddleware(/* other middleware here */, tokenMiddleware)
+        )(createStore);
+
+Parameters:
+- `config`: a config object for the `oidc-token-manager` (required),
+- `shouldValidate`: a function which receives the current `state` & `action` and returns `true` when token validation should occur or `false` when the token should not be validated,
+- `dispatchOnInvalid`: a [redux standard action](http://redux.js.org/docs/basics/Actions.html) which is dispatched right before the authentication flow is triggered.
+
+##### `CallbackComponent`
+
+        import React from 'react';
+        import { CallbackComponent } from 'redux-oidc';
+        
+        const config = {/* token manager config */};
+        const successCallback = () => console.log('Successfully validated token!');
+        const errorCallback = (error) => console.log('Error validating token callback:', error);
+        const redirectOnSuccess = true // this is the default
+        const customContent = (<div>Redirecting...</div>); // this is the default
+        
+        function MyCallbackpage(props) {
+          return ( 
+                <CallbackComponent 
+                  config={config}
+                  successCallback={successCallback}
+                  errorCallback={errorCallback}
+                  redirectOnSuccess={redirectOnSuccess}
+                 >
+                 { customContent }
+                </CallbackComponent>
+          );
+        }
+
+Parameters:
+- `config`:  a config object for the `oidc-token-manager` (required),
+- `successCallback`: a function called after the token callback was successful,
+- `errorCallback`: a function which is called when the token callback returned an error,
+- `redirectOnSuccess`: a boolean indicating whether or not the redirect to the previous url should be triggered
+  
+##### `Helpers`      
 The following helper methods are available to you. You can bind them to components like `<button/>`s or to your middleware (sagas, thunks etc.):
 
 `import { createTokenManager, logout, logoutAtIdentityService } from 'redux-oidc'`
@@ -121,10 +171,9 @@ The following helper methods are available to you. You can bind them to componen
 
 `config` objects are objects required to create the token manager instances (see Usage).
 
-###TODOs
-- Testing. Tests have been written, however the testing environment setup is giving me problems. Need to fix that ASAP.
-- More options for the middleware & component - for example trigger token validation only on specific action types, etc.
-- Provide a reducer & actions containing all the information obtained by the token manager (similar to the one in the example).
+###Tests
+
+run ´npm run test´
+
 
 This is very much in early development so I am happy for any issues/bug reports as well as suggestions for improvement.
-
