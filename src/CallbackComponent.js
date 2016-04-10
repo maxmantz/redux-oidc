@@ -5,43 +5,51 @@ import { STORAGE_KEY } from './constants';
 class CallbackComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.onTokenCallbackSuccess.bind(this);
-    this.onTokenCallbackError.bind(this);
+
+    if (typeof(props.redirectOnSuccess) !== 'undefined') {
+      this.state = {
+        redirectOnSuccess: props.redirectOnSuccess
+      };
+    }
+    else {
+      this.state = {
+        redirectOnSuccess: true
+      };
+    }
   }
 
-  onTokenCallbackSuccess() {
+
+  onTokenCallbackSuccess = () => {
     const redirectUrl = localStorage.getItem(STORAGE_KEY);
     localStorage.removeItem(STORAGE_KEY);
-    
-    const { redirectOnSuccess, successCallback, redirectUri } = this.props;
+    debugger;
+    const { successCallback, redirectUri } = this.props;
+    const { redirectOnSuccess } = this.state;
+
     if (redirectOnSuccess) {
       if (successCallback && typeof(successCallback) === 'function') {
         successCallback();
       }
-      window.location = redirectUri ? redirectUri : `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+      window.location = redirectUri || `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
     }
     else {
       if (successCallback && typeof(successCallback) === 'function') {
         successCallback();
       }
     }
-  }
+  };
 
-  onTokenCallbackError(error) {
+  onTokenCallbackError = (error) => {
     localStorage.removeItem(STORAGE_KEY);
     const { errorCallback } = this.props;
     if (errorCallback && typeof(errorCallback) === 'function') {
       errorCallback(error);
     }
-  }
+  };
 
   componentDidMount() {
     let { redirectOnSuccess } = this.props;
     const manager = createTokenManager(this.props.config);
-
-    if (typeof(redirectOnSuccess) === 'undefined' || typeof(redirectOnSuccess) === 'null') {
-      redirectOnSuccess = true;
-    }
 
     // process the token callback
     manager.processTokenCallbackAsync().then(this.onTokenCallbackSuccess, this.onTokenCallbackError);
@@ -60,12 +68,5 @@ class CallbackComponent extends React.Component {
     );
   }
 }
-
-CallbackComponent.propTypes = {
-  config: PropTypes.object.isRequired,
-  errorCallback: PropTypes.func,
-  redirectOnSuccess: PropTypes.bool,
-  successCallback: PropTypes.func
-};
 
 export default CallbackComponent;

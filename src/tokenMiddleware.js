@@ -1,4 +1,4 @@
-import createTokenManager from './helpers';
+import createTokenManager from './helpers/createTokenManager';
 import { STORAGE_KEY } from './constants';
 
 export default function createTokenMiddleware(config, shouldValidate, dispatchOnInvalid) {
