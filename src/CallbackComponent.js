@@ -10,7 +10,9 @@ class CallbackComponent extends React.Component {
   }
 
   onTokenCallbackSuccess() {
+    const redirectUrl = localStorage.getItem(STORAGE_KEY);
     localStorage.removeItem(STORAGE_KEY);
+    
     const { redirectOnSuccess, successCallback, redirectUri } = this.props;
     if (redirectOnSuccess) {
       if (successCallback && typeof(successCallback) === 'function') {
@@ -26,6 +28,7 @@ class CallbackComponent extends React.Component {
   }
 
   onTokenCallbackError(error) {
+    localStorage.removeItem(STORAGE_KEY);
     const { errorCallback } = this.props;
     if (errorCallback && typeof(errorCallback) === 'function') {
       errorCallback(error);
@@ -35,7 +38,6 @@ class CallbackComponent extends React.Component {
   componentDidMount() {
     let { redirectOnSuccess } = this.props;
     const manager = createTokenManager(this.props.config);
-    const redirectUri = localStorage.getItem(STORAGE_KEY);
 
     if (typeof(redirectOnSuccess) === 'undefined' || typeof(redirectOnSuccess) === 'null') {
       redirectOnSuccess = true;

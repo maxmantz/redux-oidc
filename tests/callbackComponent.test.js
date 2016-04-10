@@ -90,7 +90,17 @@ describe('<CallbackComponent />', () => {
     component.onTokenCallbackError(error);
 
     expect(errorCallback.calledWith(error)).toEqual(true);
-  })
+  });
+
+  it('should handle localStorage correctly', () => {
+    const component = new CallbackComponent({});
+
+    component.onTokenCallbackSuccess();
+    expect(getItemStub.calledOnce).toEqual(true);
+    expect(removeItemStub.calledOnce).toEqual(true);
+    component.onTokenCallbackError();
+    expect(removeItemStub.calledTwice).toEqual(true);
+  });
 
   afterEach(() => {
     localStorage = oldStorage;
