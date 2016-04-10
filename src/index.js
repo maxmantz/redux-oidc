@@ -1,11 +1,11 @@
 import OidcTokenManager from '../libs/oidc-token-manager';
 import createTokenMiddleware from './tokenMiddleware';
-import CallbackComponent from './CallbackComponent';
+import Callback from './CallbackComponent';
 import helpers from './helpers';
 
-export { CallbackComponent,
-  createTokenManager: helpers.createTokenManager,
-  logout: helpers.logout,
-  logoutAtIdentityService: helpers.logoutAtIdentityService };
+export const createTokenManager = helpers.createTokenManager;
+export const logout = helpers.logout;
+export const logoutAtIdentityService = helpers.logoutAtIdentityService;
+export const CallbackComponent = Callback;
 
 export default createTokenMiddleware;
