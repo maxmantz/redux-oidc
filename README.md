@@ -1,6 +1,8 @@
 # redux-oidc
 Middleware component for managing the [OpenID Connect](http://openid.net/connect/) authentication flow in [redux](https://github.com/reactjs/redux) apps.
 
+[![Build Status](https://travis-ci.org/maxmantz/redux-oidc.svg?branch=master)](https://travis-ci.org/maxmantz/redux-oidc)
+
 ###Installation
 
 `npm install --save redux-oidc`
@@ -172,7 +174,7 @@ The following helper methods are available to you. You can bind them to componen
 
 ###Tests
 
-run ´npm run test´
+run `npm run test`
 
 
 This is very much in early development so I am happy for any issues/bug reports as well as suggestions for improvement.
