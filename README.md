@@ -112,7 +112,7 @@ Optionally you can create a TokenManager instance to read the token information 
         }
 
 ###API
-#####`createTokenMiddleware`
+#####`createTokenMiddleware(config, shouldValidate, dispatchOnInvalid)`
 
         import createTokenMiddleware from 'redux-oidc';
         import { compose, createStore, applyMiddleware } from 'redux';
@@ -127,9 +127,9 @@ Optionally you can create a TokenManager instance to read the token information 
         )(createStore);
 
 Parameters:
-- `config`: a config object for the `oidc-token-manager` (required),
-- `shouldValidate`: a function which receives the current `state` & `action` and returns `true` when token validation should occur or `false` when the token should not be validated,
-- `dispatchOnInvalid`: a [redux standard action](http://redux.js.org/docs/basics/Actions.html) which is dispatched right before the authentication flow is triggered.
+- `config`: **(required)** a config object for the `oidc-token-manager`,
+- `shouldValidate`: *(optional)* a function which receives the current `state` & `action` and returns `true` when token validation should occur or `false` when the token should not be validated,
+- `dispatchOnInvalid`: *(optional)* a [redux standard action](http://redux.js.org/docs/basics/Actions.html) which is dispatched right before the authentication flow is triggered.
 
 ##### `CallbackComponent`
 
@@ -156,10 +156,10 @@ Parameters:
         }
 
 Parameters:
-- `config`:  a config object for the `oidc-token-manager` (required),
-- `successCallback`: a function called after the token callback was successful,
-- `errorCallback`: a function which is called when the token callback returned an error,
-- `redirectOnSuccess`: a boolean indicating whether or not the redirect to the previous url should be triggered
+- `config`: **(required)** a config object for the `oidc-token-manager` ,
+- `successCallback`: *(optional)* a function called after the token callback was successful,
+- `errorCallback`: *(optional)* a function which is called when the token callback returned an error,
+- `redirectOnSuccess`: *(optional)* a boolean indicating whether or not the redirect to the previous url should be triggered
   
 ##### `Helpers`      
 The following helper methods are available to you. You can bind them to components like `<button/>`s or to your middleware (sagas, thunks etc.):
@@ -167,8 +167,8 @@ The following helper methods are available to you. You can bind them to componen
 `import { createTokenManager, logout, logoutAtIdentityService } from 'redux-oidc'`
 
 - `createTokenManager(config)`: takes a `config` object and returns an instance of `oidc-token-manager`,
-- `logout(redirectTo)`: logs out the user locally and (optionally) redirects the browser to an url,
-- `logoutAtIdentityService(config)`: logs out the user at the identity service. Takes a `config` object.
+- `logout(redirectTo)`: logs out the user locally redirects the browser to an url provided by `redirectTo`. `redirectTo` is optional,
+- `logoutAtIdentityService(config)`: logs out the user at the identity service. Requires `config` object.
 
 `config` objects are objects required to create the token manager instances (see Usage).
 
