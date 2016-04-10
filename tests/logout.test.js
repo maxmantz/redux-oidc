@@ -1,27 +1,25 @@
+import 'babel-polyfill';
 import sinon from 'sinon';
-import { logout, createTokenManager } from '../src/helpers';
 import expect from 'expect';
-
+import proxyquire from 'proxyquire';
+import logout from '../src/helpers/logout';
 // require('./testdom')('<html><head></head><body></body></html>');
 
 describe('logout()', () => {
   let removeTokenStub;
   let createTokenManagerStub;
+  let helpers;
   beforeEach(() => {
-    const tokenManager = createTokenManager();
-    removeTokenStub = sinon.stub(tokenManager, 'removeToken');
+    removeTokenStub = sinon.stub();
     removeTokenStub.returns(null);
-    createTokenManagerStub = sinon.stub(createTokenManager);
+    const tokenManager = { removeToken: removeTokenStub };
+    createTokenManagerStub = sinon.stub();
     createTokenManagerStub.returns(tokenManager);
-  });
-
-  afterEach(() => {
-    removeTokenStub.restore();
-    createTokenManagerStub.restore();
+    logout.__Rewire__('createTokenManager', createTokenManagerStub);
   });
 
   it('should call the removeToken function', () => {
     logout();
-    expect(removeTokenStub.called).toBe(true)
+    expect(removeTokenStub.called).toEqual(true)
   });
 });

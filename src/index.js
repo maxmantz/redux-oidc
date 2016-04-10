@@ -1,8 +1,11 @@
 import OidcTokenManager from '../libs/oidc-token-manager';
 import createTokenMiddleware from './tokenMiddleware';
 import CallbackComponent from './CallbackComponent';
-import {createTokenManager, logout, logoutAtIdentityService} from './helpers';
+import helpers from './helpers';
 
-export { CallbackComponent, createTokenManager, logout, logoutAtIdentityService };
+export { CallbackComponent,
+  createTokenManager: helpers.createTokenManager,
+  logout: helpers.logout,
+  logoutAtIdentityService: helpers.logoutAtIdentityService };
 
 export default createTokenMiddleware;

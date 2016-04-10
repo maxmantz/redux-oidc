@@ -1,20 +1,12 @@
-
-import { createTokenManager } from '../src/helpers';
+import 'babel-polyfill';
+import createTokenManager from '../src/helpers/createTokenManager';
 import expect from 'expect';
 
-//require('./testdom')('<html><head></head><body></body></html>');
-
-describe("createTokenManager() function", () => {
+describe('createTokenManager() function', () => {
   it('should return an OidcTokenManager instance', () => {
-    const options = {};
-    const tokenManager = createTokenManager(options);
+    const tokenManager = createTokenManager();
 
-    expect(typeof(tokenManager)).toEqual("TokenManager");
-  });
-
-  it('should throw an error when no options are passed', () => {
-    const tokenManager = createTokenManager(null);
-
-    expect(createTokenManager(null)).to.throw(Error);
+    expect(typeof(tokenManager)).toEqual('object');
+    expect(typeof(tokenManager.redirectForLogout)).toEqual('function');
   });
 });

@@ -1,40 +1,101 @@
-/*
+import ReactTestUtils from 'react-addons-test-utils';
+import ReactAddons from 'react/addons';
 import expect from 'expect';
 import React from 'react';
 import CallbackComponent from '../src/CallbackComponent.js';
 import sinon from 'sinon';
-import { createTokenManager } from '../src/helpers.js';
-import OidcTokenManager from '../libs/oidc-token-manager.js';
+import {findAllWithType} from 'react-shallow-testutils';
+import { STORAGE_KEY } from '../src/constants';
 
-// require('./testdom')('<html><head></head><body></body></html>');
-/*
 describe('<CallbackComponent />', () => {
   let tokenManagerStub;
   let createTokenManagerStub;
-
+  let processTokenCallbackAsyncStub;
+  let thenStub;
+  let getItemStub;
+  let removeItemStub;
+  let oldStorage;
+  var oldWindow;
   beforeEach(() => {
-    const tokenManager = new OidcTokenManager();
-    tokenManagerStub = sinon.stub(tokenManager, "processTokenCallbackAsync");
-    tokenManagerStub.returns(null);
-    createTokenManagerStub = sinon.stub(createTokenManager);
-    createTokenManagerStub.returns(tokenManagerStub);
+    getItemStub = sinon.stub();
+    removeItemStub = sinon.stub();
+
+    oldStorage = localStorage;
+    localStorage = {
+      getItem: getItemStub,
+      removeItem: removeItemStub
+    };
+
+    oldWindow = window;
+
+    window = {
+      location: {
+        protocol: 'https:',
+        hostname: 'localhost',
+        port: 3000
+      }
+    };
+
+    processTokenCallbackAsyncStub = sinon.stub();
+    thenStub = sinon.stub();
+    processTokenCallbackAsyncStub.returns({then: thenStub});
+    const tokenManager = { processTokenCallbackAsync: processTokenCallbackAsyncStub };
+    createTokenManagerStub = sinon.stub();
+    createTokenManagerStub.returns(tokenManager);
+    CallbackComponent.__Rewire__('createTokenManager', createTokenManagerStub);
   });
 
   it('should render its children & call the token manager', () => {
-    const tokenManagerStub = sinon.stub();
-    const createTokenManagerStub = sinon.stub(createTokenManager);
-    createTokenManagerStub.returns(tokenManagerStub);
-    const children = (<div>Child</div>);
-    const renderedComponent = shallow(<CallbackComponent>{ children }</CallbackComponent>);
+    // TODO: come up with a fix for the rendering errors
+    /*
+    const renderer = ReactTestUtils.createRenderer();
 
-    expect(renderedComponent.contains(children)).toEqual(true);
+    var child = <div>Child</div>;
+
+    const renderedComponent = renderer.render(<CallbackComponent>{child}</CallbackComponent>);
+
+    expect(findAllWithType(renderedComponent, child).length).toEqual(1);
     expect(tokenManagerStub.called).toEqual(true);
+    */
   });
 
-  afterEach(() => {
-    tokenManagerStub.restore();
-    createTokenManagerStub.restore();
-  })
-});
+  it('should call the tokenManagers processTokenCallbackAsync then() method', () => {
+    const component = new CallbackComponent({});
+    component.componentDidMount();
 
-*/
+    expect(processTokenCallbackAsyncStub.called).toEqual(true);
+    expect(thenStub.calledWith(component.onTokenCallbackSuccess, component.onTokenCallbackError)).toEqual(true);
+  });
+
+  it('should clear the redirect url redirect to the app root on success by default', () => {
+    const component = new CallbackComponent({});
+    component.onTokenCallbackSuccess();
+
+    expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
+  });
+
+  it('should call the success callback when provided', () => {
+    const successCallback = sinon.stub();
+    const component = new CallbackComponent({ successCallback });
+
+    component.onTokenCallbackSuccess();
+
+    expect(successCallback.called).toEqual(true);
+  });
+
+  it('should call the error callback when provided', () => {
+    const errorCallback = sinon.stub();
+    const error = 'some error';
+    const component = new CallbackComponent({ errorCallback });
+
+    component.onTokenCallbackError(error);
+
+    expect(errorCallback.calledWith(error)).toEqual(true);
+  })
+
+  afterEach(() => {
+    React.unmountComponentAtNode(document.body);
+    localStorage = oldStorage;
+    window = oldWindow;
+  });
+});
