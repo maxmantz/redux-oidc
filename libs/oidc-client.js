@@ -8,7 +8,7 @@
     var _httpRequest;
 
   // mock for testing
-  window.localStorage = window.localStorage || { getItem: function(key) { return key; }};
+  window.localStorage = window.localStorage.getItem ? window.localStorage : { getItem: function(key) { return key; }};
 /*
 CryptoJS v3.1.2
 code.google.com/p/crypto-js
