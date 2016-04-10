@@ -21,6 +21,8 @@ var OidcClient = require('./oidc-client');
 var _promiseFactory = OidcClient._promiseFactory;
 var _httpRequest  = OidcClient._httpRequest;
 
+window.localStorage = window.localStorage || { getItem: function(key) {return key;}};
+
 
 function copy(obj, target) {
     target = target || {};
