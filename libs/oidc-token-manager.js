@@ -22,7 +22,7 @@ var _promiseFactory = OidcClient._promiseFactory;
 var _httpRequest  = OidcClient._httpRequest;
 
 // for testing purposes
-window.localStorage = window.localStorage.getItem ? window.localStorage : { getItem: function(key) { return key; }};
+window.localStorage = window.localStorage.getItem ? window.localStorage : { getItem: function(key) { return key; }, setItem: function(key, value) {} };
 
 
 function copy(obj, target) {

@@ -6,3 +6,6 @@ node_js:
 
 before_install:
   - npm install react
+
+after_success:
+  - coveralls
