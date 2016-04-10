@@ -93,7 +93,6 @@ describe('<CallbackComponent />', () => {
   })
 
   afterEach(() => {
-    React.unmountComponentAtNode(document.body);
     localStorage = oldStorage;
     window = oldWindow;
   });

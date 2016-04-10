@@ -21,7 +21,9 @@ var OidcClient = require('./oidc-client');
 var _promiseFactory = OidcClient._promiseFactory;
 var _httpRequest  = OidcClient._httpRequest;
 
-window.localStorage = window.localStorage || { getItem: function(key) {return key;}};
+// for testing purposes
+window.localStorage = window.localStorage || { getItem: function(key) { return key; }};
+window.localStorage.getItem = window.localStorage.getItem || function(key) { return key; };
 
 
 function copy(obj, target) {
@@ -266,6 +268,7 @@ function TokenManager(settings) {
     if (typeof this._settings.persist === 'undefined') {
         this._settings.persist = true;
     }
+
     this._settings.store = this._settings.store || window.localStorage;
     this._settings.persistKey = this._settings.persistKey || "TokenManager.token";
 
