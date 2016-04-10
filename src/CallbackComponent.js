@@ -33,7 +33,6 @@ class CallbackComponent extends React.Component {
   }
 
   componentDidMount() {
-    const { errorCallback, successCallback } = this.props;
     let { redirectOnSuccess } = this.props;
     const manager = createTokenManager(this.props.config);
     const redirectUri = localStorage.getItem(STORAGE_KEY);
