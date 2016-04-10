@@ -1,5 +1,4 @@
 import ReactTestUtils from 'react-addons-test-utils';
-import ReactAddons from 'react/addons';
 import expect from 'expect';
 import React from 'react';
 import CallbackComponent from '../src/CallbackComponent.js';
