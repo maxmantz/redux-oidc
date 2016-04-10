@@ -22,7 +22,6 @@ class CallbackComponent extends React.Component {
   onTokenCallbackSuccess = () => {
     const redirectUrl = localStorage.getItem(STORAGE_KEY);
     localStorage.removeItem(STORAGE_KEY);
-    debugger;
     const { successCallback, redirectUri } = this.props;
     const { redirectOnSuccess } = this.state;
 
