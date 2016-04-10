@@ -1,7 +1,6 @@
 import 'babel-polyfill';
 import sinon from 'sinon';
 import expect from 'expect';
-import proxyquire from 'proxyquire';
 import logout from '../src/helpers/logout';
 // require('./testdom')('<html><head></head><body></body></html>');
 
