@@ -20,16 +20,15 @@ It contains these parts:
 
 
 The combination of these parts does the following in a redux app:
-- verify token lifetime at every dispatch.
-- if the access token has expired, trigger the authentication flow (OAuth implicit flow).
-- if authentication was successful, redirect to the URI before the authentication flow was triggered (any route within the app),
+- verify token lifetime at every dispatch or when the provided `shouldValidate` function returns `true`.
+- if the access token has expired, dispatch an action (optional) & trigger the authentication flow (OAuth implicit flow).
+- if authentication was successful, perform an optional callback & redirect to the URI before the authentication flow was triggered (any route within the app),
 - if authentication was unsuccessful, trigger an optional callback.
 - logout the user via the helper methods provided.
 
 It doesn't (yet) use any reducers as the nature of the OAuth implicit flow requires redirecting the browser to another host, thus losing the redux state in the process.
 It does however include a function called `createTokenManager(config)` where you can create an `oidc-token-manager` instance to read data from the token into your reducers.
 
-NOTE: As of right now, the middleware assumes that there are only protected parts to your application. That means that the authentication flow gets triggered as soon as an invalid token has been found in `localStorage` - no matter what. If your app has public areas IN ADDITION to private areas, where token validation shouldn't happen, this package is not for you. I would however be interested in any ideas on how to remove this limitation.
 
 ###Usage
 Recommended: Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create a helper method which returns the config object to use it in the middleware and Callback component:
