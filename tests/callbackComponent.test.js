@@ -102,6 +102,14 @@ describe('<CallbackComponent />', () => {
     expect(removeItemStub.calledTwice).toEqual(true);
   });
 
+  it('should redirect to the custom redirectUri when provided', () => {
+    const customRedirectUri = 'https://some.uri.com';
+    const component = new CallbackComponent({redirectUri: customRedirectUri});
+
+    component.onTokenCallbackSuccess();
+    expect(window.location).toEqual(customRedirectUri);
+  });
+
   afterEach(() => {
     localStorage = oldStorage;
     window = oldWindow;
