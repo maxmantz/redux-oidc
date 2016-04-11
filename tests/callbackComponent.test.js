@@ -110,6 +110,15 @@ describe('<CallbackComponent />', () => {
     expect(window.location).toEqual(customRedirectUri);
   });
 
+  it('should redirect to the url in localStorage when no redirectUri has been passed', () => {
+    const redirectUrl = 'https://some.url.com';
+    const component = new CallbackComponent({});
+    getItemStub.returns(redirectUrl);
+    component.onTokenCallbackSuccess();
+
+    expect(window.location).toEqual(redirectUrl);
+  });
+
   afterEach(() => {
     localStorage = oldStorage;
     window = oldWindow;

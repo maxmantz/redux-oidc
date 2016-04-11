@@ -1,0 +1,12 @@
+v1.1.8:
+ - CallackComponent:
+  - fixed an issue where the redirect to the previous url was not working
+
+v1.1.7:
+- tokenMiddleware:
+  - added support for shouldValidate
+- CallbackComponent:
+  - added successCallback,
+  - added redirectUri,
+  - added redirectOnSuccess check
+- fixed several major bugs, old versions deprecated

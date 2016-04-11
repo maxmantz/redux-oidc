@@ -20,16 +20,16 @@ class CallbackComponent extends React.Component {
 
 
   onTokenCallbackSuccess = () => {
-    const redirectUrl = localStorage.getItem(STORAGE_KEY);
+    const redirectUrl = this.props.redirectUri || localStorage.getItem(STORAGE_KEY);
     localStorage.removeItem(STORAGE_KEY);
-    const { successCallback, redirectUri } = this.props;
+    const { successCallback } = this.props;
     const { redirectOnSuccess } = this.state;
 
     if (redirectOnSuccess) {
       if (successCallback && typeof(successCallback) === 'function') {
         successCallback();
       }
-      window.location = redirectUri || `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+      window.location = redirectUrl || `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
     }
     else {
       if (successCallback && typeof(successCallback) === 'function') {
