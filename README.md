@@ -33,7 +33,12 @@ It does however include a function called `createTokenManager(config)` where you
 
 
 ###Usage
-Recommended: Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create a helper method which returns the config object to use it in the middleware and Callback component:
+
+NOTE: If your app runs into an error before the `CallbackComponent` gets rendered, on the next restart the token validation won't get triggered. This is because the redirectUri is stored in `localStorage` for the callback to process, which didn't take place. Simply remove `oidc.redirectTo` from your local storage and validation should trigger once again.
+
+The `oidc-token-manager` stores it's data in local storage under the key `TokenManager.token`. Simply delete this if you wish to log out locally.
+
+*Recommended:* Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create a helper method which returns the config object to use it in the middleware and Callback component:
 
         function createTokenManagerConfig() {
           return {
