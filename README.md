@@ -8,7 +8,7 @@ A package for managing the [OpenID Connect](http://openid.net/connect/) authenti
 `npm install --save redux-oidc`
 
 ###Description
-This project was created to enable redux apps to use the OpenID-Connect authentication flow for JavaScript apps (OAuth implicit flow). It was created by me to connect my redux app to an API protected by
+This project was created to enable redux apps to use the recommended OpenID-Connect authentication flow for JavaScript apps (OAuth2 implicit flow). It was created by me to connect my redux app to an API protected by
 an [IdentityServer3](https://github.com/IdentityServer/IdentityServer3) authentication service, but it should work with other services as well as long as they are
 implementing the OpenID Connect specification.
 
@@ -23,7 +23,7 @@ It contains these parts:
 
 The combination of these parts does the following in a redux app:
 - verify token lifetime at every dispatch or when the provided `shouldValidate` function returns `true`.
-- if the access token has expired, dispatch an action (optional) & trigger the authentication flow (OAuth implicit flow).
+- if the access token has expired, dispatch an action (optional) & trigger the authentication flow (OAuth2 implicit flow).
 - if authentication was successful, perform an optional callback & redirect to the URI before the authentication flow was triggered (any route within the app),
 - if authentication was unsuccessful, trigger an optional callback.
 - logout the user via the helper methods provided.
