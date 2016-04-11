@@ -141,6 +141,7 @@ Parameters:
         const errorCallback = (error) => console.log('Error validating token callback:', error);
         const redirectOnSuccess = true // this is the default
         const customContent = (<div>Redirecting...</div>); // this is the default
+        const redirectUri = "https://myAppRoot.com/custom"; // optional
         
         function MyCallbackpage(props) {
           return ( 
@@ -149,6 +150,7 @@ Parameters:
                   successCallback={successCallback}
                   errorCallback={errorCallback}
                   redirectOnSuccess={redirectOnSuccess}
+                  redirectUri={redirectUri}
                  >
                  { customContent }
                 </CallbackComponent>
@@ -159,7 +161,8 @@ Parameters:
 - `config`: **(required)** a config object for the `oidc-token-manager` ,
 - `successCallback`: *(optional)* a function called after the token callback was successful,
 - `errorCallback`: *(optional)* a function which is called when the token callback returned an error,
-- `redirectOnSuccess`: *(optional)* a boolean indicating whether or not the redirect to the previous url should be triggered
+- `redirectOnSuccess`: *(optional)* a boolean indicating whether or not the redirect to the previous url should be triggered,
+- `redirectUri`: *(optional)* a custom uri to redirect to after the callback was successful.
   
 ##### `Helpers`      
 The following helper methods are available to you. You can bind them to components like `<button/>`s or to your middleware (sagas, thunks etc.):
