@@ -34,6 +34,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({comments: false})
+    new webpack.optimize.UglifyJsPlugin({comments: false, compress: { warnings: false }})
   ]
 };
