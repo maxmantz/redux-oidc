@@ -8,7 +8,7 @@ A package for managing the [OpenID Connect](http://openid.net/connect/) authenti
 `npm install --save redux-oidc`
 
 ###Description
-This project was created to enable redux apps to use the OpenID-Connect authentication flow for JavaScript apps (OAuth implicit flow). It was created by me to connect my redux app to an API protected by
+This project was created to enable redux apps to use the recommended OpenID-Connect authentication flow for JavaScript apps ([OAuth2 implicit flow](http://oauthlib.readthedocs.org/en/latest/oauth2/grants/implicit.html)). It was created by me to connect my redux app to an API protected by
 an [IdentityServer3](https://github.com/IdentityServer/IdentityServer3) authentication service, but it should work with other services as well as long as they are
 implementing the OpenID Connect specification.
 
@@ -23,7 +23,7 @@ It contains these parts:
 
 The combination of these parts does the following in a redux app:
 - verify token lifetime at every dispatch or when the provided `shouldValidate` function returns `true`.
-- if the access token has expired, dispatch an action (optional) & trigger the authentication flow (OAuth implicit flow).
+- if the access token has expired, dispatch an action (optional) & trigger the authentication flow (OAuth2 implicit flow).
 - if authentication was successful, perform an optional callback & redirect to the URI before the authentication flow was triggered (any route within the app),
 - if authentication was unsuccessful, trigger an optional callback.
 - logout the user via the helper methods provided.
@@ -33,7 +33,12 @@ It does however include a function called `createTokenManager(config)` where you
 
 
 ###Usage
-Recommended: Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create a helper method which returns the config object to use it in the middleware and Callback component:
+
+NOTE: If your app runs into an error before the `CallbackComponent` gets rendered, on the next restart the token validation won't get triggered. This is because the redirectUri is stored in `localStorage` for the callback to process, which didn't take place. Simply remove `oidc.redirectTo` from your local storage and validation should trigger once again.
+
+The `oidc-token-manager` stores it's data in local storage under the key `TokenManager.token`. Simply delete this if you wish to log out locally.
+
+*Recommended:* Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create a helper method which returns the config object to use it in the middleware and Callback component:
 
         function createTokenManagerConfig() {
           return {
