@@ -172,11 +172,12 @@ Parameters:
 ##### `Helpers`      
 The following helper methods are available to you. You can bind them to components like `<button/>`s or to your middleware (sagas, thunks etc.):
 
-`import { createTokenManager, logout, logoutAtIdentityService } from 'redux-oidc'`
+`import { createTokenManager, logout, logoutAtIdentityService, triggerAuthFlow } from 'redux-oidc'`
 
 - `createTokenManager(config)`: takes a `config` object and returns an instance of `oidc-token-manager`,
 - `logout(redirectTo)`: logs out the user locally redirects the browser to an url provided by `redirectTo`. `redirectTo` is optional,
-- `logoutAtIdentityService(config)`: logs out the user at the identity service. Requires `config` object.
+- `logoutAtIdentityService(config)`: logs out the user at the identity service. Requires `config` object,
+- `triggerAuthFlow(config, redirectTo)`: triggers the auth flow usually triggered by the middleware. Takes a `config` object and an optional URL to redirect to after authentication was successful.
 
 `config` objects are objects required to create the token manager instances (see Usage).
 
