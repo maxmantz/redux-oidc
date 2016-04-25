@@ -185,5 +185,8 @@ The following helper methods are available to you. You can bind them to componen
 
 run `npm run test`
 
+###Known issues
+The `oidc-token-manager` currently doesn't work on Safari for Windows. There is a pending update which will remove this dependency and (hopefully) fix this issue.
+
 
 This is very much in early development so I am happy for any issues/bug reports as well as suggestions for improvement.
