@@ -38,17 +38,15 @@ NOTE: If your app runs into an error before the `CallbackComponent` gets rendere
 
 The `oidc-token-manager` stores it's data in local storage under the key `TokenManager.token`. Simply delete this if you wish to log out locally.
 
-*Recommended:* Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create a helper method which returns the config object to use it in the middleware and Callback component:
+*Recommended:* Each `oidc-token-manager` needs a new instance of the configuration object passed into the constructor. Create this object to use it in the middleware and Callback component:
 
-        function createTokenManagerConfig() {
-          return {
+        const tokenManagerConfig = {
             client_id: 'redux-app', // your client id
             redirect_uri: `${window.location.protocol}//${window.location.hostname}:${window.location.port}/callback`, // your callback url
             response_type: 'id_token token', // the response type from the token service
             scope: 'openid profile', // the scopes to include
             authority: 'https://myTokenService.com' // the authority
-          };
-        }
+        };
 
 1. Register the middleware with the redux store.
 
@@ -56,7 +54,7 @@ The `oidc-token-manager` stores it's data in local storage under the key `TokenM
         import createTokenMiddleware from 'redux-oidc';
         
         const store = compose(
-          applyMiddleware(createTokenMiddleware(createTokenManagerConfig())) // call the middleware creator function
+          applyMiddleware(createTokenMiddleware(tokenManagerConfig)) // call the middleware creator function with the config
         )(createStore);
 
 2. Create a route in your app to point to the `redirect_uri` specified in the `tokenManagerOptions` & registered with the token service. In the component registered at that route,
@@ -180,6 +178,18 @@ The following helper methods are available to you. You can bind them to componen
 - `triggerAuthFlow(config, redirectTo)`: triggers the auth flow usually triggered by the middleware. Takes a `config` object and an optional URL to redirect to after authentication was successful.
 
 `config` objects are objects required to create the token manager instances (see Usage).
+
+##### Silent refresh
+The `oidc-token-manager` & this middleware (since v1.1.11-beta1) support the silent refresh of tokens without redirection. This has the advantage that a visible redirect does not happen & that the redux state does not get lost when the browser leaves your app. In order to enable this, simply configure the config object to allow silent renew, like this:
+
+        const tokenManagerConfig = {
+          //...
+          silen_renew: true,
+          silent_redirect_uri: '${window.location.protocol}//${window.location.hostname}:${window.location.port}/silentredirect.html'
+        }
+
+The caveat:
+You have to configure webpack/grund/gulp to output a separate html module besides index.html to contain the token callback page. The configuration for this exceeds the scope of this documentation. If you use the [react-boilerplate](https://github.com/mxstbr/react-boilerplate) there is an example on how to create such a configuration in webpack.
 
 ###Tests
 
