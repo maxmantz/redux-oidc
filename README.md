@@ -184,7 +184,7 @@ The `oidc-token-manager` & this middleware (since v1.1.11-beta1) support the sil
 
         const tokenManagerConfig = {
           //...
-          silen_renew: true,
+          silent_renew: true,
           silent_redirect_uri: '${window.location.protocol}//${window.location.hostname}:${window.location.port}/silentredirect.html'
         }
 
