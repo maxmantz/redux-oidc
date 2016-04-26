@@ -80,7 +80,7 @@ include the `CallbackComponent`:
           
           render() {
             return (
-              <CallbackComponent config={createTokenManagerConfig()} errorCallback={this.onTokenValidationError}>
+              <CallbackComponent config={tokenManagerConfig} errorCallback={this.onTokenValidationError}>
                 { this.customContent }
               </CallbackComponent>
             );
@@ -97,7 +97,7 @@ Optionally you can create a TokenManager instance to read the token information 
         import { createTokenManagerConfig } from 'helpers';
         
         function getInitialState() {
-          const manager = createTokenManager(createTokenManagerConfig());
+          const manager = createTokenManager(tokenManagerConfig);
           
           if (!manager.expired) {
             return {
