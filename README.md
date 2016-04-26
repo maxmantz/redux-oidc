@@ -191,6 +191,13 @@ The `oidc-token-manager` & this middleware (since v1.1.11-beta1) support the sil
 The caveat:
 You have to configure webpack/grund/gulp to output a separate html module besides index.html to contain the token callback page. The configuration for this exceeds the scope of this documentation. If you use the [react-boilerplate](https://github.com/mxstbr/react-boilerplate) there is an example on how to create such a configuration in webpack.
 
+The script in the redirect page module should look something like this:
+
+        import { createTokenManager } from 'redux-oidc';
+        
+        const manager = createTokenManager();
+        manager.processTokenCallbackSilent();
+
 ###Tests
 
 run `npm run test`
