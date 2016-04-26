@@ -30,7 +30,6 @@ export default function createTokenMiddleware(config, shouldValidate, dispatchOn
             next(dispatchOnInvalid);
           }
           manager.renewTokenSilentAsync();
-          return null;
         }
       }
     }

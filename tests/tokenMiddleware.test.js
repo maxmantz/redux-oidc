@@ -124,10 +124,6 @@ describe('Token Middleware', () => {
     expect(redirectForTokenStub.called).toEqual(false);
   });
 
-  afterEach(() => {
-    localStorage = oldStorage;
-  });
-
   it('should trigger the silent refresh flow when the "silent_renew" config option is true & not trigger the default auth flow', () => {
     config = {
       silent_renew: true,
@@ -141,5 +137,20 @@ describe('Token Middleware', () => {
     expect(setItemStub.called).toEqual(false);
     expect(redirectForTokenStub.called).toEqual(false);
     expect(renewTokenSilentAsyncStub.called).toEqual(true);
+  });
+
+  it('should call the next middleware with the dispatched action when silent refresh is triggered', () => {
+    config = {
+      silent_renew: true,
+    };
+    tokenManager.expired = true;
+    const middleware = createTokenMiddleware(config)(store)(next);
+
+    middleware(action);
+    expect(next.calledWith(action)).toEqual(true);
+  })
+
+  afterEach(() => {
+    localStorage = oldStorage;
   });
 })
