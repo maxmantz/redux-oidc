@@ -1,3 +1,7 @@
+v1.1.11-beta1:
+- tokenMiddleware:
+  - added support for silent renew (BETA)
+
 v1.1.10:
 - fixed critical bug when assigning localStorage for testing in IE & Firefox.
 

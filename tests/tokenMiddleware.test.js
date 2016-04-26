@@ -6,6 +6,7 @@ import { STORAGE_KEY } from '../src/constants';
 describe('Token Middleware', () => {
   let config;
   let redirectForTokenStub;
+  let renewTokenSilentAsyncStub;
   let createTokenManagerStub;
   let tokenManager;
   let getItemStub;
@@ -18,8 +19,13 @@ describe('Token Middleware', () => {
   beforeEach(() => {
     action = {type: 'SOME_ACTION'};
     config = {};
-    redirectForTokenStub = sinon.stub()
-    tokenManager = { redirectForToken: redirectForTokenStub, expired: false };
+    redirectForTokenStub = sinon.stub();
+    renewTokenSilentAsyncStub = sinon.stub();
+    tokenManager = {
+      redirectForToken: redirectForTokenStub,
+      expired: false,
+      renewTokenSilentAsync: renewTokenSilentAsyncStub
+    };
     createTokenManagerStub = sinon.stub();
     createTokenManagerStub.returns(tokenManager);
     getStateStub = sinon.stub();
@@ -120,5 +126,20 @@ describe('Token Middleware', () => {
 
   afterEach(() => {
     localStorage = oldStorage;
+  });
+
+  it('should trigger the silent refresh flow when the "silent_renew" config option is true & not trigger the default auth flow', () => {
+    config = {
+      silent_renew: true,
+    };
+    tokenManager.expired = true;
+    const middleware = createTokenMiddleware(config)(store)(next);
+
+    middleware({});
+
+    expect(getItemStub.called).toEqual(false);
+    expect(setItemStub.called).toEqual(false);
+    expect(redirectForTokenStub.called).toEqual(false);
+    expect(renewTokenSilentAsyncStub.called).toEqual(true);
   });
 })

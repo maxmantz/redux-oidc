@@ -3,12 +3,20 @@ import createTokenManager from './helpers/createTokenManager';
 import { STORAGE_KEY } from './constants';
 
 class CallbackComponent extends React.Component {
+  static propTypes = {
+    redirectOnSuccess: PropTypes.bool,
+    successCallback: PropTypes.func,
+    errorCallback: PropTypes.func,
+    config: PropTypes.object.isRequired,
+    children: PropTypes.element,
+  }
+
   constructor(props) {
     super(props);
 
-    if (typeof(props.redirectOnSuccess) !== 'undefined') {
+    if (typeof(this.props.redirectOnSuccess) !== 'undefined') {
       this.state = {
-        redirectOnSuccess: props.redirectOnSuccess
+        redirectOnSuccess: this.props.redirectOnSuccess
       };
     }
     else {
