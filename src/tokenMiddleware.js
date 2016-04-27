@@ -29,7 +29,15 @@ export default function createTokenMiddleware(config, shouldValidate, dispatchOn
           if (dispatchOnInvalid) {
             next(dispatchOnInvalid);
           }
-          manager.renewTokenSilentAsync();
+
+          manager.renewTokenSilentAsync().catch(() => {
+            localStorage.setItem(STORAGE_KEY, `${window.location.protocol}//${window.location.hostname}:${window.location.port}`);
+            if (dispatchOnInvalid) {
+              next(dispatchOnInvalid);
+            }
+            manager.redirectForToken();
+            return null;
+          });
         }
       }
     }

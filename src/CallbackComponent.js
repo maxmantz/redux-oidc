@@ -59,7 +59,12 @@ class CallbackComponent extends React.Component {
     const manager = createTokenManager(this.props.config);
 
     // process the token callback
-    manager.processTokenCallbackAsync().then(this.onTokenCallbackSuccess, this.onTokenCallbackError);
+    if (this.props.config.silent_renew) {
+      manager.processTokenCallbackSilent();
+      this.onTokenCallbackSuccess();
+    } else {
+      manager.processTokenCallbackAsync().then(this.onTokenCallbackSuccess, this.onTokenCallbackError);
+    }
   }
 
 

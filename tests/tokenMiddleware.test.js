@@ -21,6 +21,9 @@ describe('Token Middleware', () => {
     config = {};
     redirectForTokenStub = sinon.stub();
     renewTokenSilentAsyncStub = sinon.stub();
+    renewTokenSilentAsyncStub.returns({
+      catch: sinon.stub()
+    });
     tokenManager = {
       redirectForToken: redirectForTokenStub,
       expired: false,
@@ -144,6 +147,7 @@ describe('Token Middleware', () => {
       silent_renew: true,
     };
     tokenManager.expired = true;
+
     const middleware = createTokenMiddleware(config)(store)(next);
 
     middleware(action);

@@ -10,15 +10,19 @@ describe('<CallbackComponent />', () => {
   let tokenManagerStub;
   let createTokenManagerStub;
   let processTokenCallbackAsyncStub;
+  let processTokenCallbackSilentStub;
   let thenStub;
   let getItemStub;
   let removeItemStub;
   let oldStorage;
-  var oldWindow;
+  let oldWindow;
+  let config;
   beforeEach(() => {
     getItemStub = sinon.stub();
     removeItemStub = sinon.stub();
-
+    config = {
+      silent_renew: false
+    };
     oldStorage = localStorage;
     localStorage = {
       getItem: getItemStub,
@@ -36,9 +40,10 @@ describe('<CallbackComponent />', () => {
     };
 
     processTokenCallbackAsyncStub = sinon.stub();
+    processTokenCallbackSilentStub = sinon.stub();
     thenStub = sinon.stub();
     processTokenCallbackAsyncStub.returns({then: thenStub});
-    const tokenManager = { processTokenCallbackAsync: processTokenCallbackAsyncStub };
+    const tokenManager = { processTokenCallbackAsync: processTokenCallbackAsyncStub, processTokenCallbackSilent: processTokenCallbackSilentStub };
     createTokenManagerStub = sinon.stub();
     createTokenManagerStub.returns(tokenManager);
     CallbackComponent.__Rewire__('createTokenManager', createTokenManagerStub);
@@ -59,7 +64,7 @@ describe('<CallbackComponent />', () => {
   });
 
   it('should call the tokenManagers processTokenCallbackAsync then() method', () => {
-    const component = new CallbackComponent({});
+    const component = new CallbackComponent({ config });
     component.componentDidMount();
 
     expect(processTokenCallbackAsyncStub.called).toEqual(true);
@@ -67,7 +72,7 @@ describe('<CallbackComponent />', () => {
   });
 
   it('should clear the redirect url redirect to the app root on success by default', () => {
-    const component = new CallbackComponent({});
+    const component = new CallbackComponent({ config });
     component.onTokenCallbackSuccess();
 
     expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
@@ -75,7 +80,7 @@ describe('<CallbackComponent />', () => {
 
   it('should call the success callback when provided', () => {
     const successCallback = sinon.stub();
-    const component = new CallbackComponent({ successCallback });
+    const component = new CallbackComponent({ config, successCallback });
 
     component.onTokenCallbackSuccess();
 
@@ -85,7 +90,7 @@ describe('<CallbackComponent />', () => {
   it('should call the error callback when provided', () => {
     const errorCallback = sinon.stub();
     const error = 'some error';
-    const component = new CallbackComponent({ errorCallback });
+    const component = new CallbackComponent({ config, errorCallback });
 
     component.onTokenCallbackError(error);
 
@@ -93,7 +98,7 @@ describe('<CallbackComponent />', () => {
   });
 
   it('should handle localStorage correctly', () => {
-    const component = new CallbackComponent({});
+    const component = new CallbackComponent({config});
 
     component.onTokenCallbackSuccess();
     expect(getItemStub.calledOnce).toEqual(true);
@@ -104,7 +109,7 @@ describe('<CallbackComponent />', () => {
 
   it('should redirect to the custom redirectUri when provided', () => {
     const customRedirectUri = 'https://some.uri.com';
-    const component = new CallbackComponent({redirectUri: customRedirectUri});
+    const component = new CallbackComponent({ config, redirectUri: customRedirectUri});
 
     component.onTokenCallbackSuccess();
     expect(window.location).toEqual(customRedirectUri);
@@ -112,12 +117,26 @@ describe('<CallbackComponent />', () => {
 
   it('should redirect to the url in localStorage when no redirectUri has been passed', () => {
     const redirectUrl = 'https://some.url.com';
-    const component = new CallbackComponent({});
+    const component = new CallbackComponent({ config });
     getItemStub.returns(redirectUrl);
     component.onTokenCallbackSuccess();
 
     expect(window.location).toEqual(redirectUrl);
   });
+
+  it('should trigger the silent auth flow when triggered & not the normal auth flow', () => {
+    config = {
+      silent_renew: true,
+    };
+
+    const component = new CallbackComponent({ config });
+    const spy = sinon.spy(component, 'onTokenCallbackSuccess');
+    component.componentDidMount();
+
+    expect(processTokenCallbackSilentStub.called).toEqual(true);
+    expect(spy.called).toEqual(true);
+    expect(processTokenCallbackAsyncStub.called).toEqual(false);
+  })
 
   afterEach(() => {
     localStorage = oldStorage;
