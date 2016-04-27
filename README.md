@@ -180,7 +180,7 @@ The following helper methods are available to you. You can bind them to componen
 `config` objects are objects required to create the token manager instances (see Usage).
 
 ### Silent refresh
-The `oidc-token-manager` & this middleware (since v1.1.11-beta1) support the silent refresh of tokens without redirection. This has the advantage that a visible redirect does not happen & that the redux state does not get lost when the browser leaves your app. In order to enable this, simply configure the config object to allow silent renew, like this:
+The `oidc-token-manager` & this middleware support the silent refresh of tokens without redirection. This has the advantage that a visible redirect does not happen & that the redux state does not get lost when the browser leaves your app. In order to enable this, simply configure the config object to allow silent renew, like this:
 
         const tokenManagerConfig = {
           //...
