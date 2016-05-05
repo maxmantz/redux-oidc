@@ -115,7 +115,7 @@ Optionally you can create a TokenManager instance to read the token information 
         }
 
 ###API
-#####`createTokenMiddleware(config, shouldValidate, dispatchOnInvalid)`
+#####`createTokenMiddleware(config, shouldValidate, dispatchOnInvalid, dispatchOnSuccess)`
 
         import createTokenMiddleware from 'redux-oidc';
         import { compose, createStore, applyMiddleware } from 'redux';
