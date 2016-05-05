@@ -123,8 +123,9 @@ Optionally you can create a TokenManager instance to read the token information 
         const config = {/* token manager config */};
         const shouldValidate = (state, action) => true; // this is the default
         const dispatchOnInvalid = { type: 'TOKEN_INVALID' };
+        const dispatchOnSuccess = { type: 'TOKEN_REFRESH_SUCCESS' };
         
-        const tokenMiddleware = createTokenMiddleware(config, shouldValidate, dispatchOnInvalid);
+        const tokenMiddleware = createTokenMiddleware(config, shouldValidate, dispatchOnInvalid, dispatchOnSuccess);
         const store = compose(
                 applyMiddleware(/* other middleware here */, tokenMiddleware)
         )(createStore);
@@ -133,6 +134,7 @@ Parameters:
 - `config`: **(required)** a config object for the `oidc-token-manager`,
 - `shouldValidate`: *(optional)* a function which receives the current `state` & `action` and returns `true` when token validation should occur or `false` when the token should not be validated,
 - `dispatchOnInvalid`: *(optional)* a [redux standard action](http://redux.js.org/docs/basics/Actions.html) which is dispatched right before the authentication flow is triggered.
+- `dispatchOnSuccess`: *(optional)* a RSA which is dispatched when the silent refresh succeeded (see Silent Refresh).
 
 ##### `CallbackComponent`
 
