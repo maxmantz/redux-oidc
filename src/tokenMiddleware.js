@@ -1,7 +1,24 @@
 import createTokenManager from './helpers/createTokenManager';
 import { STORAGE_KEY } from './constants';
 
-export default function createTokenMiddleware(config, shouldValidate, dispatchOnInvalid) {
+export function successCallback(next, dispatchOnSuccess) {
+  if (!dispatchOnSuccess) {
+    return;
+  }
+
+  switch (typeof(dispatchOnSuccess)) {
+    case 'function':
+      next(dispatchOnSuccess());
+      break;
+    case 'object':
+      next(dispatchOnSuccess);
+      break;
+    default:
+      return;
+  }
+}
+
+export default function createTokenMiddleware(config, shouldValidate, dispatchOnInvalid, dispatchOnSuccess) {
   if (!config) {
     throw new Error('You must provide a token manager configuration object!');
   }
@@ -30,7 +47,11 @@ export default function createTokenMiddleware(config, shouldValidate, dispatchOn
             next(dispatchOnInvalid);
           }
 
-          manager.renewTokenSilentAsync().catch(() => {
+          manager.renewTokenSilentAsync()
+          .then(() => {
+            successCallback(next, dispatchOnSuccess);
+          })
+          .catch(() => {
             localStorage.setItem(STORAGE_KEY, `${window.location.protocol}//${window.location.hostname}:${window.location.port}`);
             if (dispatchOnInvalid) {
               next(dispatchOnInvalid);

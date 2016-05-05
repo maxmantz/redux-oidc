@@ -1,4 +1,4 @@
-import createTokenMiddleware from '../src/tokenMiddleware';
+import createTokenMiddleware, { successCallback } from '../src/tokenMiddleware';
 import sinon from 'sinon';
 import expect from 'expect';
 import { STORAGE_KEY } from '../src/constants';
@@ -16,13 +16,20 @@ describe('Token Middleware', () => {
   let next;
   let action;
   let oldStorage;
+  let thenStub;
+
   beforeEach(() => {
     action = {type: 'SOME_ACTION'};
     config = {};
     redirectForTokenStub = sinon.stub();
     renewTokenSilentAsyncStub = sinon.stub();
-    renewTokenSilentAsyncStub.returns({
+    thenStub = sinon.stub();
+    thenStub.returns({
       catch: sinon.stub()
+    });
+    renewTokenSilentAsyncStub.returns({
+      catch: sinon.stub(),
+      then: thenStub
     });
     tokenManager = {
       redirectForToken: redirectForTokenStub,
@@ -152,7 +159,46 @@ describe('Token Middleware', () => {
 
     middleware(action);
     expect(next.calledWith(action)).toEqual(true);
-  })
+  });
+
+  it('should call the then() method of silent renew when silent renew was successful', () => {
+    config = {
+      silent_renew: true,
+    }
+
+    tokenManager.expired = true;
+
+    const middleware = createTokenMiddleware(config)(store)(next);
+
+    middleware(action);
+
+    expect(thenStub.called).toEqual(true);
+  });
+
+  it('should call the next middleware with dispatchOnSuccess object when silent renew was successful', () => {
+    successCallback(next, action);
+
+    expect(next.calledWith(action)).toEqual(true);
+  });
+
+  it('should call the next middleware with dispatchOnSuccess function when silent_renew was successful', () => {
+    const stub = sinon.stub();
+    stub.returns(action);
+
+    successCallback(next, stub);
+
+    expect(stub.called).toEqual(true);
+    expect(next.calledWith(action)).toEqual(true);
+  });
+
+  it('should do nothing when dispatchOnSuccess is invalid', () => {
+    successCallback(next, 'invalid');
+    successCallback(next, undefined);
+    successCallback(next, null);
+    successCallback(next, 9001);
+
+    expect(next.called).toEqual(false);
+  });
 
   afterEach(() => {
     localStorage = oldStorage;
