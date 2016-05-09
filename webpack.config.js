@@ -11,7 +11,7 @@ module.exports = {
     libraryTarget: 'amd'
   },
   externals: {
-    'react': 'React'
+    'react': 'react'
   },
   module: {
     loaders: [

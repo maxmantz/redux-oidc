@@ -1,3 +1,7 @@
+v1.1.14:
+- tokenMiddleware:
+  - renamed the external React dependency to remove the "React" vs "react" warning (issue #2).
+
 v1.1.13:
 - tokenMiddleware:
   - added a dispatchOnSuccess option to dispatch when silent renew was successful.
