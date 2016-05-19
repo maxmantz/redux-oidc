@@ -7,7 +7,8 @@
     "test": "mocha --compilers js:babel-register --require tests/setup.js tests/*.test.js",
     "test:debug": "mocha --compilers js:babel-register --require tests/setup.js --debug tests/*.test.js",
     "build": "webpack -p",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "build:pretty": "webpack"
   },
   "repository": {
     "type": "git",
@@ -59,9 +60,12 @@
     "sinon": "^1.17.3",
     "webpack": "^1.12.14"
   },
-  "dependencies": {},
+  "dependencies": {
+    "oidc-client": "1.0.0-beta.6"
+  },
   "peerDependencies": {
-    "react": ">=0.14.0"
+    "react": ">=0.14.0",
+    "immutable": ">=3.6.0"
   },
   "browserify": {
     "transform": [

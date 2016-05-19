@@ -1,6 +1,3 @@
-import createTokenManager from './createTokenManager';
-import logout from './logout';
-import logoutAtIdentityService from './logout';
-import triggerAuthFlow from './triggerAuthFlow';
+import createUserManager from './createUserManager';
 
-export default { createTokenManager, logoutAtIdentityService, logout, triggerAuthFlow };
+export default { createUserManager };

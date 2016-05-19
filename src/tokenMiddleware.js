@@ -1,5 +1,5 @@
-import createTokenManager from './helpers/createTokenManager';
 import { STORAGE_KEY } from './constants';
+import { userExpired } from './actions';
 
 export function successCallback(next, dispatchOnSuccess) {
   if (!dispatchOnSuccess) {
@@ -18,51 +18,43 @@ export function successCallback(next, dispatchOnSuccess) {
   }
 }
 
-export default function createTokenMiddleware(config, shouldValidate, dispatchOnInvalid, dispatchOnSuccess) {
-  if (!config) {
-    throw new Error('You must provide a token manager configuration object!');
+export default function createTokenMiddleware(userManager, shouldValidate, triggerAuthFlow = true) {
+  if (!userManager) {
+    throw new Error('You must provide a user manager!');
   }
-
-  const silent = config.silent_renew;
-  const manager = createTokenManager(config);
 
   if (!shouldValidate || typeof(shouldValidate) !== 'function') {
     shouldValidate = (state, action) => true;
   }
 
   return (store) => (next) => (action) => {
-    if (shouldValidate(store.getState(), action)) {
-      if (!silent) {
-        if (manager.expired && !localStorage.getItem(STORAGE_KEY)) {
-          localStorage.setItem(STORAGE_KEY, window.location.href);
-          if (dispatchOnInvalid) {
-            next(dispatchOnInvalid);
-          }
-          manager.redirectForToken();
-          return null;
-        }
-      } else {
-        if (manager.expired) {
-          if (dispatchOnInvalid) {
-            next(dispatchOnInvalid);
-          }
+    // should the token be validated?
+    if (shouldValidate(store.getState(), action) && !window.localStorage.getItem(STORAGE_KEY)) {
+      // set the localStorage key so that the validation won't trigger after the redirect
+      window.localStorage.setItem(STORAGE_KEY, true);
+      userManager.getUser().then((user) => {
+        if (!user || user.expired) {
+          // dispatch the action
+          next(userExpired());
+          if (triggerAuthFlow) {
+            const state = { };
 
-          manager.renewTokenSilentAsync()
-          .then(() => {
-            successCallback(next, dispatchOnSuccess);
-          })
-          .catch(() => {
-            localStorage.setItem(STORAGE_KEY, `${window.location.protocol}//${window.location.hostname}:${window.location.port}`);
-            if (dispatchOnInvalid) {
-              next(dispatchOnInvalid);
+            userManager.signinRedirect({ data: {
+              redirectUrl: window.location.href
             }
-            manager.redirectForToken();
-            return null;
-          });
+            }).catch((error) => {
+              window.localStorage.removeItem(STORAGE_KEY);
+              throw new Error(`Error signing in: ${error.message}`)
+            });
+          }
+        } else {
+          window.localStorage.removeItem(STORAGE_KEY, true);
+          return next(action);
         }
-      }
-    }
+      });
 
-    return next(action);
+    } else {
+      return next(action);
+    }
   }
 };

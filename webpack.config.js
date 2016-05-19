@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'redux-oidc.js',
-    libraryTarget: 'amd'
+    libraryTarget: 'umd'
   },
   externals: {
     'react': 'react'
@@ -34,6 +34,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({comments: false, compress: { warnings: false }})
+    // new webpack.optimize.UglifyJsPlugin({comments: false, compress: { warnings: false }})
   ]
 };
