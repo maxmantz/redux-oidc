@@ -5,7 +5,7 @@ node_js:
   - "4"
 
 before_install:
-  - npm install react@0.14.8
+  - npm install react@0.14.8 immutable babel-polyfill
 
 after_success:
   - coveralls

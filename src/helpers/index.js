@@ -1,3 +1,2 @@
-import createUserManager from './createUserManager';
-
-export default { createUserManager };
+export const createUserManager = require('./createUserManager').default;
+export const processSilentRenew = require('./processSilentRenew').default;

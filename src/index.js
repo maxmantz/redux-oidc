@@ -5,10 +5,10 @@ import reducerImmutable from './reducer/reducer-immutable';
 import standardReducer from './reducer/reducer';
 import { USER_EXPIRED, REDIRECT_SUCCESS, STORAGE_KEY } from './constants';
 
-export const createUserManager = helpers.createUserManager;
-export const CallbackComponent = Callback;
-export const immutableReducer = reducerImmutable;
-export const reducer = standardReducer;
+export const createUserManager = require('./helpers/createUserManager').default;
+export const CallbackComponent = require('./CallbackComponent').default;
+export const immutableReducer = require('./reducer/reducer-immutable').default;
+export const reducer = require('./reducer/reducer').default;
 export const constants = {
   USER_EXPIRED,
   REDIRECT_SUCCESS,
