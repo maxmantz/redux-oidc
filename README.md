@@ -8,7 +8,7 @@ A package for managing the [OpenID Connect](http://openid.net/connect/) authenti
 `npm install --save redux-oidc`
 
 ###Version 2
-check out the new [v2](https://github.com/maxmantz/redux-oidc/tree/dev)
+check out the new [v2 branch](https://github.com/maxmantz/redux-oidc/tree/dev).
 
 ###Description
 This project was created to enable redux apps to use the recommended OpenID-Connect authentication flow for JavaScript apps ([OAuth2 implicit flow](http://oauthlib.readthedocs.org/en/latest/oauth2/grants/implicit.html)). It was created by me to connect my redux app to an API protected by
