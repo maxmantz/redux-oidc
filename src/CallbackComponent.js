@@ -4,7 +4,8 @@ import { redirectSuccess } from './actions';
 
 class CallbackComponent extends React.Component {
   static propTypes = {
-    successCallback: PropTypes.func.isRequired
+    successCallback: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -15,13 +16,13 @@ class CallbackComponent extends React.Component {
     let { successCallback } = this.props;
 
     this.context.userManager.signinRedirectCallback()
-      .then(this.onRedirectSuccess)
-      .catch(this.onRedirectError);
+      .then((user) => this.onRedirectSuccess(user))
+      .catch((error) => this.onRedirectError(error));
   }
 
   onRedirectSuccess = (user) => {
     localStorage.removeItem(STORAGE_KEY);
-    this.context.store.dispatch(redirectSuccess(user));
+    this.props.dispatch(redirectSuccess(user));
     this.props.successCallback(user);
   };
 

@@ -12,12 +12,12 @@ describe('<OidcProvider />', () => {
   let addSilentRenewErrorStub;
   let addAccessTokenExpiredStub;
   let addUserUnloadedStub;
-  let addUserExpiringStub;
+  let addAccessTokenExpiringStub;
   let removeUserLoadedStub;
   let removeSilentRenewErrorStub;
   let removeAccessTokenExpiredStub;
   let removeUserUnloadedStub;
-  let removeUserExpiringStub;
+  let removeAccessTokenExpiringStub;
   let dispatchStub;
   let props;
   let provider;
@@ -27,12 +27,12 @@ describe('<OidcProvider />', () => {
     addSilentRenewErrorStub = sinon.stub();
     addAccessTokenExpiredStub = sinon.stub();
     addUserUnloadedStub = sinon.stub();
-    addUserExpiringStub = sinon.stub();
+    addAccessTokenExpiringStub = sinon.stub();
     removeUserLoadedStub = sinon.stub();
     removeSilentRenewErrorStub = sinon.stub();
     removeAccessTokenExpiredStub = sinon.stub();
     removeUserUnloadedStub = sinon.stub();
-    removeUserExpiringStub = sinon.stub();
+    removeAccessTokenExpiringStub = sinon.stub();
     dispatchStub = sinon.stub();
 
     eventsMock = {
@@ -40,12 +40,12 @@ describe('<OidcProvider />', () => {
       addSilentRenewError: addSilentRenewErrorStub,
       addAccessTokenExpired: addAccessTokenExpiredStub,
       addUserUnloaded: addUserUnloadedStub,
-      addUserExpiring: addUserExpiringStub,
+      addAccessTokenExpiring: addAccessTokenExpiringStub,
       removeUserLoaded: removeUserLoadedStub,
       removeSilentRenewError: removeSilentRenewErrorStub,
       removeAccessTokenExpired: removeAccessTokenExpiredStub,
       removeUserUnloaded: removeUserUnloadedStub,
-      removeUserExpiring: removeUserExpiringStub
+      removeAccessTokenExpiring: removeAccessTokenExpiringStub
     };
 
     userManagerMock = {
@@ -57,11 +57,11 @@ describe('<OidcProvider />', () => {
     };
 
     props = {
-      userManager: userManagerMock
+      userManager: userManagerMock,
+      store: storeMock
     };
 
     provider = new OidcProvider(props);
-    provider.context = Object.assign({}, { ...provider.context }, { store: storeMock });
   });
 
   it('should be instantiated correctly', () => {
@@ -81,7 +81,7 @@ describe('<OidcProvider />', () => {
     expect(addSilentRenewErrorStub.calledWith(provider.onSilentRenewError)).toEqual(true);
     expect(addAccessTokenExpiredStub.calledWith(provider.onAccessTokenExpired)).toEqual(true);
     expect(addUserUnloadedStub.calledWith(provider.onUserUnloaded)).toEqual(true);
-    expect(addUserExpiringStub.calledWith(provider.onUserExpiring)).toEqual(true);
+    expect(addAccessTokenExpiringStub.calledWith(provider.onAccessTokenExpiring)).toEqual(true);
   });
 
   it('should remove event registrations on componentWillUnmount()', () => {
@@ -91,7 +91,7 @@ describe('<OidcProvider />', () => {
     expect(removeSilentRenewErrorStub.calledWith(provider.onSilentRenewError)).toEqual(true);
     expect(removeAccessTokenExpiredStub.calledWith(provider.onAccessTokenExpired)).toEqual(true);
     expect(removeUserUnloadedStub.calledWith(provider.onUserUnloaded)).toEqual(true);
-    expect(removeUserExpiringStub.calledWith(provider.onUserExpiring)).toEqual(true);
+    expect(removeAccessTokenExpiringStub.calledWith(provider.onAccessTokenExpiring)).toEqual(true);
   });
 
   it('should handle the userLoaded event correctly', () => {
@@ -120,8 +120,8 @@ describe('<OidcProvider />', () => {
     expect(dispatchStub.calledWith(sessionTerminated())).toEqual(true);
   });
 
-  it('should handle the userExpiring event correctly', () => {
-    provider.onUserExpiring();
+  it('should handle the accessTokenExpiring event correctly', () => {
+    provider.onAccessTokenExpiring();
 
     expect(dispatchStub.calledWith(userExpiring())).toEqual(true);
   });

@@ -3,7 +3,8 @@ import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiri
 
 class OidcProvider extends React.Component {
   static propTypes = {
-    userManager: PropTypes.object.isRequired
+    userManager: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired,
   };
 
   static childContextTypes = {
@@ -26,8 +27,8 @@ class OidcProvider extends React.Component {
     this.userManager.events.addUserLoaded(this.onUserLoaded);
     this.userManager.events.addSilentRenewError(this.onSilentRenewError);
     this.userManager.events.addAccessTokenExpired(this.onAccessTokenExpired);
+    this.userManager.events.addAccessTokenExpiring(this.onAccessTokenExpiring);
     this.userManager.events.addUserUnloaded(this.onUserUnloaded);
-    this.userManager.events.addUserExpiring(this.onUserExpiring);
   }
 
   componentWillUnmount() {
@@ -35,33 +36,33 @@ class OidcProvider extends React.Component {
     this.userManager.events.removeUserLoaded(this.onUserLoaded);
     this.userManager.events.removeSilentRenewError(this.onSilentRenewError);
     this.userManager.events.removeAccessTokenExpired(this.onAccessTokenExpired);
+    this.userManager.events.removeAccessTokenExpiring(this.onAccessTokenExpiring);
     this.userManager.events.removeUserUnloaded(this.onUserUnloaded);
-    this.userManager.events.removeUserExpiring(this.onUserExpiring);
   }
 
   // event callback when the user has been loaded (on silent renew or redirect)
   onUserLoaded = (user) => {
-    this.context.store.dispatch(userFound(user));
+    this.props.store.dispatch(userFound(user));
   };
 
   // event callback when silent renew errored
   onSilentRenewError = (error) => {
-    this.context.store.dispatch(silentRenewError(error));
+    this.props.store.dispatch(silentRenewError(error));
   };
 
   // event callback when the access token expired
   onAccessTokenExpired = () => {
-    this.context.store.dispatch(userExpired());
+    this.props.store.dispatch(userExpired());
   };
 
   // event callback when the user is logged out
   onUserUnloaded = () => {
-    this.context.store.dispatch(sessionTerminated());
+    this.props.store.dispatch(sessionTerminated());
   };
 
   // event callback when the user is expiring
-  onUserExpiring = () => {
-    this.context.store.dispatch(userExpiring());
+  onAccessTokenExpiring = () => {
+    this.props.store.dispatch(userExpiring());
   }
 
   render() {

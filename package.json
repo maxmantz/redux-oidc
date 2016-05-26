@@ -4,7 +4,7 @@
   "description": "A package for managing OpenID Connect authentication in redux apps",
   "main": "dist/redux-oidc.js",
   "scripts": {
-    "test:webpack": "mocha-webpack --webpack-config webpack.config-test.js \"tests/**/*.test.js\"",
+    "test": "mocha-webpack --webpack-config webpack.config-test.js \"tests/**/*.test.js\"",
     "build": "webpack -p",
     "prepublish": "npm run build && npm run test"
   },

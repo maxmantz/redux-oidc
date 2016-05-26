@@ -38,13 +38,10 @@ describe('<CallbackComponent />', () => {
       dispatch: dispatchStub
     };
 
-    props = { successCallback: successCallbackStub };
+    props = { successCallback: successCallbackStub, dispatch: dispatchStub };
 
     contextMock = {
-      userManager: userManagerMock,
-      store: {
-        dispatch: dispatchStub
-      }
+      userManager: userManagerMock
     };
 
     oldStorage = localStorage;
