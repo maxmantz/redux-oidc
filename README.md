@@ -13,7 +13,7 @@ This package handles [OpenID-Connect](http://openid.net/connect/) authentication
 It is built upon the [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/dev) library.
 
 It contains the following parts:
-- *token middleware*: [redux middleware]() to automatically check whether or not the current user is signed in & trigger the authentication flow,
+- *oidcMiddleware*: [redux middleware]() to automatically check whether or not the current user is signed in & trigger the authentication flow,
 - *CallbackComponent*: A react component processing the callback from the OpenID-Connect provider,
 - *reducers & actions*: reducers and actions to handle OIDC events,
 - *helpers*: create helpers to manage the oidc-client-js library
