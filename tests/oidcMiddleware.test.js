@@ -1,3 +1,4 @@
+import './setup';
 import sinon from 'sinon';
 import expect from 'expect';
 import { STORAGE_KEY } from '../src/constants';

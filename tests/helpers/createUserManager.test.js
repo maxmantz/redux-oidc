@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import '../setup';
 import createUserManager from '../../src/helpers/createUserManager';
 import expect from 'expect';
 import sinon from 'sinon';

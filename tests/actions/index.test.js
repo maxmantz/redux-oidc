@@ -1,3 +1,4 @@
+import '../setup';
 import expect from 'expect';
 import sinon from 'sinon';
 import { USER_EXPIRED, REDIRECT_SUCCESS, USER_FOUND, SILENT_RENEW_ERROR, USER_EXPIRING, SESSION_TERMINATED } from '../../src/constants';

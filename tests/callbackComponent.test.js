@@ -1,3 +1,4 @@
+import './setup';
 import ReactTestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import React from 'react';

@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import '../setup';
 import sinon from 'sinon';
 import expect from 'expect';
 import processSilentRenew from '../../src/helpers/processSilentRenew'

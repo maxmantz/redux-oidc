@@ -1,3 +1,4 @@
+import '../setup';
 import expect from 'expect';
 import sinon from 'sinon';
 import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, redirectSuccess } from '../../src/actions';

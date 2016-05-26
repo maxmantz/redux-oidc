@@ -1,14 +1,12 @@
 {
   "name": "redux-oidc",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-beta.1",
   "description": "A package for managing OpenID Connect authentication in redux apps",
   "main": "dist/redux-oidc.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register --require tests/setup.js tests/**/*.test.js",
-    "test:debug": "mocha --compilers js:babel-register --require tests/setup.js --debug tests/*.test.js",
+    "test:webpack": "mocha-webpack --webpack-config webpack.config-test.js \"tests/**/*.test.js\"",
     "build": "webpack -p",
-    "prepublish": "npm run build",
-    "build:pretty": "webpack"
+    "prepublish": "npm run build && npm run test"
   },
   "repository": {
     "type": "git",
@@ -54,11 +52,13 @@
     "jsdom": "^8.3.0",
     "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
+    "mocha-webpack": "^0.3.1",
     "node-storage-shim": "^1.0.1",
     "react-addons-test-utils": "^0.14.8",
     "react-shallow-testutils": "^1.0.0",
     "sinon": "^1.17.3",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "webpack-node-externals": "^1.2.0"
   },
   "dependencies": {
     "oidc-client": "1.0.0"
