@@ -7,6 +7,8 @@ A rewrite is in process. Preliminary docs will be published soon.
 - the old version also relied heavily on creating new instances of the token manager, which could cause unexpected behavior when more than one instance was active at the same time,
 - the old version had nothing which pronounced the *redux* in `oidc-redux`. This version offers a reducer including dispatchable actions to handle OIDC interactions.
 
+### Installation
+`npm install --save redux-oidc`
 
 ### Description
 
@@ -20,6 +22,9 @@ It contains the following parts:
 - *reducers & actions*: reducers and actions to handle OIDC events,
 - *helpers*: create helpers to manage the oidc-client-js library
 
-### API
+### Documentation
 
-*coming soon*
+Check out the [wiki](https://github.com/maxmantz/redux-oidc/wiki) for further information.
+
+### Tests
+`npm run test`
