@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'redux-oidc.js',
-    libraryTarget: 'amd'
+    libraryTarget: 'umd'
   },
   externals: {
     'react': 'react'
@@ -18,22 +18,11 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'stage-0', 'react']
-        }
-      },
-      {
-        test: /\.html$/,
-        loader: 'file?name=[name].[ext]'
-      },
-      {
-        test: /\.css$/,
-        loader: 'style!css'
+        exclude: /node_modules/
       }
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({comments: false, compress: { warnings: false }})
+    new webpack.optimize.UglifyJsPlugin({comments: false, compress: { warnings: false }, screw_ie8: true})
   ]
 };

@@ -1,72 +1,35 @@
 import React, { PropTypes } from 'react';
-import createTokenManager from './helpers/createTokenManager';
 import { STORAGE_KEY } from './constants';
+import { redirectSuccess } from './actions';
 
 class CallbackComponent extends React.Component {
   static propTypes = {
-    redirectOnSuccess: PropTypes.bool,
-    successCallback: PropTypes.func,
-    errorCallback: PropTypes.func,
-    config: PropTypes.object.isRequired,
-    children: PropTypes.element,
-  }
-
-  constructor(props) {
-    super(props);
-
-    if (typeof(this.props.redirectOnSuccess) !== 'undefined') {
-      this.state = {
-        redirectOnSuccess: this.props.redirectOnSuccess
-      };
-    }
-    else {
-      this.state = {
-        redirectOnSuccess: true
-      };
-    }
-  }
-
-
-  onTokenCallbackSuccess = () => {
-    const redirectUrl = this.props.redirectUri || localStorage.getItem(STORAGE_KEY);
-    localStorage.removeItem(STORAGE_KEY);
-    const { successCallback } = this.props;
-    const { redirectOnSuccess } = this.state;
-
-    if (redirectOnSuccess) {
-      if (successCallback && typeof(successCallback) === 'function') {
-        successCallback();
-      }
-      window.location = redirectUrl || `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
-    }
-    else {
-      if (successCallback && typeof(successCallback) === 'function') {
-        successCallback();
-      }
-    }
+    successCallback: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
 
-  onTokenCallbackError = (error) => {
-    localStorage.removeItem(STORAGE_KEY);
-    const { errorCallback } = this.props;
-    if (errorCallback && typeof(errorCallback) === 'function') {
-      errorCallback(error);
-    }
+  static contextTypes = {
+    userManager: PropTypes.object
   };
 
   componentDidMount() {
-    let { redirectOnSuccess } = this.props;
-    const manager = createTokenManager(this.props.config);
+    let { successCallback } = this.props;
 
-    // process the token callback
-    if (this.props.config.silent_renew) {
-      manager.processTokenCallbackSilent();
-      this.onTokenCallbackSuccess();
-    } else {
-      manager.processTokenCallbackAsync().then(this.onTokenCallbackSuccess, this.onTokenCallbackError);
-    }
+    this.context.userManager.signinRedirectCallback()
+      .then((user) => this.onRedirectSuccess(user))
+      .catch((error) => this.onRedirectError(error));
   }
 
+  onRedirectSuccess = (user) => {
+    localStorage.removeItem(STORAGE_KEY);
+    this.props.dispatch(redirectSuccess(user));
+    this.props.successCallback(user);
+  };
+
+  onRedirectError = (error) => {
+    localStorage.removeItem(STORAGE_KEY);
+    throw new Error(`Error handling redirect callback: ${error.message}`);
+  };
 
   get defaultContent() {
     return <div>Redirecting...</div>;
@@ -75,7 +38,7 @@ class CallbackComponent extends React.Component {
   render() {
     return (
       <div>
-        { this.props.children || this.defaultContent }
+        {this.props.children || this.defaultContent}
       </div>
     );
   }
