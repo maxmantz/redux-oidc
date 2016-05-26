@@ -1,11 +1,7 @@
-# redux-oidc
+# redux-oidc 
+[![Build Status](https://travis-ci.org/maxmantz/redux-oidc.svg?branch=master)](https://travis-ci.org/maxmantz/redux-oidc)
 
-A rewrite is in process. Preliminary docs will be published soon.
-
-### Reasons for the rewrite
-- the old version was relying on the `oidc-token-manager` which was not npm compliant and had to be manually maintained, this version now uses the [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/dev) library which is written in ES6, fully tested and npm compatible,
-- the old version also relied heavily on creating new instances of the token manager, which could cause unexpected behavior when more than one instance was active at the same time,
-- the old version had nothing which pronounced the *redux* in `oidc-redux`. This version offers a reducer including dispatchable actions to handle OIDC interactions.
+A package for managing OpenID-Connect authentication in redux apps.
 
 ### Installation
 `npm install --save redux-oidc`
@@ -21,6 +17,14 @@ It contains the following parts:
 - *CallbackComponent*: A react component processing the callback from the OpenID-Connect provider,
 - *reducers & actions*: reducers and actions to handle OIDC events,
 - *helpers*: create helpers to manage the oidc-client-js library
+
+### Reasons developing version 2
+- the old version was relying on the `oidc-token-manager` which was not npm compliant and had to be manually maintained, this version now uses the [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/dev) library which is written in ES6, fully tested and npm compatible,
+- the old version also relied heavily on creating new instances of the token manager, which could cause unexpected behavior when more than one instance was active at the same time,
+- the old version had nothing which pronounced the *redux* in `oidc-redux`. This version offers a reducer including dispatchable actions to handle OIDC interactions.
+
+### Version 1
+This is the page for version 2 of this package. For version 1 check out the [v1 branch](https://github.com/maxmantz/redux-oidc/tree/v1).
 
 ### Documentation
 
