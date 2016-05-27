@@ -54,8 +54,8 @@
     "mocha": "^2.4.5",
     "mocha-webpack": "^0.3.1",
     "node-storage-shim": "^1.0.1",
-    "react-addons-test-utils": "^0.14.8",
-    "react-shallow-testutils": "^1.0.0",
+    "react-addons-test-utils": "^15.1.0",
+    "react-shallow-testutils": "^2.0.0",
     "sinon": "^1.17.3",
     "webpack": "^1.12.14",
     "webpack-node-externals": "^1.2.0"
