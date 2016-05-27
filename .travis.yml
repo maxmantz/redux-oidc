@@ -5,4 +5,4 @@ node_js:
   - "4"
 
 before_install:
-  - npm install react immutable babel-polyfill
+  - npm install react@15.0.1 immutable babel-polyfill
