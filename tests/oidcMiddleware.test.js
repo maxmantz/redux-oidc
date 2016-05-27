@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import expect from 'expect';
 import { STORAGE_KEY } from '../src/constants';
 import createOidcMiddleware, { getUserSuccessCallback, getUserErrorCallback, setStoredUser, removeStoredUser, storedUser } from '../src/oidcMiddleware';
-import { userExpired, userFound } from '../src/actions';
+import { userExpired } from '../src/actions';
 
 describe('createOidcMiddleware()', () => {
   let userManagerMock;
@@ -203,7 +203,6 @@ describe('createOidcMiddleware()', () => {
     expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
     expect(nextStub.calledWith(userExpired())).toEqual(false);
     expect(nextStub.calledWith(action)).toEqual(true);
-    expect(nextStub.calledWith(userFound(user))).toEqual(true);
     expect(storedUser).toEqual(user);
     expect(result).toEqual(action);
   });

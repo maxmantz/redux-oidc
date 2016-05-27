@@ -13,7 +13,6 @@ describe('<CallbackComponent />', () => {
   let signinRedirectCallbackStub;
   let thenStub;
   let catchStub;
-  let dispatchStub;
   let props;
   let contextMock;
   let oldStorage;
@@ -24,7 +23,6 @@ describe('<CallbackComponent />', () => {
   beforeEach(() => {
     catchStub = sinon.stub();
     thenStub = sinon.stub().returns({ catch: catchStub });
-    dispatchStub = sinon.stub();
     removeItemStub = sinon.stub();
     signinRedirectCallbackStub = sinon.stub().returns({
       then: thenStub
@@ -34,11 +32,8 @@ describe('<CallbackComponent />', () => {
     userManagerMock = {
       signinRedirectCallback: signinRedirectCallbackStub
     };
-    storeMock = {
-      dispatch: dispatchStub
-    };
 
-    props = { successCallback: successCallbackStub, dispatch: dispatchStub };
+    props = { successCallback: successCallbackStub };
 
     contextMock = {
       userManager: userManagerMock
@@ -71,7 +66,6 @@ describe('<CallbackComponent />', () => {
     component.onRedirectSuccess(user);
 
     expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
-    expect(dispatchStub.calledWith(redirectSuccess(user))).toEqual(true);
     expect(successCallbackStub.calledWith(user)).toEqual(true);
   });
 
