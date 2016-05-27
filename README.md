@@ -10,7 +10,7 @@ A package for managing OpenID-Connect authentication in redux apps.
 
 This package handles [OpenID-Connect](http://openid.net/connect/) authentication in [redux](http://redux.js.org/) apps. It enables redux apps to authenticate with an external OIDC authentication provider and handles the actions of the OpenID [implicit flow](http://openid.net/specs/openid-connect-implicit-1_0.html).
 
-It is built upon the [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/dev) library.
+It is built upon the [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/master) library.
 
 It contains the following parts:
 - *oidcMiddleware*: [redux middleware]() to automatically check whether or not the current user is signed in & trigger the authentication flow,
