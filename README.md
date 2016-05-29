@@ -7,7 +7,7 @@ A package for managing the [OpenID Connect](http://openid.net/connect/) authenti
 
 `npm install --save redux-oidc`
 
-###Version 2 alpha
+###Version 2
 This is the page for version 1. Check out [version 2](https://github.com/maxmantz/redux-oidc/).
 
 ###Description
