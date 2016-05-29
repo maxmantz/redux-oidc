@@ -30,5 +30,8 @@ This is the page for version 2 of this package. For version 1 check out the [v1 
 
 Check out the [wiki](https://github.com/maxmantz/redux-oidc/wiki) for further information.
 
+### Sample app
+There is a sample application demonstrating the use of this package [here](https://github.com/maxmantz/redux-oidc-example).
+
 ### Tests
 `npm run test`
