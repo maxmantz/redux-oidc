@@ -26,6 +26,7 @@ export function getUserSuccessCallback(next, userManager, user, triggerAuthFlow,
         }
       });
     } else {
+      // IF: auth flow should NOT be triggered
       return next(action);
     }
   } else {
