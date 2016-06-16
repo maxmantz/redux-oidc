@@ -1,7 +1,7 @@
 # redux-oidc 
 [![Build Status](https://travis-ci.org/maxmantz/redux-oidc.svg?branch=master)](https://travis-ci.org/maxmantz/redux-oidc)
 
-A package for managing OpenID-Connect authentication in redux apps.
+A package for managing OpenID-Connect authentication in ReactJS / Redux apps.
 
 ### Installation
 `npm install --save redux-oidc`
