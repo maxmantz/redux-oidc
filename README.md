@@ -6,6 +6,10 @@ A package for managing OpenID-Connect authentication in ReactJS / Redux apps.
 ### Installation
 `npm install --save redux-oidc`
 
+Then run
+
+`npm install --save oidc-client`
+
 ### Description
 
 This package handles [OpenID-Connect](http://openid.net/connect/) authentication in [redux](http://redux.js.org/) apps. It enables redux apps to authenticate with an external OIDC authentication provider and handles the actions of the OpenID [implicit flow](http://openid.net/specs/openid-connect-implicit-1_0.html).
