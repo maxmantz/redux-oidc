@@ -4,7 +4,8 @@ import { redirectSuccess } from './actions';
 
 class CallbackComponent extends React.Component {
   static propTypes = {
-    successCallback: PropTypes.func.isRequired
+    successCallback: PropTypes.func.isRequired,
+    errorCallback: PropTypes.func,
   };
 
   static contextTypes = {
@@ -24,7 +25,12 @@ class CallbackComponent extends React.Component {
 
   onRedirectError = (error) => {
     localStorage.removeItem(STORAGE_KEY);
-    throw new Error(`Error handling redirect callback: ${error.message}`);
+
+    if (this.props.errorCallback) {
+      this.props.errorCallback(error);
+    } else {
+      throw new Error(`Error handling redirect callback: ${error.message}`);
+    }
   };
 
   get defaultContent() {
