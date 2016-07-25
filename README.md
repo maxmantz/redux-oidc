@@ -12,6 +12,8 @@ In order to install this run:
 
 `npm install --save oidc-client`
 
+In addition there is a peer dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
+
 ### Description
 
 This package handles [OpenID-Connect](http://openid.net/connect/) authentication in [redux](http://redux.js.org/) apps. It enables redux apps to authenticate with an external OIDC authentication provider and handles the actions of the OpenID [implicit flow](http://openid.net/specs/openid-connect-implicit-1_0.html).
