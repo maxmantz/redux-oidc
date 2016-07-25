@@ -6,7 +6,9 @@ A package for managing OpenID-Connect authentication in ReactJS / Redux apps.
 ### Installation
 `npm install --save redux-oidc`
 
-Then run
+#### Peer dependency
+This package has [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/master) as its peer dependency.
+In order to install this run:
 
 `npm install --save oidc-client`
 
@@ -14,7 +16,7 @@ Then run
 
 This package handles [OpenID-Connect](http://openid.net/connect/) authentication in [redux](http://redux.js.org/) apps. It enables redux apps to authenticate with an external OIDC authentication provider and handles the actions of the OpenID [implicit flow](http://openid.net/specs/openid-connect-implicit-1_0.html).
 
-It is built upon the [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/master) library.
+It uses the oidc-client-js library to manage OpenID Connect functionality.
 
 It contains the following parts:
 - *oidcMiddleware*: [redux middleware](http://redux.js.org/docs/advanced/Middleware.html) to automatically check whether or not the current user is signed in & trigger the authentication flow,
