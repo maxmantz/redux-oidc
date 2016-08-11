@@ -1,5 +1,5 @@
 import { STORAGE_KEY } from './constants';
-import { userExpired } from './actions';
+import { userExpired, userFound } from './actions';
 
 // store the user here to prevent future promise calls to getUser()
 export let storedUser = null;
@@ -33,6 +33,7 @@ export function getUserSuccessCallback(next, userManager, user, triggerAuthFlow,
     // ELSE: user is NOT expired
     localStorage.removeItem(STORAGE_KEY);
     storedUser = user;
+    next(userFound(user));
     return next(action);
   }
 }
