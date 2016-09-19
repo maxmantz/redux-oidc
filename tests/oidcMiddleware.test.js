@@ -24,10 +24,12 @@ describe('createOidcMiddleware()', () => {
   let action;
   let stateMock;
   let href = 'http://some.url.com';
+  let pathname = '/callback';
+  let callbackRoute = '/callback';
 
   beforeEach(() => {
     windowMock = {
-      location: { href }
+      location: { href, pathname }
     };
     oldWindow = window;
     window = windowMock;
@@ -81,7 +83,7 @@ describe('createOidcMiddleware()', () => {
   });
 
   it('should return the correct middleware function', () => {
-    const middleware = createOidcMiddleware(userManagerMock);
+    const middleware = createOidcMiddleware(userManagerMock, null, null, callbackRoute);
 
     expect(typeof(middleware)).toEqual('function');
     expect(middleware.length).toEqual(1);
@@ -97,7 +99,7 @@ describe('createOidcMiddleware()', () => {
 
   it('should call the shouldValidate() function with the redux state and dispatched action', () => {
     const shouldValidate = sinon.stub();
-    createOidcMiddleware(userManagerMock, shouldValidate)(storeMock)(nextStub)(action);
+    createOidcMiddleware(userManagerMock, shouldValidate, null, callbackRoute)(storeMock)(nextStub)(action);
 
     expect(getStateStub.called).toEqual(true);
     expect(shouldValidate.calledWith(stateMock, action)).toEqual(true);
@@ -105,7 +107,7 @@ describe('createOidcMiddleware()', () => {
 
   it('should trigger the validation when shouldValidate() returns true', () => {
     const shouldValidate = sinon.stub().returns(true);
-    const result = createOidcMiddleware(userManagerMock, shouldValidate)(storeMock)(nextStub)(action);
+    createOidcMiddleware(userManagerMock, shouldValidate, null, callbackRoute)(storeMock)(nextStub)(action);
 
     expect(setItemStub.calledWith(STORAGE_KEY, true)).toEqual(true);
     expect(getUserStub.called).toEqual(true);
@@ -115,7 +117,7 @@ describe('createOidcMiddleware()', () => {
 
   it('should not trigger the validation when shouldValidate() returns false', () => {
     const shouldValidate = sinon.stub().returns(false);
-    createOidcMiddleware(userManagerMock, shouldValidate)(storeMock)(nextStub)(action);
+    createOidcMiddleware(userManagerMock, shouldValidate, null, callbackRoute)(storeMock)(nextStub)(action);
 
     expect(setItemStub.called).toEqual(false);
     expect(getUserStub.called).toEqual(false);
@@ -126,7 +128,7 @@ describe('createOidcMiddleware()', () => {
   it('should not trigger validation when the local storage key is set', () => {
     const shouldValidate = sinon.stub().returns(true);
     getItemStub.returns(true);
-    const result = createOidcMiddleware(userManagerMock, shouldValidate)(storeMock)(nextStub)(action);
+    const result = createOidcMiddleware(userManagerMock, shouldValidate, null, callbackRoute)(storeMock)(nextStub)(action);
 
     expect(setItemStub.called).toEqual(false);
     expect(getUserStub.called).toEqual(false);
@@ -140,7 +142,7 @@ describe('createOidcMiddleware()', () => {
     setStoredUser({ some: 'user' });
     const shouldValidate = sinon.stub().returns(true);
 
-    const result = createOidcMiddleware(userManagerMock, shouldValidate)(storeMock)(nextStub)(action);
+    const result = createOidcMiddleware(userManagerMock, shouldValidate, null, callbackRoute)(storeMock)(nextStub)(action);
     expect(setItemStub.called).toEqual(false);
     expect(getUserStub.called).toEqual(false);
     expect(thenStub.called).toEqual(false);
@@ -153,7 +155,7 @@ describe('createOidcMiddleware()', () => {
     setStoredUser({ expired: true });
     const shouldValidate = sinon.stub().returns(true);
 
-    const result = createOidcMiddleware(userManagerMock, shouldValidate)(storeMock)(nextStub)(action);
+    const result = createOidcMiddleware(userManagerMock, shouldValidate, null, callbackRoute)(storeMock)(nextStub)(action);
     expect(setItemStub.called).toEqual(true);
     expect(getUserStub.called).toEqual(true);
     expect(thenStub.called).toEqual(true);
@@ -212,5 +214,67 @@ describe('createOidcMiddleware()', () => {
 
     expect(() => getUserErrorCallback(error)).toThrow(/error/);
     expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
+  });
+
+  it('should dispatch a manually loaded user if it has been provided', () => {
+    const loadedUser = { some: 'user' };
+    createOidcMiddleware(userManagerMock, null, null, callbackRoute, loadedUser)(storeMock)(nextStub)(action);
+
+    expect(nextStub.calledWith(userFound(loadedUser))).toEqual(true);
+  });
+
+  it('should not dispatch a manually loaded user if it has not been provided', () => {
+    createOidcMiddleware(userManagerMock, null, null, callbackRoute)(storeMock)(nextStub)(action);
+    expect(nextStub.calledWith(userFound(undefined))).toEqual(false);
+  });
+
+  it('should not dispatch a manually loaded user if it is expired', () => {
+    const loadedUser = {
+      some: 'user',
+      expired: true
+    };
+    createOidcMiddleware(userManagerMock, null, null, callbackRoute)(storeMock)(nextStub)(action);
+
+    expect(nextStub.calledWith(userFound(loadedUser))).toEqual(false);
+  });
+
+  it('should clear localStorage when after a failed login attempt but keep the valid user entry', () => {
+    localStorageMock = {
+      STORAGE_KEY,
+      'oidc.something': 'something',
+      getItem: getItemStub,
+      removeItem: removeItemStub,
+      setItem: setItemStub,
+      'oidc.user': 'some user data'
+    };
+    localStorage = localStorageMock;
+
+    windowMock = {
+      location: {
+        pathname: '/someRoute',
+        href
+      }
+    };
+    window = windowMock;
+    getItemStub.returns(true);
+
+    createOidcMiddleware(userManagerMock, null, null, callbackRoute)(storeMock)(nextStub)(action);
+
+    expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
+    expect(removeItemStub.calledWith('oidc.something')).toEqual(true);
+    expect(removeItemStub.neverCalledWith('oidc.user')).toEqual(true);
+  });
+
+  it('should not clear localStorage when the login attempt has been successfully redirected', () => {
+    localStorageMock = {
+      STORAGE_KEY,
+      'oidc.something': 'something'
+    };
+    getItemStub.returns(true);
+
+    createOidcMiddleware(userManagerMock, null, null, callbackRoute)(storeMock)(nextStub)(action);
+
+    expect(removeItemStub.neverCalledWith(STORAGE_KEY)).toEqual(true);
+    expect(removeItemStub.neverCalledWith('oidc.something')).toEqual(true);
   });
 });

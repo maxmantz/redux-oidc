@@ -44,9 +44,13 @@ export function getUserErrorCallback(error) {
 }
 
 // the middleware creator function
-export default function createOidcMiddleware(userManager, shouldValidate, triggerAuthFlow = true) {
+export default function createOidcMiddleware(userManager, shouldValidate, triggerAuthFlow, callbackRoute, existingUser) {
   if (!userManager) {
     throw new Error('You must provide a user manager!');
+  }
+
+  if (!callbackRoute) {
+    throw new Error('You must provide the callback route!');
   }
 
   if (!shouldValidate || typeof(shouldValidate) !== 'function') {
@@ -54,8 +58,29 @@ export default function createOidcMiddleware(userManager, shouldValidate, trigge
     shouldValidate = (state, action) => true;
   }
 
+  // store the provided user here
+  let providedUser = existingUser;
+
+  // check for an interrupted login attempt and clear localStorage if necessary
+  if (localStorage.getItem(STORAGE_KEY) && window.location.pathname.indexOf(callbackRoute) === -1) {
+    localStorage.removeItem(STORAGE_KEY);
+
+    // clear out any temporary data left behind by the userManager but keep the valid user data if present
+    for (const key in localStorage) {
+      if (key.indexOf('oidc') !== -1 && key.indexOf('oidc.user') === -1) {
+        localStorage.removeItem(key);
+      }
+    }
+  }
+
   // the middleware
   return (store) => (next) => (action) => {
+    // dispatch a manually loaded user on startup
+    if (providedUser && !providedUser.expired) {
+      next(userFound(providedUser));
+      providedUser = null;
+    }
+
     if (shouldValidate(store.getState(), action) && !localStorage.getItem(STORAGE_KEY)) {
       // IF: validation should occur...
       if (!storedUser || storedUser.expired) {
@@ -65,7 +90,7 @@ export default function createOidcMiddleware(userManager, shouldValidate, trigge
           .then((user) => getUserSuccessCallback(next, userManager, user, triggerAuthFlow, action))
           .catch(getUserErrorCallback);
       } else {
-        // ELSE: user has been found and NOT is expired...
+        // ELSE: user has been found and is NOT expired...
         return next(action);
       }
     } else {
