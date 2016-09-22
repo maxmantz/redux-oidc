@@ -1,4 +1,12 @@
-import { USER_EXPIRED, REDIRECT_SUCCESS, USER_FOUND, SILENT_RENEW_ERROR, USER_EXPIRING, SESSION_TERMINATED } from '../constants'
+import {
+  USER_EXPIRED,
+  REDIRECT_SUCCESS,
+  USER_FOUND,
+  SILENT_RENEW_ERROR,
+  USER_EXPIRING,
+  SESSION_TERMINATED,
+  LOADING_USER
+} from '../constants'
 
 // dispatched when the existing user expired
 export function userExpired() {
@@ -43,5 +51,12 @@ export function sessionTerminated() {
 export function userExpiring() {
   return {
     type: USER_EXPIRING
+  };
+}
+
+// dispatched when a new user is loading
+export function loadingUser() {
+  return {
+    type: LOADING_USER
   };
 }

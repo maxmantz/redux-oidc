@@ -1,12 +1,21 @@
 import '../setup';
 import expect from 'expect';
 import sinon from 'sinon';
-import { userExpired, userFound, userNotFound, silentRenewError, sessionTerminated, userExpiring, redirectSuccess } from '../../src/actions';
+import {
+  userExpired,
+  userFound,
+  userNotFound,
+  silentRenewError,
+  sessionTerminated,
+  userExpiring,
+  redirectSuccess,
+  loadingUser
+} from '../../src/actions';
 import reducer from '../../src/reducer/reducer';
 
 const initialState = {
       user: null,
-      isLoadingUser: true
+      isLoadingUser: false
     };
 
 describe('reducer', () => {
@@ -54,10 +63,20 @@ describe('reducer', () => {
 
   it('should handle SESSION_TERMINATED correctly', () => {
     const expectedResult = {
-      user: null
+      user: null,
+      isLoadingUser: false
     };
 
     expect(reducer({}, sessionTerminated())).toEqual(expectedResult);
+  });
+
+  it('should handle LOADING_USER correctly', () => {
+    const expectedResult = {
+      user: null,
+      isLoadingUser: true
+    };
+
+    expect(reducer(initialState, loadingUser())).toEqual(expectedResult);
   });
 
   it('should handle the default correctly', () => {
