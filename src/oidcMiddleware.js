@@ -44,7 +44,7 @@ export function getUserErrorCallback(error) {
 }
 
 // the middleware creator function
-export default function createOidcMiddleware(userManager, shouldValidate, triggerAuthFlow, callbackRoute, existingUser) {
+export default function createOidcMiddleware(userManager, shouldValidate, triggerAuthFlow, callbackRoute) {
   if (!userManager) {
     throw new Error('You must provide a user manager!');
   }
@@ -57,9 +57,6 @@ export default function createOidcMiddleware(userManager, shouldValidate, trigge
     // set the default shouldValidate()
     shouldValidate = (state, action) => true;
   }
-
-  // store the provided user here
-  let providedUser = existingUser;
 
   // check for an interrupted login attempt and clear localStorage if necessary
   if (localStorage.getItem(STORAGE_KEY) && window.location.pathname.indexOf(callbackRoute) === -1) {
@@ -75,12 +72,6 @@ export default function createOidcMiddleware(userManager, shouldValidate, trigge
 
   // the middleware
   return (store) => (next) => (action) => {
-    // dispatch a manually loaded user on startup
-    if (providedUser && !providedUser.expired) {
-      next(userFound(providedUser));
-      providedUser = null;
-    }
-
     if (shouldValidate(store.getState(), action) && !localStorage.getItem(STORAGE_KEY)) {
       // IF: validation should occur...
       if (!storedUser || storedUser.expired) {

@@ -217,28 +217,6 @@ describe('createOidcMiddleware()', () => {
     expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
   });
 
-  it('should dispatch a manually loaded user if it has been provided', () => {
-    const loadedUser = { some: 'user' };
-    createOidcMiddleware(userManagerMock, null, null, callbackRoute, loadedUser)(storeMock)(nextStub)(action);
-
-    expect(nextStub.calledWith(userFound(loadedUser))).toEqual(true);
-  });
-
-  it('should not dispatch a manually loaded user if it has not been provided', () => {
-    createOidcMiddleware(userManagerMock, null, null, callbackRoute)(storeMock)(nextStub)(action);
-    expect(nextStub.calledWith(userFound(undefined))).toEqual(false);
-  });
-
-  it('should not dispatch a manually loaded user if it is expired', () => {
-    const loadedUser = {
-      some: 'user',
-      expired: true
-    };
-    createOidcMiddleware(userManagerMock, null, null, callbackRoute)(storeMock)(nextStub)(action);
-
-    expect(nextStub.calledWith(userFound(loadedUser))).toEqual(false);
-  });
-
   it('should clear localStorage when after a failed login attempt but keep the valid user entry', () => {
     localStorageMock = {
       STORAGE_KEY,
