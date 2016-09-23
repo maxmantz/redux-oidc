@@ -1,5 +1,5 @@
 import { STORAGE_KEY } from './constants';
-import { userExpired, userFound } from './actions';
+import { userExpired, userFound, loadingUser } from './actions';
 
 // store the user here to prevent future promise calls to getUser()
 export let storedUser = null;
@@ -85,6 +85,7 @@ export default function createOidcMiddleware(userManager, shouldValidate, trigge
       // IF: validation should occur...
       if (!storedUser || storedUser.expired) {
         // IF: user hasn't been found or is expired...
+        next(loadingUser());
         localStorage.setItem(STORAGE_KEY, true);
         userManager.getUser()
           .then((user) => getUserSuccessCallback(next, userManager, user, triggerAuthFlow, action))

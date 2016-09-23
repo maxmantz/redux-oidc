@@ -1,8 +1,8 @@
 import '../setup';
 import expect from 'expect';
 import sinon from 'sinon';
-import { USER_EXPIRED, REDIRECT_SUCCESS, USER_FOUND, SILENT_RENEW_ERROR, USER_EXPIRING, SESSION_TERMINATED } from '../../src/constants';
-import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, redirectSuccess } from '../../src/actions';
+import { USER_EXPIRED, REDIRECT_SUCCESS, USER_FOUND, SILENT_RENEW_ERROR, USER_EXPIRING, SESSION_TERMINATED, LOADING_USER } from '../../src/constants';
+import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, redirectSuccess, loadingUser } from '../../src/actions';
 
 describe('action - userExpired', () => {
   it('should return the correct action object', () => {
@@ -52,5 +52,12 @@ describe('action - userExpiring', () => {
   it('should return the correct action object', () => {
     const action = userExpiring();
     expect(action.type).toEqual(USER_EXPIRING);
+  });
+});
+
+describe('action - loadingUser', () => {
+  it('should return the correct action object', () => {
+    const action = loadingUser();
+    expect(action.type).toEqual(LOADING_USER);
   });
 });
