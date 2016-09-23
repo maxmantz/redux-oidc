@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: [
@@ -10,9 +11,7 @@ module.exports = {
     filename: 'redux-oidc.js',
     libraryTarget: 'umd'
   },
-  externals: {
-    'react': 'react'
-  },
+  externals: nodeExternals(),
   module: {
     loaders: [
       {

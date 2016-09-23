@@ -5,7 +5,7 @@ import { redirectSuccess } from './actions';
 class CallbackComponent extends React.Component {
   static propTypes = {
     successCallback: PropTypes.func.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    errorCallback: PropTypes.func,
   };
 
   static contextTypes = {
@@ -13,8 +13,6 @@ class CallbackComponent extends React.Component {
   };
 
   componentDidMount() {
-    let { successCallback } = this.props;
-
     this.context.userManager.signinRedirectCallback()
       .then((user) => this.onRedirectSuccess(user))
       .catch((error) => this.onRedirectError(error));
@@ -22,13 +20,17 @@ class CallbackComponent extends React.Component {
 
   onRedirectSuccess = (user) => {
     localStorage.removeItem(STORAGE_KEY);
-    this.props.dispatch(redirectSuccess(user));
     this.props.successCallback(user);
   };
 
   onRedirectError = (error) => {
     localStorage.removeItem(STORAGE_KEY);
-    throw new Error(`Error handling redirect callback: ${error.message}`);
+
+    if (this.props.errorCallback) {
+      this.props.errorCallback(error);
+    } else {
+      throw new Error(`Error handling redirect callback: ${error.message}`);
+    }
   };
 
   get defaultContent() {

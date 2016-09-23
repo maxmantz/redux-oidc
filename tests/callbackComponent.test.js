@@ -13,32 +13,29 @@ describe('<CallbackComponent />', () => {
   let signinRedirectCallbackStub;
   let thenStub;
   let catchStub;
-  let dispatchStub;
   let props;
   let contextMock;
   let oldStorage;
   let removeItemStub;
   let successCallbackStub;
+  let errorCallbackStub;
   let component;
 
   beforeEach(() => {
     catchStub = sinon.stub();
     thenStub = sinon.stub().returns({ catch: catchStub });
-    dispatchStub = sinon.stub();
     removeItemStub = sinon.stub();
     signinRedirectCallbackStub = sinon.stub().returns({
       then: thenStub
     });
     successCallbackStub = sinon.stub();
+    errorCallbackStub = sinon.stub();
 
     userManagerMock = {
       signinRedirectCallback: signinRedirectCallbackStub
     };
-    storeMock = {
-      dispatch: dispatchStub
-    };
 
-    props = { successCallback: successCallbackStub, dispatch: dispatchStub };
+    props = { successCallback: successCallbackStub, errorCallback: errorCallbackStub };
 
     contextMock = {
       userManager: userManagerMock
@@ -71,12 +68,22 @@ describe('<CallbackComponent />', () => {
     component.onRedirectSuccess(user);
 
     expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
-    expect(dispatchStub.calledWith(redirectSuccess(user))).toEqual(true);
     expect(successCallbackStub.calledWith(user)).toEqual(true);
   });
 
-  it('should handle redirect errors correctly', () => {
+  it('should call the redirect error callback when provided', () => {
+    const error = { message: 'error'};
+
+    component.onRedirectError(error);
+
+    expect(errorCallbackStub.calledWith(error)).toEqual(true);
+  });
+
+  it('should throw an error when no error callback has been provided', () => {
     const error = { message: 'error' };
+
+    props = { successCallback: successCallbackStub };
+    component = new CallbackComponent(props);
 
     expect(() => component.onRedirectError(error)).toThrow(/error/);
     expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
