@@ -26,10 +26,8 @@ It contains the following parts:
 - *reducers & actions*: reducers and actions to handle OIDC events,
 - *helpers*: create helpers to manage the oidc-client-js library
 
-### Reasons developing version 2
-- the old version was relying on the `oidc-token-manager` which was not npm compliant and had to be manually maintained, this version now uses the [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/dev) library which is written in ES6, fully tested and npm compatible,
-- the old version also relied heavily on creating new instances of the token manager, which could cause unexpected behavior when more than one instance was active at the same time - this version only needs a single instance of `UserManager` to work,
-- the old version had little which pronounced the *redux* in `oidc-redux`. This version offers a reducer including dispatchable actions to handle OIDC interactions.
+### Integration with [redux-auth-wrapper](https://github.com/mjrussell/redux-auth-wrapper)
+This library is compatible with redux-auth-wrapper. To see an example of how to integrate it look at [jbellmore31g's fork of the sample app](https://github.com/jbellmore31g/redux-oidc-example).
 
 ### Version 1
 This is the page for version 2 of this package. For version 1 check out the [v1 branch](https://github.com/maxmantz/redux-oidc/tree/v1).
