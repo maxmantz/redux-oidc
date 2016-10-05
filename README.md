@@ -7,7 +7,7 @@ A package for managing OpenID-Connect authentication in ReactJS / Redux apps.
 `npm install --save redux-oidc`
 
 #### Peer dependency
-This package has [oidc-client-js](https://github.com/IdentityModel/oidc-client-js/tree/master) as its peer dependency.
+This package has [oidc-client-js](https://github.com/IdentityModel/oidc-client-js) as its peer dependency.
 In order to install this run:
 
 `npm install --save oidc-client`
