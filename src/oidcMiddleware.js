@@ -22,7 +22,7 @@ export function getUserSuccessCallback(next, userManager, user, triggerAuthFlow,
     if (triggerAuthFlow) {
       // IF: auth flow should be triggered
       userManager.signinRedirect({ data: {
-          redirectUrl: window.location.href
+          redirectUrl: window.location.pathname
         }
       });
     } else {
@@ -45,11 +45,11 @@ export function getUserErrorCallback(error) {
 
 // the middleware creator function
 export default function createOidcMiddleware(userManager, shouldValidate, triggerAuthFlow, callbackRoute) {
-  if (!userManager) {
+  if (!userManager || !userManager.getUser || !userManager.signinRedirect) {
     throw new Error('You must provide a user manager!');
   }
 
-  if (!callbackRoute) {
+  if (typeof(callbackRoute) !== 'string') {
     throw new Error('You must provide the callback route!');
   }
 

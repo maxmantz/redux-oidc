@@ -88,4 +88,15 @@ describe('<CallbackComponent />', () => {
     expect(() => component.onRedirectError(error)).toThrow(/error/);
     expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
   });
+
+  it('should call the signinSilentCallback with a route when it has been provided', () => {
+    const route = '/some/route';
+    props = { ...props, route };
+    component = new CallbackComponent(props);
+    component.context = Object.assign({}, { ...component.context }, { ...contextMock });
+
+    component.componentDidMount();
+
+    expect(signinRedirectCallbackStub.calledWith(route)).toEqual(true);
+  });
 });

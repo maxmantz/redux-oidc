@@ -23,13 +23,12 @@ describe('createOidcMiddleware()', () => {
   let getStateStub;
   let action;
   let stateMock;
-  let href = 'http://some.url.com';
   let pathname = '/callback';
   let callbackRoute = '/callback';
 
   beforeEach(() => {
     windowMock = {
-      location: { href, pathname }
+      location: { pathname }
     };
     oldWindow = window;
     window = windowMock;
@@ -95,6 +94,17 @@ describe('createOidcMiddleware()', () => {
     nextFunction = nextFunction(nextStub);
     expect(typeof(nextFunction)).toEqual('function');
     expect(nextFunction.length).toEqual(1);
+  });
+
+  it('should throw an error when no user manager has been provided', () => {
+    expect(() => {createOidcMiddleware(null, null, null, callbackRoute)}).toThrow(/You must provide a user manager!/);
+    expect(() => {createOidcMiddleware({}, null, null, callbackRoute)}).toThrow(/You must provide a user manager!/);
+    expect(() => {createOidcMiddleware('userManager', null, null, callbackRoute)}).toThrow(/You must provide a user manager!/);
+  });
+
+  it('should throw an error when no callback route has been provided', () =>  {
+    expect(() => {createOidcMiddleware(userManagerMock, null, null, null)}).toThrow(/You must provide the callback route!/);
+    expect(() => {createOidcMiddleware(userManagerMock, null, null, {})}).toThrow(/You must provide the callback route!/);
   });
 
   it('should call the shouldValidate() function with the redux state and dispatched action', () => {
@@ -178,7 +188,7 @@ describe('createOidcMiddleware()', () => {
     const result = getUserSuccessCallback(nextStub, userManagerMock, user, true, action);
     const stateData = {
       data: {
-        redirectUrl: href
+        redirectUrl: pathname
       }
     };
 
@@ -230,8 +240,7 @@ describe('createOidcMiddleware()', () => {
 
     windowMock = {
       location: {
-        pathname: '/someRoute',
-        href
+        pathname: '/someRoute'
       }
     };
     window = windowMock;
