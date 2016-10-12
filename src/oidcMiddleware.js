@@ -44,7 +44,7 @@ export function getUserErrorCallback(error) {
 }
 
 // the middleware creator function
-export default function createOidcMiddleware(userManager, shouldValidate, triggerAuthFlow, callbackRoute) {
+export default function createOidcMiddleware(userManager, shouldValidate, triggerAuthFlow, callbackRoute = '/callback') {
   if (!userManager || !userManager.getUser || !userManager.signinRedirect) {
     throw new Error('You must provide a user manager!');
   }
