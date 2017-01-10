@@ -2,7 +2,7 @@ import './setup';
 import expect from 'expect';
 import sinon from 'sinon';
 import OidcProvider from '../src/OidcProvider';
-import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, redirectSuccess } from '../src/actions';
+import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, redirectSuccess, userSignedOut } from '../src/actions';
 
 describe('<OidcProvider />', () => {
   let userManagerMock;
@@ -13,11 +13,13 @@ describe('<OidcProvider />', () => {
   let addAccessTokenExpiredStub;
   let addUserUnloadedStub;
   let addAccessTokenExpiringStub;
+  let addUserSignedOutStub;
   let removeUserLoadedStub;
   let removeSilentRenewErrorStub;
   let removeAccessTokenExpiredStub;
   let removeUserUnloadedStub;
   let removeAccessTokenExpiringStub;
+  let removeUserSignedOutStub;
   let dispatchStub;
   let props;
   let provider;
@@ -28,11 +30,13 @@ describe('<OidcProvider />', () => {
     addAccessTokenExpiredStub = sinon.stub();
     addUserUnloadedStub = sinon.stub();
     addAccessTokenExpiringStub = sinon.stub();
+    addUserSignedOutStub = sinon.stub();
     removeUserLoadedStub = sinon.stub();
     removeSilentRenewErrorStub = sinon.stub();
     removeAccessTokenExpiredStub = sinon.stub();
     removeUserUnloadedStub = sinon.stub();
     removeAccessTokenExpiringStub = sinon.stub();
+    removeUserSignedOutStub = sinon.stub();
     dispatchStub = sinon.stub();
 
     eventsMock = {
@@ -41,11 +45,13 @@ describe('<OidcProvider />', () => {
       addAccessTokenExpired: addAccessTokenExpiredStub,
       addUserUnloaded: addUserUnloadedStub,
       addAccessTokenExpiring: addAccessTokenExpiringStub,
+      addUserSignedOut: addUserSignedOutStub,
       removeUserLoaded: removeUserLoadedStub,
       removeSilentRenewError: removeSilentRenewErrorStub,
       removeAccessTokenExpired: removeAccessTokenExpiredStub,
       removeUserUnloaded: removeUserUnloadedStub,
-      removeAccessTokenExpiring: removeAccessTokenExpiringStub
+      removeAccessTokenExpiring: removeAccessTokenExpiringStub,
+      removeUserSignedOut: removeUserSignedOutStub
     };
 
     userManagerMock = {
@@ -82,6 +88,7 @@ describe('<OidcProvider />', () => {
     expect(addAccessTokenExpiredStub.calledWith(provider.onAccessTokenExpired)).toEqual(true);
     expect(addUserUnloadedStub.calledWith(provider.onUserUnloaded)).toEqual(true);
     expect(addAccessTokenExpiringStub.calledWith(provider.onAccessTokenExpiring)).toEqual(true);
+    expect(addUserSignedOutStub.calledWith(provider.onUserSignedOut)).toEqual(true);
   });
 
   it('should remove event registrations on componentWillUnmount()', () => {
@@ -92,6 +99,7 @@ describe('<OidcProvider />', () => {
     expect(removeAccessTokenExpiredStub.calledWith(provider.onAccessTokenExpired)).toEqual(true);
     expect(removeUserUnloadedStub.calledWith(provider.onUserUnloaded)).toEqual(true);
     expect(removeAccessTokenExpiringStub.calledWith(provider.onAccessTokenExpiring)).toEqual(true);
+    expect(removeUserSignedOutStub.calledWith(provider.onUserSignedOut)).toEqual(true);
   });
 
   it('should handle the userLoaded event correctly', () => {
@@ -124,5 +132,11 @@ describe('<OidcProvider />', () => {
     provider.onAccessTokenExpiring();
 
     expect(dispatchStub.calledWith(userExpiring())).toEqual(true);
+  });
+
+  it('should handle the userSignedOut event correctly', () => {
+    provider.onUserSignedOut();
+
+    expect(dispatchStub.calledWith(userSignedOut())).toEqual(true);
   });
 });

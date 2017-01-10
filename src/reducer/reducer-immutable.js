@@ -6,7 +6,8 @@ import {
   USER_NOT_FOUND,
   SILENT_RENEW_ERROR,
   SESSION_TERMINATED,
-  LOADING_USER
+  LOADING_USER,
+  USER_SIGNED_OUT
 } from '../constants';
 
 const initialState = fromJS({
@@ -21,6 +22,7 @@ export default function reducer(state = initialState, action) {
     case SILENT_RENEW_ERROR:
       return state.set('isLoadingUser', false);
     case SESSION_TERMINATED:
+    case USER_SIGNED_OUT:
       return fromJS({
         user: null,
         isLoadingUser: false

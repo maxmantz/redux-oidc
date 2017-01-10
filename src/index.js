@@ -17,6 +17,7 @@ export const SILENT_RENEW_ERROR = require('./constants').SILENT_RENEW_ERROR;
 export const SESSION_TERMINATED = require('./constants').SESSION_TERMINATED;
 export const USER_EXPIRING = require('./constants').USER_EXPIRING;
 export const LOADING_USER = require('./constants').LOADING_USER;
+export const USER_SIGNED_OUT = require('./constants').USER_SIGNED_OUT;
 
 // actions
 export const userExpired = require('./actions').userExpired;
@@ -26,5 +27,6 @@ export const silentRenewError = require('./actions').silentRenewError;
 export const sessionTerminated = require('./actions').sessionTerminated;
 export const userExpiring = require('./actions').userExpiring;
 export const loadingUser = require('./actions').loadingUser;
+export const userSignedOut = require('./actions').userSignedOut;
 
 export default createOidcMiddleware;

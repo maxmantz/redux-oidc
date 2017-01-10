@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring } from './actions';
+import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, userSignedOut } from './actions';
 
 class OidcProvider extends React.Component {
   static propTypes = {
@@ -29,6 +29,7 @@ class OidcProvider extends React.Component {
     this.userManager.events.addAccessTokenExpired(this.onAccessTokenExpired);
     this.userManager.events.addAccessTokenExpiring(this.onAccessTokenExpiring);
     this.userManager.events.addUserUnloaded(this.onUserUnloaded);
+    this.userManager.events.addUserSignedOut(this.onUserSignedOut);
   }
 
   componentWillUnmount() {
@@ -38,6 +39,7 @@ class OidcProvider extends React.Component {
     this.userManager.events.removeAccessTokenExpired(this.onAccessTokenExpired);
     this.userManager.events.removeAccessTokenExpiring(this.onAccessTokenExpiring);
     this.userManager.events.removeUserUnloaded(this.onUserUnloaded);
+    this.userManager.events.removeUserSignedOut(this.onUserSignedOut);
   }
 
   // event callback when the user has been loaded (on silent renew or redirect)
@@ -63,6 +65,11 @@ class OidcProvider extends React.Component {
   // event callback when the user is expiring
   onAccessTokenExpiring = () => {
     this.props.store.dispatch(userExpiring());
+  }
+
+  // event callback when the user is signed out
+  onUserSignedOut = () => {
+    this.props.store.dispatch(userSignedOut());
   }
 
   render() {

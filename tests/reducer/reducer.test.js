@@ -9,7 +9,8 @@ import {
   sessionTerminated,
   userExpiring,
   redirectSuccess,
-  loadingUser
+  loadingUser,
+  userSignedOut
 } from '../../src/actions';
 import reducer from '../../src/reducer/reducer';
 
@@ -77,6 +78,15 @@ describe('reducer', () => {
     };
 
     expect(reducer(initialState, loadingUser())).toEqual(expectedResult);
+  });
+
+  it('should handle USER_SIGNED_OUT correctly', () => {
+    const expectedResult = {
+      user: null,
+      isLoadingUser: false
+    };
+
+    expect(reducer(initialState, userSignedOut())).toEqual(expectedResult);
   });
 
   it('should handle the default correctly', () => {
