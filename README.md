@@ -6,11 +6,14 @@ A package for managing OpenID-Connect authentication in ReactJS / Redux apps.
 ### Installation
 `npm install --save redux-oidc`
 
-#### Peer dependency
+#### Peer dependencies (Version 3)
 This package has [oidc-client-js](https://github.com/IdentityModel/oidc-client-js) as its peer dependency.
 In order to install this run:
 
 `npm install --save oidc-client`
+
+There is also a dependency on [co](https://www.npmjs.com/package/co).
+`npm install --save co`
 
 In addition there is a peer dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
 
@@ -26,15 +29,20 @@ It contains the following parts:
 - *reducers & actions*: reducers and actions to handle OIDC events,
 - *helpers*: create helpers to manage the oidc-client-js library
 
-### Integration with [redux-auth-wrapper](https://github.com/mjrussell/redux-auth-wrapper)
-This library is compatible with redux-auth-wrapper. To see an example of how to integrate it look at [jbellmore31g's fork of the sample app](https://github.com/jbellmore31g/redux-oidc-example).
+### Version 3 under development
+I've decided to overhaul the API of this library. The main changes include:
+- better SSR & React-Native support due to not relying on `window` anymore,
+- removed `childContext` from the `<OidcProvider />`, user manager now must be passed in as a prop,
+- immutablejs is now an optional dependency and doesn't need to be installed for those not using it,
+- dropped support for `shouldValidate` - the middleware now always validates the user,
+- dropped support for `triggerAuthFlow` - this must now be initiated by a custom action (see example app),
+- cleaner API all around
 
-### Version 1
-This is the page for version 2 of this package. For version 1 check out the [v1 branch](https://github.com/maxmantz/redux-oidc/tree/v1).
+The example app is already updated to reflect these changes. I will update the wiki soon...
 
 ### Documentation
 
-Check out the [wiki](https://github.com/maxmantz/redux-oidc/wiki) for further information.
+Check out the [wiki](https://github.com/maxmantz/redux-oidc/wiki) for further information (for Version 2).
 
 ### Sample app
 There is a sample application demonstrating the use of this package [here](https://github.com/maxmantz/redux-oidc-example).
