@@ -74,12 +74,6 @@ describe('<OidcProvider />', () => {
     expect(provider.userManager).toEqual(userManagerMock);
   });
 
-  it('should have the correct child context', () => {
-    const childContext = { userManager: userManagerMock };
-
-    expect(provider.getChildContext()).toEqual(childContext);
-  });
-
   it('should register the events on componentWillMount()', () => {
     provider.componentWillMount();
 

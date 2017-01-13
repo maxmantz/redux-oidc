@@ -4,7 +4,6 @@ import expect from 'expect';
 import React from 'react';
 import CallbackComponent from '../src/CallbackComponent';
 import sinon from 'sinon';
-import { STORAGE_KEY } from '../src/constants';
 import { redirectSuccess } from '../src/actions';
 
 describe('<CallbackComponent />', () => {
@@ -14,8 +13,7 @@ describe('<CallbackComponent />', () => {
   let thenStub;
   let catchStub;
   let props;
-  let contextMock;
-  let oldStorage;
+  let propsMock;
   let removeItemStub;
   let successCallbackStub;
   let errorCallbackStub;
@@ -32,29 +30,16 @@ describe('<CallbackComponent />', () => {
     errorCallbackStub = sinon.stub();
 
     userManagerMock = {
-      signinRedirectCallback: signinRedirectCallbackStub
+      signinRedirectCallback: signinRedirectCallbackStub,
     };
 
-    props = { successCallback: successCallbackStub, errorCallback: errorCallbackStub };
+    props = { successCallback: successCallbackStub, errorCallback: errorCallbackStub, userManager: userManagerMock };
 
-    contextMock = {
-      userManager: userManagerMock
-    };
-
-    oldStorage = localStorage;
-    localStorage = {
-      removeItem: removeItemStub
-    };
 
     component = new CallbackComponent(props);
   });
 
-  afterEach(() => {
-    localStorage = oldStorage;
-  });
-
   it('should call the userManager on componentDidMount', () => {
-    component.context = Object.assign({}, { ...component.context }, { ...contextMock });
     component.componentDidMount();
 
     expect(signinRedirectCallbackStub.called).toEqual(true);
@@ -64,10 +49,8 @@ describe('<CallbackComponent />', () => {
 
   it('should handle redirect success correctly', () => {
     const user = { some: 'user' };
-    component.context = Object.assign({}, { ...component.context }, { ...contextMock });
     component.onRedirectSuccess(user);
 
-    expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
     expect(successCallbackStub.calledWith(user)).toEqual(true);
   });
 
@@ -82,18 +65,17 @@ describe('<CallbackComponent />', () => {
   it('should throw an error when no error callback has been provided', () => {
     const error = { message: 'error' };
 
-    props = { successCallback: successCallbackStub };
+    props = { successCallback: successCallbackStub, userManager: userManagerMock };
     component = new CallbackComponent(props);
 
     expect(() => component.onRedirectError(error)).toThrow(/error/);
-    expect(removeItemStub.calledWith(STORAGE_KEY)).toEqual(true);
   });
 
   it('should call the signinSilentCallback with a route when it has been provided', () => {
     const route = '/some/route';
     props = { ...props, route };
     component = new CallbackComponent(props);
-    component.context = Object.assign({}, { ...component.context }, { ...contextMock });
+    component.props = Object.assign({}, { ...component.props }, { ...propsMock });
 
     component.componentDidMount();
 

@@ -7,19 +7,9 @@ class OidcProvider extends React.Component {
     store: PropTypes.object.isRequired,
   };
 
-  static childContextTypes = {
-    userManager: PropTypes.object
-  };
-
   constructor(props) {
     super(props);
     this.userManager = props.userManager;
-  }
-
-  getChildContext() {
-    return {
-      userManager: this.userManager
-    };
   }
 
   componentWillMount() {

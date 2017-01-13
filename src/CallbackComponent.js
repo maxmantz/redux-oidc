@@ -1,32 +1,32 @@
 import React, { PropTypes } from 'react';
-import { STORAGE_KEY } from './constants';
 import { redirectSuccess } from './actions';
 
 class CallbackComponent extends React.Component {
   static propTypes = {
+    // the userManager
+    userManager: PropTypes.object.isRequired,
+
+    // a function invoked when the callback succeeds
     successCallback: PropTypes.func.isRequired,
+
+    // a function invoked when the callback fails
     errorCallback: PropTypes.func,
+
+    // the route this component is registered in (react-router or similar library)
     route: PropTypes.string
   };
 
-  static contextTypes = {
-    userManager: PropTypes.object
-  };
-
   componentDidMount() {
-    this.context.userManager.signinRedirectCallback(this.props.route)
+    this.props.userManager.signinRedirectCallback(this.props.route)
       .then((user) => this.onRedirectSuccess(user))
       .catch((error) => this.onRedirectError(error));
   }
 
   onRedirectSuccess = (user) => {
-    localStorage.removeItem(STORAGE_KEY);
     this.props.successCallback(user);
   };
 
   onRedirectError = (error) => {
-    localStorage.removeItem(STORAGE_KEY);
-
     if (this.props.errorCallback) {
       this.props.errorCallback(error);
     } else {
