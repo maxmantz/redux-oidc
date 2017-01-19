@@ -25,12 +25,17 @@ describe('reducer', () => {
   });
 
   it('should handle USER_EXPIRED correctly', () => {
+    const state = {
+      user: { some: 'user' },
+      isLoadingUser: true
+    };
+
     const expectedResult = {
       user: null,
       isLoadingUser: false
     };
 
-    expect(reducer(initialState, userExpired())).toEqual(expectedResult);
+    expect(reducer(state, userExpired())).toEqual(expectedResult);
   });
 
   it('should handle SILENT_RENEW_ERROR correctly', () => {
