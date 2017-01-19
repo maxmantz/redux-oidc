@@ -3,6 +3,9 @@ import { redirectSuccess } from './actions';
 
 class CallbackComponent extends React.Component {
   static propTypes = {
+    // the content to render
+    children: PropTypes.element.isRequired,
+
     // the userManager
     userManager: PropTypes.object.isRequired,
 
@@ -10,14 +13,11 @@ class CallbackComponent extends React.Component {
     successCallback: PropTypes.func.isRequired,
 
     // a function invoked when the callback fails
-    errorCallback: PropTypes.func,
-
-    // the route this component is registered in (react-router or similar library)
-    route: PropTypes.string
+    errorCallback: PropTypes.func
   };
 
   componentDidMount() {
-    this.props.userManager.signinRedirectCallback(this.props.route)
+    this.props.userManager.signinRedirectCallback()
       .then((user) => this.onRedirectSuccess(user))
       .catch((error) => this.onRedirectError(error));
   }
@@ -34,16 +34,8 @@ class CallbackComponent extends React.Component {
     }
   };
 
-  get defaultContent() {
-    return <div>Redirecting...</div>;
-  }
-
   render() {
-    return (
-      <div>
-        {this.props.children || this.defaultContent}
-      </div>
-    );
+    return React.Children.only(this.props.children);
   }
 }
 

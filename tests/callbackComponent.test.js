@@ -1,5 +1,4 @@
 import './setup';
-import ReactTestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import React from 'react';
 import CallbackComponent from '../src/CallbackComponent';
@@ -69,16 +68,5 @@ describe('<CallbackComponent />', () => {
     component = new CallbackComponent(props);
 
     expect(() => component.onRedirectError(error)).toThrow(/error/);
-  });
-
-  it('should call the signinSilentCallback with a route when it has been provided', () => {
-    const route = '/some/route';
-    props = { ...props, route };
-    component = new CallbackComponent(props);
-    component.props = Object.assign({}, { ...component.props }, { ...propsMock });
-
-    component.componentDidMount();
-
-    expect(signinRedirectCallbackStub.calledWith(route)).toEqual(true);
   });
 });
