@@ -17,12 +17,17 @@ describe('immutable reducer', () => {
   });
 
   it('should handle USER_EXPIRED correctly', () => {
+    const state = fromJS({
+      user: { some: 'user' },
+      isLoadingUser: true
+    });
+
     const expectedResult = fromJS({
       user: null,
       isLoadingUser: false
     });
 
-    expect(reducer(fromJS(initialState), userExpired())).toEqual(expectedResult);
+    expect(reducer(state, userExpired())).toEqual(expectedResult);
   });
 
   it('should handle SILENT_RENEW_ERROR correctly', () => {

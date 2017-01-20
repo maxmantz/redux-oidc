@@ -22,7 +22,10 @@ try {
   reducer = (state = initialState, action) => {
     switch (action.type) {
       case USER_EXPIRED:
-        return state.set('isLoadingUser', false);
+        return fromJS({
+          user: null,
+          isLoadingUser: false
+        });
       case SILENT_RENEW_ERROR:
         return state.set('isLoadingUser', false);
       case SESSION_TERMINATED:
