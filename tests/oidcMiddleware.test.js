@@ -94,4 +94,23 @@ describe('createOidcMiddleware()', function () {
     expect(storedUser).toEqual(validUser);
     expect(nextStub.calledWith(action)).toEqual(true);
   });
+
+  it('middlwareHandler should not check the stored user when the action type is LOADING_USER', function* () {
+    action = loadingUser();
+    setStoredUser(null);
+    yield* middlewareHandler(nextStub, action, userManagerMock);
+
+    expect(nextStub.calledWith(action)).toEqual(true);
+    expect(getUserStub.called).toEqual(false);
+  });
+
+  it('middlwareHandler should not check the stored user when the action type is USER_EXPIRED', function* () {
+    action = userExpired();
+    setStoredUser(null);
+    yield* middlewareHandler(nextStub, action, userManagerMock);
+
+    expect(nextStub.calledWith(action)).toEqual(true);
+    expect(nextStub.calledWith(loadingUser())).toEqual(false);
+    expect(getUserStub.called).toEqual(false);
+  });
 });
