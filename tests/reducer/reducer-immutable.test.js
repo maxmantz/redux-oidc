@@ -31,12 +31,17 @@ describe('immutable reducer', () => {
   });
 
   it('should handle SILENT_RENEW_ERROR correctly', () => {
+    const oldState = fromJS({
+      user: { some: 'user' },
+      isLoadingUser: true
+    });
+
     const expectedResult = fromJS({
       user: null,
       isLoadingUser: false
     });
 
-    expect(reducer(fromJS(initialState), silentRenewError())).toEqual(expectedResult);
+    expect(reducer(fromJS(oldState), silentRenewError())).toEqual(expectedResult);
   });
 
   it('should handle REDIRECT_SUCCESS correctly', () => {

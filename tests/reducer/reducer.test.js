@@ -39,12 +39,17 @@ describe('reducer', () => {
   });
 
   it('should handle SILENT_RENEW_ERROR correctly', () => {
+    const oldState = {
+      user: { some: 'user' },
+      isLoadingUser: true
+    };
+
     const expectedResult = {
       user: null,
       isLoadingUser: false
     };
 
-    expect(reducer(initialState, silentRenewError())).toEqual(expectedResult);
+    expect(reducer(oldState, silentRenewError())).toEqual(expectedResult);
   });
 
   it('should handle REDIRECT_SUCCESS correctly', () => {

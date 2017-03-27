@@ -21,7 +21,7 @@ export function errorCallback(error) {
 
 // the middleware handler function
 export function* middlewareHandler(next, action, userManager) {
-  // prevent an infinite loop of disptaches of these action types (issue #30)
+  // prevent an infinite loop of dispatches of these action types (issue #30)
   if (action.type === USER_EXPIRED || action.type === LOADING_USER) {
     return next(action);
   }

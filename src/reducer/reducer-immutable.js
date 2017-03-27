@@ -27,7 +27,10 @@ try {
           isLoadingUser: false
         });
       case SILENT_RENEW_ERROR:
-        return state.set('isLoadingUser', false);
+        return fromJS({
+          user: null,
+          isLoadingUser: false
+        });
       case SESSION_TERMINATED:
       case USER_SIGNED_OUT:
         return fromJS({
@@ -48,7 +51,7 @@ try {
   };
 } catch (error) {
   reducer = () => {
-    console.error("You must install immutable-js for this to work!");
+    console.error("You must install immutable-js for the immutable reducer to work!");
   };
 }
 
