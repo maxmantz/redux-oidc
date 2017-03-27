@@ -13,6 +13,7 @@ In order to install this run:
 `npm install --save oidc-client`
 
 There is also a dependency on [co](https://www.npmjs.com/package/co).
+
 `npm install --save co`
 
 In addition there is a peer dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
@@ -38,11 +39,11 @@ I've decided to overhaul the API of this library. The main changes include:
 - dropped support for `triggerAuthFlow` - this must now be initiated by a custom action (see example app),
 - cleaner API all around
 
-The example app is already updated to reflect these changes. I will update the wiki soon...
+The example app is already updated to reflect these changes.
 
-### Documentation
+### Version 2
 
-Check out the [wiki](https://github.com/maxmantz/redux-oidc/wiki) for further information (for Version 2).
+Check out the [wiki](https://github.com/maxmantz/redux-oidc/wiki) for further information for Version 2.
 
 ### Sample app
 There is a sample application demonstrating the use of this package [here](https://github.com/maxmantz/redux-oidc-example).
