@@ -15,10 +15,6 @@ export function removeStoredUser() {
   storedUser = null;
 }
 
-export function errorCallback(error) {
-  console.error('Error in oidcMiddleware', error);
-}
-
 // the middleware handler function
 export function* middlewareHandler(next, action, userManager) {
   // prevent an infinite loop of dispatches of these action types (issue #30)
@@ -47,6 +43,6 @@ export default function createOidcMiddleware(userManager) {
 
   // the middleware
   return (store) => (next) => (action) => {
-    co(middlewareHandler(next, action, userManager)).catch(errorCallback);
+    co(middlewareHandler(next, action, userManager));
   }
 };
