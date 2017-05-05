@@ -3,6 +3,7 @@ import createOidcMiddleware from './oidcMiddleware';
 // redux-oidc components
 export const createUserManager = require('./helpers/createUserManager').default;
 export const processSilentRenew = require('./helpers/processSilentRenew').default;
+export const loadUser = require('./helpers/loadUser').default;
 export const CallbackComponent = require('./CallbackComponent').default;
 export const immutableReducer = require('./reducer/reducer-immutable').default;
 export const reducer = require('./reducer/reducer').default;
