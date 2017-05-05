@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, userSignedOut } from './actions';
 
 class OidcProvider extends React.Component {
