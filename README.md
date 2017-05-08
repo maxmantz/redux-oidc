@@ -18,6 +18,8 @@ There is also a dependency on [co](https://www.npmjs.com/package/co).
 
 In addition there is a peer dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
 
+AS of version 3.0.0-beta.7, there is a peer dependency on React's [prop-types](https://github.com/reactjs/prop-types).
+
 #### babel-polyfill
 You need the [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) in your build configuration for this package to work.
 
