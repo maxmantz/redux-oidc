@@ -52,6 +52,7 @@
     "mocha-webpack": "^0.7.0",
     "node-storage-shim": "^1.0.1",
     "sinon": "^1.17.7",
+    "url": "^0.11.0",
     "webpack": "^2.2.0",
     "webpack-node-externals": "^1.5.4"
   },
@@ -59,7 +60,7 @@
     "co": ">=4.6.0",
     "react": ">=0.14.0",
     "oidc-client": ">=1.2.0",
-	"prop-types": ">=15.5.0"
+    "prop-types": ">=15.5.0"
   },
   "optionalDependencies": {
     "immutable": ">=3.6.0"
