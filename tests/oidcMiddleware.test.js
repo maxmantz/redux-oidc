@@ -17,14 +17,16 @@ describe('createOidcMiddleware()', function () {
   let stateMock;
   let storageMock;
   let getAllKeysStub;
-  let pathname = '/callback';
   let callbackRoute = '/callback';
 
   beforeEach(function () {
     getUserStub = sinon.stub();
 
     userManagerMock = {
-      getUser: getUserStub
+      getUser: getUserStub,
+      settings: {
+        redirect_uri: `https://my-site.local${callbackRoute}`
+      }
     };
 
     action = {
@@ -91,7 +93,29 @@ describe('createOidcMiddleware()', function () {
     yield* middlewareHandler(nextStub, action, userManagerMock);
 
     expect(nextStub.calledWith(userFound(validUser))).toEqual(true);
-    expect(storedUser).toEqual(validUser);
+    expect(nextStub.calledWith(action)).toEqual(true);
+  });
+
+  it('middlewareHandler should store user when loaded', function* () {
+    const user = { some: 'user' };
+    action = userFound(user);
+    setStoredUser(null);
+
+    yield* middlewareHandler(nextStub, action, userManagerMock);
+
+    expect(nextStub.calledWith(action)).toEqual(true);
+    expect(storedUser).toEqual(user);
+  });
+
+  it('middlewareHandler should not handle a valid user when on the callback route', function* () {
+    const expiredUser = { expired: true };
+    setStoredUser(expiredUser);
+    getUserStub.returns(expiredUser);
+    global.window = { location: { pathname: '/callback' } };
+
+    yield* middlewareHandler(nextStub, action, userManagerMock);
+
+    expect(nextStub.calledOnce).toEqual(true);
     expect(nextStub.calledWith(action)).toEqual(true);
   });
 

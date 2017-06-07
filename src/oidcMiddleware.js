@@ -1,6 +1,7 @@
 import { userExpired, userFound, loadingUser } from './actions';
-import { USER_EXPIRED, LOADING_USER } from './constants';
+import { USER_EXPIRED, LOADING_USER, USER_FOUND } from './constants';
 import co from 'co';
+import url from 'url';
 
 // store the user here to prevent future promise calls to getUser()
 export let storedUser = null;
@@ -22,13 +23,25 @@ export function* middlewareHandler(next, action, userManager) {
     return next(action);
   }
 
+  // store user when found
+  if (action.type === USER_FOUND) {
+    storedUser = action.payload;
+  }
+
+  // prevent loading the user when the callback path is active
+  if (userManager.settings && userManager.settings.redirect_uri) {
+    const callbackPath = url.parse(userManager.settings.redirect_uri).pathname 
+    if (window.location.pathname === callbackPath) {
+      return next(action);
+    }
+  }
+
   if (!storedUser || storedUser.expired) {
     next(loadingUser());
     let user = yield userManager.getUser();
     if (!user || user.expired) {
       next(userExpired());
     } else {
-      storedUser = user;
       next(userFound(user));
     }
   }
