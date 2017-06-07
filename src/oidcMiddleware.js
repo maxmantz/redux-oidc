@@ -42,6 +42,7 @@ export function* middlewareHandler(next, action, userManager) {
     if (!user || user.expired) {
       next(userExpired());
     } else {
+      storedUser = user;
       next(userFound(user));
     }
   }
