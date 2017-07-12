@@ -1,16 +1,14 @@
 import './setup';
 import sinon from 'sinon';
 import expect from 'expect';
-import createOidcMiddleware, { getUserSuccessCallback, getUserErrorCallback, setStoredUser, removeStoredUser, storedUser, middlewareHandler } from '../src/oidcMiddleware';
-import { userExpired, userFound, loadingUser } from '../src/actions';
-
-const coMocha = require('co-mocha');
-const mocha = require('mocha');
-coMocha(mocha);
+import createOidcMiddleware, { getUserCallback, errorCallback, setStoredUser, removeStoredUser, storedUser, getNext, setNext, middlewareHandler } from '../src/oidcMiddleware';
+import { userExpired, userFound, loadingUser, loadUserError } from '../src/actions';
 
 describe('createOidcMiddleware()', function () {
   let userManagerMock;
   let getUserStub;
+  let thenStub;
+  let catchStub;
   let nextStub;
   let storeMock;
   let action;
@@ -22,7 +20,15 @@ describe('createOidcMiddleware()', function () {
 
   beforeEach(function () {
     getUserStub = sinon.stub();
+    thenStub = sinon.stub();
+    catchStub = sinon.stub();
 
+    thenStub.returns({
+      catch: catchStub
+    });
+    getUserStub.returns({
+      then: thenStub
+    });
     userManagerMock = {
       getUser: getUserStub
     };
@@ -38,7 +44,7 @@ describe('createOidcMiddleware()', function () {
     removeStoredUser();
   });
 
-  it('should return the correct middleware function', function* () {
+  it('should return the correct middleware function', () => {
     const middleware = createOidcMiddleware(userManagerMock);
 
     expect(typeof(middleware)).toEqual('function');
@@ -53,64 +59,79 @@ describe('createOidcMiddleware()', function () {
     expect(nextFunction.length).toEqual(1);
   });
 
-  it('should throw an error when no user manager has been provided', function* () {
+  it('should throw an error when no user manager has been provided', () => {
     expect(() => {createOidcMiddleware(null)}).toThrow(/You must provide a user manager!/);
     expect(() => {createOidcMiddleware({})}).toThrow(/You must provide a user manager!/);
     expect(() => {createOidcMiddleware('userManager')}).toThrow(/You must provide a user manager!/);
   });
 
-  it('middlewareHandler should not check the storage & trigger validation when the user is present', function* () {
+  it('middlewareHandler should not check the storage & trigger validation when the user is present', () => {
     setStoredUser({ some: 'user' });
 
-    const iterator = middlewareHandler(nextStub, action, userManagerMock);
-    let current = iterator.next();
+    middlewareHandler(nextStub, action, userManagerMock);
 
     expect(nextStub.calledWith(action)).toEqual(true);
     expect(nextStub.calledWith(userExpired())).toEqual(false);
     expect(getUserStub.called).toEqual(false);
-    expect(current.done).toEqual(true);
   });
 
-  it('middlewareHandler should handle an expired user correctly', function* () {
+  it('middlewareHandler should handle an expired user correctly', () => {
     const expiredUser = { expired: true };
     setStoredUser(expiredUser);
-    getUserStub.returns(expiredUser);
+    setNext(nextStub);
 
-    yield* middlewareHandler(nextStub, action, userManagerMock);
+    getUserCallback(expiredUser);
 
-    expect(getUserStub.called).toEqual(true);
-    expect(nextStub.calledWith(loadingUser())).toEqual(true);
     expect(nextStub.calledWith(userExpired())).toEqual(true);
-    expect(nextStub.calledWith(action)).toEqual(true);
   });
 
-  it('middlewareHandler should handle a valid user correctly', function* () {
+  it('middlewareHandler should handle a valid user correctly', () => {
     const validUser = { some: 'user' };
+    setStoredUser(null);
     getUserStub.returns(validUser);
+    setNext(nextStub);
 
-    yield* middlewareHandler(nextStub, action, userManagerMock);
+    getUserCallback(validUser);
 
     expect(nextStub.calledWith(userFound(validUser))).toEqual(true);
     expect(storedUser).toEqual(validUser);
-    expect(nextStub.calledWith(action)).toEqual(true);
   });
 
-  it('middlwareHandler should not check the stored user when the action type is LOADING_USER', function* () {
+  it('middlwareHandler should not check the stored user when the action type is LOADING_USER', () => {
     action = loadingUser();
     setStoredUser(null);
-    yield* middlewareHandler(nextStub, action, userManagerMock);
+
+    middlewareHandler(nextStub, action, userManagerMock);
 
     expect(nextStub.calledWith(action)).toEqual(true);
     expect(getUserStub.called).toEqual(false);
   });
 
-  it('middlwareHandler should not check the stored user when the action type is USER_EXPIRED', function* () {
+  it('middlwareHandler should not check the stored user when the action type is USER_EXPIRED', () => {
     action = userExpired();
     setStoredUser(null);
-    yield* middlewareHandler(nextStub, action, userManagerMock);
+
+    middlewareHandler(nextStub, action, userManagerMock);
 
     expect(nextStub.calledWith(action)).toEqual(true);
     expect(nextStub.calledWith(loadingUser())).toEqual(false);
     expect(getUserStub.called).toEqual(false);
   });
+
+  it('should set the next middleware', () => {
+    setStoredUser({ some: 'user' });
+    setNext(null);
+
+    middlewareHandler(nextStub, action, userManagerMock);
+
+    expect(getNext()).toEqual(nextStub);
+  });
+
+  it('errorCallback should dispatch LOAD_USER_ERROR', () => {
+    setNext(nextStub);
+
+    errorCallback({ message: 'Some message!' });
+
+    expect(nextStub.calledWith(loadUserError())).toEqual(true);
+  })
 });

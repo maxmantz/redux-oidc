@@ -1,22 +1,22 @@
 import '../setup';
 import sinon from 'sinon';
 import expect from 'expect';
-import { loadUserHandler } from '../../src/helpers/loadUser';
-import { userExpired, userFound } from '../../src/actions';
-
-const coMocha = require('co-mocha');
-const mocha = require('mocha');
-coMocha(mocha);
+import loadUserHandler, { getUserCallback, errorCallback, setReduxStore, getReduxStore } from '../../src/helpers/loadUser';
+import { userExpired, userFound, loadUserError } from '../../src/actions';
 
 describe('helper - loadUser()', () => {
   let userManagerMock;
   let storeMock;
   let getUserStub;
   let dispatchStub;
+  let thenStub;
+  let catchStub;
 
   beforeEach(() => {
     dispatchStub = sinon.stub();
     getUserStub = sinon.stub();
+    thenStub = sinon.stub();
+    catchStub = sinon.stub();
 
     userManagerMock = {
       getUser: getUserStub
@@ -25,23 +25,45 @@ describe('helper - loadUser()', () => {
     storeMock = {
       dispatch: dispatchStub
     };
+
+    getUserStub.returns({
+      then: thenStub
+    });
+
+    thenStub.returns({
+      catch: catchStub
+    });
+
+    setReduxStore(storeMock);
   });
 
-  it('should dispatch a valid user to the store', function* () {
+  it('should dispatch a valid user to the store', () => {
     const validUser = { some: 'user' };
-    getUserStub.returns(validUser);
 
-    yield* loadUserHandler(storeMock, userManagerMock);
+    getUserCallback(validUser);
 
     expect(dispatchStub.calledWith(userFound(validUser))).toEqual(true);
   });
 
-  it('should dispatch USER_EXPIRED when no valid user is present', function* () {
+  it('should dispatch USER_EXPIRED when no valid user is present', () => {
     const invalidUser = { expired: true };
-    getUserStub.returns(invalidUser);
 
-    yield* loadUserHandler(storeMock, userManagerMock);
+    getUserCallback(invalidUser);
 
     expect(dispatchStub.calledWith(userExpired())).toEqual(true);
   });
+
+  it('should set the redux store', () => {
+    loadUserHandler(storeMock, userManagerMock);
+
+    expect(getReduxStore() === storeMock).toEqual(true);
+  });
+
+  it('errorCallback should dispatch LOAD_USER_ERROR', () => {
+    setReduxStore(storeMock);
+
+    errorCallback({ message: 'Some message!'});
+
+    expect(dispatchStub.calledWith(loadUserError())).toEqual(true);
+  })
 });

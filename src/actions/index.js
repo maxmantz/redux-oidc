@@ -6,7 +6,8 @@ import {
   USER_EXPIRING,
   SESSION_TERMINATED,
   LOADING_USER,
-  USER_SIGNED_OUT
+  USER_SIGNED_OUT,
+  LOAD_USER_ERROR
 } from '../constants'
 
 // dispatched when the existing user expired
@@ -65,5 +66,11 @@ export function loadingUser() {
 export function userSignedOut() {
   return {
     type: USER_SIGNED_OUT
+  };
+}
+
+export function loadUserError() {
+  return {
+    type: LOAD_USER_ERROR
   };
 }

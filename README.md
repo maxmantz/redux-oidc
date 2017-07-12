@@ -1,7 +1,7 @@
-# redux-oidc 
+# redux-oidc
 [![Build Status](https://travis-ci.org/maxmantz/redux-oidc.svg?branch=master)](https://travis-ci.org/maxmantz/redux-oidc)
 
-A package for managing OpenID-Connect authentication in ReactJS / Redux apps.
+A package for managing OpenID-Connect authentication in ReactJS / Redux apps. It wraps the popular oidc-client library to redux actions and reducers.
 
 ### Installation
 `npm install --save redux-oidc`
@@ -12,9 +12,6 @@ In order to install this run:
 
 `npm install --save oidc-client`
 
-There is also a dependency on [co](https://www.npmjs.com/package/co).
-
-`npm install --save co`
 
 In addition there is a peer dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
 

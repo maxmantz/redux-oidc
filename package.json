@@ -1,6 +1,6 @@
 {
   "name": "redux-oidc",
-  "version": "3.0.0-beta.7",
+  "version": "3.0.0-beta.8",
   "description": "A package for managing OpenID Connect authentication in redux apps",
   "main": "dist/redux-oidc.js",
   "scripts": {
@@ -56,10 +56,9 @@
     "webpack-node-externals": "^1.5.4"
   },
   "peerDependencies": {
-    "co": ">=4.6.0",
-    "react": ">=0.14.0",
-    "oidc-client": ">=1.2.0",
-	"prop-types": ">=15.5.0"
+    "react": ">=0.15.0",
+    "oidc-client": ">=1.3.0",
+	  "prop-types": ">=15.5.0"
   },
   "optionalDependencies": {
     "immutable": ">=3.6.0"
