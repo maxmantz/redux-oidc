@@ -3,6 +3,7 @@
   "version": "3.0.0-beta.8",
   "description": "A package for managing OpenID Connect authentication in redux apps",
   "main": "dist/redux-oidc.js",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "mocha-webpack --webpack-config webpack.config-test.js \"tests/**/*.test.js\"",
     "build": "webpack -p",
