@@ -65,5 +65,21 @@ describe('helper - loadUser()', () => {
     errorCallback({ message: 'Some message!'});
 
     expect(dispatchStub.calledWith(loadUserError())).toEqual(true);
-  })
+  });
+
+  it('loadUserCallback returns the user', () => {
+    const user = {
+      some: 'user'
+    };
+
+    const result1 = getUserCallback(user);
+    expect(result1).toEqual(user);
+
+    const expiredUser = {
+      expired: true
+    };
+
+    const result2 = getUserCallback(expiredUser);
+    expect(result2).toEqual(expiredUser);
+  });
 });
