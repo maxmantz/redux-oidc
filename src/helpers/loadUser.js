@@ -20,6 +20,7 @@ export function getUserCallback(user) {
   } else if (user && user.expired) {
     reduxStore.dispatch(userExpired());
   }
+  return user;
 }
 
 // error callback called when the userManager's loadUser() function failed
