@@ -19,6 +19,7 @@ export const SESSION_TERMINATED = require('./constants').SESSION_TERMINATED;
 export const USER_EXPIRING = require('./constants').USER_EXPIRING;
 export const LOADING_USER = require('./constants').LOADING_USER;
 export const USER_SIGNED_OUT = require('./constants').USER_SIGNED_OUT;
+export const LOAD_USER_ERROR = require('./constants').LOAD_USER_ERROR;
 
 // actions
 export const userExpired = require('./actions').userExpired;
