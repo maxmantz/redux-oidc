@@ -3,10 +3,10 @@ let UserManager;
 
 try {
   UserManager = require('oidc-client').UserManager;
-} catch (e) {
+} catch (a) {
   try {
     UserManager = require('oidc-client-fetch').UserManager;
-  } catch (e) {
+  } catch (b) {
     throw new Error("redux-oidc: Couldn't find UserManager. Please install either 'oidc-client' or 'oidc-client-fetch'.");
   }
 }
