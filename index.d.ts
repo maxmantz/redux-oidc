@@ -6,7 +6,7 @@ declare module 'redux-oidc' {
     import * as React from 'react';
 
     export interface UserState {
-        user: User;
+        user?: User;
         isLoadingUser: boolean;
     }
 
