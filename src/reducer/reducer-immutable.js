@@ -12,7 +12,14 @@ import {
 let reducer;
 
 try {
-  const fromJS = require('immutable').fromJS;
+  const { fromJS, Seq } = require('immutable');
+
+  const fromJSGreedy = (js) => {
+    return typeof js !== 'object' || js === null ? js :
+      Array.isArray(js) ?
+      Seq(js).map(fromJSGreedy).toList() :
+      Seq(js).map(fromJSGreedy).toMap();
+  }
 
   const initialState = fromJS({
     user: null,
@@ -39,7 +46,7 @@ try {
         });
       case REDIRECT_SUCCESS:
       case USER_FOUND:
-        return fromJS({
+        return fromJSGreedy({
           user: action.payload,
           isLoadingUser: false
         });

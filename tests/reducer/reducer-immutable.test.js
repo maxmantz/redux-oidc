@@ -64,6 +64,20 @@ describe('immutable reducer', () => {
     expect(reducer(fromJS(initialState), userFound(user))).toEqual(expectedResult);
   });
 
+  it('should handle USER_FOUND correctly when payload has non-object prototype', () => {
+      function NonObject() {
+        this.type = 'not-an-object'
+      }
+      const user = { some: 'user' };
+      const nonObjectUser = Object.setPrototypeOf({ some: 'user' }, new NonObject());
+      const expectedResult = fromJS({
+          user,
+          isLoadingUser: false
+      });
+
+      expect(reducer(fromJS(initialState), userFound(nonObjectUser))).toEqual(expectedResult);
+  });
+
   it('should handle SESSION_TERMINATED correctly', () => {
     const expectedResult = fromJS({
       user: null,
