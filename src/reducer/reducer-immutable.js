@@ -15,10 +15,10 @@ try {
   const { fromJS, Seq } = require('immutable');
 
   const fromJSGreedy = (js) => {
-      return typeof js !== 'object' || js === null ? js :
-          Array.isArray(js) ?
-          Seq(js).map(fromJSGreedy).toList() :
-          Seq(js).map(fromJSGreedy).toMap();
+    return typeof js !== 'object' || js === null ? js :
+      Array.isArray(js) ?
+      Seq(js).map(fromJSGreedy).toList() :
+      Seq(js).map(fromJSGreedy).toMap();
   }
 
   const initialState = fromJS({
