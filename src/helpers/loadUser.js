@@ -42,7 +42,7 @@ export default function loadUser(store, userManager) {
 
   reduxStore = store;
 
-  userManager.getUser()
+  return userManager.getUser()
     .then(getUserCallback)
     .catch(errorCallback);
 }
