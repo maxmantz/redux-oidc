@@ -27,6 +27,7 @@
   "author": "Maximilian Mantz",
   "license": "MIT",
   "devDependencies": {
+    "@types/redux-actions": "^2.2.2",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
@@ -52,6 +53,8 @@
     "mocha": "^3.2.0",
     "mocha-webpack": "^0.7.0",
     "node-storage-shim": "^1.0.1",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
     "sinon": "^1.17.7",
     "webpack": "^2.2.0",
     "webpack-node-externals": "^1.5.4"

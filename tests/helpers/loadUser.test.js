@@ -9,14 +9,10 @@ describe('helper - loadUser()', () => {
   let storeMock;
   let getUserStub;
   let dispatchStub;
-  let thenStub;
-  let catchStub;
 
   beforeEach(() => {
     dispatchStub = sinon.stub();
-    getUserStub = sinon.stub();
-    thenStub = sinon.stub();
-    catchStub = sinon.stub();
+    getUserStub = sinon.stub().returns(new Promise(() => {}));
 
     userManagerMock = {
       getUser: getUserStub
@@ -25,14 +21,6 @@ describe('helper - loadUser()', () => {
     storeMock = {
       dispatch: dispatchStub
     };
-
-    getUserStub.returns({
-      then: thenStub
-    });
-
-    thenStub.returns({
-      catch: catchStub
-    });
 
     setReduxStore(storeMock);
   });
@@ -57,6 +45,12 @@ describe('helper - loadUser()', () => {
     loadUserHandler(storeMock, userManagerMock);
 
     expect(getReduxStore() === storeMock).toEqual(true);
+  });
+
+  it('should return a promise', () => {
+    const promise = loadUserHandler(storeMock, userManagerMock);
+
+    expect(promise).toBeA(Promise);
   });
 
   it('errorCallback should dispatch LOAD_USER_ERROR', () => {
