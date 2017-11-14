@@ -6,6 +6,7 @@ import {
   SILENT_RENEW_ERROR,
   SESSION_TERMINATED,
   LOADING_USER,
+  LOADING_USER_END,
   USER_SIGNED_OUT
 } from '../constants';
 
@@ -45,6 +46,8 @@ try {
         });
       case LOADING_USER:
         return state.set('isLoadingUser', true);
+      case LOADING_USER_END:
+        return state.set('isLoadingUser', false);
       default:
         return state;
     }

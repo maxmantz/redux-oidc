@@ -6,6 +6,7 @@ import {
   USER_EXPIRING,
   SESSION_TERMINATED,
   LOADING_USER,
+  LOADING_USER_END,
   USER_SIGNED_OUT,
   LOAD_USER_ERROR
 } from '../constants'
@@ -60,6 +61,13 @@ export function userExpiring() {
 export function loadingUser() {
   return {
     type: LOADING_USER
+  };
+}
+
+// dispatched when a new user finished loading
+export function loadingUserEnd() {
+  return {
+    type: LOADING_USER_END
   };
 }
 

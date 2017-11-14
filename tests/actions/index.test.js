@@ -9,6 +9,7 @@ import {
   USER_EXPIRING,
   SESSION_TERMINATED,
   LOADING_USER, USER_SIGNED_OUT,
+  LOADING_USER_END,
   LOAD_USER_ERROR
 } from '../../src/constants';
 import {
@@ -19,6 +20,7 @@ import {
   userExpiring,
   redirectSuccess,
   loadingUser,
+  loadingUserEnd,
   userSignedOut,
   loadUserError
 } from '../../src/actions';
@@ -78,6 +80,13 @@ describe('action - loadingUser', () => {
   it('should return the correct action object', () => {
     const action = loadingUser();
     expect(action.type).toEqual(LOADING_USER);
+  });
+});
+
+describe('action - loadingUserEnd', () => {
+  it('should return the correct action object', () => {
+    const action = loadingUserEnd();
+    expect(action.type).toEqual(LOADING_USER_END);
   });
 });
 

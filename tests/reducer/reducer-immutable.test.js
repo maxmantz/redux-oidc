@@ -2,12 +2,23 @@ import '../setup';
 import expect from 'expect';
 import sinon from 'sinon';
 import { fromJS } from 'immutable';
-import { userExpired, userFound, userNotFound, silentRenewError, sessionTerminated, userExpiring, redirectSuccess, loadingUser, userSignedOut } from '../../src/actions';
+import {
+  userExpired,
+  userFound,
+  userNotFound,
+  silentRenewError,
+  sessionTerminated,
+  userExpiring,
+  redirectSuccess,
+  loadingUser,
+  loadingUserEnd,
+  userSignedOut
+} from '../../src/actions';
 import reducer from '../../src/reducer/reducer-immutable';
 
 const initialState = fromJS({
-    user: null,
-    isLoadingUser: false
+  user: null,
+  isLoadingUser: false
 });
 
 describe('immutable reducer', () => {
@@ -80,6 +91,15 @@ describe('immutable reducer', () => {
     });
 
     expect(reducer(initialState, loadingUser())).toEqual(expectedResult);
+  });
+
+  it('should handle LOADING_USER_END correctly', () => {
+    const expectedResult = fromJS({
+      user: null,
+      isLoadingUser: false
+    });
+
+    expect(reducer(initialState.merge({ isLoadingUser: true }), loadingUserEnd())).toEqual(expectedResult);
   });
 
   it('should handle USER_SIGNED_OUT correctly', () => {

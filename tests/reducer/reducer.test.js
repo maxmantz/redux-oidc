@@ -10,6 +10,7 @@ import {
   userExpiring,
   redirectSuccess,
   loadingUser,
+  loadingUserEnd,
   userSignedOut
 } from '../../src/actions';
 import reducer from '../../src/reducer/reducer';
@@ -88,6 +89,15 @@ describe('reducer', () => {
     };
 
     expect(reducer(initialState, loadingUser())).toEqual(expectedResult);
+  });
+
+  it('should handle LOADING_USER_END correctly', () => {
+    const expectedResult = {
+      user: null,
+      isLoadingUser: false
+    };
+
+    expect(reducer({...initialState, isLoadingUser: true}, loadingUserEnd())).toEqual(expectedResult);
   });
 
   it('should handle USER_SIGNED_OUT correctly', () => {

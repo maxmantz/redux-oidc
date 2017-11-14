@@ -1,8 +1,13 @@
 import '../setup';
 import sinon from 'sinon';
 import expect from 'expect';
-import loadUserHandler, { getUserCallback, errorCallback, setReduxStore, getReduxStore } from '../../src/helpers/loadUser';
-import { userExpired, userFound, loadUserError } from '../../src/actions';
+import loadUserHandler, {
+  getUserCallback,
+  errorCallback,
+  setReduxStore,
+  getReduxStore
+} from '../../src/helpers/loadUser';
+import { userExpired, userFound, loadUserError, loadingUser, loadingUserEnd } from '../../src/actions';
 
 describe('helper - loadUser()', () => {
   let userManagerMock;
@@ -53,6 +58,20 @@ describe('helper - loadUser()', () => {
     expect(dispatchStub.calledWith(userExpired())).toEqual(true);
   });
 
+  it('should dispatch LOADING_USER_END when no user is present', () => {
+
+    getUserCallback(null);
+
+    expect(dispatchStub.calledWith(loadingUserEnd())).toEqual(true);
+  });
+
+  it('should dispatch LOADING_USER', () => {
+
+    loadUserHandler(storeMock, userManagerMock);
+
+    expect(dispatchStub.calledWith(loadingUser())).toEqual(true);
+  });
+
   it('should set the redux store', () => {
     loadUserHandler(storeMock, userManagerMock);
 
@@ -62,7 +81,7 @@ describe('helper - loadUser()', () => {
   it('errorCallback should dispatch LOAD_USER_ERROR', () => {
     setReduxStore(storeMock);
 
-    errorCallback({ message: 'Some message!'});
+    errorCallback({ message: 'Some message!' });
 
     expect(dispatchStub.calledWith(loadUserError())).toEqual(true);
   });
