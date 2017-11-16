@@ -1,6 +1,5 @@
 import '../setup';
 import expect from 'expect';
-import sinon from 'sinon';
 import {
   userExpired,
   userFound,
@@ -70,6 +69,15 @@ describe('reducer', () => {
     };
 
     expect(reducer({}, userFound(user))).toEqual(expectedResult);
+  });
+
+  it('should handle USER_NOT_FOUND correctly', () => {
+    const expectedResult = {
+      user: null,
+      isLoadingUser: false
+    };
+
+    expect(reducer({...initialState, isLoadingUser: true}, userNotFound())).toEqual(expectedResult);
   });
 
   it('should handle SESSION_TERMINATED correctly', () => {

@@ -1,6 +1,5 @@
 import '../setup';
 import expect from 'expect';
-import sinon from 'sinon';
 import {
   USER_EXPIRED,
   REDIRECT_SUCCESS,
@@ -9,6 +8,7 @@ import {
   USER_EXPIRING,
   SESSION_TERMINATED,
   LOADING_USER, USER_SIGNED_OUT,
+  USER_NOT_FOUND,
   LOAD_USER_ERROR
 } from '../../src/constants';
 import {
@@ -19,6 +19,7 @@ import {
   userExpiring,
   redirectSuccess,
   loadingUser,
+  userNotFound,
   userSignedOut,
   loadUserError
 } from '../../src/actions';
@@ -47,6 +48,13 @@ describe('action - userFound', () => {
 
     expect(action.type).toEqual(USER_FOUND);
     expect(action.payload).toEqual(user);
+  });
+});
+
+describe('action - userNotFound', () => {
+  it('should return the correct action object', () => {
+    const action = userNotFound();
+    expect(action.type).toEqual(USER_NOT_FOUND);
   });
 });
 

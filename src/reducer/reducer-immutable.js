@@ -33,6 +33,7 @@ try {
         });
       case SESSION_TERMINATED:
       case USER_SIGNED_OUT:
+      case USER_NOT_FOUND:
         return fromJS({
           user: null,
           isLoadingUser: false

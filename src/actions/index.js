@@ -2,6 +2,7 @@ import {
   USER_EXPIRED,
   REDIRECT_SUCCESS,
   USER_FOUND,
+  USER_NOT_FOUND,
   SILENT_RENEW_ERROR,
   USER_EXPIRING,
   SESSION_TERMINATED,
@@ -31,6 +32,13 @@ export function userFound(user) {
     type: USER_FOUND,
     payload: user
   };
+}
+
+// dispatched when a new user finished loading
+export function userNotFound() {
+    return {
+        type: USER_NOT_FOUND
+    };
 }
 
 // dispatched when silent renew fails

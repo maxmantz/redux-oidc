@@ -1,4 +1,4 @@
-import { userFound, userExpired, loadUserError } from '../actions';
+import { userFound, userExpired, loadUserError, loadingUser, userNotFound } from '../actions';
 
 // stores the redux store here to be accessed by all functions
 let reduxStore;
@@ -15,10 +15,15 @@ export function getReduxStore() {
 
 // callback function called when the user has been loaded
 export function getUserCallback(user) {
-  if (user && !user.expired) {
-    reduxStore.dispatch(userFound(user));
-  } else if (user && user.expired) {
-    reduxStore.dispatch(userExpired());
+  if (user) {
+    if (!user.expired) {
+      reduxStore.dispatch(userFound(user));
+    } else {
+      reduxStore.dispatch(userExpired());
+    }
+  }
+  else {
+    reduxStore.dispatch(userNotFound());
   }
   return user;
 }
@@ -42,6 +47,7 @@ export default function loadUser(store, userManager) {
 
   reduxStore = store;
 
+  reduxStore.dispatch(loadingUser());
   userManager.getUser()
     .then(getUserCallback)
     .catch(errorCallback);
