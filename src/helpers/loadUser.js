@@ -1,4 +1,4 @@
-import { userFound, userExpired, loadUserError, loadingUser, loadingUserEnd } from '../actions';
+import { userFound, userExpired, loadUserError, loadingUser, userNotFound } from '../actions';
 
 // stores the redux store here to be accessed by all functions
 let reduxStore;
@@ -23,7 +23,7 @@ export function getUserCallback(user) {
     }
   }
   else {
-    reduxStore.dispatch(loadingUserEnd());
+    reduxStore.dispatch(userNotFound());
   }
   return user;
 }

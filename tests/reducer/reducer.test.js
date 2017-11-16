@@ -1,6 +1,5 @@
 import '../setup';
 import expect from 'expect';
-import sinon from 'sinon';
 import {
   userExpired,
   userFound,
@@ -10,7 +9,6 @@ import {
   userExpiring,
   redirectSuccess,
   loadingUser,
-  loadingUserEnd,
   userSignedOut
 } from '../../src/actions';
 import reducer from '../../src/reducer/reducer';
@@ -73,6 +71,15 @@ describe('reducer', () => {
     expect(reducer({}, userFound(user))).toEqual(expectedResult);
   });
 
+  it('should handle USER_NOT_FOUND correctly', () => {
+    const expectedResult = {
+      user: null,
+      isLoadingUser: false
+    };
+
+    expect(reducer({...initialState, isLoadingUser: true}, userNotFound())).toEqual(expectedResult);
+  });
+
   it('should handle SESSION_TERMINATED correctly', () => {
     const expectedResult = {
       user: null,
@@ -89,15 +96,6 @@ describe('reducer', () => {
     };
 
     expect(reducer(initialState, loadingUser())).toEqual(expectedResult);
-  });
-
-  it('should handle LOADING_USER_END correctly', () => {
-    const expectedResult = {
-      user: null,
-      isLoadingUser: false
-    };
-
-    expect(reducer({...initialState, isLoadingUser: true}, loadingUserEnd())).toEqual(expectedResult);
   });
 
   it('should handle USER_SIGNED_OUT correctly', () => {

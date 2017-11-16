@@ -2,11 +2,11 @@ import {
   USER_EXPIRED,
   REDIRECT_SUCCESS,
   USER_FOUND,
+  USER_NOT_FOUND,
   SILENT_RENEW_ERROR,
   USER_EXPIRING,
   SESSION_TERMINATED,
   LOADING_USER,
-  LOADING_USER_END,
   USER_SIGNED_OUT,
   LOAD_USER_ERROR
 } from '../constants'
@@ -32,6 +32,13 @@ export function userFound(user) {
     type: USER_FOUND,
     payload: user
   };
+}
+
+// dispatched when a new user finished loading
+export function userNotFound() {
+    return {
+        type: USER_NOT_FOUND
+    };
 }
 
 // dispatched when silent renew fails
@@ -61,13 +68,6 @@ export function userExpiring() {
 export function loadingUser() {
   return {
     type: LOADING_USER
-  };
-}
-
-// dispatched when a new user finished loading
-export function loadingUserEnd() {
-  return {
-    type: LOADING_USER_END
   };
 }
 

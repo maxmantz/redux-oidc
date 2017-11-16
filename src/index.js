@@ -18,7 +18,6 @@ export const SILENT_RENEW_ERROR = require('./constants').SILENT_RENEW_ERROR;
 export const SESSION_TERMINATED = require('./constants').SESSION_TERMINATED;
 export const USER_EXPIRING = require('./constants').USER_EXPIRING;
 export const LOADING_USER = require('./constants').LOADING_USER;
-export const LOADING_USER_END = require('./constants').LOADING_USER_END;
 export const USER_SIGNED_OUT = require('./constants').USER_SIGNED_OUT;
 export const LOAD_USER_ERROR = require('./constants').LOAD_USER_ERROR;
 

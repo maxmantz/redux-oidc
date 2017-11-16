@@ -7,7 +7,7 @@ import loadUserHandler, {
   setReduxStore,
   getReduxStore
 } from '../../src/helpers/loadUser';
-import { userExpired, userFound, loadUserError, loadingUser, loadingUserEnd } from '../../src/actions';
+import { userExpired, userFound, loadUserError, loadingUser, userNotFound } from '../../src/actions';
 
 describe('helper - loadUser()', () => {
   let userManagerMock;
@@ -50,19 +50,18 @@ describe('helper - loadUser()', () => {
     expect(dispatchStub.calledWith(userFound(validUser))).toEqual(true);
   });
 
+  it('should dispatch USER_NOT_FOUND when no user is present', () => {
+    getUserCallback(null);
+
+    expect(dispatchStub.calledWith(userNotFound())).toEqual(true);
+  });
+
   it('should dispatch USER_EXPIRED when no valid user is present', () => {
     const invalidUser = { expired: true };
 
     getUserCallback(invalidUser);
 
     expect(dispatchStub.calledWith(userExpired())).toEqual(true);
-  });
-
-  it('should dispatch LOADING_USER_END when no user is present', () => {
-
-    getUserCallback(null);
-
-    expect(dispatchStub.calledWith(loadingUserEnd())).toEqual(true);
   });
 
   it('should dispatch LOADING_USER', () => {

@@ -1,6 +1,5 @@
 import '../setup';
 import expect from 'expect';
-import sinon from 'sinon';
 import {
   USER_EXPIRED,
   REDIRECT_SUCCESS,
@@ -9,7 +8,7 @@ import {
   USER_EXPIRING,
   SESSION_TERMINATED,
   LOADING_USER, USER_SIGNED_OUT,
-  LOADING_USER_END,
+  USER_NOT_FOUND,
   LOAD_USER_ERROR
 } from '../../src/constants';
 import {
@@ -20,7 +19,7 @@ import {
   userExpiring,
   redirectSuccess,
   loadingUser,
-  loadingUserEnd,
+  userNotFound,
   userSignedOut,
   loadUserError
 } from '../../src/actions';
@@ -52,6 +51,13 @@ describe('action - userFound', () => {
   });
 });
 
+describe('action - userNotFound', () => {
+  it('should return the correct action object', () => {
+    const action = userNotFound();
+    expect(action.type).toEqual(USER_NOT_FOUND);
+  });
+});
+
 describe('action - silentRenewError', () => {
   it('should return the correct action object', () => {
     const error = { some: 'error' };
@@ -80,13 +86,6 @@ describe('action - loadingUser', () => {
   it('should return the correct action object', () => {
     const action = loadingUser();
     expect(action.type).toEqual(LOADING_USER);
-  });
-});
-
-describe('action - loadingUserEnd', () => {
-  it('should return the correct action object', () => {
-    const action = loadingUserEnd();
-    expect(action.type).toEqual(LOADING_USER_END);
   });
 });
 
