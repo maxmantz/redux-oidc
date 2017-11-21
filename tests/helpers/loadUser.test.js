@@ -2,7 +2,7 @@ import '../setup';
 import sinon from 'sinon';
 import expect from 'expect';
 import loadUserHandler, { getUserCallback, errorCallback, setReduxStore, getReduxStore } from '../../src/helpers/loadUser';
-import { userExpired, userFound, loadUserError } from '../../src/actions';
+import { userExpired, userFound, loadUserError, loadingUser } from '../../src/actions';
 
 describe('helper - loadUser()', () => {
   let userManagerMock;
@@ -26,9 +26,7 @@ describe('helper - loadUser()', () => {
       dispatch: dispatchStub
     };
 
-    getUserStub.returns({
-      then: thenStub
-    });
+    getUserStub.returns(new Promise(() => {}));
 
     thenStub.returns({
       catch: catchStub
@@ -81,5 +79,22 @@ describe('helper - loadUser()', () => {
 
     const result2 = getUserCallback(expiredUser);
     expect(result2).toEqual(expiredUser);
+  });
+
+  it ('loadUserCallback should dispatch USER_EXPIRED when the user returned is null', () => {
+    getUserCallback(null);
+    expect(dispatchStub.calledWith(userExpired())).toEqual(true);
+  });
+
+  it('loadUser should dispatch LOADING_USER', () => {
+    loadUserHandler(storeMock, userManagerMock);
+
+    expect(dispatchStub.calledWith(loadingUser())).toEqual(true);
+  });
+
+  it('loadUser should return a promise', () => {
+    const promise = loadUserHandler(storeMock, userManagerMock);
+
+    expect(promise).toBeA(Promise);
   });
 });
