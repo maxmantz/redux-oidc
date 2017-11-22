@@ -1,6 +1,6 @@
 {
   "name": "redux-oidc",
-  "version": "3.0.0-beta.13",
+  "version": "3.0.0-beta.14",
   "description": "A package for managing OpenID Connect authentication in redux apps",
   "main": "dist/redux-oidc.js",
   "types": "./index.d.ts",

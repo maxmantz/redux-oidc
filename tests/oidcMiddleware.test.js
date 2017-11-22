@@ -133,5 +133,12 @@ describe('createOidcMiddleware()', function () {
     errorCallback({ message: 'Some message!' });
 
     expect(nextStub.calledWith(loadUserError())).toEqual(true);
-  })
+  });
+
+  it('middleware should not call userManagers getUser when the action type is USER_FOUND', () => {
+    middlewareHandler(nextStub, userFound(), userManagerMock);
+
+    expect(getUserStub.called).toEqual(false);
+    expect(nextStub.calledOnce).toEqual(true);
+  });
 });

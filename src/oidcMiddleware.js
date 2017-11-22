@@ -1,5 +1,5 @@
 import { userExpired, userFound, loadingUser, loadUserError } from './actions';
-import { USER_EXPIRED, LOADING_USER } from './constants';
+import { USER_EXPIRED, LOADING_USER, USER_FOUND } from './constants';
 
 // store the user here to prevent future promise calls to getUser()
 export let storedUser = null;
@@ -44,8 +44,8 @@ export function errorCallback(error) {
 
 // the middleware handler function
 export function middlewareHandler(next, action, userManager) {
-  // prevent an infinite loop of dispatches of these action types (issue #30)
-  if (action.type === USER_EXPIRED || action.type === LOADING_USER) {
+  // prevent an infinite loop of dispatches of these action types (issue #30 & #63)
+  if (action.type === USER_EXPIRED || action.type === LOADING_USER || action.type === USER_FOUND) {
     return next(action);
   }
 
