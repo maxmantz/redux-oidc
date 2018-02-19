@@ -12,7 +12,7 @@ When using classic React, install this:
 
 `npm install --save oidc-client`
 
-If you are using SSR or React Native, install this instead:
+If you are using SSR, install this instead:
 
 `npm install --save oidc-client-fetch`
 
@@ -20,6 +20,9 @@ In addition there is a peer dependency for [immutable.js](https://facebook.githu
 
 #### babel-polyfill
 You need the [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) in your build configuration for this package to work.
+
+#### Note for react-native users
+This library doesn't fully support react-native apps. Please use [this](https://github.com/FormidableLabs/react-native-app-auth) library instead.
 
 ### Description
 
@@ -35,7 +38,7 @@ It contains the following parts:
 
 ### Version 3 under development
 I've decided to overhaul the API of this library. The main changes include:
-- better SSR & React-Native support due to not relying on `window` anymore,
+- better SSR support due to not relying on `window` anymore,
 - removed `childContext` from the `<OidcProvider />`, user manager now must be passed in as a prop,
 - immutablejs is now an optional dependency and doesn't need to be installed for those not using it,
 - dropped support for `shouldValidate` - the middleware now always validates the user,
