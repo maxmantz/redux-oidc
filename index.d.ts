@@ -1,27 +1,35 @@
 declare module 'redux-oidc' {
     import { UserManager, UserManagerSettings, User } from 'oidc-client';
-    import { Action, BaseAction } from 'redux-actions';
     import { Map, fromJS } from 'immutable';
     import { Middleware, Store } from 'redux';
     import * as React from 'react';
 
+    export interface BaseAction {
+        readonly type: string;
+    }
+
+    export interface Action<Payload> extends BaseAction {
+        readonly payload?: Payload;
+        readonly error?: boolean;
+    }
+
     export interface UserState {
-        user?: User;
-        isLoadingUser: boolean;
+        readonly user?: User;
+        readonly isLoadingUser: boolean;
     }
 
     export interface CallbackComponentProps {
-        userManager: UserManager;
-        successCallback: (user: User) => void;
-        errorCallback?: (error: Error) => void;
-        route?: string;
+        readonly userManager: UserManager;
+        readonly successCallback: (user: User) => void;
+        readonly errorCallback?: (error: Error) => void;
+        readonly route?: string;
     }
 
     export class CallbackComponent extends React.Component<CallbackComponentProps> { }
 
     export interface OidcProviderProps<TSTate> {
-        userManager: UserManager;
-        store: Store<TSTate>;
+        readonly userManager: UserManager;
+        readonly store: Store<TSTate>;
     }
 
     export class OidcProvider<TState> extends React.Component<OidcProviderProps<TState>> { }
