@@ -8,20 +8,16 @@ A package for managing OpenID-Connect authentication in ReactJS / Redux apps. It
 
 #### Peer dependencies (Version 3)
 This package wraps [oidc-client-js](https://github.com/IdentityModel/oidc-client-js) to use with ReactJS / Redux apps.
-When using classic React, install this:
+Install oidc-client like this:
 
 `npm install --save oidc-client`
-
-If you are using SSR, install this instead:
-
-`npm install --save oidc-client-fetch`
 
 In addition there is a peer dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
 
 #### babel-polyfill
 You need the [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) in your build configuration for this package to work.
 
-#### Note for react-native users
+### Note for react-native users
 This library doesn't fully support react-native apps. Please use [this](https://github.com/FormidableLabs/react-native-app-auth) library instead.
 
 ### Description
