@@ -38,7 +38,7 @@ declare module 'redux-oidc' {
     export function createUserManager(options: UserManagerSettings): UserManager;
     export function processSilentRenew(): void;
     export function loadUser<TStore>(store: TStore, userManager: UserManager): Promise<User>;
-    export function reducer(state: UserState, action: Action<User | Error>): UserState;
+    export function reducer(state: UserState | undefined, action: Action<User | Error>): UserState;
     export function immutableReducer(state: Map<string, any>, action: Action<User | Error>): Map<string, any>;
 
     // Constants
