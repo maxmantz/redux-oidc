@@ -1,6 +1,6 @@
 # Actions
 This chapter lists all redux actions used by this library, their associated constants and their effect on the reducer.
-*NOTE:* These actions are dispatched when the event listeners described (here)[https://github.com/IdentityModel/oidc-client-js/wiki#events] are fired.
+*NOTE:* These actions are dispatched when the event listeners described [here](https://github.com/IdentityModel/oidc-client-js/wiki#events) are fired.
 
 ### USER_EXPIRED
 `import { USER_EXPIRED } from 'redux-oidc';`
