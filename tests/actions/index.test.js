@@ -3,7 +3,6 @@ import expect from 'expect';
 import sinon from 'sinon';
 import {
   USER_EXPIRED,
-  REDIRECT_SUCCESS,
   USER_FOUND,
   SILENT_RENEW_ERROR,
   USER_EXPIRING,
@@ -17,7 +16,6 @@ import {
   silentRenewError,
   sessionTerminated,
   userExpiring,
-  redirectSuccess,
   loadingUser,
   userSignedOut,
   loadUserError
@@ -27,16 +25,6 @@ describe('action - userExpired', () => {
   it('should return the correct action object', () => {
     const action = userExpired();
     expect(action.type).toEqual(USER_EXPIRED);
-  });
-});
-
-describe('action - redirectSuccess', () => {
-  it('should return the correct action object', () => {
-    const user = { some: 'user' };
-    const action = redirectSuccess(user);
-
-    expect(action.type).toEqual(REDIRECT_SUCCESS);
-    expect(action.payload).toEqual(user);
   });
 });
 

@@ -11,9 +11,7 @@ export const OidcProvider = require('./OidcProvider').default;
 
 // constants
 export const USER_EXPIRED = require('./constants').USER_EXPIRED;
-export const REDIRECT_SUCCESS = require('./constants').REDIRECT_SUCCESS;
 export const USER_FOUND = require('./constants').USER_FOUND;
-export const USER_NOT_FOUND = require('./constants').USER_NOT_FOUND;
 export const SILENT_RENEW_ERROR = require('./constants').SILENT_RENEW_ERROR;
 export const SESSION_TERMINATED = require('./constants').SESSION_TERMINATED;
 export const USER_EXPIRING = require('./constants').USER_EXPIRING;
@@ -23,12 +21,12 @@ export const LOAD_USER_ERROR = require('./constants').LOAD_USER_ERROR;
 
 // actions
 export const userExpired = require('./actions').userExpired;
-export const redirectSuccess = require('./actions').redirectSuccess;
 export const userFound = require('./actions').userFound;
 export const silentRenewError = require('./actions').silentRenewError;
 export const sessionTerminated = require('./actions').sessionTerminated;
 export const userExpiring = require('./actions').userExpiring;
 export const loadingUser = require('./actions').loadingUser;
 export const userSignedOut = require('./actions').userSignedOut;
+export const loadUserError = require('./actions').loadUserError;
 
 export default createOidcMiddleware;

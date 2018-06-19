@@ -1,6 +1,5 @@
 import {
   USER_EXPIRED,
-  REDIRECT_SUCCESS,
   USER_FOUND,
   USER_NOT_FOUND,
   SILENT_RENEW_ERROR,
@@ -44,7 +43,6 @@ try {
             user: null,
             isLoadingUser: false
           });
-        case REDIRECT_SUCCESS:
         case USER_FOUND:
           return fromJSGreedy({
             user: action.payload,

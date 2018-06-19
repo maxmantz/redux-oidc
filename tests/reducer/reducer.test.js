@@ -8,7 +8,6 @@ import {
   silentRenewError,
   sessionTerminated,
   userExpiring,
-  redirectSuccess,
   loadingUser,
   userSignedOut
 } from '../../src/actions';
@@ -50,16 +49,6 @@ describe('reducer', () => {
     };
 
     expect(reducer(oldState, silentRenewError())).toEqual(expectedResult);
-  });
-
-  it('should handle REDIRECT_SUCCESS correctly', () => {
-    const user = { some: 'user' };
-    const expectedResult = {
-      user,
-      isLoadingUser: false
-    };
-
-    expect(reducer({}, redirectSuccess(user))).toEqual(expectedResult);
   });
 
   it('should handle USER_FOUND correctly', () => {

@@ -1,7 +1,7 @@
 import {
   USER_EXPIRED,
-  REDIRECT_SUCCESS,
-  USER_FOUND, USER_NOT_FOUND,
+  USER_FOUND,
+  USER_NOT_FOUND,
   SILENT_RENEW_ERROR,
   SESSION_TERMINATED,
   LOADING_USER,
@@ -22,7 +22,6 @@ export default function reducer(state = initialState, action) {
     case SESSION_TERMINATED:
     case USER_SIGNED_OUT:
       return Object.assign({}, { ...state }, { user: null, isLoadingUser: false });
-    case REDIRECT_SUCCESS:
     case USER_FOUND:
       return Object.assign({}, { ...state }, { user: action.payload, isLoadingUser: false });
     case LOADING_USER:
