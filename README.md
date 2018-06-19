@@ -44,7 +44,7 @@ The example app is already updated to reflect these changes.
 #### Documentation
 You can find the docs for version 3 here:
 - [API docs](docs/API.md),
-- [actions][docs/actions.md],
+- [actions](docs/actions.md),
 - [example app](https://github.com/maxmantz/redux-oidc-example)
 
 #### Note for react-native users
