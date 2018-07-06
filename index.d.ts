@@ -25,14 +25,14 @@ declare module 'redux-oidc' {
         readonly route?: string;
     }
 
-    export class CallbackComponent extends React.Component<CallbackComponentProps> { }
+    export class CallbackComponent extends React.Component<CallbackComponentProps, void> { }
 
     export interface OidcProviderProps<TSTate> {
         readonly userManager: UserManager;
         readonly store: Store<TSTate>;
     }
 
-    export class OidcProvider<TState> extends React.Component<OidcProviderProps<TState>> { }
+    export class OidcProvider<TState> extends React.Component<OidcProviderProps<TState>, void> { }
 
     // Components
     export function createUserManager(options: UserManagerSettings): UserManager;
