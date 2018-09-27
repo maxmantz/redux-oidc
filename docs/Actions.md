@@ -41,7 +41,7 @@ Dispatched when:
 Effects on reducer:
 - sets the `user` object to `null` and `isLoadingUser` to `false`.
 
-### USER_NOT_FOUND
+### USER_FOUND
 `import { USER_FOUND } from 'redux-oidc';`;
 
 Dispatched when:
