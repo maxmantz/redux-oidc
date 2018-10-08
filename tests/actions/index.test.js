@@ -1,6 +1,5 @@
 import '../setup';
 import expect from 'expect';
-import sinon from 'sinon';
 import {
   USER_EXPIRED,
   USER_FOUND,

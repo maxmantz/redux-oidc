@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { redirectSuccess } from './actions';
 
 class CallbackComponent extends React.Component {
   static propTypes = {

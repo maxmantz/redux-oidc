@@ -2,7 +2,7 @@ import './setup';
 import expect from 'expect';
 import sinon from 'sinon';
 import OidcProvider from '../src/OidcProvider';
-import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, redirectSuccess, userSignedOut } from '../src/actions';
+import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiring, userSignedOut } from '../src/actions';
 
 describe('<OidcProvider />', () => {
   let userManagerMock;
