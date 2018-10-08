@@ -11,7 +11,8 @@ It uses the oidc-client-js library to manage OpenID Connect functionality.
 
 It contains the following parts:
 - *oidcMiddleware*: [redux middleware](http://redux.js.org/docs/advanced/Middleware.html) to automatically check whether or not the current user is signed in & trigger the authentication flow,
-- *CallbackComponent*: A react component processing the callback from the OpenID-Connect provider,
+- *CallbackComponent*: A react component processing the signin callback from the OpenID-Connect provider,
+- *SignoutCallbackComponent*: A react component processing the signout callback from the OpenID-Connect provider,
 - *reducers & actions*: reducers and actions to handle OIDC events,
 - *helpers*: create helpers to manage the oidc-client-js library
 

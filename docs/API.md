@@ -63,7 +63,7 @@ This reducer is to be used for configurations with immutable.js.
 `ìmport { immutableReducer } from 'redux-oidc';`
 
 ### React components
-##### CallbackComponent
+##### CallbackComponent / SignoutCallbackComponent
 The component to handle the token callback from the authentication server.
 *Note:* Register this component at the token callback route you've configured with your authentication server.
 
