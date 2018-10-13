@@ -1,8 +1,7 @@
 import '../setup';
 import expect from 'expect';
-import sinon from 'sinon';
 import { fromJS } from 'immutable';
-import { userExpired, userFound, userNotFound, silentRenewError, sessionTerminated, userExpiring, loadingUser, userSignedOut } from '../../src/actions';
+import { userExpired, userFound, silentRenewError, sessionTerminated, loadingUser, userSignedOut } from '../../src/actions';
 import reducer from '../../src/reducer/reducer-immutable';
 
 const initialState = fromJS({

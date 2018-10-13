@@ -1,9 +1,7 @@
 import './setup';
 import expect from 'expect';
-import React from 'react';
 import CallbackComponent from '../src/CallbackComponent';
 import sinon from 'sinon';
-import { redirectSuccess } from '../src/actions';
 
 describe('<CallbackComponent />', () => {
   let userManagerMock;
