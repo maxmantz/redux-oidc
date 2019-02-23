@@ -61,7 +61,7 @@
   "peerDependencies": {
     "react": ">=0.15.0",
     "prop-types": ">=15.5.0",
-    "oidc-client": "^1.4.1"
+    "oidc-client": "^1.5.4"
   },
   "optionalDependencies": {
     "immutable": ">=3.6.0"
