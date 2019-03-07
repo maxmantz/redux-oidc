@@ -8,6 +8,7 @@ export const CallbackComponent = require('./CallbackComponent').default;
 export const immutableReducer = require('./reducer/reducer-immutable').default;
 export const reducer = require('./reducer/reducer').default;
 export const OidcProvider = require('./OidcProvider').default;
+export const SignoutCallbackComponent = require('./SignoutCallbackComponent').default;
 
 // constants
 export const USER_EXPIRED = require('./constants').USER_EXPIRED;
