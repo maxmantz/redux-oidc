@@ -32,7 +32,6 @@ You need the [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) in your b
 
 ### Version 3 released
 I've decided to overhaul the API of this library. The main changes include:
-- better SSR support due to not relying on `window` anymore,
 - removed `childContext` from the `<OidcProvider />`, user manager now must be passed in as a prop,
 - immutablejs is now an optional dependency and doesn't need to be installed for those not using it,
 - dropped support for `shouldValidate` - the middleware now always validates the user,
