@@ -68,6 +68,6 @@ export default function createOidcMiddleware(userManager) {
 
   // the middleware
   return (store) => (next) => (action) => {
-    middlewareHandler(next, action, userManager);
+    return middlewareHandler(next, action, userManager);
   }
 };
