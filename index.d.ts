@@ -1,5 +1,5 @@
 declare module "redux-oidc" {
-  import { UserManager, UserManagerSettings, User } from "oidc-client";
+  import { SignoutResponse, UserManager, UserManagerSettings, User } from "oidc-client";
   import { Map, fromJS } from "immutable";
   import { Middleware, Store } from "redux";
   import * as React from "react";
@@ -29,8 +29,15 @@ declare module "redux-oidc" {
     CallbackComponentProps
   > {}
 
+  export interface SignoutCallbackComponentProps {
+    readonly userManager: UserManager;
+    readonly successCallback: (response: SignoutResponse) => void;
+    readonly errorCallback?: (error: Error) => void;
+    readonly route?: string;
+  }
+
   export class SignoutCallbackComponent extends React.Component<
-    CallbackComponentProps
+    SignoutCallbackComponentProps
   > {}
 
   export interface OidcProviderProps<TSTate> {
