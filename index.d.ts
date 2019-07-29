@@ -80,8 +80,8 @@ declare module "redux-oidc" {
   // Actions
   export function userExpired(): BaseAction;
   export function redirectSuccess(): Action<User>;
-  export function userFound(): Action<User>;
-  export function silentRenewError(): Action<Error>;
+  export function userFound(user: User): Action<User>;
+  export function silentRenewError(error: Error): Action<Error>;
   export function sessionTerminated(): BaseAction;
   export function userExpiring(): BaseAction;
   export function loadingUser(): BaseAction;
