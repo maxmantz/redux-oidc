@@ -74,9 +74,7 @@ describe('<OidcProvider />', () => {
     expect(provider.userManager).toEqual(userManagerMock);
   });
 
-  it('should register the events on componentWillMount()', () => {
-    provider.componentWillMount();
-
+  it('should register the events on constructor', () => {
     expect(addUserLoadedStub.calledWith(provider.onUserLoaded)).toEqual(true);
     expect(addSilentRenewErrorStub.calledWith(provider.onSilentRenewError)).toEqual(true);
     expect(addAccessTokenExpiredStub.calledWith(provider.onAccessTokenExpired)).toEqual(true);
