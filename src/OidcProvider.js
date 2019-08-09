@@ -14,9 +14,6 @@ class OidcProvider extends React.Component {
   constructor(props) {
     super(props);
     this.userManager = props.userManager;
-  }
-
-  componentWillMount() {
     // register the event callbacks
     this.userManager.events.addUserLoaded(this.onUserLoaded);
     this.userManager.events.addSilentRenewError(this.onSilentRenewError);
