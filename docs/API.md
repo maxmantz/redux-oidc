@@ -113,7 +113,7 @@ import { OidcProvider } from 'redux-oidc';
 // at the root of your application
 
 ReactDOM.render(<Provider store={store}>
-    <OidcProvider userManger={userManager} store={store}>
+    <OidcProvider userManager={userManager} store={store}>
       <App />
     </OidcProvider>
   </Provider>, document.getElementById('app'));
