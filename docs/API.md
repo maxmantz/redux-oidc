@@ -60,7 +60,7 @@ or
 
 ##### Immutable reducer
 This reducer is to be used for configurations with immutable.js.
-`ìmport { immutableReducer } from 'redux-oidc';`
+`import { immutableReducer } from 'redux-oidc';`
 
 ### React components
 ##### CallbackComponent / SignoutCallbackComponent
