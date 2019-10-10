@@ -5,7 +5,7 @@ A package for managing OpenID-Connect authentication in ReactJS / Redux apps. It
 
 ### Description
 
-This package handles [OpenID-Connect](http://openid.net/connect/) authentication in [redux](http://redux.js.org/) apps. It enables redux apps to authenticate with an external OIDC authentication provider and handles the actions of the OpenID [implicit flow](http://openid.net/specs/openid-connect-implicit-1_0.html).
+This package handles [OpenID-Connect](http://openid.net/connect/) authentication in [redux](http://redux.js.org/) apps. It enables redux apps to authenticate with an external OIDC authentication provider and handles the actions of the OpenID [implicit flow](http://openid.net/specs/openid-connect-implicit-1_0.html) or [authorization code flow](https://developer.okta.com/blog/2018/04/10/oauth-authorization-code-grant-type).
 
 It uses the oidc-client-js library to manage OpenID Connect functionality.
 
