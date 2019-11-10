@@ -30,15 +30,8 @@ In addition there is a peer dependency for [immutable.js](https://facebook.githu
 You need the [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) in your build configuration for this package to work.
 
 
-### Version 3 released
-I've decided to overhaul the API of this library. The main changes include:
-- removed `childContext` from the `<OidcProvider />`, user manager now must be passed in as a prop,
-- immutablejs is now an optional dependency and doesn't need to be installed for those not using it,
-- dropped support for `shouldValidate` - the middleware now always validates the user,
-- dropped support for `triggerAuthFlow` - this must now be initiated by a custom action (see example app),
-- cleaner API all around
-
-The example app is already updated to reflect these changes.
+### Version 4 released
+*BREAKING CHANGE*: `immutable` is no longer a dependency. If you are using the immutable reducer, please check out the docs.
 
 #### Documentation
 You can find the docs for version 3 here:
@@ -57,4 +50,5 @@ Check out the [wiki](https://github.com/maxmantz/redux-oidc/wiki) for further in
 There is a sample application demonstrating the use of this package [here](https://github.com/maxmantz/redux-oidc-example).
 
 ### Tests
-`npm run test`
+You have to install immutableJS for all the tests to pass: `npm install immutable --no-save`.
+Then run `npm run test`.

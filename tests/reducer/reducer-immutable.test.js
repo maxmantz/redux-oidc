@@ -1,17 +1,19 @@
 import '../setup';
 import expect from 'expect';
-import { fromJS } from 'immutable';
+import immutable from 'immutable';
 import { userExpired, userFound, silentRenewError, sessionTerminated, loadingUser, userSignedOut } from '../../src/actions';
-import reducer from '../../src/reducer/reducer-immutable';
+import createImmutableReducer from '../../src/reducer/reducer-immutable';
+
+const { fromJS } = immutable;
 
 const initialState = fromJS({
     user: null,
     isLoadingUser: false
 });
 
-describe('immutable reducer', () => {
+describe('createImmutableReducer(immutable)', () => {
   it('should set the correct initial state', () => {
-
+    const reducer = createImmutableReducer(immutable);
     expect(reducer(undefined, { type: 'SOME_ACTION' })).toEqual(initialState);
   });
 
@@ -25,6 +27,8 @@ describe('immutable reducer', () => {
       user: null,
       isLoadingUser: false
     });
+
+    const reducer = createImmutableReducer(immutable);
 
     expect(reducer(state, userExpired())).toEqual(expectedResult);
   });
@@ -40,6 +44,8 @@ describe('immutable reducer', () => {
       isLoadingUser: false
     });
 
+    const reducer = createImmutableReducer(immutable);
+
     expect(reducer(fromJS(oldState), silentRenewError())).toEqual(expectedResult);
   });
 
@@ -50,6 +56,7 @@ describe('immutable reducer', () => {
       isLoadingUser: false
     });
 
+    const reducer = createImmutableReducer(immutable);
     expect(reducer(fromJS(initialState), userFound(user))).toEqual(expectedResult);
   });
 
@@ -59,6 +66,7 @@ describe('immutable reducer', () => {
       isLoadingUser: false
     });
 
+    const reducer = createImmutableReducer(immutable);
     expect(reducer(fromJS({}), sessionTerminated())).toEqual(expectedResult);
   });
 
@@ -68,6 +76,7 @@ describe('immutable reducer', () => {
       isLoadingUser: true
     });
 
+    const reducer = createImmutableReducer(immutable);
     expect(reducer(initialState, loadingUser())).toEqual(expectedResult);
   });
 
@@ -77,6 +86,7 @@ describe('immutable reducer', () => {
       isLoadingUser: false
     });
 
+    const reducer = createImmutableReducer(immutable);
     expect(reducer(initialState, userSignedOut())).toEqual(expectedResult);
   });
 
@@ -85,6 +95,7 @@ describe('immutable reducer', () => {
       some: 'data'
     });
 
+    const reducer = createImmutableReducer(immutable);
     expect(reducer(expectedResult, { type: 'UNKNOWN' })).toEqual(expectedResult);
   });
 
@@ -99,6 +110,7 @@ describe('immutable reducer', () => {
           isLoadingUser: false
       });
 
+      const reducer = createImmutableReducer(immutable);
       expect(reducer(fromJS(initialState), userFound(nonObjectUser))).toEqual(expectedResult);
   });
 });

@@ -1,4 +1,4 @@
-# redux-oidc Version 3 API Documentation
+# redux-oidc Version 4 API Documentation
 
 ### Helpers
 
@@ -60,7 +60,13 @@ or
 
 ##### Immutable reducer
 This reducer is to be used for configurations with immutable.js.
-`import { immutableReducer } from 'redux-oidc';`
+```
+import immutable from 'immutable';
+import { createImmutableReducer } from 'redux-oidc';
+
+const reducer = createImmutableReducer(immutable);
+```
+
 
 ### React components
 ##### CallbackComponent / SignoutCallbackComponent
