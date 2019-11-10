@@ -4,4 +4,4 @@ node_js:
   - "5"
 
 before_install:
-  - npm install react@16.8.4 react-addons-test-utils@16.8.4 immutable babel-polyfill oidc-client
+  - npm install react@16.8.4 react-addons-test-utils@15.6.2 immutable babel-polyfill oidc-client
