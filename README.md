@@ -31,7 +31,7 @@ You need the [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) in your b
 
 
 ### Version 4 released
-*BREAKING CHANGE*: `immutable` is no longer a dependency. If you are using the immutable reducer, please check out the docs.
+*BREAKING CHANGE*: `immutable` is no longer a dependency. If you are using the immutable reducer, please check out the [docs](https://github.com/maxmantz/redux-oidc/blob/master/docs/API.md#immutable-reducer).
 
 #### Documentation
 You can find the docs for version 3 here:
