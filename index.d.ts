@@ -43,6 +43,7 @@ declare module "redux-oidc" {
   export interface OidcProviderProps<TSTate> {
     readonly userManager: UserManager;
     readonly store: Store<TSTate>;
+    children?: React.ReactNode;
   }
 
   export class OidcProvider<TState> extends React.Component<
