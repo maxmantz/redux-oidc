@@ -14,7 +14,7 @@ declare module "redux-oidc" {
   }
 
   export interface UserState {
-    readonly user?: User;
+    readonly user?: User | null;
     readonly isLoadingUser: boolean;
   }
 
