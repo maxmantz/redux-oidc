@@ -59,9 +59,9 @@
     "webpack-node-externals": "^1.5.4"
   },
   "peerDependencies": {
-    "react": ">=16.8.4",
+    "oidc-client-ts": "^2.2.4",
     "prop-types": ">=15.5.8",
-    "oidc-client": ">=1.6.1"
+    "react": ">=16.8.4"
   },
   "browserify": {
     "transform": [
