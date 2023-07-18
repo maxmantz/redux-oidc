@@ -1,5 +1,5 @@
 # redux-oidc
-[![Build Status](https://travis-ci.org/maxmantz/redux-oidc.svg?branch=master)](https://travis-ci.org/maxmantz/redux-oidc)
+Forked from [maxmantz/redux-oidc](https://github.com/maxmantz/redux-oidc).
 
 A package for managing OpenID-Connect authentication in ReactJS / Redux apps. It wraps the popular oidc-client library to redux actions and reducers.
 
