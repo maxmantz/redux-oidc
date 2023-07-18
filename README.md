@@ -1,4 +1,6 @@
 # redux-oidc
+[![CI](https://github.com/ericlamb/redux-oidc/actions/workflows/ci.yaml/badge.svg)](https://github.com/ericlamb/redux-oidc/actions/workflows/ci.yaml)
+
 Forked from [maxmantz/redux-oidc](https://github.com/maxmantz/redux-oidc).
 
 A package for managing OpenID-Connect authentication in ReactJS / Redux apps. It wraps the popular oidc-client library to redux actions and reducers.
