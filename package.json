@@ -62,6 +62,9 @@
     "prop-types": ">=15.5.8",
     "react": ">=16.8.4"
   },
+  "optionalDependencies": {
+    "immutable": ">=3.6.0"
+  },
   "browserify": {
     "transform": [
       "reactify"
