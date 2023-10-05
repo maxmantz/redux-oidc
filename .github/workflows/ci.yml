@@ -28,7 +28,7 @@ jobs:
       - name: Semantic Release
         run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FOR_FOUNDING_PARTNER_REPO }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Pusblish to NPM
