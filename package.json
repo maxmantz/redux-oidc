@@ -43,6 +43,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
     "@vitest/ui": "^0.34.6",
     "node-storage-shim": "^2.0.1",
     "semantic-release": "^22.0.5",
