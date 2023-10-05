@@ -1,33 +1,64 @@
-import createOidcMiddleware from './oidcMiddleware';
+import createOidcMiddleware from "./oidcMiddleware";
 
 // redux-oidc components
-export const createUserManager = require('./helpers/createUserManager').default;
-export const processSilentRenew = require('./helpers/processSilentRenew').default;
-export const loadUser = require('./helpers/loadUser').default;
-export const CallbackComponent = require('./CallbackComponent').default;
-export const createImmutableReducer = require('./reducer/reducer-immutable').default;
-export const reducer = require('./reducer/reducer').default;
-export const OidcProvider = require('./OidcProvider').default;
-export const SignoutCallbackComponent = require('./SignoutCallbackComponent').default;
+import CallbackComponent from "./CallbackComponent";
+import OidcProvider from "./OidcProvider";
+import SignoutCallbackComponent from "./SignoutCallbackComponent";
+import createUserManager from "./helpers/createUserManager";
+import loadUser from "./helpers/loadUser";
+import processSilentRenew from "./helpers/processSilentRenew";
+import reducer from "./reducer/reducer";
+import createImmutableReducer from "./reducer/reducer-immutable";
 
 // constants
-export const USER_EXPIRED = require('./constants').USER_EXPIRED;
-export const USER_FOUND = require('./constants').USER_FOUND;
-export const SILENT_RENEW_ERROR = require('./constants').SILENT_RENEW_ERROR;
-export const SESSION_TERMINATED = require('./constants').SESSION_TERMINATED;
-export const USER_EXPIRING = require('./constants').USER_EXPIRING;
-export const LOADING_USER = require('./constants').LOADING_USER;
-export const USER_SIGNED_OUT = require('./constants').USER_SIGNED_OUT;
-export const LOAD_USER_ERROR = require('./constants').LOAD_USER_ERROR;
+import {
+  LOADING_USER,
+  LOAD_USER_ERROR,
+  SESSION_TERMINATED,
+  SILENT_RENEW_ERROR,
+  USER_EXPIRED,
+  USER_EXPIRING,
+  USER_FOUND,
+  USER_SIGNED_OUT,
+} from "./constants";
 
 // actions
-export const userExpired = require('./actions').userExpired;
-export const userFound = require('./actions').userFound;
-export const silentRenewError = require('./actions').silentRenewError;
-export const sessionTerminated = require('./actions').sessionTerminated;
-export const userExpiring = require('./actions').userExpiring;
-export const loadingUser = require('./actions').loadingUser;
-export const userSignedOut = require('./actions').userSignedOut;
-export const loadUserError = require('./actions').loadUserError;
+import {
+  loadUserError,
+  loadingUser,
+  sessionTerminated,
+  silentRenewError,
+  userExpired,
+  userExpiring,
+  userFound,
+  userSignedOut,
+} from "./actions";
 
 export default createOidcMiddleware;
+
+export {
+  CallbackComponent,
+  LOADING_USER,
+  LOAD_USER_ERROR,
+  OidcProvider,
+  SESSION_TERMINATED,
+  SILENT_RENEW_ERROR,
+  SignoutCallbackComponent,
+  USER_EXPIRED,
+  USER_EXPIRING,
+  USER_FOUND,
+  USER_SIGNED_OUT,
+  createImmutableReducer,
+  createUserManager,
+  loadUser,
+  loadUserError,
+  loadingUser,
+  processSilentRenew,
+  reducer,
+  sessionTerminated,
+  silentRenewError,
+  userExpired,
+  userExpiring,
+  userFound,
+  userSignedOut,
+};
