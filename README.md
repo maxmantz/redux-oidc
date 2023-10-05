@@ -19,18 +19,23 @@ It contains the following parts:
 `npm install --save redux-oidc`
 
 #### Peer dependencies
-This package wraps [oidc-client-js](https://github.com/IdentityModel/oidc-client-js) to use with ReactJS / Redux apps.
+This package wraps [oidc-client-ts](https://github.com/authts/oidc-client-ts) to use with ReactJS / Redux apps.
 Install oidc-client like this:
 
-`npm install --save oidc-client`
+`npm install --save oidc-client-ts`
 
-In addition there is a peer dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
-
-#### babel-polyfill
-You need the [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) in your build configuration for this package to work.
-
+In addition there is a optional dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
 
 ### Version 4 released
+
+Replaced oidc-client with oidc-client-ts package
+
+Update peer dependency to support React 16, 17 & 18
+
+Replace Webpack bundler with Vite
+
+Replace mocha, sinon with Vitest
+
 *BREAKING CHANGE*: `immutable` is no longer a dependency. If you are using the immutable reducer, please check out the [docs](https://github.com/maxmantz/redux-oidc/blob/master/docs/API.md#immutable-reducer).
 
 #### Documentation
