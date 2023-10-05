@@ -1,29 +1,32 @@
-import 'babel-polyfill';
-import '../setup';
-import sinon from 'sinon';
-import expect from 'expect';
-import processSilentRenew from '../../src/helpers/processSilentRenew'
+import "../setup";
 
-describe('helper - processSilentRenew()', () => {
-  let createUserManagerMock;
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import processSilentRenew from "../../src/helpers/processSilentRenew";
+import createUserManager from "../../src/helpers/createUserManager"; // Assuming createUserManager is exported from this module
+
+// Mock the createUserManager function
+vi.mock("../../src/helpers/createUserManager", async () => {
+  const actual = await vi.importActual("../../src/helpers/createUserManager");
+  return {
+    __esModule: true,
+    default: vi.fn(),
+  };
+});
+
+describe("helper - processSilentRenew()", () => {
   let signinSilentCallbackStub;
 
   beforeEach(() => {
-    signinSilentCallbackStub = sinon.stub();
-    createUserManagerMock = sinon.stub().returns({
-      signinSilentCallback: signinSilentCallbackStub
+    // Reset mocks before each test
+    createUserManager.mockReset();
+    signinSilentCallbackStub = vi.fn();
+    createUserManager.mockReturnValue({
+      signinSilentCallback: signinSilentCallbackStub,
     });
-
-    processSilentRenew.__Rewire__('createUserManager', createUserManagerMock);
   });
 
-  afterEach(() => {
-    processSilentRenew.__ResetDependency__('createUserManager');
-  });
-
-  it('should handle the silent callback correctly', () => {
+  it("should handle the silent callback correctly", () => {
     processSilentRenew();
-
-    expect(signinSilentCallbackStub.called).toEqual(true);
+    expect(signinSilentCallbackStub).toHaveBeenCalled();
   });
 });

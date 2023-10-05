@@ -1,26 +1,26 @@
-import 'babel-polyfill';
 import '../setup';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import createUserManager from '../../src/helpers/createUserManager';
-import expect from 'expect';
-import sinon from 'sinon';
+import { UserManager } from 'oidc-client-ts';
+// Mock the UserManager dependency
+vi.mock('oidc-client-ts', () => ({
+  UserManager: vi.fn(),
+}));
 
 describe('helper - createUserManager()', () => {
-  let userManagerStub;
-
+  let userManagerMock;
+  
   beforeEach(() => {
-    userManagerStub = sinon.stub().returns((config) => ({ config }));
-    createUserManager.__Rewire__('UserManager', userManagerStub);
-  });
-
-  afterEach(() => {
-    createUserManager.__ResetDependency__('UserManager');
+    // Reset mocks before each test
+    UserManager.mockReset();
+    userManagerMock = { config: vi.fn() };
+    UserManager.mockImplementation(() => userManagerMock);
   });
 
   it('should return an UserManager instance', () => {
     const config = { some: 'config' };
     const userManager = createUserManager(config);
-
-    expect(typeof(userManager)).toEqual('object');
-    expect(userManagerStub.calledWith(config)).toEqual(true);
+    expect(userManager).toBeTypeOf('object');
+    expect(UserManager).toHaveBeenCalledWith(config);
   });
 });

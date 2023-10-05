@@ -1,5 +1,5 @@
 import '../setup';
-import expect from 'expect';
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import immutable from 'immutable';
 import { userExpired, userFound, silentRenewError, sessionTerminated, loadingUser, userSignedOut } from '../../src/actions';
 import createImmutableReducer from '../../src/reducer/reducer-immutable';
