@@ -1,7 +1,0 @@
-language: node_js
-
-node_js:
-  - "6"
-
-before_install:
-  - npm install react@16.8.4 react-addons-test-utils@15.6.2 immutable babel-polyfill oidc-client
