@@ -24,11 +24,11 @@ Install oidc-client like this:
 
 `npm install --save oidc-client-ts`
 
-In addition there is a optional dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
+In addition there is an optional dependency for [immutable.js](https://facebook.github.io/immutable-js/), if you want to use it.
 
 ### Version 4 released
 
-Replaced oidc-client with oidc-client-ts package
+Replace oidc-client with oidc-client-ts package
 
 Update peer dependency to support React 16, 17 & 18
 
