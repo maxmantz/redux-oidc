@@ -43,8 +43,9 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "node-storage-shim": "^2.0.1",
     "@vitest/ui": "^0.34.6",
+    "node-storage-shim": "^2.0.1",
+    "semantic-release": "^22.0.5",
     "vite": "^4.4.11",
     "vitest": "^0.34.6"
   },
