@@ -3,20 +3,32 @@
   "version": "4.0.0",
   "description": "A package for managing OpenID Connect authentication in redux apps",
   "main": "dist/redux-oidc.js",
+  "module": "dist/redux-oidc.mjs",
   "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/redux-oidc.mjs",
+      "require": "./dist/redux-oidc.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "mocha-webpack --webpack-config webpack.config-test.js \"tests/**/*.test.js\"",
-    "build": "webpack -p",
+    "test": "vitest",
+    "build": "vite build",
     "prepublish": "npm run test",
     "pretest": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxmantz/redux-oidc.git"
+    "url": "https://github.com/founding-partner/redux-oidc.git"
   },
   "bugs": {
-    "url": "https://github.com/maxmantz/redux-oidc/issues",
-    "email": "maximilian.mantz@yahoo.de"
+    "url": "https://github.com/founding-partner/redux-oidc/issues",
+    "email": "carreraphp@gmail.com"
   },
   "keywords": [
     "oidc",
@@ -26,46 +38,23 @@
     "openid",
     "oauth2"
   ],
-  "author": "Maximilian Mantz",
+  "author": {
+    "name": "Yogesh Surendran"
+  },
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-rewire": "^1.0.0",
-    "babel-plugin-uglify": "^1.0.2",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "babel-register": "^6.18.0",
-    "babel-template": "^6.16.0",
-    "babel-types": "^6.21.0",
-    "browserify": "^13.3.0",
-    "chai": "^3.5.0",
-    "cheerio": "^0.22.0",
-    "co-mocha": "^1.1.3",
-    "enzyme": "^2.7.0",
-    "es6-promise": "^4.0.5",
-    "expect": "^1.20.2",
-    "file-loader": "^0.9.0",
-    "jsdom": "^9.9.1",
-    "json-loader": "^0.5.4",
-    "mocha": "^3.2.0",
-    "mocha-webpack": "^0.7.0",
-    "node-storage-shim": "^1.0.1",
-    "sinon": "^1.17.7",
-    "webpack": "^2.2.0",
-    "webpack-node-externals": "^1.5.4"
+    "node-storage-shim": "^2.0.1",
+    "@vitest/ui": "^0.34.6",
+    "vite": "^4.4.11",
+    "vitest": "^0.34.6"
   },
   "peerDependencies": {
-    "react": ">=16.8.4",
+    "oidc-client-ts": ">=2.3.0",
     "prop-types": ">=15.5.8",
-    "oidc-client": ">=1.6.1"
+    "react": ">=16.8.4 || 17 || 18",
+    "redux": "^4.2.1"
   },
-  "browserify": {
-    "transform": [
-      "reactify"
-    ]
+  "optionalDependencies": {
+    "immutable": "^5.0.0-beta.4"
   }
 }
