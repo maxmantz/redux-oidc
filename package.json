@@ -1,6 +1,6 @@
 {
   "name": "@founding-partner/redux-oidc",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A package for managing OpenID Connect authentication in redux apps",
   "main": "dist/redux-oidc.js",
   "module": "dist/redux-oidc.mjs",
