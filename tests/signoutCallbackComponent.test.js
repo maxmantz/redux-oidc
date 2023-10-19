@@ -1,34 +1,34 @@
 import './setup';
-import expect from 'expect';
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import SignoutCallbackComponent from '../src/SignoutCallbackComponent';
-import sinon from 'sinon';
+
 
 describe('<SignoutCallbackComponent />', () => {
   let userManagerMock;
-  let signoutRedirectCallbackStub;
-  let thenStub;
-  let catchStub;
-  let removeItemStub;
+  let signoutRedirectCallbackMock;
+  let thenMock;
+  let catchMock;
+  let removeItemMock;
   let props;
-  let successCallbackStub;
-  let errorCallbackStub;
+  let successCallbackMock;
+  let errorCallbackMock;
   let component;
 
   beforeEach(() => {
-    catchStub = sinon.stub();
-    thenStub = sinon.stub().returns({ catch: catchStub });
-    removeItemStub = sinon.stub();
-    signoutRedirectCallbackStub = sinon.stub().returns({
-      then: thenStub
+    catchMock = vi.fn();
+    thenMock = vi.fn().mockReturnValue({ catch: catchMock })
+    removeItemMock = vi.fn();
+    signoutRedirectCallbackMock = vi.fn().mockReturnValue({
+      then: thenMock
     });
-    successCallbackStub = sinon.stub();
-    errorCallbackStub = sinon.stub();
+    successCallbackMock = vi.fn();
+    errorCallbackMock = vi.fn();
 
     userManagerMock = {
-      signoutRedirectCallback: signoutRedirectCallbackStub,
+      signoutRedirectCallback: signoutRedirectCallbackMock,
     };
 
-    props = { successCallback: successCallbackStub, errorCallback: errorCallbackStub, userManager: userManagerMock };
+    props = { successCallback: successCallbackMock, errorCallback: errorCallbackMock, userManager: userManagerMock };
 
 
     component = new SignoutCallbackComponent(props);
@@ -37,16 +37,16 @@ describe('<SignoutCallbackComponent />', () => {
   it('should call the userManager on componentDidMount', () => {
     component.componentDidMount();
 
-    expect(signoutRedirectCallbackStub.called).toEqual(true);
-    expect(thenStub.called).toEqual(true);
-    expect(catchStub.called).toEqual(true);
+    expect(signoutRedirectCallbackMock).toHaveBeenCalled()
+    expect(thenMock).toHaveBeenCalled()
+    expect(catchMock).toHaveBeenCalled()
   });
 
   it('should handle redirect success correctly', () => {
     const user = { some: 'user' };
     component.onRedirectSuccess(user);
 
-    expect(successCallbackStub.calledWith(user)).toEqual(true);
+    expect(successCallbackMock).toHaveBeenCalledWith(user)
   });
 
   it('should call the redirect error callback when provided', () => {
@@ -54,13 +54,13 @@ describe('<SignoutCallbackComponent />', () => {
 
     component.onRedirectError(error);
 
-    expect(errorCallbackStub.calledWith(error)).toEqual(true);
+    expect(errorCallbackMock).toHaveBeenCalledWith(error)
   });
 
   it('should throw an error when no error callback has been provided', () => {
     const error = { message: 'error' };
 
-    props = { successCallback: successCallbackStub, userManager: userManagerMock };
+    props = { successCallback: successCallbackMock, userManager: userManagerMock };
     component = new SignoutCallbackComponent(props);
 
     expect(() => component.onRedirectError(error)).toThrow(/error/);

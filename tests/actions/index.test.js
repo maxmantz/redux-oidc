@@ -1,5 +1,5 @@
 import '../setup';
-import expect from 'expect';
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import {
   USER_EXPIRED,
   USER_FOUND,

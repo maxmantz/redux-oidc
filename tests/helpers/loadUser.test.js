@@ -1,35 +1,35 @@
 import '../setup';
-import sinon from 'sinon';
-import expect from 'expect';
+
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import loadUserHandler, { getUserCallback, errorCallback, setReduxStore, getReduxStore } from '../../src/helpers/loadUser';
 import { userExpired, userFound, loadUserError, loadingUser } from '../../src/actions';
 
 describe('helper - loadUser()', () => {
   let userManagerMock;
   let storeMock;
-  let getUserStub;
-  let dispatchStub;
-  let thenStub;
-  let catchStub;
+  let getUserMock;
+  let dispatchMock;
+  let thenMock;
+  let catchMock;
 
   beforeEach(() => {
-    dispatchStub = sinon.stub();
-    getUserStub = sinon.stub();
-    thenStub = sinon.stub();
-    catchStub = sinon.stub();
+    dispatchMock = vi.fn();
+    getUserMock = vi.fn();
+    thenMock = vi.fn();
+    catchMock = vi.fn();
 
     userManagerMock = {
-      getUser: getUserStub
+      getUser: getUserMock
     };
 
     storeMock = {
-      dispatch: dispatchStub
+      dispatch: dispatchMock
     };
 
-    getUserStub.returns(new Promise(() => {}));
+    getUserMock.mockReturnValue(new Promise(() => {}));
 
-    thenStub.returns({
-      catch: catchStub
+    thenMock.mockReturnValue({
+      catch: catchMock
     });
 
     setReduxStore(storeMock);
@@ -40,7 +40,7 @@ describe('helper - loadUser()', () => {
 
     getUserCallback(validUser);
 
-    expect(dispatchStub.calledWith(userFound(validUser))).toEqual(true);
+    expect(dispatchMock).toHaveBeenCalledWith(userFound(validUser))
   });
 
   it('should dispatch USER_EXPIRED when no valid user is present', () => {
@@ -48,13 +48,13 @@ describe('helper - loadUser()', () => {
 
     getUserCallback(invalidUser);
 
-    expect(dispatchStub.calledWith(userExpired())).toEqual(true);
+    expect(dispatchMock).toHaveBeenCalledWith(userExpired())
   });
 
   it('should set the redux store', () => {
     loadUserHandler(storeMock, userManagerMock);
 
-    expect(getReduxStore() === storeMock).toEqual(true);
+    expect(getReduxStore() === storeMock).toBeTruthy()
   });
 
   it('errorCallback should dispatch LOAD_USER_ERROR', () => {
@@ -62,7 +62,7 @@ describe('helper - loadUser()', () => {
 
     errorCallback({ message: 'Some message!'});
 
-    expect(dispatchStub.calledWith(loadUserError())).toEqual(true);
+    expect(dispatchMock).toHaveBeenCalledWith(loadUserError())
   });
 
   it('loadUserCallback returns the user', () => {
@@ -83,18 +83,18 @@ describe('helper - loadUser()', () => {
 
   it ('loadUserCallback should dispatch USER_EXPIRED when the user returned is null', () => {
     getUserCallback(null);
-    expect(dispatchStub.calledWith(userExpired())).toEqual(true);
+    expect(dispatchMock).toHaveBeenCalledWith(userExpired())
   });
 
   it('loadUser should dispatch LOADING_USER', () => {
     loadUserHandler(storeMock, userManagerMock);
 
-    expect(dispatchStub.calledWith(loadingUser())).toEqual(true);
+    expect(dispatchMock).toHaveBeenCalledWith(loadingUser())
   });
 
   it('loadUser should return a promise', () => {
     const promise = loadUserHandler(storeMock, userManagerMock);
 
-    expect(promise).toBeA(Promise);
+    expect(promise).toBeInstanceOf(Promise);
   });
 });

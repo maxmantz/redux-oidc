@@ -10,7 +10,7 @@ Usage:
 import { createUserManager } from 'redux-oidc';
 
 const settings = {
-  // the user manager settings for oidc-client
+  // the user manager settings for oidc-client-ts
 };
 
 const userManager = createUserManager(settings);

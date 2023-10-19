@@ -4,7 +4,7 @@ import { userExpired, userFound, silentRenewError, sessionTerminated, userExpiri
 
 class OidcProvider extends React.Component {
   static propTypes = {
-    // the user manager from oidc-client
+    // the user manager from oidc-client-ts
     userManager: PropTypes.object.isRequired,
 
     // the redux-store
