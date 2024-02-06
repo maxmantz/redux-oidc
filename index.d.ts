@@ -1,5 +1,5 @@
-declare module "redux-oidc" {
-  import { SignoutResponse, UserManager, UserManagerSettings, User } from "oidc-client";
+declare module "@ericlamb/redux-oidc" {
+  import { SignoutResponse, UserManager, UserManagerSettings, User } from "oidc-client-ts";
   import { Map, fromJS } from "immutable";
   import { Middleware, Store } from "redux";
   import * as React from "react";

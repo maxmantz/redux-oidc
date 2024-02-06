@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+          node-version: '16'
+    - name: Install, Build, and Test
+      run: npm install --force
+    - name: Publish to NPM
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
